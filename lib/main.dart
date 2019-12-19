@@ -1,3 +1,4 @@
+import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/core/router/router.gr.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
@@ -37,11 +38,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [],
+      providers: [
+        BlocProvider<UserBloc>(
+          create: (context) => di.serviceLocator<UserBloc>()
+            ..add(
+              GetLocalUserEvent(),
+            ),
+        )
+      ],
       child: MaterialApp(
         title: APP_NAME,
         navigatorObservers: <NavigatorObserver>[observer],
         onGenerateRoute: Router.onGenerateRoute,
+        initialRoute: Router.loadingScreen,
         theme: ThemeData(
           primarySwatch: Colors.purple,
         ),

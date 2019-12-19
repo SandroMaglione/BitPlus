@@ -11,6 +11,7 @@ const String SHARED_PREF_USER_LOCAL = "USER_LOCAL";
 abstract class ProfileLocalDataSource {
   Future<Either<Failure, User>> getUserLocal();
   Future<Either<Failure, void>> saveUserLocal(User user);
+  Future<Either<Failure, void>> removeUserLocal();
 }
 
 class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
@@ -28,7 +29,8 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
       final userJson = sharedPreferences.getString(SHARED_PREF_USER_LOCAL);
       final user = User.fromJson(userJson);
       return Right(user);
-    } catch (e) {
+    } catch (e, s) {
+      crashlytics.recordError(e, s);
       return Left(
         GettingLocalDataFailure(
           message: ERROR_GET_LOCAL_USER,
@@ -55,10 +57,35 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
       }
 
       return Right(result);
-    } catch (e) {
+    } catch (e, s) {
+      crashlytics.recordError(e, s);
       return Left(
         GettingLocalDataFailure(
           message: ERROR_SAVE_LOCAL_USER,
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> removeUserLocal() async {
+    try {
+      final result = await sharedPreferences.remove(SHARED_PREF_USER_LOCAL);
+
+      if (!result) {
+        return Left(
+          GettingLocalDataFailure(
+            message: ERROR_REMOVE_LOCAL_USER,
+          ),
+        );
+      }
+
+      return Right(result);
+    } catch (e, s) {
+      crashlytics.recordError(e, s);
+      return Left(
+        GettingLocalDataFailure(
+          message: ERROR_REMOVE_LOCAL_USER,
         ),
       );
     }

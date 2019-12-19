@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:bitplus/app/domain/usecases/profile/get_user_profile.dart'
     as gup;
+import 'package:bitplus/app/domain/usecases/profile/remove_user_profile.dart'
+    as rup;
 import 'package:bitplus/app/domain/usecases/profile/save_user_profile.dart'
     as svup;
 import 'package:bitplus/app/domain/usecases/profile/sign_in_profile.dart'
@@ -22,6 +24,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   final svup.SaveUserProfile saveUserProfile;
   final sop.SignOutProfile signOutProfile;
   final sip.SignInProfile signInProfile;
+  final rup.RemoveUserProfile removeUserProfile;
 
   UserBloc({
     @required this.getUserProfile,
@@ -29,6 +32,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     @required this.saveUserProfile,
     @required this.signOutProfile,
     @required this.signInProfile,
+    @required this.removeUserProfile,
   });
 
   @override
@@ -127,10 +131,31 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   Stream<UserState> _mapSignOutUserEvent(SignOutUserEvent event) async* {
     yield UserState.loadingUserState();
-    await signOutProfile(
+    final failOrOut = await signOutProfile(
       NoParams(),
     );
 
-    yield UserState.emptyUserState(status: 'Logged out');
+    yield* failOrOut.fold(
+      (Failure failure) async* {
+        yield UserState.errorUserState(
+          message: 'Error on sign out, try again',
+        );
+      },
+      (_) async* {
+        final failOrRemove = await removeUserProfile(
+          NoParams(),
+        );
+        yield* failOrRemove.fold(
+          (Failure failure) async* {
+            yield UserState.errorUserState(
+              message: 'Error on sign out, try again',
+            );
+          },
+          (_) async* {
+            yield UserState.emptyUserState(status: 'Logged out');
+          },
+        );
+      },
+    );
   }
 }

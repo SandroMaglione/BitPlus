@@ -58,7 +58,7 @@ class SummaryRemoteDataSourceImpl implements SummaryRemoteDataSource {
       );
 
       final summaryMap = summary.toJsonMap();
-      final doc = await firestore
+      await firestore
           .collection(USER_COLLECTION)
           .document(uid)
           .collection(SUMMARY_COLLECTION)

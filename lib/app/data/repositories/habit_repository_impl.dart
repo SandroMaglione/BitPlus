@@ -26,14 +26,14 @@ class HabitRepositoryImpl implements HabitRepository {
     String uid,
     String name,
     bool isPositive,
-    int experience,
+    int value,
     BuiltList<int> lifeAreaIds,
   ) {
     final habit = habitRemoteDataSource.createHabit(
       uid,
       name,
       isPositive,
-      experience,
+      value,
       lifeAreaIds,
     );
     return habit;
@@ -59,7 +59,7 @@ class HabitRepositoryImpl implements HabitRepository {
       String habitID,
       String name,
       bool isPositive,
-      int experience,
+      int value,
       BuiltList<int> lifeAreaIds) {
     // TODO: implement updateHabit
     return null;

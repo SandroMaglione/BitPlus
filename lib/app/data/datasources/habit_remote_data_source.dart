@@ -15,18 +15,18 @@ abstract class HabitRemoteDataSource {
   Future<Either<Failure, BuiltList<Habit>>> getHabitList(String uid);
 
   /// Creates an [Habit] and uploads it to the database
-  /// 
+  ///
   /// It returns the [Habit] with the new habitID assigned
   Future<Either<Failure, Habit>> createHabit(
     String uid,
     String name,
     bool isPositive,
-    int experience,
+    int value,
     BuiltList<int> lifeAreaIds,
   );
 
   Future<Either<Failure, Habit>> updateHabit(String uid, String habitID,
-      String name, bool isPositive, int experience, BuiltList<int> lifeArea);
+      String name, bool isPositive, int value, BuiltList<int> lifeArea);
   Future<Either<Failure, void>> checkHabit(
       String uid, String habitID, DateTime date);
   Future<Either<Failure, void>> uncheckHabit(
@@ -53,7 +53,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
 
   @override
   Future<Either<Failure, Habit>> createHabit(String uid, String name,
-      bool isPositive, int experience, BuiltList<int> lifeAreaIds) async {
+      bool isPositive, int value, BuiltList<int> lifeAreaIds) async {
     try {
       final habit = Habit(
         (h) => h
@@ -61,7 +61,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
           ..isPositive = isPositive
           ..color = 0xFF343A40
           ..habitID = 'null'
-          ..value = experience
+          ..value = value
           ..lifeAreas = ListBuilder<int>(
             lifeAreaIds,
           ),
@@ -104,7 +104,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
 
   @override
   Future<Either<Failure, Habit>> updateHabit(String uid, String habitID,
-      String name, bool isPositive, int experience, BuiltList<int> lifeArea) {
+      String name, bool isPositive, int value, BuiltList<int> lifeArea) {
     // TODO: implement updateHabit
     return null;
   }

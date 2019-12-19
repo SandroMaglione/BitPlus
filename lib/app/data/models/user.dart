@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:bitplus/core/error/exceptions.dart';
 import 'package:bitplus/core/serializers/serializers.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -21,16 +20,11 @@ abstract class User implements Built<User, UserBuilder> {
     return json.encode(serializers.serializeWith(User.serializer, this));
   }
 
-  // ATTENTION: dynamic i.e. Map<String, dynamic> or String
-  static User fromJson(dynamic jsonString) {
-    if (jsonString is Map<String, dynamic> || jsonString is String) {
-      return serializers.deserializeWith(
-        User.serializer,
-        jsonString,
-      );
-    } else {
-      throw JsonConvertFormatException();
-    }
+  static User fromJson(String jsonString) {
+    return serializers.deserializeWith(
+      User.serializer,
+      json.decode(jsonString),
+    );
   }
 
   Map<String, dynamic> toJsonMap() {

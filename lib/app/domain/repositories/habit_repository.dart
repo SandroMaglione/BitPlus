@@ -10,7 +10,7 @@ abstract class HabitRepository {
     String uid,
     String name,
     bool isPositive,
-    int experience,
+    int value,
     BuiltList<int> lifeAreaIds,
   );
   Future<Either<Failure, Habit>> updateHabit(
@@ -18,7 +18,7 @@ abstract class HabitRepository {
     String habitID,
     String name,
     bool isPositive,
-    int experience,
+    int value,
     BuiltList<int> lifeAreaIds,
   );
   Future<Either<Failure, void>> checkHabit(

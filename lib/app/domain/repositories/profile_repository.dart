@@ -17,6 +17,9 @@ abstract class ProfileRepository {
   /// Get [User] model if an instance exist locally
   Future<Either<Failure, User>> getUserProfile();
 
+  /// Delete the [User] model stored locally
+  Future<Either<Failure, void>> removeUserProfile();
+
   /// Save a [User] model locally for successive access
   Future<Either<Failure, void>> saveUserProfile(User user);
 }
