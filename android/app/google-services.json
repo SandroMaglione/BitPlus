@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "969278155581",
+    "firebase_url": "https://bitplus-95304.firebaseio.com",
+    "project_id": "bitplus-95304",
+    "storage_bucket": "bitplus-95304.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969278155581:android:9089804146f42dabfaf354",
+        "android_client_info": {
+          "package_name": "com.sandromaglione.bitplus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969278155581-2moit2kk86tkbvula70neb66vtlbu088.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sandromaglione.bitplus",
+            "certificate_hash": "0b5df75b918e77a94df9ef11f63ffbda0509e167"
+          }
+        },
+        {
+          "client_id": "969278155581-fpoqfmjkq1t7q4hfdtp24bb15cg3bjd1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5mww8Gv7guukROUd4-6MCODW4rSgADDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "969278155581-fpoqfmjkq1t7q4hfdtp24bb15cg3bjd1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
