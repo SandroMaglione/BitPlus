@@ -46,9 +46,13 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
               message: 'Error while getting the habit, try again later');
         },
         (BuiltList<Habit> habitList) async* {
-          yield HabitState.loadedHabitState(
-            habits: habitList,
-          );
+          if (habitList.isNotEmpty) {
+            yield HabitState.loadedHabitState(
+              habits: habitList,
+            );
+          } else {
+            yield HabitState.emptyHabitState();
+          }
         },
       );
     } else {

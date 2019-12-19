@@ -10,13 +10,11 @@ part of 'habit_event.dart';
 abstract class HabitEvent extends Equatable {
   const HabitEvent(this._type);
 
-  factory HabitEvent.getHabitListHabitEvent({@required String uid}) =
-      GetHabitListHabitEvent;
+  factory HabitEvent.getHabitListHabitEvent() = GetHabitListHabitEvent;
 
-  factory HabitEvent.checkHabitEvent({@required String uid}) = CheckHabitEvent;
+  factory HabitEvent.checkHabitEvent() = CheckHabitEvent;
 
-  factory HabitEvent.uncheckHabitEvent({@required String uid}) =
-      UncheckHabitEvent;
+  factory HabitEvent.uncheckHabitEvent() = UncheckHabitEvent;
 
   final _HabitEvent _type;
 
@@ -41,39 +39,36 @@ abstract class HabitEvent extends Equatable {
 
 @immutable
 class GetHabitListHabitEvent extends HabitEvent {
-  const GetHabitListHabitEvent({@required this.uid})
-      : super(_HabitEvent.GetHabitListHabitEvent);
+  const GetHabitListHabitEvent._() : super(_HabitEvent.GetHabitListHabitEvent);
 
-  final String uid;
+  factory GetHabitListHabitEvent() {
+    _instance ??= GetHabitListHabitEvent._();
+    return _instance;
+  }
 
-  @override
-  String toString() => 'GetHabitListHabitEvent(uid:${this.uid})';
-  @override
-  List get props => [uid];
+  static GetHabitListHabitEvent _instance;
 }
 
 @immutable
 class CheckHabitEvent extends HabitEvent {
-  const CheckHabitEvent({@required this.uid})
-      : super(_HabitEvent.CheckHabitEvent);
+  const CheckHabitEvent._() : super(_HabitEvent.CheckHabitEvent);
 
-  final String uid;
+  factory CheckHabitEvent() {
+    _instance ??= CheckHabitEvent._();
+    return _instance;
+  }
 
-  @override
-  String toString() => 'CheckHabitEvent(uid:${this.uid})';
-  @override
-  List get props => [uid];
+  static CheckHabitEvent _instance;
 }
 
 @immutable
 class UncheckHabitEvent extends HabitEvent {
-  const UncheckHabitEvent({@required this.uid})
-      : super(_HabitEvent.UncheckHabitEvent);
+  const UncheckHabitEvent._() : super(_HabitEvent.UncheckHabitEvent);
 
-  final String uid;
+  factory UncheckHabitEvent() {
+    _instance ??= UncheckHabitEvent._();
+    return _instance;
+  }
 
-  @override
-  String toString() => 'UncheckHabitEvent(uid:${this.uid})';
-  @override
-  List get props => [uid];
+  static UncheckHabitEvent _instance;
 }

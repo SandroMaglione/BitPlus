@@ -4,16 +4,10 @@ part 'habit_event.g.dart';
 
 @superEnum
 enum _HabitEvent {
-  @Data(fields: [
-    DataField('uid', String),
-  ])
+  @object
   GetHabitListHabitEvent,
-  @Data(fields: [
-    DataField('uid', String),
-  ])
+  @object
   CheckHabitEvent,
-  @Data(fields: [
-    DataField('uid', String),
-  ])
+  @object
   UncheckHabitEvent,
 }

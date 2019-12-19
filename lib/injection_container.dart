@@ -43,6 +43,13 @@ Future<void> init() async {
     ),
   );
 
+  serviceLocator.registerLazySingleton<HabitBloc>(
+    () => HabitBloc(
+      getHabitList: serviceLocator(),
+      userBloc: serviceLocator(),
+    ),
+  );
+
   // Repositories
   serviceLocator.registerLazySingleton<ProfileRepository>(
     () => ProfileRepositoryImpl(

@@ -123,7 +123,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
           snapshot.data,
         ),
       );
-      final builtList = BuiltList(habitList);
+      final builtList = BuiltList<Habit>(habitList);
       return Right(builtList);
     } catch (e, s) {
       crashlytics.recordError(e, s);
