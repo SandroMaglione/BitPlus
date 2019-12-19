@@ -13,5 +13,5 @@ abstract class ProfileRepository {
     String password,
   );
   Future<Either<Failure, User>> addExperienceProfile(int experience);
-  Future<Either<Failure, User>> getUserProfile(String uid);
+  Future<Either<Failure, User>> getUserProfile();
 }

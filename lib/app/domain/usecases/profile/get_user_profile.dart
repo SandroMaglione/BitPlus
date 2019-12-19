@@ -1,12 +1,11 @@
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:bitplus/app/domain/repositories/profile_repository.dart';
-import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/core/error/failures.dart';
 import 'package:bitplus/core/usecase/usecase.dart';
 import 'package:dartz/dartz.dart';
 
-class GetUserProfile implements UseCase<User, Params> {
+class GetUserProfile implements UseCase<User, NoParams> {
   final ProfileRepository profileRepository;
 
   const GetUserProfile({
@@ -14,18 +13,7 @@ class GetUserProfile implements UseCase<User, Params> {
   });
 
   @override
-  Future<Either<Failure, User>> call(Params params) {
-    return profileRepository.getUserProfile(params.uid);
+  Future<Either<Failure, User>> call(NoParams params) {
+    return profileRepository.getUserProfile();
   }
-}
-
-class Params extends Equatable {
-  final String uid;
-
-  const Params({
-    @required this.uid,
-  });
-
-  @override
-  List<Object> get props => [uid];
 }
