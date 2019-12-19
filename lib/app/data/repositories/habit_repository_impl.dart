@@ -36,7 +36,7 @@ class HabitRepositoryImpl implements HabitRepository {
 
   @override
   Future<Either<Failure, Habit>> updateHabit(String uid, String habitID,
-      String name, bool isPositive, int experience, BuiltList<int> lifeArea) {
+      String name, bool isPositive, int experience, BuiltList<int> lifeAreaIds) {
     // TODO: implement updateHabit
     return null;
   }

@@ -3,15 +3,15 @@ import 'package:bitplus/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class ProfileRepository {
-  Future<Either<Failure, User>> signIn(
+  Future<Either<Failure, User>> signInProfile(
     String email,
     String password,
   );
-  void signOut();
-  Future<Either<Failure, User>> signUp(
+  void signOutProfile();
+  Future<Either<Failure, User>> signUpProfile(
     String email,
     String password,
   );
-  Future<Either<Failure, User>> addExperience(int experience);
-  Future<Either<Failure, User>> getUser(String uid);
+  Future<Either<Failure, User>> addExperienceProfile(int experience);
+  Future<Either<Failure, User>> getUserProfile(String uid);
 }

@@ -5,31 +5,31 @@ import 'package:dartz/dartz.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
   @override
-  Future<Either<Failure, User>> addExperience(int experience) {
-    // TODO: implement addExperience
+  Future<Either<Failure, User>> addExperienceProfile(int experience) {
+    // TODO: implement addExperienceProfile
     return null;
   }
 
   @override
-  Future<Either<Failure, User>> getUser(String uid) {
-    // TODO: implement getUser
+  Future<Either<Failure, User>> getUserProfile(String uid) {
+    // TODO: implement getUserProfile
     return null;
   }
 
   @override
-  Future<Either<Failure, User>> signIn(String email, String password) {
-    // TODO: implement signIn
+  Future<Either<Failure, User>> signInProfile(String email, String password) {
+    // TODO: implement signInProfile
     return null;
   }
 
   @override
-  void signOut() {
-    // TODO: implement signOut
+  void signOutProfile() {
+    // TODO: implement signOutProfile
   }
 
   @override
-  Future<Either<Failure, User>> signUp(String email, String password) {
-    // TODO: implement signUp
+  Future<Either<Failure, User>> signUpProfile(String email, String password) {
+    // TODO: implement signUpProfile
     return null;
   }
 }

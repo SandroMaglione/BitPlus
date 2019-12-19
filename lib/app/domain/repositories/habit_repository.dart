@@ -18,7 +18,7 @@ abstract class HabitRepository {
     String name,
     bool isPositive,
     int experience,
-    BuiltList<int> lifeArea,
+    BuiltList<int> lifeAreaIds,
   );
   Future<Either<Failure, void>> checkHabit(
     String uid,
