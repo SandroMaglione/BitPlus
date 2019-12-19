@@ -1,3 +1,5 @@
+import 'package:bitplus/app/data/datasources/habit_remote_data_source.dart';
+import 'package:meta/meta.dart';
 import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/data/models/habit_stat.dart';
 import 'package:bitplus/app/domain/repositories/habit_repository.dart';
@@ -6,6 +8,12 @@ import 'package:built_collection/built_collection.dart';
 import 'package:dartz/dartz.dart';
 
 class HabitRepositoryImpl implements HabitRepository {
+  final HabitRemoteDataSource habitRemoteDataSource;
+
+  const HabitRepositoryImpl({
+    @required this.habitRemoteDataSource,
+  });
+
   @override
   Future<Either<Failure, void>> checkHabit(
       String uid, String habitID, DateTime date) {
@@ -14,10 +22,21 @@ class HabitRepositoryImpl implements HabitRepository {
   }
 
   @override
-  Future<Either<Failure, Habit>> createHabit(String uid, String name,
-      bool isPositive, int experience, BuiltList<int> lifeAreaIds) {
-    // TODO: implement createHabit
-    return null;
+  Future<Either<Failure, Habit>> createHabit(
+    String uid,
+    String name,
+    bool isPositive,
+    int experience,
+    BuiltList<int> lifeAreaIds,
+  ) {
+    final habit = habitRemoteDataSource.createHabit(
+      uid,
+      name,
+      isPositive,
+      experience,
+      lifeAreaIds,
+    );
+    return habit;
   }
 
   @override
@@ -35,9 +54,20 @@ class HabitRepositoryImpl implements HabitRepository {
   }
 
   @override
-  Future<Either<Failure, Habit>> updateHabit(String uid, String habitID,
-      String name, bool isPositive, int experience, BuiltList<int> lifeAreaIds) {
+  Future<Either<Failure, Habit>> updateHabit(
+      String uid,
+      String habitID,
+      String name,
+      bool isPositive,
+      int experience,
+      BuiltList<int> lifeAreaIds) {
     // TODO: implement updateHabit
     return null;
+  }
+
+  @override
+  Future<Either<Failure, List<Habit>>> getHabitList(String uid) {
+    final habitList = habitRemoteDataSource.getHabitList(uid);
+    return habitList;
   }
 }

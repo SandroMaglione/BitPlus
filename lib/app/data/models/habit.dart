@@ -20,13 +20,21 @@ abstract class Habit implements Built<Habit, HabitBuilder> {
 
   factory Habit([void Function(HabitBuilder) updates]) = _$Habit;
 
-  String toJson() {
+  String toJsonString() {
     return json.encode(serializers.serializeWith(Habit.serializer, this));
   }
 
-  static Habit fromJson(String jsonString) {
+  static Habit fromJson(Map<String, dynamic> jsonString) {
     return serializers.deserializeWith(
-        Habit.serializer, json.decode(jsonString));
+      Habit.serializer,
+      jsonString,
+    );
+  }
+
+  Map<String, dynamic> toJsonMap() {
+    return json.decode(
+      this.toJsonString(),
+    );
   }
 
   static Serializer<Habit> get serializer => _$habitSerializer;

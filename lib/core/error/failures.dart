@@ -24,3 +24,14 @@ class FirebaseAuthFailure implements Failure {
   @override
   List<Object> get props => [message];
 }
+
+class FirestoreFailure implements Failure {
+  final String message;
+
+  const FirestoreFailure({
+    @required this.message,
+  });
+
+  @override
+  List<Object> get props => [message];
+}

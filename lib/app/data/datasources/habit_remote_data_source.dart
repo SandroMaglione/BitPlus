@@ -1,13 +1,20 @@
 import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/data/models/habit_stat.dart';
+import 'package:bitplus/core/database/collections.dart';
+import 'package:bitplus/core/error/error_messages.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:meta/meta.dart';
 import 'package:bitplus/core/error/failures.dart';
+import 'package:built_collection/built_collection.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class HabitRemoteDataSource {
+  Future<Either<Failure, List<Habit>>> getHabitList(String uid);
   Future<Either<Failure, Habit>> createHabit(String uid, String name,
-      bool isPositive, int experience, List<int> lifeAreaIds);
+      bool isPositive, int experience, BuiltList<int> lifeAreaIds);
   Future<Either<Failure, Habit>> updateHabit(String uid, String habitID,
-      String name, bool isPositive, int experience, List<int> lifeArea);
+      String name, bool isPositive, int experience, BuiltList<int> lifeArea);
   Future<Either<Failure, void>> checkHabit(
       String uid, String habitID, DateTime date);
   Future<Either<Failure, void>> uncheckHabit(
@@ -17,6 +24,14 @@ abstract class HabitRemoteDataSource {
 }
 
 class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
+  final Firestore firestore;
+  final Crashlytics crashlytics;
+
+  const HabitRemoteDataSourceImpl({
+    @required this.firestore,
+    @required this.crashlytics,
+  });
+
   @override
   Future<Either<Failure, void>> checkHabit(
       String uid, String habitID, DateTime date) {
@@ -26,9 +41,39 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
 
   @override
   Future<Either<Failure, Habit>> createHabit(String uid, String name,
-      bool isPositive, int experience, List<int> lifeAreaIds) {
-    // TODO: implement createHabit
-    return null;
+      bool isPositive, int experience, BuiltList<int> lifeAreaIds) async {
+    try {
+      final habit = Habit(
+        (h) => h
+          ..name = name
+          ..isPositive = isPositive
+          ..color = 0xFF343A40
+          ..habitID = 'null'
+          ..value = experience
+          ..lifeAreas = ListBuilder<int>(
+            lifeAreaIds,
+          ),
+      );
+
+      final habitMap = habit.toJsonMap();
+      final doc = await firestore
+          .collection(USER_COLLECTION)
+          .document(uid)
+          .collection(HABIT_COLLECTION)
+          .add(habitMap);
+
+      final returnHabit = habit.rebuild(
+        (h) => h..habitID = doc.documentID,
+      );
+      return Right(returnHabit);
+    } catch (e, s) {
+      crashlytics.recordError(e, s);
+      return Left(
+        FirestoreFailure(
+          message: ERROR_CREATE_HABIT,
+        ),
+      );
+    }
   }
 
   @override
@@ -47,8 +92,36 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
 
   @override
   Future<Either<Failure, Habit>> updateHabit(String uid, String habitID,
-      String name, bool isPositive, int experience, List<int> lifeArea) {
+      String name, bool isPositive, int experience, BuiltList<int> lifeArea) {
     // TODO: implement updateHabit
     return null;
+  }
+
+  @override
+  Future<Either<Failure, List<Habit>>> getHabitList(String uid) async {
+    try {
+      final allDocs = await firestore
+          .collection(USER_COLLECTION)
+          .document(uid)
+          .collection(HABIT_COLLECTION)
+          .getDocuments();
+
+      final habitList = allDocs.documents
+          .map(
+            (snapshot) => Habit.fromJson(
+              snapshot.data,
+            ),
+          )
+          .toList();
+
+      return Right(habitList);
+    } catch (e, s) {
+      crashlytics.recordError(e, s);
+      return Left(
+        FirestoreFailure(
+          message: ERROR_GET_HABIT_LIST,
+        ),
+      );
+    }
   }
 }
