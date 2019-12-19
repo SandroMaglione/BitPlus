@@ -7,7 +7,7 @@ abstract class ProfileRepository {
     String email,
     String password,
   );
-  void signOutProfile();
+  Future<Either<Failure, void>> signOutProfile();
   Future<Either<Failure, User>> signUpProfile(
     String email,
     String password,

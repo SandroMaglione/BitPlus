@@ -23,8 +23,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  void signOutProfile() {
+  Future<Either<Failure, void>> signOutProfile() {
     // TODO: implement signOutProfile
+    return null;
   }
 
   @override
