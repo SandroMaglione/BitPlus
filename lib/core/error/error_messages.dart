@@ -1,5 +1,7 @@
 const String ERROR_GET_LOCAL_USER =
     "A problem occurred while getting local user, try again later";
+const String ERROR_SAVE_LOCAL_USER =
+    "A problem occurred while saving local user, try again later";
 
 const String ERROR_SIGN_IN_EMAIL = "A problem occured on sign in, try again";
 const String ERROR_SIGN_IN_GOOGLE = "A problem occured on sign in, try again";

@@ -13,5 +13,10 @@ abstract class ProfileRepository {
     String password,
   );
   Future<Either<Failure, User>> addExperienceProfile(int experience);
+
+  /// Get [User] model if an instance exist locally
   Future<Either<Failure, User>> getUserProfile();
+
+  /// Save a [User] model locally for successive access
+  Future<Either<Failure, void>> saveUserProfile(User user);
 }

@@ -54,4 +54,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
     );
     return user;
   }
+
+  @override
+  Future<Either<Failure, void>> saveUserProfile(User user) {
+    final result = profileLocalDataSource.saveUserLocal(user);
+    return result;
+  }
 }
