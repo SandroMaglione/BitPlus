@@ -66,7 +66,7 @@ class HabitRepositoryImpl implements HabitRepository {
   }
 
   @override
-  Future<Either<Failure, List<Habit>>> getHabitList(String uid) {
+  Future<Either<Failure, BuiltList<Habit>>> getHabitList(String uid) {
     final habitList = habitRemoteDataSource.getHabitList(uid);
     return habitList;
   }

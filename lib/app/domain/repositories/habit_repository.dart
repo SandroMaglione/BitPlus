@@ -5,7 +5,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class HabitRepository {
-  Future<Either<Failure, List<Habit>>> getHabitList(String uid);
+  Future<Either<Failure, BuiltList<Habit>>> getHabitList(String uid);
   Future<Either<Failure, Habit>> createHabit(
     String uid,
     String name,

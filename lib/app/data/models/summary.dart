@@ -16,13 +16,21 @@ abstract class Summary implements Built<Summary, SummaryBuilder> {
 
   factory Summary([void Function(SummaryBuilder) updates]) = _$Summary;
 
-  String toJson() {
+  String toJsonString() {
     return json.encode(serializers.serializeWith(Summary.serializer, this));
   }
 
-  static Summary fromJson(String jsonString) {
+  static Summary fromJson(Map<String, dynamic> jsonString) {
     return serializers.deserializeWith(
-        Summary.serializer, json.decode(jsonString));
+      Summary.serializer,
+      jsonString,
+    );
+  }
+
+  Map<String, dynamic> toJsonMap() {
+    return json.decode(
+      this.toJsonString(),
+    );
   }
 
   static Serializer<Summary> get serializer => _$summarySerializer;

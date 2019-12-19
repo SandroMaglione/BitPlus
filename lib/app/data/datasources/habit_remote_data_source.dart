@@ -10,9 +10,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class HabitRemoteDataSource {
-  Future<Either<Failure, List<Habit>>> getHabitList(String uid);
-  Future<Either<Failure, Habit>> createHabit(String uid, String name,
-      bool isPositive, int experience, BuiltList<int> lifeAreaIds);
+  /// Returns a [BuiltList] of [Habit] retrieved from the database,
+  /// based on the user id provided
+  Future<Either<Failure, BuiltList<Habit>>> getHabitList(String uid);
+
+  /// Creates an [Habit] and uploads it to the database
+  /// 
+  /// It returns the [Habit] with the new habitID assigned
+  Future<Either<Failure, Habit>> createHabit(
+    String uid,
+    String name,
+    bool isPositive,
+    int experience,
+    BuiltList<int> lifeAreaIds,
+  );
+
   Future<Either<Failure, Habit>> updateHabit(String uid, String habitID,
       String name, bool isPositive, int experience, BuiltList<int> lifeArea);
   Future<Either<Failure, void>> checkHabit(
@@ -98,7 +110,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
   }
 
   @override
-  Future<Either<Failure, List<Habit>>> getHabitList(String uid) async {
+  Future<Either<Failure, BuiltList<Habit>>> getHabitList(String uid) async {
     try {
       final allDocs = await firestore
           .collection(USER_COLLECTION)
@@ -106,15 +118,13 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
           .collection(HABIT_COLLECTION)
           .getDocuments();
 
-      final habitList = allDocs.documents
-          .map(
-            (snapshot) => Habit.fromJson(
-              snapshot.data,
-            ),
-          )
-          .toList();
-
-      return Right(habitList);
+      final habitList = allDocs.documents.map(
+        (snapshot) => Habit.fromJson(
+          snapshot.data,
+        ),
+      );
+      final builtList = BuiltList(habitList);
+      return Right(builtList);
     } catch (e, s) {
       crashlytics.recordError(e, s);
       return Left(
