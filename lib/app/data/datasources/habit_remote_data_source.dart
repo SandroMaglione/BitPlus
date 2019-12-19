@@ -118,6 +118,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
           .collection(HABIT_COLLECTION)
           .getDocuments();
 
+      // TODO: Add also the habit id to the map from Firestore
       final habitList = allDocs.documents.map(
         (snapshot) => Habit.fromJson(
           snapshot.data,
