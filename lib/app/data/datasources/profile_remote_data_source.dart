@@ -1,5 +1,6 @@
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:bitplus/core/error/error_messages.dart';
+import 'package:bitplus/core/error/exceptions.dart';
 import 'package:bitplus/core/error/failures.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
@@ -8,22 +9,22 @@ import 'package:meta/meta.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class ProfileRemoteDataSource {
-  Future<Either<Failure, User>> signInEmailAndPassword(
+  Future<User> signInEmailAndPassword(
     String email,
     String password,
   );
-  Future<Either<Failure, User>> signInGoogle();
-  Future<Either<Failure, void>> signOut();
-  Future<Either<Failure, User>> signUp(
+  Future<User> signInGoogle();
+  Future<void> signOut();
+  Future<User> signUp(
     String email,
     String password,
   );
-  
-  Future<Either<Failure, User>> signInFacebook();
-  Future<Either<Failure, User>> signUpGoogle();
-  Future<Either<Failure, User>> signUpFacebook();
-  Future<Either<Failure, User>> addExperience(int experience);
-  Future<Either<Failure, User>> getUserRemote(String uid);
+
+  Future<User> signInFacebook();
+  Future<User> signUpGoogle();
+  Future<User> signUpFacebook();
+  Future<User> addExperience(int experience);
+  Future<User> getUserRemote(String uid);
 }
 
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
@@ -38,19 +39,19 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   });
 
   @override
-  Future<Either<Failure, User>> addExperience(int experience) {
+  Future<User> addExperience(int experience) {
     // TODO: implement addExperience
     return null;
   }
 
   @override
-  Future<Either<Failure, User>> getUserRemote(String uid) {
+  Future<User> getUserRemote(String uid) {
     // TODO: implement getUserRemote
     return null;
   }
 
   @override
-  Future<Either<Failure, User>> signInEmailAndPassword(
+  Future<User> signInEmailAndPassword(
     String email,
     String password,
   ) async {
@@ -61,22 +62,18 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       );
       return _createUserIfNotNull(result.user);
     } catch (e) {
-      return Left(
-        FirebaseAuthFailure(
-          message: ERROR_SIGN_IN_EMAIL,
-        ),
-      );
+      throw FirebaseAuthException(500);
     }
   }
 
   @override
-  Future<Either<Failure, User>> signInFacebook() async {
+  Future<User> signInFacebook() async {
     // TODO: implement signInFacebook
     return null;
   }
 
   @override
-  Future<Either<Failure, User>> signInGoogle() async {
+  Future<User> signInGoogle() async {
     try {
       final GoogleSignInAccount googleUser = await googleSignIn.signIn();
       final GoogleSignInAuthentication googleAuth =
@@ -90,31 +87,21 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       final result = await firebaseAuth.signInWithCredential(credential);
       return _createUserIfNotNull(result.user);
     } catch (e) {
-      return Left(
-        FirebaseAuthFailure(
-          message: ERROR_SIGN_IN_GOOGLE,
-        ),
-      );
+      throw FirebaseAuthException(500);
     }
   }
 
   @override
-  Future<Either<Failure, void>> signOut() async {
+  Future<void> signOut() async {
     try {
-      return Right(
-        await firebaseAuth.signOut(),
-      );
+      return await firebaseAuth.signOut();
     } catch (e) {
-      return Left(
-        FirebaseAuthFailure(
-          message: ERROR_SIGN_OUT,
-        ),
-      );
+      throw FirebaseAuthException(501);
     }
   }
 
   @override
-  Future<Either<Failure, User>> signUp(String email, String password) async {
+  Future<User> signUp(String email, String password) async {
     try {
       final result = await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
@@ -122,31 +109,25 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       );
       return _createUserIfNotNull(result.user);
     } catch (e) {
-      throw FirebaseAuthFailure(
-        message: ERROR_SIGN_UP_EMAIL,
-      );
+      throw FirebaseAuthException(502);
     }
   }
 
   @override
-  Future<Either<Failure, User>> signUpFacebook() {
+  Future<User> signUpFacebook() {
     // TODO: implement signUpFacebook
     return null;
   }
 
   @override
-  Future<Either<Failure, User>> signUpGoogle() {
+  Future<User> signUpGoogle() {
     // TODO: implement signUpGoogle
     return null;
   }
 
-  Either<Failure, User> _createUserIfNotNull(FirebaseUser firebaseUser) {
+  User _createUserIfNotNull(FirebaseUser firebaseUser) {
     if (firebaseUser == null) {
-      return Left(
-        FirebaseAuthFailure(
-          message: NO_USER_SIGN_IN,
-        ),
-      );
+      throw FirebaseAuthException(500);
     }
 
     final userID = firebaseUser.uid;
@@ -157,6 +138,6 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         ..experience = 0
         ..level = 1,
     );
-    return Right(user);
+    return user;
   }
 }

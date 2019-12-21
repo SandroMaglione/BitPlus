@@ -5,6 +5,7 @@ import 'package:bitplus/app/data/models/summary_stat.dart';
 import 'package:bitplus/app/domain/repositories/summary_repository.dart';
 import 'package:bitplus/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
+import 'package:bitplus/core/extensions/task_extension.dart';
 
 class SummaryRepositoryImpl implements SummaryRepository {
   final SummaryRemoteDataSource summaryRemoteDataSource;
@@ -19,15 +20,15 @@ class SummaryRepositoryImpl implements SummaryRepository {
     DateTime date,
     String text,
     int dayTag,
-  ) async {
-    final summary = summaryRemoteDataSource.createSummary(
-      uid,
-      date,
-      text,
-      dayTag,
-    );
-    return summary;
-  }
+  ) async =>
+      await Task<Summary>(
+        () => summaryRemoteDataSource.createSummary(
+          uid,
+          date,
+          text,
+          dayTag,
+        ),
+      ).attempt().mapLeftToFailure().run();
 
   @override
   Future<Either<Failure, Summary>> getSummary(String uid, DateTime date) {

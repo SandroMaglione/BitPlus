@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bitplus/injection_container.dart' as di;
 
+// TODO: Add check internet connection and relative Failure
 const String APP_NAME = "BitPlus";
 
 void main() async {

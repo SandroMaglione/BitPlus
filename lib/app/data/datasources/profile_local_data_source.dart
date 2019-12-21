@@ -1,7 +1,5 @@
 import 'package:bitplus/app/data/models/user.dart';
-import 'package:bitplus/core/error/error_messages.dart';
-import 'package:bitplus/core/error/failures.dart';
-import 'package:dartz/dartz.dart';
+import 'package:bitplus/core/error/exceptions.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,9 +7,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 const String SHARED_PREF_USER_LOCAL = "USER_LOCAL";
 
 abstract class ProfileLocalDataSource {
-  Future<Either<Failure, User>> getUserLocal();
-  Future<Either<Failure, void>> saveUserLocal(User user);
-  Future<Either<Failure, void>> removeUserLocal();
+  Future<User> getUserLocal();
+  Future<void> saveUserLocal(User user);
+  Future<void> removeUserLocal();
 }
 
 class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
@@ -24,23 +22,21 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
   });
 
   @override
-  Future<Either<Failure, User>> getUserLocal() async {
+  Future<User> getUserLocal() async {
     try {
-      final userJson = sharedPreferences.getString(SHARED_PREF_USER_LOCAL);
+      final userJson = sharedPreferences.getString(
+        SHARED_PREF_USER_LOCAL,
+      );
       final user = User.fromJson(userJson);
-      return Right(user);
+      return user;
     } catch (e, s) {
       crashlytics.recordError(e, s);
-      return Left(
-        GettingLocalDataFailure(
-          message: ERROR_GET_LOCAL_USER,
-        ),
-      );
+      throw LocalDataException(602);
     }
   }
 
   @override
-  Future<Either<Failure, void>> saveUserLocal(User user) async {
+  Future<void> saveUserLocal(User user) async {
     try {
       final userString = user.toJsonString();
       final result = await sharedPreferences.setString(
@@ -49,45 +45,31 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
       );
 
       if (!result) {
-        return Left(
-          GettingLocalDataFailure(
-            message: ERROR_SAVE_LOCAL_USER,
-          ),
-        );
+        throw LocalDataException(601);
       }
 
-      return Right(result);
+      return result;
     } catch (e, s) {
       crashlytics.recordError(e, s);
-      return Left(
-        GettingLocalDataFailure(
-          message: ERROR_SAVE_LOCAL_USER,
-        ),
-      );
+      throw LocalDataException(601);
     }
   }
 
   @override
-  Future<Either<Failure, void>> removeUserLocal() async {
+  Future<void> removeUserLocal() async {
     try {
-      final result = await sharedPreferences.remove(SHARED_PREF_USER_LOCAL);
+      final result = await sharedPreferences.remove(
+        SHARED_PREF_USER_LOCAL,
+      );
 
       if (!result) {
-        return Left(
-          GettingLocalDataFailure(
-            message: ERROR_REMOVE_LOCAL_USER,
-          ),
-        );
+        throw LocalDataException(600);
       }
 
-      return Right(result);
+      return result;
     } catch (e, s) {
       crashlytics.recordError(e, s);
-      return Left(
-        GettingLocalDataFailure(
-          message: ERROR_REMOVE_LOCAL_USER,
-        ),
-      );
+      return LocalDataException(600);
     }
   }
 }

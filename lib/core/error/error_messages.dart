@@ -16,3 +16,41 @@ const String ERROR_CREATE_HABIT =
 const String ERROR_CREATE_SUMMARY =
     "A problem while creating the report, try again";
 const String ERROR_GET_HABIT_LIST = "Impossible to get habits, try again";
+
+String firestoreError(int code) {
+  switch (code) {
+    case 400:
+      return "A problem occured while creating the habit, try again";
+    case 401:
+      return "Impossible to get habit list, try again";
+    default:
+      return "Unexpected error, try again later, it will be solved soon";
+  }
+}
+
+String firebaseAuthError(int code) {
+  switch (code) {
+    case 500:
+      return "No user exist with this credentials, try again";
+    case 501:
+      return "Error while signing out user, try again";
+    case 502:
+      return "A problem occured while signing up, try again";
+    default:
+      return "Unexpected error, try again later, it will be solved soon";
+  }
+}
+
+String localDataError(int code) {
+  switch (code) {
+    case 600:
+      return "A problem occured while removing local user, try again";
+    case 601:
+      return "A problem occured while saving local user, try again";
+    case 602:
+      return "A problem occured while getting local user, try again";
+    default:
+      return "Unexpected error, try again later, it will be solved soon";
+  }
+}
+// TODO: Map exception code number to failure message

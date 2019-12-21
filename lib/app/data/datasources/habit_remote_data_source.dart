@@ -1,23 +1,21 @@
 import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/data/models/habit_stat.dart';
 import 'package:bitplus/core/database/collections.dart';
-import 'package:bitplus/core/error/error_messages.dart';
+import 'package:bitplus/core/error/exceptions.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:meta/meta.dart';
-import 'package:bitplus/core/error/failures.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart';
 
 abstract class HabitRemoteDataSource {
   /// Returns a [BuiltList] of [Habit] retrieved from the database,
   /// based on the user id provided
-  Future<Either<Failure, BuiltList<Habit>>> getHabitList(String uid);
+  Future<BuiltList<Habit>> getHabitList(String uid);
 
   /// Creates an [Habit] and uploads it to the database
   ///
   /// It returns the [Habit] with the new habitID assigned
-  Future<Either<Failure, Habit>> createHabit(
+  Future<Habit> createHabit(
     String uid,
     String name,
     bool isPositive,
@@ -25,13 +23,11 @@ abstract class HabitRemoteDataSource {
     BuiltList<int> lifeAreaIds,
   );
 
-  Future<Either<Failure, Habit>> updateHabit(String uid, String habitID,
-      String name, bool isPositive, int value, BuiltList<int> lifeArea);
-  Future<Either<Failure, void>> checkHabit(
-      String uid, String habitID, DateTime date);
-  Future<Either<Failure, void>> uncheckHabit(
-      String uid, String habitID, DateTime date);
-  Future<Either<Failure, HabitStat>> getHabitStat(
+  Future<Habit> updateHabit(String uid, String habitID, String name,
+      bool isPositive, int value, BuiltList<int> lifeArea);
+  Future<void> checkHabit(String uid, String habitID, DateTime date);
+  Future<void> uncheckHabit(String uid, String habitID, DateTime date);
+  Future<HabitStat> getHabitStat(
       String uid, String habitID, DateTime startDay, DateTime endDay);
 }
 
@@ -45,15 +41,14 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
   });
 
   @override
-  Future<Either<Failure, void>> checkHabit(
-      String uid, String habitID, DateTime date) {
+  Future<void> checkHabit(String uid, String habitID, DateTime date) {
     // TODO: implement checkHabit
     return null;
   }
 
   @override
-  Future<Either<Failure, Habit>> createHabit(String uid, String name,
-      bool isPositive, int value, BuiltList<int> lifeAreaIds) async {
+  Future<Habit> createHabit(String uid, String name, bool isPositive, int value,
+      BuiltList<int> lifeAreaIds) async {
     try {
       final habit = Habit(
         (h) => h
@@ -77,40 +72,35 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
       final returnHabit = habit.rebuild(
         (h) => h..habitID = doc.documentID,
       );
-      return Right(returnHabit);
+      return returnHabit;
     } catch (e, s) {
       crashlytics.recordError(e, s);
-      return Left(
-        FirestoreFailure(
-          message: ERROR_CREATE_HABIT,
-        ),
-      );
+      throw FirestoreException(400);
     }
   }
 
   @override
-  Future<Either<Failure, HabitStat>> getHabitStat(
+  Future<HabitStat> getHabitStat(
       String uid, String habitID, DateTime startDay, DateTime endDay) {
     // TODO: implement getHabitStat
     return null;
   }
 
   @override
-  Future<Either<Failure, void>> uncheckHabit(
-      String uid, String habitID, DateTime date) {
+  Future<void> uncheckHabit(String uid, String habitID, DateTime date) {
     // TODO: implement uncheckHabit
     return null;
   }
 
   @override
-  Future<Either<Failure, Habit>> updateHabit(String uid, String habitID,
-      String name, bool isPositive, int value, BuiltList<int> lifeArea) {
+  Future<Habit> updateHabit(String uid, String habitID, String name,
+      bool isPositive, int value, BuiltList<int> lifeArea) {
     // TODO: implement updateHabit
     return null;
   }
 
   @override
-  Future<Either<Failure, BuiltList<Habit>>> getHabitList(String uid) async {
+  Future<BuiltList<Habit>> getHabitList(String uid) async {
     try {
       final allDocs = await firestore
           .collection(USER_COLLECTION)
@@ -125,14 +115,10 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
         ),
       );
       final builtList = BuiltList<Habit>(habitList);
-      return Right(builtList);
+      return builtList;
     } catch (e, s) {
       crashlytics.recordError(e, s);
-      return Left(
-        FirestoreFailure(
-          message: ERROR_GET_HABIT_LIST,
-        ),
-      );
+      throw FirestoreException(401);
     }
   }
 }
