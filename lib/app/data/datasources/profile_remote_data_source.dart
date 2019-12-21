@@ -1,9 +1,6 @@
 import 'package:bitplus/app/data/models/user.dart';
-import 'package:bitplus/core/error/error_messages.dart';
 import 'package:bitplus/core/error/exceptions.dart';
-import 'package:bitplus/core/error/failures.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 import 'package:firebase_auth/firebase_auth.dart';

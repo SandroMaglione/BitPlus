@@ -23,15 +23,14 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
 
   @override
   Future<User> getUserLocal() async {
-    try {
-      final userJson = sharedPreferences.getString(
-        SHARED_PREF_USER_LOCAL,
-      );
-      final user = User.fromJson(userJson);
-      return user;
-    } catch (e, s) {
-      crashlytics.recordError(e, s);
-      throw LocalDataException(602);
+    final userJson = sharedPreferences.getString(
+      SHARED_PREF_USER_LOCAL,
+    );
+
+    if (userJson != null) {
+      return User.fromJson(userJson);
+    } else {
+      return null;
     }
   }
 

@@ -93,9 +93,15 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         );
       },
       (User user) async* {
-        yield UserState.loggedUserState(
-          user: user,
-        );
+        if (user != null) {
+          yield UserState.loggedUserState(
+            user: user,
+          );
+        } else {
+          yield UserState.emptyUserState(
+            status: 'No user signed in',
+          );
+        }
       },
     );
   }

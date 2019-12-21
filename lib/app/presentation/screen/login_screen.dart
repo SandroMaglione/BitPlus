@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
+  final List<int> values;
+  const LoginScreen(this.values);
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -17,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Login ${widget.values}'),
       ),
       body: BlocListener<UserBloc, UserState>(
         listener: (context, state) {

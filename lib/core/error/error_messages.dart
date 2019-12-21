@@ -47,8 +47,6 @@ String localDataError(int code) {
       return "A problem occured while removing local user, try again";
     case 601:
       return "A problem occured while saving local user, try again";
-    case 602:
-      return "A problem occured while getting local user, try again";
     default:
       return "Unexpected error, try again later, it will be solved soon";
   }

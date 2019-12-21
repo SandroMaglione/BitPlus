@@ -42,9 +42,11 @@ class ProfileRepositoryImpl implements ProfileRepository {
       ).attempt().mapLeftToFailure().run();
 
   @override
-  Future<Either<Failure, void>> signOutProfile() async => await Task<User>(
-        () => profileRemoteDataSource.signOut(),
-      ).attempt().mapLeftToFailure().run();
+  Future<Either<Failure, void>> signOutProfile() async => await Task<void>(() {
+        profileRemoteDataSource.signOut();
+        profileLocalDataSource.removeUserLocal();
+        return Future.value();
+      }).attempt().mapLeftToFailure().run();
 
   @override
   Future<Either<Failure, User>> signUpProfile(
@@ -60,14 +62,14 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<Either<Failure, void>> saveUserProfile(User user) async =>
-      await Task<User>(
+      await Task<void>(
         () => profileLocalDataSource.saveUserLocal(
           user,
         ),
       ).attempt().mapLeftToFailure().run();
 
   @override
-  Future<Either<Failure, void>> removeUserProfile() async => await Task<User>(
+  Future<Either<Failure, void>> removeUserProfile() async => await Task<void>(
         () => profileLocalDataSource.removeUserLocal(),
       ).attempt().mapLeftToFailure().run();
 }
