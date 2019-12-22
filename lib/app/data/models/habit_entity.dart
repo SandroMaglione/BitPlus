@@ -8,7 +8,6 @@ part 'habit_entity.g.dart';
 
 abstract class HabitEntity implements Built<HabitEntity, HabitEntityBuilder> {
   // Fields
-  HabitEntity get habitEntity;
   bool get isChecked;
   DateTime get date;
 

@@ -1,28 +1,23 @@
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/app/presentation/widgets/loading_indicator.dart';
 import 'package:bitplus/core/router/router.gr.dart';
-import 'package:bitplus/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<HabitBloc>(
-          create: (context) => serviceLocator<HabitBloc>()
-            ..add(
-              GetHabitListHabitEvent(),
-            ),
-        )
-      ],
-      child: HomeContent(),
-    );
-  }
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class HomeContent extends StatelessWidget {
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    BlocProvider.of<HabitBloc>(context).add(
+      GetHabitListHabitEvent(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,13 +75,43 @@ class HomeContent extends StatelessWidget {
         '${state.message}',
       ),
       loadedHabitState: (state) {
-        return Center(
-          child: Column(
-            children: state.habits
-                .map(
-                  (habit) => Text('$habit'),
-                )
-                .toList(),
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: state.habits
+                  .map(
+                    (habit) => Card(
+                      elevation: 12.0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Stack(
+                          children: [
+                            LayoutBuilder(
+                              builder: (context, constraints) => Container(
+                                color: Color(habit.color).withOpacity(0.15),
+                                height: 10,
+                                width: constraints.maxWidth * habit.value / 21,
+                              ),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text('${habit.habitID}'),
+                                Text('${habit.name}'),
+                                Text('${habit.lifeAreas}'),
+                                Text('${habit.value}'),
+                                Text('${habit.isPositive}'),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
         );
       },

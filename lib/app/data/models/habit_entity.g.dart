@@ -18,9 +18,6 @@ class _$HabitEntitySerializer implements StructuredSerializer<HabitEntity> {
   Iterable<Object> serialize(Serializers serializers, HabitEntity object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'habitEntity',
-      serializers.serialize(object.habitEntity,
-          specifiedType: const FullType(HabitEntity)),
       'isChecked',
       serializers.serialize(object.isChecked,
           specifiedType: const FullType(bool)),
@@ -43,10 +40,6 @@ class _$HabitEntitySerializer implements StructuredSerializer<HabitEntity> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
-        case 'habitEntity':
-          result.habitEntity.replace(serializers.deserialize(value,
-              specifiedType: const FullType(HabitEntity)) as HabitEntity);
-          break;
         case 'isChecked':
           result.isChecked = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool;
@@ -64,8 +57,6 @@ class _$HabitEntitySerializer implements StructuredSerializer<HabitEntity> {
 
 class _$HabitEntity extends HabitEntity {
   @override
-  final HabitEntity habitEntity;
-  @override
   final bool isChecked;
   @override
   final DateTime date;
@@ -73,10 +64,7 @@ class _$HabitEntity extends HabitEntity {
   factory _$HabitEntity([void Function(HabitEntityBuilder) updates]) =>
       (new HabitEntityBuilder()..update(updates)).build();
 
-  _$HabitEntity._({this.habitEntity, this.isChecked, this.date}) : super._() {
-    if (habitEntity == null) {
-      throw new BuiltValueNullFieldError('HabitEntity', 'habitEntity');
-    }
+  _$HabitEntity._({this.isChecked, this.date}) : super._() {
     if (isChecked == null) {
       throw new BuiltValueNullFieldError('HabitEntity', 'isChecked');
     }
@@ -96,21 +84,18 @@ class _$HabitEntity extends HabitEntity {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is HabitEntity &&
-        habitEntity == other.habitEntity &&
         isChecked == other.isChecked &&
         date == other.date;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc(0, habitEntity.hashCode), isChecked.hashCode), date.hashCode));
+    return $jf($jc($jc(0, isChecked.hashCode), date.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('HabitEntity')
-          ..add('habitEntity', habitEntity)
           ..add('isChecked', isChecked)
           ..add('date', date))
         .toString();
@@ -119,12 +104,6 @@ class _$HabitEntity extends HabitEntity {
 
 class HabitEntityBuilder implements Builder<HabitEntity, HabitEntityBuilder> {
   _$HabitEntity _$v;
-
-  HabitEntityBuilder _habitEntity;
-  HabitEntityBuilder get habitEntity =>
-      _$this._habitEntity ??= new HabitEntityBuilder();
-  set habitEntity(HabitEntityBuilder habitEntity) =>
-      _$this._habitEntity = habitEntity;
 
   bool _isChecked;
   bool get isChecked => _$this._isChecked;
@@ -138,7 +117,6 @@ class HabitEntityBuilder implements Builder<HabitEntity, HabitEntityBuilder> {
 
   HabitEntityBuilder get _$this {
     if (_$v != null) {
-      _habitEntity = _$v.habitEntity?.toBuilder();
       _isChecked = _$v.isChecked;
       _date = _$v.date;
       _$v = null;
@@ -161,24 +139,8 @@ class HabitEntityBuilder implements Builder<HabitEntity, HabitEntityBuilder> {
 
   @override
   _$HabitEntity build() {
-    _$HabitEntity _$result;
-    try {
-      _$result = _$v ??
-          new _$HabitEntity._(
-              habitEntity: habitEntity.build(),
-              isChecked: isChecked,
-              date: date);
-    } catch (_) {
-      String _$failedField;
-      try {
-        _$failedField = 'habitEntity';
-        habitEntity.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'HabitEntity', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result =
+        _$v ?? new _$HabitEntity._(isChecked: isChecked, date: date);
     replace(_$result);
     return _$result;
   }

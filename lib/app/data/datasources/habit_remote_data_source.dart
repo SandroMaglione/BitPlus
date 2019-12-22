@@ -63,11 +63,17 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
       );
 
       final habitMap = habit.toJsonMap();
+      habitMap.remove('habitID');
       final doc = await firestore
           .collection(USER_COLLECTION)
           .document(uid)
           .collection(HABIT_COLLECTION)
-          .add(habitMap);
+          .add(
+        {
+          ...habitMap,
+          'dateCreated': DateTime.now(),
+        },
+      );
 
       final returnHabit = habit.rebuild(
         (h) => h..habitID = doc.documentID,
@@ -88,11 +94,16 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
           .getDocuments();
 
       // TODO: Add also the habit id to the map from Firestore
-      final habitList = allDocs.documents.map(
-        (snapshot) => Habit.fromJson(
-          snapshot.data,
-        ),
-      );
+      final habitList = allDocs.documents.map<Habit>((snapshot) {
+        final mapSource = {
+          ...snapshot.data,
+          'habitID': snapshot.documentID,
+        };
+
+        return Habit.fromJson(
+          mapSource,
+        );
+      });
       final builtList = BuiltList<Habit>(habitList);
       return builtList;
     } catch (e) {

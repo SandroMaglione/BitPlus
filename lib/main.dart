@@ -46,6 +46,9 @@ class MyApp extends StatelessWidget {
             ..add(
               GetLocalUserEvent(),
             ),
+        ),
+        BlocProvider<HabitBloc>(
+          create: (context) => di.serviceLocator<HabitBloc>(),
         )
       ],
       child: MaterialApp(
