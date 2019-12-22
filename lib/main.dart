@@ -1,5 +1,6 @@
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/core/router/router.gr.dart';
+import 'package:bitplus/core/theme/theme.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -52,9 +53,7 @@ class MyApp extends StatelessWidget {
         navigatorObservers: <NavigatorObserver>[observer],
         onGenerateRoute: Router.onGenerateRoute,
         initialRoute: Router.loadingScreen,
-        theme: ThemeData(
-          primarySwatch: Colors.purple,
-        ),
+        theme: themeData,
       ),
     );
   }

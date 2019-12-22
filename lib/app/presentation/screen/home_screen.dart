@@ -43,7 +43,7 @@ class HomeContent extends StatelessWidget {
             listener: (context, state) {
               if (state is EmptyUserState) {
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                  Router.loginScreen,
+                  Router.initLifeAreaScreen,
                   (_) => false,
                 );
               }

@@ -1,5 +1,6 @@
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/app/presentation/widgets/loading_indicator.dart';
+import 'package:bitplus/app/presentation/widgets/text_input_field.dart';
 import 'package:bitplus/core/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login ${widget.values}'),
+        title: Text('Login'),
       ),
       body: BlocListener<UserBloc, UserState>(
         listener: (context, state) {
@@ -46,27 +47,34 @@ class _LoginScreenState extends State<LoginScreen> {
               errorUserState: (state) => Text(
                 '${state.message}',
               ),
-              emptyUserState: (state) => Column(
-                children: <Widget>[
-                  TextField(
-                    controller: _emailController,
-                  ),
-                  TextField(
-                    controller: _passwordController,
-                    obscureText: true,
-                  ),
-                  Text('${state.status}'),
-                  RaisedButton.icon(
-                    onPressed: _signUp,
-                    icon: Icon(Icons.format_color_reset),
-                    label: Text('Sign Up'),
-                  ),
-                  RaisedButton.icon(
-                    onPressed: _signIn,
-                    icon: Icon(Icons.local_airport),
-                    label: Text('Sign in'),
-                  ),
-                ],
+              emptyUserState: (state) => Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    TextInputField(
+                      label: 'Email',
+                      controller: _emailController,
+                    ),
+                    TextInputField(
+                      label: 'Password',
+                      controller: _passwordController,
+                      isPassword: true,
+                    ),
+                    Text('${state.status}'),
+                    RaisedButton.icon(
+                      onPressed: _signUp,
+                      icon: Icon(Icons.sentiment_satisfied),
+                      label: Text('SIGN UP'),
+                    ),
+                    RaisedButton.icon(
+                      onPressed: _signIn,
+                      icon: Icon(Icons.settings_ethernet),
+                      label: Text('SIGN IN'),
+                    ),
+                  ],
+                ),
               ),
             );
           },

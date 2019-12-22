@@ -59,6 +59,14 @@ class InitLifeAreaContent extends StatelessWidget {
                   },
                 ),
               ),
+              OutlineButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(
+                    Router.loginScreen,
+                  );
+                },
+                child: Text('Sign in'),
+              ),
             ],
           );
         },
