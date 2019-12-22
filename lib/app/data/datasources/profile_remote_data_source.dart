@@ -1,54 +1,47 @@
+import 'package:bitplus/app/data/models/sign_up_user.dart';
 import 'package:bitplus/app/data/models/user.dart';
+import 'package:bitplus/core/database/collections.dart';
 import 'package:bitplus/core/error/exceptions.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:http/http.dart' as http;
 
 abstract class ProfileRemoteDataSource {
-  Future<User> signInEmailAndPassword(
+  Future<String> signInEmailAndPassword(
     String email,
     String password,
   );
   Future<User> signInGoogle();
   Future<void> signOut();
   Future<User> signUp(
-    String email,
-    String password,
+    SignUpUser signUpUser,
   );
+  Future<User> getSignedInUser(String uid);
 
   Future<User> signInFacebook();
   Future<User> signUpGoogle();
   Future<User> signUpFacebook();
   Future<User> addExperience(int experience);
-  Future<User> getUserRemote(String uid);
 }
 
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   final FirebaseAuth firebaseAuth;
   final GoogleSignIn googleSignIn;
   final Firestore firestore;
+  final http.Client client;
 
   const ProfileRemoteDataSourceImpl({
     @required this.firebaseAuth,
     @required this.firestore,
     @required this.googleSignIn,
+    @required this.client,
   });
 
   @override
-  Future<User> addExperience(int experience) {
-    // TODO: implement addExperience
-    return null;
-  }
-
-  @override
-  Future<User> getUserRemote(String uid) {
-    // TODO: implement getUserRemote
-    return null;
-  }
-
-  @override
-  Future<User> signInEmailAndPassword(
+  Future<String> signInEmailAndPassword(
     String email,
     String password,
   ) async {
@@ -57,34 +50,33 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         email: email,
         password: password,
       );
-      return _createUserIfNotNull(result.user);
+      return result.user.uid;
     } catch (e) {
       throw FirebaseAuthException(500);
     }
   }
 
   @override
-  Future<User> signInFacebook() async {
-    // TODO: implement signInFacebook
-    return null;
-  }
-
-  @override
-  Future<User> signInGoogle() async {
+  Future<User> getSignedInUser(String uid) async {
     try {
-      final GoogleSignInAccount googleUser = await googleSignIn.signIn();
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+      final userData = await firestore
+          .collection(USER_COLLECTION)
+          .document(
+            uid,
+          )
+          .get();
 
-      final AuthCredential credential = GoogleAuthProvider.getCredential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      final result = await firebaseAuth.signInWithCredential(credential);
-      return _createUserIfNotNull(result.user);
+      if (userData.exists) {
+        final user = _createUserFromUserData(
+          uid,
+          userData.data,
+        );
+        return user;
+      } else {
+        throw FirebaseAuthException(503);
+      }
     } catch (e) {
-      throw FirebaseAuthException(500);
+      throw FirebaseAuthException(503);
     }
   }
 
@@ -98,13 +90,25 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
   }
 
   @override
-  Future<User> signUp(String email, String password) async {
+  Future<User> signUp(
+    SignUpUser signUpUser,
+  ) async {
     try {
-      final result = await firebaseAuth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+      final reqBody = signUpUser.toJsonString();
+      final resp = await client.post(
+        'https://us-central1-bitplus-95304.cloudfunctions.net/storeUserProfile',
+        headers: {'Content-Type': 'application/json'},
+        body: reqBody,
       );
-      return _createUserIfNotNull(result.user);
+
+      if (resp.statusCode == 200) {
+        return _createUserFromId(
+          resp.body,
+          signUpUser.areas,
+        );
+      } else {
+        throw FirebaseAuthException(502);
+      }
     } catch (e) {
       throw FirebaseAuthException(502);
     }
@@ -122,19 +126,34 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     return null;
   }
 
-  User _createUserIfNotNull(FirebaseUser firebaseUser) {
-    if (firebaseUser == null) {
-      throw FirebaseAuthException(500);
-    }
+  @override
+  Future<User> signInFacebook() async {
+    // TODO: implement signInFacebook
+    return null;
+  }
 
-    final userID = firebaseUser.uid;
-    // TODO: Add also user experience and level on sign in
-    final user = User(
-      (u) => u
-        ..userID = userID
-        ..experience = 0
-        ..level = 1,
-    );
-    return user;
+  @override
+  Future<User> signInGoogle() async {
+    // TODO: implement signInGoogle
+    return null;
+  }
+
+  @override
+  Future<User> addExperience(int experience) {
+    // TODO: implement addExperience
+    return null;
+  }
+
+  User _createUserFromId(String uid, BuiltList<int> areas) => User(
+        (u) => u
+          ..userID = uid
+          ..experience = 0
+          ..level = 1
+          ..areas = ListBuilder<int>(areas),
+      );
+
+  User _createUserFromUserData(String uid, Map<String, dynamic> userData) {
+    userData['userID'] = uid;
+    return User.fromJsonMap(userData);
   }
 }

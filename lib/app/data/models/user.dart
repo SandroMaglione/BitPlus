@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bitplus/core/serializers/serializers.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -11,6 +12,7 @@ abstract class User implements Built<User, UserBuilder> {
   String get userID;
   int get experience;
   int get level;
+  BuiltList<int> get areas;
 
   User._();
 
@@ -24,6 +26,13 @@ abstract class User implements Built<User, UserBuilder> {
     return serializers.deserializeWith(
       User.serializer,
       json.decode(jsonString),
+    );
+  }
+
+  static User fromJsonMap(Map<String, dynamic> jsonMap) {
+    return serializers.deserializeWith(
+      User.serializer,
+      jsonMap,
     );
   }
 

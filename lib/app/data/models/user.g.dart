@@ -26,6 +26,10 @@ class _$UserSerializer implements StructuredSerializer<User> {
           specifiedType: const FullType(int)),
       'level',
       serializers.serialize(object.level, specifiedType: const FullType(int)),
+      'areas',
+      serializers.serialize(object.areas,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(int)])),
     ];
 
     return result;
@@ -54,6 +58,12 @@ class _$UserSerializer implements StructuredSerializer<User> {
           result.level = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
+        case 'areas':
+          result.areas.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(int)]))
+              as BuiltList<dynamic>);
+          break;
       }
     }
 
@@ -68,11 +78,13 @@ class _$User extends User {
   final int experience;
   @override
   final int level;
+  @override
+  final BuiltList<int> areas;
 
   factory _$User([void Function(UserBuilder) updates]) =>
       (new UserBuilder()..update(updates)).build();
 
-  _$User._({this.userID, this.experience, this.level}) : super._() {
+  _$User._({this.userID, this.experience, this.level, this.areas}) : super._() {
     if (userID == null) {
       throw new BuiltValueNullFieldError('User', 'userID');
     }
@@ -81,6 +93,9 @@ class _$User extends User {
     }
     if (level == null) {
       throw new BuiltValueNullFieldError('User', 'level');
+    }
+    if (areas == null) {
+      throw new BuiltValueNullFieldError('User', 'areas');
     }
   }
 
@@ -97,13 +112,15 @@ class _$User extends User {
     return other is User &&
         userID == other.userID &&
         experience == other.experience &&
-        level == other.level;
+        level == other.level &&
+        areas == other.areas;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, userID.hashCode), experience.hashCode), level.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, userID.hashCode), experience.hashCode), level.hashCode),
+        areas.hashCode));
   }
 
   @override
@@ -111,7 +128,8 @@ class _$User extends User {
     return (newBuiltValueToStringHelper('User')
           ..add('userID', userID)
           ..add('experience', experience)
-          ..add('level', level))
+          ..add('level', level)
+          ..add('areas', areas))
         .toString();
   }
 }
@@ -131,6 +149,10 @@ class UserBuilder implements Builder<User, UserBuilder> {
   int get level => _$this._level;
   set level(int level) => _$this._level = level;
 
+  ListBuilder<int> _areas;
+  ListBuilder<int> get areas => _$this._areas ??= new ListBuilder<int>();
+  set areas(ListBuilder<int> areas) => _$this._areas = areas;
+
   UserBuilder();
 
   UserBuilder get _$this {
@@ -138,6 +160,7 @@ class UserBuilder implements Builder<User, UserBuilder> {
       _userID = _$v.userID;
       _experience = _$v.experience;
       _level = _$v.level;
+      _areas = _$v.areas?.toBuilder();
       _$v = null;
     }
     return this;
@@ -158,8 +181,25 @@ class UserBuilder implements Builder<User, UserBuilder> {
 
   @override
   _$User build() {
-    final _$result = _$v ??
-        new _$User._(userID: userID, experience: experience, level: level);
+    _$User _$result;
+    try {
+      _$result = _$v ??
+          new _$User._(
+              userID: userID,
+              experience: experience,
+              level: level,
+              areas: areas.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'areas';
+        areas.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'User', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

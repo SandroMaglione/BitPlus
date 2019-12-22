@@ -36,6 +36,8 @@ String firebaseAuthError(int code) {
       return "Error while signing out user, try again";
     case 502:
       return "A problem occured while signing up, try again";
+    case 503:
+      return "A problem occured while signing in, try again";
     default:
       return "Unexpected error, try again later, it will be solved soon";
   }

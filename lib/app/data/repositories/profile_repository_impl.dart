@@ -1,5 +1,6 @@
 import 'package:bitplus/app/data/datasources/profile_local_data_source.dart';
 import 'package:bitplus/app/data/datasources/profile_remote_data_source.dart';
+import 'package:bitplus/app/data/models/sign_up_user.dart';
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/app/domain/repositories/profile_repository.dart';
@@ -34,12 +35,15 @@ class ProfileRepositoryImpl implements ProfileRepository {
     String email,
     String password,
   ) async =>
-      await Task<User>(
-        () => profileRemoteDataSource.signInEmailAndPassword(
+      await Task<User>(() async {
+        final uid = await profileRemoteDataSource.signInEmailAndPassword(
           email,
           password,
-        ),
-      ).attempt().mapLeftToFailure().run();
+        );
+        final user = await profileRemoteDataSource.getSignedInUser(uid);
+        await profileLocalDataSource.saveUserLocal(user);
+        return user;
+      }).attempt().mapLeftToFailure().run();
 
   @override
   Future<Either<Failure, void>> signOutProfile() async => await Task<void>(() {
@@ -50,15 +54,19 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   @override
   Future<Either<Failure, User>> signUpProfile(
-    String email,
-    String password,
+    SignUpUser signUpUser,
   ) async =>
-      await Task<User>(
-        () => profileRemoteDataSource.signUp(
-          email,
-          password,
-        ),
-      ).attempt().mapLeftToFailure().run();
+      await Task<User>(() async {
+        final user = await profileRemoteDataSource.signUp(
+          signUpUser,
+        );
+        await profileRemoteDataSource.signInEmailAndPassword(
+          signUpUser.email,
+          signUpUser.password,
+        );
+        await profileLocalDataSource.saveUserLocal(user);
+        return user;
+      }).attempt().mapLeftToFailure().run();
 
   @override
   Future<Either<Failure, void>> saveUserProfile(User user) async =>

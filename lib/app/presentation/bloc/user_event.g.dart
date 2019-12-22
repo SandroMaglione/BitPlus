@@ -16,7 +16,9 @@ abstract class UserEvent extends Equatable {
       {@required String email, @required String password}) = SignInUserEvent;
 
   factory UserEvent.signUpUserEvent(
-      {@required String email, @required String password}) = SignUpUserEvent;
+      {@required String email,
+      @required String password,
+      @required List<dynamic> areas}) = SignUpUserEvent;
 
   factory UserEvent.signOutUserEvent() = SignOutUserEvent;
 
@@ -74,18 +76,21 @@ class SignInUserEvent extends UserEvent {
 
 @immutable
 class SignUpUserEvent extends UserEvent {
-  const SignUpUserEvent({@required this.email, @required this.password})
+  const SignUpUserEvent(
+      {@required this.email, @required this.password, @required this.areas})
       : super(_UserEvent.SignUpUserEvent);
 
   final String email;
 
   final String password;
 
+  final List<dynamic> areas;
+
   @override
   String toString() =>
-      'SignUpUserEvent(email:${this.email},password:${this.password})';
+      'SignUpUserEvent(email:${this.email},password:${this.password},areas:${this.areas})';
   @override
-  List get props => [email, password];
+  List get props => [email, password, areas];
 }
 
 @immutable

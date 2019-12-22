@@ -27,6 +27,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 final serviceLocator = GetIt.instance;
 
@@ -35,7 +36,6 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton<UserBloc>(
     () => UserBloc(
       getUserProfile: serviceLocator(),
-      saveUserProfile: serviceLocator(),
       signInProfile: serviceLocator(),
       signOutProfile: serviceLocator(),
       signUpProfile: serviceLocator(),
@@ -158,6 +158,7 @@ Future<void> init() async {
 
   serviceLocator.registerLazySingleton<ProfileRemoteDataSource>(
     () => ProfileRemoteDataSourceImpl(
+      client: serviceLocator(),
       firebaseAuth: serviceLocator(),
       firestore: serviceLocator(),
       googleSignIn: serviceLocator(),
@@ -200,6 +201,10 @@ Future<void> init() async {
 
   serviceLocator.registerLazySingleton<Crashlytics>(
     () => Crashlytics.instance,
+  );
+
+  serviceLocator.registerLazySingleton<http.Client>(
+    () => http.Client(),
   );
 
   serviceLocator.registerLazySingleton(

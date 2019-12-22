@@ -1,3 +1,4 @@
+import 'package:bitplus/app/data/models/sign_up_user.dart';
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:bitplus/app/domain/repositories/profile_repository.dart';
 import 'package:equatable/equatable.dart';
@@ -16,24 +17,18 @@ class SignUpProfile implements UseCase<User, Params> {
   @override
   Future<Either<Failure, User>> call(Params params) {
     return profileRepository.signUpProfile(
-      params.email,
-      params.password,
+      params.signUpUser,
     );
   }
 }
 
 class Params extends Equatable {
-  final String email;
-  final String password;
+  final SignUpUser signUpUser;
 
   const Params({
-    @required this.email,
-    @required this.password,
+    @required this.signUpUser,
   });
 
   @override
-  List<Object> get props => [
-        email,
-        password,
-      ];
+  List<Object> get props => [signUpUser];
 }

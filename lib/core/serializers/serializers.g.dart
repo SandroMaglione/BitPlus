@@ -12,6 +12,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(HabitStat.serializer)
       ..add(LifeArea.serializer)
       ..add(LifeAreaStat.serializer)
+      ..add(SignUpUser.serializer)
       ..add(SocialUser.serializer)
       ..add(SocialUserStat.serializer)
       ..add(Summary.serializer)
@@ -32,6 +33,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Summary)]),
           () => new ListBuilder<Summary>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => new ListBuilder<int>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => new ListBuilder<int>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => new ListBuilder<int>()))

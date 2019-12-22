@@ -25,8 +25,9 @@ class _LoginScreenState extends State<LoginScreen> {
       body: BlocListener<UserBloc, UserState>(
         listener: (context, state) {
           if (state is LoggedUserState) {
-            Navigator.of(context).pushReplacementNamed(
+            Navigator.of(context).pushNamedAndRemoveUntil(
               Router.homeScreen,
+              (_) => false,
             );
           }
         },
@@ -94,6 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
       SignUpUserEvent(
         email: email,
         password: password,
+        areas: widget.values,
       ),
     );
   }

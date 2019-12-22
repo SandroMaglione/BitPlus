@@ -1,11 +1,10 @@
 import 'dart:async';
+import 'package:bitplus/app/data/models/sign_up_user.dart';
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:bitplus/app/domain/usecases/profile/get_user_profile.dart'
     as gup;
 import 'package:bitplus/app/domain/usecases/profile/remove_user_profile.dart'
     as rup;
-import 'package:bitplus/app/domain/usecases/profile/save_user_profile.dart'
-    as svup;
 import 'package:bitplus/app/domain/usecases/profile/sign_in_profile.dart'
     as sip;
 import 'package:bitplus/app/domain/usecases/profile/sign_out_profile.dart'
@@ -14,6 +13,7 @@ import 'package:bitplus/app/domain/usecases/profile/sign_up_profile.dart'
     as sup;
 import 'package:bitplus/core/error/failures.dart';
 import 'package:bitplus/core/usecase/usecase.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 import './bloc.dart';
@@ -21,7 +21,6 @@ import './bloc.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   final gup.GetUserProfile getUserProfile;
   final sup.SignUpProfile signUpProfile;
-  final svup.SaveUserProfile saveUserProfile;
   final sop.SignOutProfile signOutProfile;
   final sip.SignInProfile signInProfile;
   final rup.RemoveUserProfile removeUserProfile;
@@ -29,7 +28,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc({
     @required this.getUserProfile,
     @required this.signUpProfile,
-    @required this.saveUserProfile,
     @required this.signOutProfile,
     @required this.signInProfile,
     @required this.removeUserProfile,
@@ -53,10 +51,17 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Stream<UserState> _mapSignUpUserEvent(SignUpUserEvent event) async* {
     yield UserState.loadingUserState();
 
+    final SignUpUser signUpUser = SignUpUser(
+      (s) => s
+        ..email = event.email
+        ..password = event.password
+        ..areas = ListBuilder<int>(
+          event.areas,
+        ),
+    );
     final failOrUser = await signUpProfile(
       sup.Params(
-        email: event.email,
-        password: event.password,
+        signUpUser: signUpUser,
       ),
     );
 
@@ -67,12 +72,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         );
       },
       (User user) async* {
-        await saveUserProfile(
-          svup.Params(
-            user: user,
-          ),
-        );
-
         yield UserState.loggedUserState(
           user: user,
         );
@@ -122,12 +121,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         );
       },
       (User user) async* {
-        await saveUserProfile(
-          svup.Params(
-            user: user,
-          ),
-        );
-
         yield UserState.loggedUserState(
           user: user,
         );

@@ -3,6 +3,7 @@ import 'package:bitplus/app/data/models/habit_entity.dart';
 import 'package:bitplus/app/data/models/habit_stat.dart';
 import 'package:bitplus/app/data/models/life_area.dart';
 import 'package:bitplus/app/data/models/life_area_stat.dart';
+import 'package:bitplus/app/data/models/sign_up_user.dart';
 import 'package:bitplus/app/data/models/social_user.dart';
 import 'package:bitplus/app/data/models/social_user_stat.dart';
 import 'package:bitplus/app/data/models/summary.dart';
@@ -26,6 +27,7 @@ part 'serializers.g.dart';
   LifeAreaStat,
   SocialUser,
   SocialUserStat,
+  SignUpUser,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..addPlugin(

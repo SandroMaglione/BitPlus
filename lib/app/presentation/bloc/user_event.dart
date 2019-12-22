@@ -14,6 +14,7 @@ enum _UserEvent {
   @Data(fields: [
     DataField('email', String),
     DataField('password', String),
+    DataField('areas', List),
   ])
   SignUpUserEvent,
   @object
