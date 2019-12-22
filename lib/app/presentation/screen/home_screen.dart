@@ -54,6 +54,14 @@ class HomeContent extends StatelessWidget {
           builder: (context, state) => _buildHabitBloc(context, state),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add_circle),
+        onPressed: () {
+          Navigator.of(context).pushNamed(
+            Router.createHabitScreen,
+          );
+        },
+      ),
     );
   }
 

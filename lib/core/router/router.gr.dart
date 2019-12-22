@@ -11,12 +11,14 @@ import 'package:bitplus/app/presentation/screen/loading_screen.dart';
 import 'package:bitplus/app/presentation/screen/init_life_area_screen.dart';
 import 'package:bitplus/app/presentation/screen/login_screen.dart';
 import 'package:bitplus/app/presentation/screen/home_screen.dart';
+import 'package:bitplus/app/presentation/screen/create_habit_screen.dart';
 
 class Router {
   static const loadingScreen = '/';
   static const initLifeAreaScreen = '/initLifeAreaScreen';
   static const loginScreen = '/loginScreen';
   static const homeScreen = '/homeScreen';
+  static const createHabitScreen = '/createHabitScreen';
   static GlobalKey<NavigatorState> get navigatorKey =>
       getNavigatorKey<Router>();
   static NavigatorState get navigator => navigatorKey.currentState;
@@ -46,6 +48,11 @@ class Router {
       case homeScreen:
         return MaterialPageRoute(
           builder: (_) => HomeScreen(),
+          settings: settings,
+        );
+      case createHabitScreen:
+        return MaterialPageRoute(
+          builder: (_) => CreateHabitScreen(),
           settings: settings,
         );
       default:

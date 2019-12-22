@@ -27,9 +27,14 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
     // TODO: Impl uncheckHabitEvent
     yield* event.when(
       getHabitListHabitEvent: (e) => _mapGetHabitListHabitEvent(e),
+      createHabitEvent: (e) => _mapCreateHabitEvent(e),
       checkHabitEvent: null,
       uncheckHabitEvent: null,
     );
+  }
+
+  Stream<HabitState> _mapCreateHabitEvent(CreateHabitEvent event) async* {
+    // TODO: Store habit list, then loading, creation, add new created to list, come back with new list updated
   }
 
   Stream<HabitState> _mapGetHabitListHabitEvent(

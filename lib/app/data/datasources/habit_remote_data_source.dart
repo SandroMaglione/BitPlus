@@ -41,21 +41,21 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
   });
 
   @override
-  Future<void> checkHabit(String uid, String habitID, DateTime date) {
-    // TODO: implement checkHabit
-    return null;
-  }
-
-  @override
-  Future<Habit> createHabit(String uid, String name, bool isPositive, int value,
-      BuiltList<int> lifeAreaIds) async {
+  Future<Habit> createHabit(
+    String uid,
+    String name,
+    bool isPositive,
+    int value,
+    BuiltList<int> lifeAreaIds,
+  ) async {
     try {
+      // TODO: Impl method to assign random color int
       final habit = Habit(
         (h) => h
+          ..habitID = 'null'
+          ..color = 0xFF343A40
           ..name = name
           ..isPositive = isPositive
-          ..color = 0xFF343A40
-          ..habitID = 'null'
           ..value = value
           ..lifeAreas = ListBuilder<int>(
             lifeAreaIds,
@@ -73,10 +73,37 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
         (h) => h..habitID = doc.documentID,
       );
       return returnHabit;
-    } catch (e, s) {
-      crashlytics.recordError(e, s);
+    } catch (e) {
       throw FirestoreException(400);
     }
+  }
+
+  @override
+  Future<BuiltList<Habit>> getHabitList(String uid) async {
+    try {
+      final allDocs = await firestore
+          .collection(USER_COLLECTION)
+          .document(uid)
+          .collection(HABIT_COLLECTION)
+          .getDocuments();
+
+      // TODO: Add also the habit id to the map from Firestore
+      final habitList = allDocs.documents.map(
+        (snapshot) => Habit.fromJson(
+          snapshot.data,
+        ),
+      );
+      final builtList = BuiltList<Habit>(habitList);
+      return builtList;
+    } catch (e) {
+      throw FirestoreException(401);
+    }
+  }
+
+  @override
+  Future<void> checkHabit(String uid, String habitID, DateTime date) {
+    // TODO: implement checkHabit
+    return null;
   }
 
   @override
@@ -97,28 +124,5 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
       bool isPositive, int value, BuiltList<int> lifeArea) {
     // TODO: implement updateHabit
     return null;
-  }
-
-  @override
-  Future<BuiltList<Habit>> getHabitList(String uid) async {
-    try {
-      final allDocs = await firestore
-          .collection(USER_COLLECTION)
-          .document(uid)
-          .collection(HABIT_COLLECTION)
-          .getDocuments();
-
-      // TODO: Add also the habit id to the map from Firestore
-      final habitList = allDocs.documents.map(
-        (snapshot) => Habit.fromJson(
-          snapshot.data,
-        ),
-      );
-      final builtList = BuiltList<Habit>(habitList);
-      return builtList;
-    } catch (e, s) {
-      crashlytics.recordError(e, s);
-      throw FirestoreException(401);
-    }
   }
 }

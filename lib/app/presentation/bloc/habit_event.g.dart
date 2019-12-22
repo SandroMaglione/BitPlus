@@ -16,13 +16,20 @@ abstract class HabitEvent extends Equatable {
 
   factory HabitEvent.uncheckHabitEvent() = UncheckHabitEvent;
 
+  factory HabitEvent.createHabitEvent(
+      {@required String name,
+      @required bool isPositive,
+      @required int value,
+      @required BuiltList<dynamic> areas}) = CreateHabitEvent;
+
   final _HabitEvent _type;
 
 //ignore: missing_return
   R when<R>(
       {@required R Function(GetHabitListHabitEvent) getHabitListHabitEvent,
       @required R Function(CheckHabitEvent) checkHabitEvent,
-      @required R Function(UncheckHabitEvent) uncheckHabitEvent}) {
+      @required R Function(UncheckHabitEvent) uncheckHabitEvent,
+      @required R Function(CreateHabitEvent) createHabitEvent}) {
     switch (this._type) {
       case _HabitEvent.GetHabitListHabitEvent:
         return getHabitListHabitEvent(this as GetHabitListHabitEvent);
@@ -30,6 +37,8 @@ abstract class HabitEvent extends Equatable {
         return checkHabitEvent(this as CheckHabitEvent);
       case _HabitEvent.UncheckHabitEvent:
         return uncheckHabitEvent(this as UncheckHabitEvent);
+      case _HabitEvent.CreateHabitEvent:
+        return createHabitEvent(this as CreateHabitEvent);
     }
   }
 
@@ -71,4 +80,28 @@ class UncheckHabitEvent extends HabitEvent {
   }
 
   static UncheckHabitEvent _instance;
+}
+
+@immutable
+class CreateHabitEvent extends HabitEvent {
+  const CreateHabitEvent(
+      {@required this.name,
+      @required this.isPositive,
+      @required this.value,
+      @required this.areas})
+      : super(_HabitEvent.CreateHabitEvent);
+
+  final String name;
+
+  final bool isPositive;
+
+  final int value;
+
+  final BuiltList<dynamic> areas;
+
+  @override
+  String toString() =>
+      'CreateHabitEvent(name:${this.name},isPositive:${this.isPositive},value:${this.value},areas:${this.areas})';
+  @override
+  List get props => [name, isPositive, value, areas];
 }
