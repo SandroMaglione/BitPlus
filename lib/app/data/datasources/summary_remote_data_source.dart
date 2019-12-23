@@ -1,5 +1,4 @@
 import 'package:bitplus/core/database/collections.dart';
-import 'package:bitplus/core/error/exceptions.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/app/data/models/summary.dart';
 import 'package:bitplus/app/data/models/summary_stat.dart';
@@ -47,26 +46,21 @@ class SummaryRemoteDataSourceImpl implements SummaryRemoteDataSource {
     String text,
     int dayTag,
   ) async {
-    try {
-      final summary = Summary(
-        (s) => s
-          ..text = text
-          ..date = date
-          ..dayTag = dayTag,
-      );
+    final summary = Summary(
+      (s) => s
+        ..text = text
+        ..date = date
+        ..dayTag = dayTag,
+    );
 
-      final summaryMap = summary.toJsonMap();
-      await firestore
-          .collection(USER_COLLECTION)
-          .document(uid)
-          .collection(SUMMARY_COLLECTION)
-          .add(summaryMap);
+    final summaryMap = summary.toJsonMap();
+    await firestore
+        .collection(USER_COLLECTION)
+        .document(uid)
+        .collection(SUMMARY_COLLECTION)
+        .add(summaryMap);
 
-      return summary;
-    } catch (e, s) {
-      crashlytics.recordError(e, s);
-      throw FirestoreException(400);
-    }
+    return summary;
   }
 
   @override

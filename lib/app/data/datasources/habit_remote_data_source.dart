@@ -2,10 +2,8 @@ import 'dart:convert';
 
 import 'package:bitplus/app/data/models/api/create_habit_api.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
-import 'package:bitplus/app/data/models/habit.dart';
-import 'package:bitplus/app/data/models/habit_stat.dart';
 import 'package:bitplus/core/database/collections.dart';
-import 'package:bitplus/core/error/exceptions.dart';
+import 'package:bitplus/core/error/failures.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:meta/meta.dart';
 import 'package:built_collection/built_collection.dart';
@@ -14,13 +12,13 @@ import 'package:http/http.dart' as http;
 import 'package:random_color/random_color.dart';
 
 abstract class HabitRemoteDataSource {
-  /// Returns a [BuiltList] of [Habit] retrieved from the database,
+  /// Returns a [BuiltList] of [HabitApi] retrieved from the database,
   /// based on the user id provided
   Future<BuiltList<HabitApi>> getHabitList(String uid);
 
-  /// Creates an [Habit] and uploads it to the database
+  /// Creates an [CreateHabitApi] and uploads it to the database
   ///
-  /// It returns the [Habit] with the new habitID assigned
+  /// It returns the new [HabitApi] with the new habitID assigned
   Future<HabitApi> createHabit(
     String uid,
     String name,
@@ -29,7 +27,10 @@ abstract class HabitRemoteDataSource {
     BuiltList<int> lifeAreaIds,
   );
 
+  /// Checks and habit, making the attribute `checked` true
   Future<void> checkHabit(String uid, String habitID);
+
+  /// Unchecks and habit, making the attribute `checked` false
   Future<void> uncheckHabit(String uid, String habitID);
 }
 
@@ -96,8 +97,10 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
           ),
       );
       return returnHabit;
-    } catch (e) {
-      throw FirestoreException(400);
+    } on JsonUnsupportedObjectError {
+      throw JsonSerializationFailure(
+        message: 'Error while converting data, try again later',
+      );
     }
   }
 
@@ -119,8 +122,10 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
           ),
         ),
       );
-    } catch (e) {
-      throw FirestoreException(401);
+    } on http.ClientException {
+      throw FirestoreFailure(
+        message: 'Client error while fetching habit list, try again',
+      );
     }
   }
 
@@ -142,10 +147,14 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
       if (resp.statusCode == 200) {
         return true;
       } else {
-        throw FirestoreException(402);
+        throw FirestoreFailure(
+          message: 'Client error while fetching habit list, try again',
+        );
       }
     } catch (e) {
-      throw FirestoreException(402);
+      throw FirestoreFailure(
+        message: 'Client error while fetching habit list, try again',
+      );
     }
   }
 
@@ -167,10 +176,14 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
       if (resp.statusCode == 200) {
         return true;
       } else {
-        throw FirestoreException(402);
+        throw FirestoreFailure(
+          message: 'Client error while fetching habit list, try again',
+        );
       }
     } catch (e) {
-      throw FirestoreException(402);
+      throw FirestoreFailure(
+        message: 'Client error while fetching habit list, try again',
+      );
     }
   }
 }

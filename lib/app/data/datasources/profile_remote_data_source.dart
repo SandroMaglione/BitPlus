@@ -1,7 +1,7 @@
 import 'package:bitplus/app/data/models/sign_up_user.dart';
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:bitplus/core/database/collections.dart';
-import 'package:bitplus/core/error/exceptions.dart';
+import 'package:bitplus/core/error/failures.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -45,72 +45,58 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     String email,
     String password,
   ) async {
-    try {
-      final result = await firebaseAuth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      return result.user.uid;
-    } catch (e) {
-      throw FirebaseAuthException(500);
-    }
+    final result = await firebaseAuth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    return result.user.uid;
   }
 
   @override
   Future<User> getSignedInUser(String uid) async {
-    try {
-      final userData = await firestore
-          .collection(USER_COLLECTION)
-          .document(
-            uid,
-          )
-          .get();
-
-      if (userData.exists) {
-        final user = _createUserFromUserData(
+    final userData = await firestore
+        .collection(USER_COLLECTION)
+        .document(
           uid,
-          userData.data,
-        );
-        return user;
-      } else {
-        throw FirebaseAuthException(503);
-      }
-    } catch (e) {
-      throw FirebaseAuthException(503);
+        )
+        .get();
+
+    if (userData.exists) {
+      final user = _createUserFromUserData(
+        uid,
+        userData.data,
+      );
+      return user;
+    } else {
+      throw FirebaseAuthFailure(
+        message: 'No user exist with this credentials, try again',
+      );
     }
   }
 
   @override
-  Future<void> signOut() async {
-    try {
-      return await firebaseAuth.signOut();
-    } catch (e) {
-      throw FirebaseAuthException(501);
-    }
-  }
+  Future<void> signOut() async => await firebaseAuth.signOut();
 
   @override
   Future<User> signUp(
     SignUpUser signUpUser,
   ) async {
-    try {
-      final reqBody = signUpUser.toJsonString();
-      final resp = await client.post(
-        'https://us-central1-bitplus-95304.cloudfunctions.net/storeUserProfile',
-        headers: {'Content-Type': 'application/json'},
-        body: reqBody,
-      );
+    final reqBody = signUpUser.toJsonString();
+    final resp = await client.post(
+      'https://us-central1-bitplus-95304.cloudfunctions.net/storeUserProfile',
+      headers: {'Content-Type': 'application/json'},
+      body: reqBody,
+    );
 
-      if (resp.statusCode == 200) {
-        return _createUserFromId(
-          resp.body,
-          signUpUser.areas,
-        );
-      } else {
-        throw FirebaseAuthException(502);
-      }
-    } catch (e) {
-      throw FirebaseAuthException(502);
+    if (resp.statusCode == 200) {
+      return _createUserFromId(
+        resp.body,
+        signUpUser.areas,
+      );
+    } else {
+      throw FirebaseAuthFailure(
+        message: 'Error while creating account, try again',
+      );
     }
   }
 

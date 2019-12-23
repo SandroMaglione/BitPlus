@@ -1,5 +1,5 @@
 import 'package:bitplus/app/data/models/user.dart';
-import 'package:bitplus/core/error/exceptions.dart';
+import 'package:bitplus/core/error/failures.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,39 +36,33 @@ class ProfileLocalDataSourceImpl implements ProfileLocalDataSource {
 
   @override
   Future<void> saveUserLocal(User user) async {
-    try {
-      final userString = user.toJsonString();
-      final result = await sharedPreferences.setString(
-        SHARED_PREF_USER_LOCAL,
-        userString,
+    final userString = user.toJsonString();
+    final result = await sharedPreferences.setString(
+      SHARED_PREF_USER_LOCAL,
+      userString,
+    );
+
+    if (!result) {
+      throw GettingLocalDataFailure(
+        message: 'No saved user exist',
       );
-
-      if (!result) {
-        throw LocalDataException(601);
-      }
-
-      return result;
-    } catch (e, s) {
-      crashlytics.recordError(e, s);
-      throw LocalDataException(601);
     }
+
+    return result;
   }
 
   @override
   Future<void> removeUserLocal() async {
-    try {
-      final result = await sharedPreferences.remove(
-        SHARED_PREF_USER_LOCAL,
+    final result = await sharedPreferences.remove(
+      SHARED_PREF_USER_LOCAL,
+    );
+
+    if (!result) {
+      throw GettingLocalDataFailure(
+        message: 'Impossible to remove current user',
       );
-
-      if (!result) {
-        throw LocalDataException(600);
-      }
-
-      return result;
-    } catch (e, s) {
-      crashlytics.recordError(e, s);
-      return LocalDataException(600);
     }
+
+    return result;
   }
 }
