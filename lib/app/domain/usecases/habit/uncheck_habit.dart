@@ -1,4 +1,3 @@
-import 'package:bitplus/app/data/models/habit.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/app/domain/repositories/habit_repository.dart';
@@ -6,7 +5,7 @@ import 'package:bitplus/core/error/failures.dart';
 import 'package:bitplus/core/usecase/usecase.dart';
 import 'package:dartz/dartz.dart';
 
-class UncheckHabit implements UseCase<Habit, Params> {
+class UncheckHabit implements UseCase<void, Params> {
   final HabitRepository habitRepository;
 
   const UncheckHabit({
@@ -14,7 +13,7 @@ class UncheckHabit implements UseCase<Habit, Params> {
   });
 
   @override
-  Future<Either<Failure, Habit>> call(Params params) {
+  Future<Either<Failure, void>> call(Params params) {
     return habitRepository.uncheckHabit(
       params.uid,
       params.habitID,

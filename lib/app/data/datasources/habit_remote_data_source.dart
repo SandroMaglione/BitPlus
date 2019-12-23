@@ -85,7 +85,12 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
           ..habitID = doc.documentID
           ..color = RandomColor()
               .randomColor(
-                colorSaturation: ColorSaturation.highSaturation,
+                colorHue: ColorHue.multiple(
+                  colorHues: [
+                    ColorHue.red,
+                    ColorHue.blue,
+                  ],
+                ),
               )
               .value
           ..checked = false
@@ -134,24 +139,20 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     String uid,
     String habitID,
   ) async {
-    try {
-      final resp = await http.post(
-        'https://us-central1-bitplus-95304.cloudfunctions.net/checkDailyHabit',
-        headers: {'Content-Type': 'application/json'},
-        body: {
+    final resp = await http.post(
+      'https://us-central1-bitplus-95304.cloudfunctions.net/checkDailyHabit',
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(
+        {
           "userID": uid,
           "habitID": habitID,
         },
-      );
+      ),
+    );
 
-      if (resp.statusCode == 200) {
-        return true;
-      } else {
-        throw FirestoreFailure(
-          message: 'Client error while fetching habit list, try again',
-        );
-      }
-    } catch (e) {
+    if (resp.statusCode == 200) {
+      return true;
+    } else {
       throw FirestoreFailure(
         message: 'Client error while fetching habit list, try again',
       );
@@ -163,24 +164,24 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     String uid,
     String habitID,
   ) async {
-    try {
-      final resp = await http.post(
-        'https://us-central1-bitplus-95304.cloudfunctions.net/uncheckDailyHabit',
-        headers: {'Content-Type': 'application/json'},
-        body: {
+    final resp = await http.post(
+      'https://us-central1-bitplus-95304.cloudfunctions.net/uncheckDailyHabit',
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(
+        {
           "userID": uid,
           "habitID": habitID,
         },
-      );
+      ),
+    );
 
-      if (resp.statusCode == 200) {
-        return true;
-      } else {
-        throw FirestoreFailure(
-          message: 'Client error while fetching habit list, try again',
-        );
-      }
-    } catch (e) {
+    if (resp.statusCode == 200) {
+      return true;
+    } else if (resp.statusCode == 500) {
+      throw FirestoreFailure(
+        message: 'Error: could not handle the request, try again',
+      );
+    } else {
       throw FirestoreFailure(
         message: 'Client error while fetching habit list, try again',
       );

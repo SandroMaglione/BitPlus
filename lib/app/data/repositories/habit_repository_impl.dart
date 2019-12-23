@@ -1,7 +1,6 @@
 import 'package:bitplus/app/data/datasources/habit_remote_data_source.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:meta/meta.dart';
-import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/domain/repositories/habit_repository.dart';
 import 'package:bitplus/core/error/failures.dart';
 import 'package:built_collection/built_collection.dart';
@@ -20,7 +19,7 @@ class HabitRepositoryImpl implements HabitRepository {
     String uid,
     String habitID,
   ) async =>
-      await Task<Habit>(
+      await Task<void>(
         () => habitRemoteDataSource.checkHabit(
           uid,
           habitID,
@@ -50,7 +49,7 @@ class HabitRepositoryImpl implements HabitRepository {
     String uid,
     String habitID,
   ) async =>
-      await Task<Habit>(
+      await Task<void>(
         () => habitRemoteDataSource.uncheckHabit(
           uid,
           habitID,

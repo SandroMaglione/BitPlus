@@ -77,12 +77,16 @@ class _HomeScreenState extends State<HomeScreen> {
       loadedHabitState: (state) {
         return SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(30.0),
             child: Column(
               children: state.habits
                   .map(
                     (habit) => Card(
+                      margin: const EdgeInsets.only(bottom: 24.0, top: 12.0),
                       elevation: 12.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16.0,
@@ -117,6 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   }
                                 },
                                 child: CircleAvatar(
+                                  backgroundColor: Color(habit.color),
                                   child: Icon(
                                     habit.checked ? Icons.check : Icons.cached,
                                   ),
