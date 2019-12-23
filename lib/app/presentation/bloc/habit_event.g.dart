@@ -12,9 +12,11 @@ abstract class HabitEvent extends Equatable {
 
   factory HabitEvent.getHabitListHabitEvent() = GetHabitListHabitEvent;
 
-  factory HabitEvent.checkHabitEvent() = CheckHabitEvent;
+  factory HabitEvent.checkHabitEvent({@required String habitID}) =
+      CheckHabitEvent;
 
-  factory HabitEvent.uncheckHabitEvent() = UncheckHabitEvent;
+  factory HabitEvent.uncheckHabitEvent({@required String habitID}) =
+      UncheckHabitEvent;
 
   factory HabitEvent.createHabitEvent(
       {@required String name,
@@ -60,26 +62,28 @@ class GetHabitListHabitEvent extends HabitEvent {
 
 @immutable
 class CheckHabitEvent extends HabitEvent {
-  const CheckHabitEvent._() : super(_HabitEvent.CheckHabitEvent);
+  const CheckHabitEvent({@required this.habitID})
+      : super(_HabitEvent.CheckHabitEvent);
 
-  factory CheckHabitEvent() {
-    _instance ??= CheckHabitEvent._();
-    return _instance;
-  }
+  final String habitID;
 
-  static CheckHabitEvent _instance;
+  @override
+  String toString() => 'CheckHabitEvent(habitID:${this.habitID})';
+  @override
+  List get props => [habitID];
 }
 
 @immutable
 class UncheckHabitEvent extends HabitEvent {
-  const UncheckHabitEvent._() : super(_HabitEvent.UncheckHabitEvent);
+  const UncheckHabitEvent({@required this.habitID})
+      : super(_HabitEvent.UncheckHabitEvent);
 
-  factory UncheckHabitEvent() {
-    _instance ??= UncheckHabitEvent._();
-    return _instance;
-  }
+  final String habitID;
 
-  static UncheckHabitEvent _instance;
+  @override
+  String toString() => 'UncheckHabitEvent(habitID:${this.habitID})';
+  @override
+  List get props => [habitID];
 }
 
 @immutable

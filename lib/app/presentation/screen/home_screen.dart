@@ -84,7 +84,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     (habit) => Card(
                       elevation: 12.0,
                       child: Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0,
+                          vertical: 6.0,
+                        ),
                         child: Stack(
                           children: [
                             LayoutBuilder(
@@ -94,16 +97,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: constraints.maxWidth * habit.value / 21,
                               ),
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text('${habit.habitID}'),
-                                Text('${habit.name}'),
-                                Text('${habit.lifeAreas}'),
-                                Text('${habit.value}'),
-                                Text('${habit.isPositive}'),
-                              ],
+                            ListTile(
+                              title: Text('${habit.name}'),
+                              subtitle: Text('${habit.habitID}'),
+                              trailing: InkWell(
+                                onTap: () {
+                                  if (habit.checked) {
+                                    BlocProvider.of<HabitBloc>(context).add(
+                                      UncheckHabitEvent(
+                                        habitID: habit.habitID,
+                                      ),
+                                    );
+                                  } else {
+                                    BlocProvider.of<HabitBloc>(context).add(
+                                      CheckHabitEvent(
+                                        habitID: habit.habitID,
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: CircleAvatar(
+                                  child: Icon(
+                                    habit.checked ? Icons.check : Icons.cached,
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),

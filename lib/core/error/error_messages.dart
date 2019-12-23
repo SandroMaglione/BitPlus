@@ -23,6 +23,8 @@ String firestoreError(int code) {
       return "A problem occured while creating the habit, try again";
     case 401:
       return "Impossible to get habit list, try again";
+    case 402:
+      return "Impossible to check habit, try again";
     default:
       return "Unexpected error, try again later, it will be solved soon";
   }

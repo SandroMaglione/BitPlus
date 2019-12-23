@@ -53,6 +53,9 @@ dependencies:
   # auto router
   auto_route: ^0.2.0+1
 
+  # random color habit
+  random_color: ^1.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

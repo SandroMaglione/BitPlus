@@ -18,7 +18,6 @@ class CheckHabit implements UseCase<Habit, Params> {
     return habitRepository.checkHabit(
       params.uid,
       params.habitID,
-      params.date,
     );
   }
 }
@@ -26,10 +25,8 @@ class CheckHabit implements UseCase<Habit, Params> {
 class Params extends Equatable {
   final String uid;
   final String habitID;
-  final DateTime date;
 
   const Params({
-    @required this.date,
     @required this.uid,
     @required this.habitID,
   });
@@ -37,7 +34,6 @@ class Params extends Equatable {
   @override
   List<Object> get props => [
         uid,
-        date,
         habitID,
       ];
 }

@@ -1,3 +1,5 @@
+import 'package:bitplus/app/data/models/api/create_habit_api.dart';
+import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/data/models/creation_habit.dart';
 import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/data/models/habit_entity.dart';
@@ -30,6 +32,8 @@ part 'serializers.g.dart';
   SocialUserStat,
   SignUpUser,
   CreationHabit,
+  HabitApi,
+  CreateHabitApi,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..addPlugin(

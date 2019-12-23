@@ -7,8 +7,10 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
+      ..add(CreateHabitApi.serializer)
       ..add(CreationHabit.serializer)
       ..add(Habit.serializer)
+      ..add(HabitApi.serializer)
       ..add(HabitEntity.serializer)
       ..add(HabitStat.serializer)
       ..add(LifeArea.serializer)
@@ -34,6 +36,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Summary)]),
           () => new ListBuilder<Summary>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => new ListBuilder<int>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => new ListBuilder<int>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => new ListBuilder<int>())

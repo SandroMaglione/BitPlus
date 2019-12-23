@@ -8,9 +8,7 @@ import 'package:bitplus/app/domain/repositories/profile_repository.dart';
 import 'package:bitplus/app/domain/usecases/habit/check_habit.dart';
 import 'package:bitplus/app/domain/usecases/habit/create_habit.dart';
 import 'package:bitplus/app/domain/usecases/habit/get_habit_list.dart';
-import 'package:bitplus/app/domain/usecases/habit/get_habit_stat.dart';
 import 'package:bitplus/app/domain/usecases/habit/uncheck_habit.dart';
-import 'package:bitplus/app/domain/usecases/habit/update_habit.dart';
 import 'package:bitplus/app/domain/usecases/profile/add_experience_profile.dart';
 import 'package:bitplus/app/domain/usecases/profile/get_user_profile.dart';
 import 'package:bitplus/app/domain/usecases/profile/remove_user_profile.dart';
@@ -53,6 +51,8 @@ Future<void> init() async {
 
   serviceLocator.registerLazySingleton<HabitBloc>(
     () => HabitBloc(
+      checkHabit: serviceLocator(),
+      uncheckHabit: serviceLocator(),
       getHabitList: serviceLocator(),
       createHabit: serviceLocator(),
       userBloc: serviceLocator(),
@@ -137,19 +137,7 @@ Future<void> init() async {
   );
 
   serviceLocator.registerLazySingleton(
-    () => GetHabitStat(
-      habitRepository: serviceLocator(),
-    ),
-  );
-
-  serviceLocator.registerLazySingleton(
     () => UncheckHabit(
-      habitRepository: serviceLocator(),
-    ),
-  );
-
-  serviceLocator.registerLazySingleton(
-    () => UpdateHabit(
       habitRepository: serviceLocator(),
     ),
   );
@@ -179,6 +167,7 @@ Future<void> init() async {
 
   serviceLocator.registerLazySingleton<HabitRemoteDataSource>(
     () => HabitRemoteDataSourceImpl(
+      client: serviceLocator(),
       firestore: serviceLocator(),
       crashlytics: serviceLocator(),
     ),

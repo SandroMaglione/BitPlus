@@ -7,9 +7,13 @@ part 'habit_event.g.dart';
 enum _HabitEvent {
   @object
   GetHabitListHabitEvent,
-  @object
+  @Data(fields: [
+    DataField('habitID', String),
+  ])
   CheckHabitEvent,
-  @object
+  @Data(fields: [
+    DataField('habitID', String),
+  ])
   UncheckHabitEvent,
   @Data(fields: [
     DataField('name', String),
