@@ -2,11 +2,12 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:bitplus/app/data/models/init_life_area.dart';
 import 'package:built_collection/built_collection.dart';
-import './bloc.dart';
+import '../bloc.dart';
 
 // TODO: Define max possible points to assign to life areas
 const int MAX_POINTS = 20;
 
+/// Manage the assignment of points to each area during the inital login process
 class InitLifeAreaBloc extends Bloc<InitLifeAreaEvent, InitLifeArea> {
   @override
   InitLifeArea get initialState => InitLifeArea(

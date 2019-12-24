@@ -4,15 +4,15 @@ import 'package:bitplus/core/error/failures.dart';
 import 'package:bitplus/core/usecase/usecase.dart';
 import 'package:dartz/dartz.dart';
 
-class RemoveUserProfile implements UseCase<void, NoParams> {
+class SignOut implements UseCase<void, NoParams> {
   final ProfileRepository profileRepository;
 
-  const RemoveUserProfile({
+  const SignOut({
     @required this.profileRepository,
   });
 
   @override
   Future<Either<Failure, void>> call(NoParams params) {
-    return profileRepository.removeUserProfile();
+    return profileRepository.signOut();
   }
 }

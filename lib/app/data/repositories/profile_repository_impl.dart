@@ -1,7 +1,7 @@
 import 'package:bitplus/app/data/datasources/profile_local_data_source.dart';
 import 'package:bitplus/app/data/datasources/profile_remote_data_source.dart';
-import 'package:bitplus/app/data/models/sign_up_user.dart';
 import 'package:bitplus/app/data/models/user.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/app/domain/repositories/profile_repository.dart';
 import 'package:bitplus/core/error/failures.dart';
@@ -18,66 +18,74 @@ class ProfileRepositoryImpl implements ProfileRepository {
   });
 
   @override
-  Future<Either<Failure, User>> addExperienceProfile(int experience) async =>
-      await Task<User>(
-        () => profileRemoteDataSource.addExperience(
-          experience,
-        ),
+  Future<Either<Failure, User>> addExperience(int experience) {
+    // TODO: implement addExperience
+    return null;
+  }
+
+  @override
+  Future<Either<Failure, User>> getUser() async => await Task<User>(
+        () => profileRemoteDataSource.getSignedInUser(),
       ).attempt().mapLeftToFailure().run();
 
   @override
-  Future<Either<Failure, User>> getUserProfile() async => await Task<User>(
-        () => profileLocalDataSource.getUserLocal(),
+  Future<Either<Failure, bool>> isSignedInUser() async => await Task<bool>(
+        () => profileRemoteDataSource.isSignedInUser(),
       ).attempt().mapLeftToFailure().run();
 
   @override
-  Future<Either<Failure, User>> signInProfile(
+  Future<Either<Failure, User>> signInCredentials(
     String email,
     String password,
   ) async =>
+      await Task<User>(
+        () async {
+          await profileRemoteDataSource.signInEmailAndPassword(email, password);
+          return profileRemoteDataSource.getSignedInUser();
+        },
+      ).attempt().mapLeftToFailure().run();
+
+  @override
+  Future<Either<Failure, User>> signInGoogle() async => await Task<User>(
+        () async {
+          await profileRemoteDataSource.signInGoogle();
+          return profileRemoteDataSource.getSignedInUser();
+        },
+      ).attempt().mapLeftToFailure().run();
+
+  @override
+  Future<Either<Failure, void>> signOut() async => await Task<void>(
+        () => profileRemoteDataSource.signOut(),
+      ).attempt().mapLeftToFailure().run();
+
+  @override
+  Future<Either<Failure, User>> signUpGoogle(
+    BuiltList<int> areas,
+  ) async =>
       await Task<User>(() async {
-        final uid = await profileRemoteDataSource.signInEmailAndPassword(
+        final firebaseUser = await profileRemoteDataSource.signInGoogle();
+        return await profileRemoteDataSource.createAccount(
+          firebaseUser.uid,
+          firebaseUser.email,
+          areas,
+        );
+      }).attempt().mapLeftToFailure().run();
+
+  @override
+  Future<Either<Failure, User>> signUpCredentials(
+    String email,
+    String password,
+    BuiltList<int> areas,
+  ) async =>
+      await Task<User>(() async {
+        final uid = await profileRemoteDataSource.signUpCredentials(
           email,
           password,
         );
-        final user = await profileRemoteDataSource.getSignedInUser(uid);
-        await profileLocalDataSource.saveUserLocal(user);
-        return user;
-      }).attempt().mapLeftToFailure().run();
-
-  @override
-  Future<Either<Failure, void>> signOutProfile() async => await Task<void>(() {
-        profileRemoteDataSource.signOut();
-        profileLocalDataSource.removeUserLocal();
-        return Future.value();
-      }).attempt().mapLeftToFailure().run();
-
-  @override
-  Future<Either<Failure, User>> signUpProfile(
-    SignUpUser signUpUser,
-  ) async =>
-      await Task<User>(() async {
-        final user = await profileRemoteDataSource.signUp(
-          signUpUser,
+        return await profileRemoteDataSource.createAccount(
+          uid,
+          email,
+          areas,
         );
-        await profileRemoteDataSource.signInEmailAndPassword(
-          signUpUser.email,
-          signUpUser.password,
-        );
-        await profileLocalDataSource.saveUserLocal(user);
-        return user;
       }).attempt().mapLeftToFailure().run();
-
-  @override
-  Future<Either<Failure, void>> saveUserProfile(User user) async =>
-      await Task<void>(
-        () => profileLocalDataSource.saveUserLocal(
-          user,
-        ),
-      ).attempt().mapLeftToFailure().run();
-
-  @override
-  Future<Either<Failure, void>> removeUserProfile() async => await Task<void>(
-        () => profileLocalDataSource.removeUserLocal(),
-      ).attempt().mapLeftToFailure().run();
 }

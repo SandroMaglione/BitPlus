@@ -6,16 +6,16 @@ import 'package:bitplus/core/error/failures.dart';
 import 'package:bitplus/core/usecase/usecase.dart';
 import 'package:dartz/dartz.dart';
 
-class SignInProfile implements UseCase<User, Params> {
+class SignInCredentials implements UseCase<User, Params> {
   final ProfileRepository profileRepository;
 
-  const SignInProfile({
+  const SignInCredentials({
     @required this.profileRepository,
   });
 
   @override
   Future<Either<Failure, User>> call(Params params) {
-    return profileRepository.signInProfile(
+    return profileRepository.signInCredentials(
       params.email,
       params.password,
     );

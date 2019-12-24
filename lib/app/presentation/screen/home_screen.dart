@@ -23,22 +23,29 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('BitPlus'),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CircleAvatar(
+            child: Text(
+                '${(BlocProvider.of<AuthBloc>(context).state as Authenticated).user.email.toUpperCase().substring(0, 1)}'),
+          ),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(
               Icons.call_missed_outgoing,
             ),
             onPressed: () => _signOut(context),
-          )
+          ),
         ],
       ),
       body: MultiBlocListener(
         listeners: [
-          BlocListener<UserBloc, UserState>(
+          BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
-              if (state is EmptyUserState) {
+              if (state is AuthUnauthenticated) {
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                  Router.initLifeAreaScreen,
+                  Router.loginScreen,
                   (_) => false,
                 );
               }
@@ -142,8 +149,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _signOut(BuildContext context) {
-    BlocProvider.of<UserBloc>(context).add(
-      SignOutUserEvent(),
+    BlocProvider.of<AuthBloc>(context).add(
+      AuthEvent.authSignOut(),
     );
   }
 }

@@ -11,14 +11,14 @@ import 'package:bloc/bloc.dart';
 import './bloc.dart';
 
 class HabitBloc extends Bloc<HabitEvent, HabitState> {
-  final UserBloc userBloc;
+  final AuthBloc authBloc;
   final ch.CreateHabit createHabit;
   final cch.CheckHabit checkHabit;
   final unch.UncheckHabit uncheckHabit;
   final ghl.GetHabitList getHabitList;
 
   HabitBloc({
-    @required this.userBloc,
+    @required this.authBloc,
     @required this.getHabitList,
     @required this.checkHabit,
     @required this.uncheckHabit,
@@ -195,15 +195,15 @@ class HabitBloc extends Bloc<HabitEvent, HabitState> {
   }
 
   /// Interrupt the event and yield and error state if uid missing because
-  /// no [LoggedUserState] available
+  /// no [Authenticated] available
   Stream<HabitState> _checkUserLogged<T>(
     Stream<HabitState> Function(T event, String uid) fun,
     T event,
   ) async* {
-    if (userBloc.state is LoggedUserState) {
+    if (authBloc.state is Authenticated) {
       yield* fun(
         event,
-        (userBloc.state as LoggedUserState).user.userID,
+        (authBloc.state as Authenticated).user.uid,
       );
     } else {
       yield HabitState.errorHabitState(

@@ -12,6 +12,8 @@ abstract class InitLifeArea
   BuiltList<int> get values;
   int get pointsLeft;
 
+  bool get isAreasValid => pointsLeft == 0;
+
   InitLifeArea._();
 
   factory InitLifeArea([void Function(InitLifeAreaBuilder) updates]) =

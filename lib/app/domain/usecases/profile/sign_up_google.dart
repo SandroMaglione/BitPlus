@@ -1,34 +1,34 @@
-import 'package:bitplus/app/data/models/sign_up_user.dart';
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:bitplus/app/domain/repositories/profile_repository.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/core/error/failures.dart';
 import 'package:bitplus/core/usecase/usecase.dart';
 import 'package:dartz/dartz.dart';
 
-class SignUpProfile implements UseCase<User, Params> {
+class SignUpGoogle implements UseCase<User, Params> {
   final ProfileRepository profileRepository;
 
-  const SignUpProfile({
+  const SignUpGoogle({
     @required this.profileRepository,
   });
 
   @override
   Future<Either<Failure, User>> call(Params params) {
-    return profileRepository.signUpProfile(
-      params.signUpUser,
+    return profileRepository.signUpGoogle(
+      params.areas,
     );
   }
 }
 
 class Params extends Equatable {
-  final SignUpUser signUpUser;
+  final BuiltList<int> areas;
 
   const Params({
-    @required this.signUpUser,
+    @required this.areas,
   });
 
   @override
-  List<Object> get props => [signUpUser];
+  List<Object> get props => [areas];
 }

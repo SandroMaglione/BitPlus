@@ -11,41 +11,35 @@ class LoadingScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Loading'),
       ),
-      body: BlocListener<UserBloc, UserState>(
+      body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
-          if (state is EmptyUserState) {
+          if (state is AuthUnauthenticated) {
             Navigator.of(context).pushReplacementNamed(
-              Router.initLifeAreaScreen,
+              Router.loginScreen,
             );
-          } else if (state is LoggedUserState) {
+          } else if (state is Authenticated) {
             Navigator.of(context).pushReplacementNamed(
               Router.homeScreen,
             );
           }
         },
-        child: BlocBuilder<UserBloc, UserState>(
-          builder: (context, state) => _buildUserBloc(context, state),
+        child: BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) => _buildAuthBloc(context, state),
         ),
       ),
     );
   }
 
-  Widget _buildUserBloc(BuildContext context, UserState state) {
+  Widget _buildAuthBloc(BuildContext context, AuthState state) {
     return state.when(
-      startUpUserState: (_) => LoadingIndicator(
-        message: 'Starting up...',
+      authUninitialized: (_) => LoadingIndicator(
+        message: 'Loading auth...',
       ),
-      loadingUserState: (_) => LoadingIndicator(
-        message: 'Sign in user...',
+      authenticated: (_) => LoadingIndicator(
+        message: 'Success auth...',
       ),
-      loggedUserState: (_) => LoadingIndicator(
-        message: 'Success...',
-      ),
-      emptyUserState: (state) => LoadingIndicator(
-        message: state.status,
-      ),
-      errorUserState: (state) => LoadingIndicator(
-        message: state.message,
+      authUnauthenticated: (_) => LoadingIndicator(
+        message: 'Failure auth...',
       ),
     );
   }

@@ -1,18 +1,19 @@
+import 'package:bitplus/app/data/models/user.dart';
 import 'package:bitplus/app/domain/repositories/profile_repository.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/core/error/failures.dart';
 import 'package:bitplus/core/usecase/usecase.dart';
 import 'package:dartz/dartz.dart';
 
-class SignOutProfile implements UseCase<void, NoParams> {
+class GetUser implements UseCase<User, NoParams> {
   final ProfileRepository profileRepository;
 
-  const SignOutProfile({
+  const GetUser({
     @required this.profileRepository,
   });
 
   @override
-  Future<Either<Failure, void>> call(NoParams params) {
-    return profileRepository.signOutProfile();
+  Future<Either<Failure, User>> call(NoParams params) {
+    return profileRepository.getUser();
   }
 }

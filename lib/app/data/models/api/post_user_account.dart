@@ -1,4 +1,4 @@
-library user;
+library user_account;
 
 import 'dart:convert';
 
@@ -7,20 +7,18 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'user.g.dart';
+part 'post_user_account.g.dart';
 
-/// Model containing the data of a registered user
-abstract class User implements Built<User, UserBuilder> {
-  User._();
+/// Model posted on sign up to register the user account
+abstract class PostUserAccount
+    implements Built<PostUserAccount, PostUserAccountBuilder> {
+  PostUserAccount._();
 
-  factory User([updates(UserBuilder b)]) = _$User;
+  factory PostUserAccount([updates(PostUserAccountBuilder b)]) =
+      _$PostUserAccount;
 
   @BuiltValueField(wireName: 'uid')
   String get uid;
-  @BuiltValueField(wireName: 'level')
-  int get level;
-  @BuiltValueField(wireName: 'experience')
-  int get exp;
   @BuiltValueField(wireName: 'email')
   String get email;
   @BuiltValueField(wireName: 'areas')
@@ -29,20 +27,21 @@ abstract class User implements Built<User, UserBuilder> {
   String toJson() {
     return json.encode(
       serializers.serializeWith(
-        User.serializer,
+        PostUserAccount.serializer,
         this,
       ),
     );
   }
 
-  static User fromJson(String jsonString) {
+  static PostUserAccount fromJson(String jsonString) {
     return serializers.deserializeWith(
-      User.serializer,
+      PostUserAccount.serializer,
       json.decode(
         jsonString,
       ),
     );
   }
 
-  static Serializer<User> get serializer => _$userSerializer;
+  static Serializer<PostUserAccount> get serializer =>
+      _$postUserAccountSerializer;
 }

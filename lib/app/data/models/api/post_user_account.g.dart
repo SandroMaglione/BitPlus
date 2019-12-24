@@ -1,28 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sign_up_user.dart';
+part of user_account;
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<SignUpUser> _$signUpUserSerializer = new _$SignUpUserSerializer();
+Serializer<PostUserAccount> _$postUserAccountSerializer =
+    new _$PostUserAccountSerializer();
 
-class _$SignUpUserSerializer implements StructuredSerializer<SignUpUser> {
+class _$PostUserAccountSerializer
+    implements StructuredSerializer<PostUserAccount> {
   @override
-  final Iterable<Type> types = const [SignUpUser, _$SignUpUser];
+  final Iterable<Type> types = const [PostUserAccount, _$PostUserAccount];
   @override
-  final String wireName = 'SignUpUser';
+  final String wireName = 'PostUserAccount';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, SignUpUser object,
+  Iterable<Object> serialize(Serializers serializers, PostUserAccount object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
+      'uid',
+      serializers.serialize(object.uid, specifiedType: const FullType(String)),
       'email',
       serializers.serialize(object.email,
-          specifiedType: const FullType(String)),
-      'password',
-      serializers.serialize(object.password,
           specifiedType: const FullType(String)),
       'areas',
       serializers.serialize(object.areas,
@@ -34,9 +35,10 @@ class _$SignUpUserSerializer implements StructuredSerializer<SignUpUser> {
   }
 
   @override
-  SignUpUser deserialize(Serializers serializers, Iterable<Object> serialized,
+  PostUserAccount deserialize(
+      Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new SignUpUserBuilder();
+    final result = new PostUserAccountBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -44,12 +46,12 @@ class _$SignUpUserSerializer implements StructuredSerializer<SignUpUser> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
-        case 'email':
-          result.email = serializers.deserialize(value,
+        case 'uid':
+          result.uid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'password':
-          result.password = serializers.deserialize(value,
+        case 'email':
+          result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'areas':
@@ -65,82 +67,83 @@ class _$SignUpUserSerializer implements StructuredSerializer<SignUpUser> {
   }
 }
 
-class _$SignUpUser extends SignUpUser {
+class _$PostUserAccount extends PostUserAccount {
+  @override
+  final String uid;
   @override
   final String email;
   @override
-  final String password;
-  @override
   final BuiltList<int> areas;
 
-  factory _$SignUpUser([void Function(SignUpUserBuilder) updates]) =>
-      (new SignUpUserBuilder()..update(updates)).build();
+  factory _$PostUserAccount([void Function(PostUserAccountBuilder) updates]) =>
+      (new PostUserAccountBuilder()..update(updates)).build();
 
-  _$SignUpUser._({this.email, this.password, this.areas}) : super._() {
-    if (email == null) {
-      throw new BuiltValueNullFieldError('SignUpUser', 'email');
+  _$PostUserAccount._({this.uid, this.email, this.areas}) : super._() {
+    if (uid == null) {
+      throw new BuiltValueNullFieldError('PostUserAccount', 'uid');
     }
-    if (password == null) {
-      throw new BuiltValueNullFieldError('SignUpUser', 'password');
+    if (email == null) {
+      throw new BuiltValueNullFieldError('PostUserAccount', 'email');
     }
     if (areas == null) {
-      throw new BuiltValueNullFieldError('SignUpUser', 'areas');
+      throw new BuiltValueNullFieldError('PostUserAccount', 'areas');
     }
   }
 
   @override
-  SignUpUser rebuild(void Function(SignUpUserBuilder) updates) =>
+  PostUserAccount rebuild(void Function(PostUserAccountBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  SignUpUserBuilder toBuilder() => new SignUpUserBuilder()..replace(this);
+  PostUserAccountBuilder toBuilder() =>
+      new PostUserAccountBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is SignUpUser &&
+    return other is PostUserAccount &&
+        uid == other.uid &&
         email == other.email &&
-        password == other.password &&
         areas == other.areas;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, email.hashCode), password.hashCode), areas.hashCode));
+    return $jf($jc($jc($jc(0, uid.hashCode), email.hashCode), areas.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('SignUpUser')
+    return (newBuiltValueToStringHelper('PostUserAccount')
+          ..add('uid', uid)
           ..add('email', email)
-          ..add('password', password)
           ..add('areas', areas))
         .toString();
   }
 }
 
-class SignUpUserBuilder implements Builder<SignUpUser, SignUpUserBuilder> {
-  _$SignUpUser _$v;
+class PostUserAccountBuilder
+    implements Builder<PostUserAccount, PostUserAccountBuilder> {
+  _$PostUserAccount _$v;
+
+  String _uid;
+  String get uid => _$this._uid;
+  set uid(String uid) => _$this._uid = uid;
 
   String _email;
   String get email => _$this._email;
   set email(String email) => _$this._email = email;
 
-  String _password;
-  String get password => _$this._password;
-  set password(String password) => _$this._password = password;
-
   ListBuilder<int> _areas;
   ListBuilder<int> get areas => _$this._areas ??= new ListBuilder<int>();
   set areas(ListBuilder<int> areas) => _$this._areas = areas;
 
-  SignUpUserBuilder();
+  PostUserAccountBuilder();
 
-  SignUpUserBuilder get _$this {
+  PostUserAccountBuilder get _$this {
     if (_$v != null) {
+      _uid = _$v.uid;
       _email = _$v.email;
-      _password = _$v.password;
       _areas = _$v.areas?.toBuilder();
       _$v = null;
     }
@@ -148,25 +151,24 @@ class SignUpUserBuilder implements Builder<SignUpUser, SignUpUserBuilder> {
   }
 
   @override
-  void replace(SignUpUser other) {
+  void replace(PostUserAccount other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$SignUpUser;
+    _$v = other as _$PostUserAccount;
   }
 
   @override
-  void update(void Function(SignUpUserBuilder) updates) {
+  void update(void Function(PostUserAccountBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$SignUpUser build() {
-    _$SignUpUser _$result;
+  _$PostUserAccount build() {
+    _$PostUserAccount _$result;
     try {
       _$result = _$v ??
-          new _$SignUpUser._(
-              email: email, password: password, areas: areas.build());
+          new _$PostUserAccount._(uid: uid, email: email, areas: areas.build());
     } catch (_) {
       String _$failedField;
       try {
@@ -174,7 +176,7 @@ class SignUpUserBuilder implements Builder<SignUpUser, SignUpUserBuilder> {
         areas.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'SignUpUser', _$failedField, e.toString());
+            'PostUserAccount', _$failedField, e.toString());
       }
       rethrow;
     }

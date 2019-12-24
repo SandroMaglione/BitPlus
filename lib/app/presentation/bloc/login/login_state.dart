@@ -1,24 +1,20 @@
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:super_enum/super_enum.dart';
 
-part 'user_state.g.dart';
+part 'login_state.g.dart';
 
 @superEnum
-enum _UserState {
+enum _LoginState {
   @object
-  StartUpUserState,
+  LoginInProgress,
   @object
-  LoadingUserState,
+  LoginSubmitting,
   @Data(fields: [
     DataField('user', User),
   ])
-  LoggedUserState,
-  @Data(fields: [
-    DataField('status', String),
-  ])
-  EmptyUserState,
+  LoginSuccess,
   @Data(fields: [
     DataField('message', String),
   ])
-  ErrorUserState,
+  LoginFailure,
 }

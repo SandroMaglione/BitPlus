@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user.dart';
+part of user;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -18,14 +18,15 @@ class _$UserSerializer implements StructuredSerializer<User> {
   Iterable<Object> serialize(Serializers serializers, User object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'userID',
-      serializers.serialize(object.userID,
-          specifiedType: const FullType(String)),
-      'experience',
-      serializers.serialize(object.experience,
-          specifiedType: const FullType(int)),
+      'uid',
+      serializers.serialize(object.uid, specifiedType: const FullType(String)),
       'level',
       serializers.serialize(object.level, specifiedType: const FullType(int)),
+      'experience',
+      serializers.serialize(object.exp, specifiedType: const FullType(int)),
+      'email',
+      serializers.serialize(object.email,
+          specifiedType: const FullType(String)),
       'areas',
       serializers.serialize(object.areas,
           specifiedType:
@@ -46,17 +47,21 @@ class _$UserSerializer implements StructuredSerializer<User> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
-        case 'userID':
-          result.userID = serializers.deserialize(value,
+        case 'uid':
+          result.uid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
-          break;
-        case 'experience':
-          result.experience = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
           break;
         case 'level':
           result.level = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
+          break;
+        case 'experience':
+          result.exp = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'email':
+          result.email = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
           break;
         case 'areas':
           result.areas.replace(serializers.deserialize(value,
@@ -73,26 +78,32 @@ class _$UserSerializer implements StructuredSerializer<User> {
 
 class _$User extends User {
   @override
-  final String userID;
-  @override
-  final int experience;
+  final String uid;
   @override
   final int level;
+  @override
+  final int exp;
+  @override
+  final String email;
   @override
   final BuiltList<int> areas;
 
   factory _$User([void Function(UserBuilder) updates]) =>
       (new UserBuilder()..update(updates)).build();
 
-  _$User._({this.userID, this.experience, this.level, this.areas}) : super._() {
-    if (userID == null) {
-      throw new BuiltValueNullFieldError('User', 'userID');
-    }
-    if (experience == null) {
-      throw new BuiltValueNullFieldError('User', 'experience');
+  _$User._({this.uid, this.level, this.exp, this.email, this.areas})
+      : super._() {
+    if (uid == null) {
+      throw new BuiltValueNullFieldError('User', 'uid');
     }
     if (level == null) {
       throw new BuiltValueNullFieldError('User', 'level');
+    }
+    if (exp == null) {
+      throw new BuiltValueNullFieldError('User', 'exp');
+    }
+    if (email == null) {
+      throw new BuiltValueNullFieldError('User', 'email');
     }
     if (areas == null) {
       throw new BuiltValueNullFieldError('User', 'areas');
@@ -110,25 +121,28 @@ class _$User extends User {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is User &&
-        userID == other.userID &&
-        experience == other.experience &&
+        uid == other.uid &&
         level == other.level &&
+        exp == other.exp &&
+        email == other.email &&
         areas == other.areas;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, userID.hashCode), experience.hashCode), level.hashCode),
+        $jc($jc($jc($jc(0, uid.hashCode), level.hashCode), exp.hashCode),
+            email.hashCode),
         areas.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('User')
-          ..add('userID', userID)
-          ..add('experience', experience)
+          ..add('uid', uid)
           ..add('level', level)
+          ..add('exp', exp)
+          ..add('email', email)
           ..add('areas', areas))
         .toString();
   }
@@ -137,17 +151,21 @@ class _$User extends User {
 class UserBuilder implements Builder<User, UserBuilder> {
   _$User _$v;
 
-  String _userID;
-  String get userID => _$this._userID;
-  set userID(String userID) => _$this._userID = userID;
-
-  int _experience;
-  int get experience => _$this._experience;
-  set experience(int experience) => _$this._experience = experience;
+  String _uid;
+  String get uid => _$this._uid;
+  set uid(String uid) => _$this._uid = uid;
 
   int _level;
   int get level => _$this._level;
   set level(int level) => _$this._level = level;
+
+  int _exp;
+  int get exp => _$this._exp;
+  set exp(int exp) => _$this._exp = exp;
+
+  String _email;
+  String get email => _$this._email;
+  set email(String email) => _$this._email = email;
 
   ListBuilder<int> _areas;
   ListBuilder<int> get areas => _$this._areas ??= new ListBuilder<int>();
@@ -157,9 +175,10 @@ class UserBuilder implements Builder<User, UserBuilder> {
 
   UserBuilder get _$this {
     if (_$v != null) {
-      _userID = _$v.userID;
-      _experience = _$v.experience;
+      _uid = _$v.uid;
       _level = _$v.level;
+      _exp = _$v.exp;
+      _email = _$v.email;
       _areas = _$v.areas?.toBuilder();
       _$v = null;
     }
@@ -185,9 +204,10 @@ class UserBuilder implements Builder<User, UserBuilder> {
     try {
       _$result = _$v ??
           new _$User._(
-              userID: userID,
-              experience: experience,
+              uid: uid,
               level: level,
+              exp: exp,
+              email: email,
               areas: areas.build());
     } catch (_) {
       String _$failedField;

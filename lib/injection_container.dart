@@ -9,15 +9,16 @@ import 'package:bitplus/app/domain/usecases/habit/check_habit.dart';
 import 'package:bitplus/app/domain/usecases/habit/create_habit.dart';
 import 'package:bitplus/app/domain/usecases/habit/get_habit_list.dart';
 import 'package:bitplus/app/domain/usecases/habit/uncheck_habit.dart';
-import 'package:bitplus/app/domain/usecases/profile/add_experience_profile.dart';
-import 'package:bitplus/app/domain/usecases/profile/get_user_profile.dart';
-import 'package:bitplus/app/domain/usecases/profile/remove_user_profile.dart';
-import 'package:bitplus/app/domain/usecases/profile/save_user_profile.dart';
-import 'package:bitplus/app/domain/usecases/profile/sign_in_profile.dart';
-import 'package:bitplus/app/domain/usecases/profile/sign_out_profile.dart';
-import 'package:bitplus/app/domain/usecases/profile/sign_up_profile.dart';
+import 'package:bitplus/app/domain/usecases/profile/get_user.dart';
+import 'package:bitplus/app/domain/usecases/profile/is_signed_in_user.dart';
+import 'package:bitplus/app/domain/usecases/profile/sign_in_credentials.dart';
+import 'package:bitplus/app/domain/usecases/profile/sign_in_google.dart';
+import 'package:bitplus/app/domain/usecases/profile/sign_out.dart';
+import 'package:bitplus/app/domain/usecases/profile/sign_up_credentials.dart';
+import 'package:bitplus/app/domain/usecases/profile/sign_up_google.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/core/network/network_info.dart';
+import 'package:bitplus/core/utils/login_validator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -31,17 +32,35 @@ final serviceLocator = GetIt.instance;
 
 Future<void> init() async {
   // Bloc
-  serviceLocator.registerLazySingleton<UserBloc>(
-    () => UserBloc(
-      getUserProfile: serviceLocator(),
-      signInProfile: serviceLocator(),
-      signOutProfile: serviceLocator(),
-      signUpProfile: serviceLocator(),
-      removeUserProfile: serviceLocator(),
+  serviceLocator.registerLazySingleton<AuthBloc>(
+    () => AuthBloc(
+      getUser: serviceLocator(),
+      isSignedInUser: serviceLocator(),
+      signOut: serviceLocator(),
     ),
   );
 
-  serviceLocator.registerLazySingleton<InitLifeAreaBloc>(
+  serviceLocator.registerFactory<LoginStatusBloc>(
+    () => LoginStatusBloc(),
+  );
+
+  serviceLocator.registerFactory<LoginCredentialsBloc>(
+    () => LoginCredentialsBloc(
+      loginValidator: serviceLocator(),
+    ),
+  );
+
+  serviceLocator.registerFactory<LoginBloc>(
+    () => LoginBloc(
+      authBloc: serviceLocator(),
+      signInCredentials: serviceLocator(),
+      signInGoogle: serviceLocator(),
+      signUpCredentials: serviceLocator(),
+      signUpGoogle: serviceLocator(),
+    ),
+  );
+
+  serviceLocator.registerFactory<InitLifeAreaBloc>(
     () => InitLifeAreaBloc(),
   );
 
@@ -55,7 +74,7 @@ Future<void> init() async {
       uncheckHabit: serviceLocator(),
       getHabitList: serviceLocator(),
       createHabit: serviceLocator(),
-      userBloc: serviceLocator(),
+      authBloc: serviceLocator(),
     ),
   );
 
@@ -76,43 +95,43 @@ Future<void> init() async {
   // Usecases
   // Profile
   serviceLocator.registerLazySingleton(
-    () => AddExperienceProfile(
+    () => SignInCredentials(
       profileRepository: serviceLocator(),
     ),
   );
 
   serviceLocator.registerLazySingleton(
-    () => GetUserProfile(
+    () => SignInGoogle(
       profileRepository: serviceLocator(),
     ),
   );
 
   serviceLocator.registerLazySingleton(
-    () => SaveUserProfile(
+    () => SignUpGoogle(
       profileRepository: serviceLocator(),
     ),
   );
 
   serviceLocator.registerLazySingleton(
-    () => SignInProfile(
+    () => SignUpCredentials(
       profileRepository: serviceLocator(),
     ),
   );
 
   serviceLocator.registerLazySingleton(
-    () => SignOutProfile(
+    () => IsSignedInUser(
       profileRepository: serviceLocator(),
     ),
   );
 
   serviceLocator.registerLazySingleton(
-    () => SignUpProfile(
+    () => GetUser(
       profileRepository: serviceLocator(),
     ),
   );
 
   serviceLocator.registerLazySingleton(
-    () => RemoveUserProfile(
+    () => SignOut(
       profileRepository: serviceLocator(),
     ),
   );
@@ -159,10 +178,7 @@ Future<void> init() async {
   );
 
   serviceLocator.registerLazySingleton<ProfileLocalDataSource>(
-    () => ProfileLocalDataSourceImpl(
-      crashlytics: serviceLocator(),
-      sharedPreferences: serviceLocator(),
-    ),
+    () => ProfileLocalDataSourceImpl(),
   );
 
   serviceLocator.registerLazySingleton<HabitRemoteDataSource>(
@@ -174,6 +190,9 @@ Future<void> init() async {
   );
 
   // Services
+  serviceLocator.registerLazySingleton<LoginValidator>(
+    () => LoginValidator(),
+  );
 
   // External
   serviceLocator.registerLazySingleton(

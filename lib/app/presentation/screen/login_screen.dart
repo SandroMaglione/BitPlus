@@ -1,109 +1,78 @@
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
+import 'package:bitplus/app/presentation/views/init_life_area_view.dart';
+import 'package:bitplus/app/presentation/views/login_form_view.dart';
 import 'package:bitplus/app/presentation/widgets/loading_indicator.dart';
-import 'package:bitplus/app/presentation/widgets/text_input_field.dart';
+import 'package:bitplus/core/enums/login_status_page.dart';
 import 'package:bitplus/core/router/router.gr.dart';
+import 'package:bitplus/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginScreen extends StatefulWidget {
-  final List<int> values;
-  const LoginScreen(this.values);
-
+class LoginScreen extends StatelessWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginBloc>(
+          create: (context) => serviceLocator<LoginBloc>(),
+        ),
+        BlocProvider<LoginCredentialsBloc>(
+          create: (context) => serviceLocator<LoginCredentialsBloc>(),
+        ),
+        BlocProvider<LoginStatusBloc>(
+          create: (context) => serviceLocator<LoginStatusBloc>(),
+        ),
+        BlocProvider<InitLifeAreaBloc>(
+          create: (context) => serviceLocator<InitLifeAreaBloc>(),
+        ),
+      ],
+      child: LoginContent(),
+    );
+  }
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-
+class LoginContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Signing in'),
       ),
-      body: BlocListener<UserBloc, UserState>(
+      body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
-          if (state is LoggedUserState) {
+          if (state is Authenticated) {
             Navigator.of(context).pushNamedAndRemoveUntil(
               Router.homeScreen,
               (_) => false,
             );
           }
         },
-        child: BlocBuilder<UserBloc, UserState>(
-          builder: (context, state) {
-            return state.when(
-              startUpUserState: (_) => LoadingIndicator(
-                message: 'Starting...',
+        child: BlocBuilder<LoginBloc, LoginState>(
+          builder: (context, loginState) {
+            return loginState.when(
+              loginInProgress: (_) =>
+                  BlocBuilder<LoginStatusBloc, LoginStatusPage>(
+                builder: (context, loginStatusState) {
+                  switch (loginStatusState) {
+                    case LoginStatusPage.InitAreasView:
+                      return InitLifeAreaView();
+                    case LoginStatusPage.FormView:
+                      return LoginFormView();
+                    default:
+                      return Text('We got an error here, eh?');
+                  }
+                },
               ),
-              loadingUserState: (_) => LoadingIndicator(
-                message: 'Loading...',
+              loginSubmitting: (_) => LoadingIndicator(
+                message: 'Signing in',
               ),
-              loggedUserState: (_) => Text(
-                'Success',
-              ),
-              errorUserState: (state) => Text(
-                '${state.message}',
-              ),
-              emptyUserState: (state) => Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    TextInputField(
-                      label: 'Email',
-                      controller: _emailController,
-                    ),
-                    TextInputField(
-                      label: 'Password',
-                      controller: _passwordController,
-                      isPassword: true,
-                    ),
-                    Text('${state.status}'),
-                    RaisedButton.icon(
-                      onPressed: _signUp,
-                      icon: Icon(Icons.sentiment_satisfied),
-                      label: Text('SIGN UP'),
-                    ),
-                    RaisedButton.icon(
-                      onPressed: _signIn,
-                      icon: Icon(Icons.settings_ethernet),
-                      label: Text('SIGN IN'),
-                    ),
-                  ],
-                ),
+              loginSuccess: (_) => Text('Success'),
+              loginFailure: (state) => LoadingIndicator(
+                message: '${state.message}',
               ),
             );
           },
         ),
-      ),
-    );
-  }
-
-  void _signIn() {
-    final String email = _emailController.text;
-    final String password = _passwordController.text;
-
-    BlocProvider.of<UserBloc>(context).add(
-      SignInUserEvent(
-        email: email,
-        password: password,
-      ),
-    );
-  }
-
-  void _signUp() {
-    final String email = _emailController.text;
-    final String password = _passwordController.text;
-
-    BlocProvider.of<UserBloc>(context).add(
-      SignUpUserEvent(
-        email: email,
-        password: password,
-        areas: widget.values,
       ),
     );
   }
