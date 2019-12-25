@@ -1,6 +1,7 @@
-import 'package:bitplus/app/data/models/api/create_habit_api.dart';
+import 'package:bitplus/app/data/models/api/create_habit_req.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/data/models/api/post_user_account.dart';
+import 'package:bitplus/app/data/models/api/update_habit_req.dart';
 import 'package:bitplus/app/data/models/creation_habit.dart';
 import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/data/models/habit_entity.dart';
@@ -36,7 +37,8 @@ part 'serializers.g.dart';
   CreationHabit,
   HabitApi,
   PostUserAccount,
-  CreateHabitApi,
+  CreateHabitReq,
+  UpdateHabitReq,
   LoginStatusInfo,
   LoginStatusPage,
   InitLoginForm,

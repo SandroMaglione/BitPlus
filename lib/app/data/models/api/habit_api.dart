@@ -10,7 +10,7 @@ import 'package:built_value/serializer.dart';
 part 'habit_api.g.dart';
 
 /// Model created from Firestore api of an habit to check/uncheck
-/// 
+///
 /// `
 /// {
 ///     "habitID": "0EBnmcJB7TLdEkuLIry1",

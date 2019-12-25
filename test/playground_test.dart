@@ -10,7 +10,7 @@ void main() {
         ..name = 'Olee'
         ..color = 0xFF343A40
         ..isPositive = true
-        ..lifeAreas = ListBuilder<int>([1, 2, 3])
+        ..areas = ListBuilder<int>([1, 2, 3])
         ..value = 10,
     );
 

@@ -1,3 +1,5 @@
+library habit;
+
 import 'dart:convert';
 
 import 'package:bitplus/core/serializers/serializers.dart';
@@ -8,13 +10,12 @@ import 'package:built_value/serializer.dart';
 part 'habit.g.dart';
 
 abstract class Habit implements Built<Habit, HabitBuilder> {
-  // Fields
   String get habitID;
   String get name;
   bool get isPositive;
   int get value;
-  BuiltList<int> get lifeAreas;
-  int get color; // TODO: Then convert int to actial Color
+  BuiltList<int> get areas;
+  int get color;
 
   Habit._();
 

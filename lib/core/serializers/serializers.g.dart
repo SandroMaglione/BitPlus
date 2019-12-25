@@ -7,7 +7,7 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
-      ..add(CreateHabitApi.serializer)
+      ..add(CreateHabitReq.serializer)
       ..add(CreationHabit.serializer)
       ..add(Habit.serializer)
       ..add(HabitApi.serializer)
@@ -23,6 +23,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SocialUserStat.serializer)
       ..add(Summary.serializer)
       ..add(SummaryStat.serializer)
+      ..add(UpdateHabitReq.serializer)
       ..add(User.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Habit)]),
@@ -39,6 +40,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Summary)]),
           () => new ListBuilder<Summary>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(int)]),
+          () => new ListBuilder<int>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => new ListBuilder<int>())

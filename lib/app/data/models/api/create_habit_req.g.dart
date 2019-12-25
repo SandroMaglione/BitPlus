@@ -1,26 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of habit;
+part of create_habit_req;
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<Habit> _$habitSerializer = new _$HabitSerializer();
+Serializer<CreateHabitReq> _$createHabitReqSerializer =
+    new _$CreateHabitReqSerializer();
 
-class _$HabitSerializer implements StructuredSerializer<Habit> {
+class _$CreateHabitReqSerializer
+    implements StructuredSerializer<CreateHabitReq> {
   @override
-  final Iterable<Type> types = const [Habit, _$Habit];
+  final Iterable<Type> types = const [CreateHabitReq, _$CreateHabitReq];
   @override
-  final String wireName = 'Habit';
+  final String wireName = 'CreateHabitReq';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Habit object,
+  Iterable<Object> serialize(Serializers serializers, CreateHabitReq object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'habitID',
-      serializers.serialize(object.habitID,
-          specifiedType: const FullType(String)),
+      'uid',
+      serializers.serialize(object.uid, specifiedType: const FullType(String)),
+      'color',
+      serializers.serialize(object.color, specifiedType: const FullType(int)),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
       'isPositive',
@@ -32,17 +35,16 @@ class _$HabitSerializer implements StructuredSerializer<Habit> {
       serializers.serialize(object.areas,
           specifiedType:
               const FullType(BuiltList, const [const FullType(int)])),
-      'color',
-      serializers.serialize(object.color, specifiedType: const FullType(int)),
     ];
 
     return result;
   }
 
   @override
-  Habit deserialize(Serializers serializers, Iterable<Object> serialized,
+  CreateHabitReq deserialize(
+      Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new HabitBuilder();
+    final result = new CreateHabitReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -50,9 +52,13 @@ class _$HabitSerializer implements StructuredSerializer<Habit> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
-        case 'habitID':
-          result.habitID = serializers.deserialize(value,
+        case 'uid':
+          result.uid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
+          break;
+        case 'color':
+          result.color = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
           break;
         case 'name':
           result.name = serializers.deserialize(value,
@@ -72,10 +78,6 @@ class _$HabitSerializer implements StructuredSerializer<Habit> {
                       const FullType(BuiltList, const [const FullType(int)]))
               as BuiltList<dynamic>);
           break;
-        case 'color':
-          result.color = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
-          break;
       }
     }
 
@@ -83,9 +85,11 @@ class _$HabitSerializer implements StructuredSerializer<Habit> {
   }
 }
 
-class _$Habit extends Habit {
+class _$CreateHabitReq extends CreateHabitReq {
   @override
-  final String habitID;
+  final String uid;
+  @override
+  final int color;
   @override
   final String name;
   @override
@@ -94,90 +98,92 @@ class _$Habit extends Habit {
   final int value;
   @override
   final BuiltList<int> areas;
-  @override
-  final int color;
 
-  factory _$Habit([void Function(HabitBuilder) updates]) =>
-      (new HabitBuilder()..update(updates)).build();
+  factory _$CreateHabitReq([void Function(CreateHabitReqBuilder) updates]) =>
+      (new CreateHabitReqBuilder()..update(updates)).build();
 
-  _$Habit._(
-      {this.habitID,
+  _$CreateHabitReq._(
+      {this.uid,
+      this.color,
       this.name,
       this.isPositive,
       this.value,
-      this.areas,
-      this.color})
+      this.areas})
       : super._() {
-    if (habitID == null) {
-      throw new BuiltValueNullFieldError('Habit', 'habitID');
-    }
-    if (name == null) {
-      throw new BuiltValueNullFieldError('Habit', 'name');
-    }
-    if (isPositive == null) {
-      throw new BuiltValueNullFieldError('Habit', 'isPositive');
-    }
-    if (value == null) {
-      throw new BuiltValueNullFieldError('Habit', 'value');
-    }
-    if (areas == null) {
-      throw new BuiltValueNullFieldError('Habit', 'areas');
+    if (uid == null) {
+      throw new BuiltValueNullFieldError('CreateHabitReq', 'uid');
     }
     if (color == null) {
-      throw new BuiltValueNullFieldError('Habit', 'color');
+      throw new BuiltValueNullFieldError('CreateHabitReq', 'color');
+    }
+    if (name == null) {
+      throw new BuiltValueNullFieldError('CreateHabitReq', 'name');
+    }
+    if (isPositive == null) {
+      throw new BuiltValueNullFieldError('CreateHabitReq', 'isPositive');
+    }
+    if (value == null) {
+      throw new BuiltValueNullFieldError('CreateHabitReq', 'value');
+    }
+    if (areas == null) {
+      throw new BuiltValueNullFieldError('CreateHabitReq', 'areas');
     }
   }
 
   @override
-  Habit rebuild(void Function(HabitBuilder) updates) =>
+  CreateHabitReq rebuild(void Function(CreateHabitReqBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  HabitBuilder toBuilder() => new HabitBuilder()..replace(this);
+  CreateHabitReqBuilder toBuilder() =>
+      new CreateHabitReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Habit &&
-        habitID == other.habitID &&
+    return other is CreateHabitReq &&
+        uid == other.uid &&
+        color == other.color &&
         name == other.name &&
         isPositive == other.isPositive &&
         value == other.value &&
-        areas == other.areas &&
-        color == other.color;
+        areas == other.areas;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc(
-                $jc($jc($jc(0, habitID.hashCode), name.hashCode),
-                    isPositive.hashCode),
-                value.hashCode),
-            areas.hashCode),
-        color.hashCode));
+            $jc($jc($jc($jc(0, uid.hashCode), color.hashCode), name.hashCode),
+                isPositive.hashCode),
+            value.hashCode),
+        areas.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Habit')
-          ..add('habitID', habitID)
+    return (newBuiltValueToStringHelper('CreateHabitReq')
+          ..add('uid', uid)
+          ..add('color', color)
           ..add('name', name)
           ..add('isPositive', isPositive)
           ..add('value', value)
-          ..add('areas', areas)
-          ..add('color', color))
+          ..add('areas', areas))
         .toString();
   }
 }
 
-class HabitBuilder implements Builder<Habit, HabitBuilder> {
-  _$Habit _$v;
+class CreateHabitReqBuilder
+    implements Builder<CreateHabitReq, CreateHabitReqBuilder> {
+  _$CreateHabitReq _$v;
 
-  String _habitID;
-  String get habitID => _$this._habitID;
-  set habitID(String habitID) => _$this._habitID = habitID;
+  String _uid;
+  String get uid => _$this._uid;
+  set uid(String uid) => _$this._uid = uid;
+
+  int _color;
+  int get color => _$this._color;
+  set color(int color) => _$this._color = color;
 
   String _name;
   String get name => _$this._name;
@@ -195,50 +201,46 @@ class HabitBuilder implements Builder<Habit, HabitBuilder> {
   ListBuilder<int> get areas => _$this._areas ??= new ListBuilder<int>();
   set areas(ListBuilder<int> areas) => _$this._areas = areas;
 
-  int _color;
-  int get color => _$this._color;
-  set color(int color) => _$this._color = color;
+  CreateHabitReqBuilder();
 
-  HabitBuilder();
-
-  HabitBuilder get _$this {
+  CreateHabitReqBuilder get _$this {
     if (_$v != null) {
-      _habitID = _$v.habitID;
+      _uid = _$v.uid;
+      _color = _$v.color;
       _name = _$v.name;
       _isPositive = _$v.isPositive;
       _value = _$v.value;
       _areas = _$v.areas?.toBuilder();
-      _color = _$v.color;
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(Habit other) {
+  void replace(CreateHabitReq other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$Habit;
+    _$v = other as _$CreateHabitReq;
   }
 
   @override
-  void update(void Function(HabitBuilder) updates) {
+  void update(void Function(CreateHabitReqBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$Habit build() {
-    _$Habit _$result;
+  _$CreateHabitReq build() {
+    _$CreateHabitReq _$result;
     try {
       _$result = _$v ??
-          new _$Habit._(
-              habitID: habitID,
+          new _$CreateHabitReq._(
+              uid: uid,
+              color: color,
               name: name,
               isPositive: isPositive,
               value: value,
-              areas: areas.build(),
-              color: color);
+              areas: areas.build());
     } catch (_) {
       String _$failedField;
       try {
@@ -246,7 +248,7 @@ class HabitBuilder implements Builder<Habit, HabitBuilder> {
         areas.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'Habit', _$failedField, e.toString());
+            'CreateHabitReq', _$failedField, e.toString());
       }
       rethrow;
     }

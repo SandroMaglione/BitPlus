@@ -1,25 +1,30 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of create_habit_api;
+part of update_habit_req;
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<CreateHabitApi> _$createHabitApiSerializer =
-    new _$CreateHabitApiSerializer();
+Serializer<UpdateHabitReq> _$updateHabitReqSerializer =
+    new _$UpdateHabitReqSerializer();
 
-class _$CreateHabitApiSerializer
-    implements StructuredSerializer<CreateHabitApi> {
+class _$UpdateHabitReqSerializer
+    implements StructuredSerializer<UpdateHabitReq> {
   @override
-  final Iterable<Type> types = const [CreateHabitApi, _$CreateHabitApi];
+  final Iterable<Type> types = const [UpdateHabitReq, _$UpdateHabitReq];
   @override
-  final String wireName = 'CreateHabitApi';
+  final String wireName = 'UpdateHabitReq';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, CreateHabitApi object,
+  Iterable<Object> serialize(Serializers serializers, UpdateHabitReq object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
+      'uid',
+      serializers.serialize(object.uid, specifiedType: const FullType(String)),
+      'habitID',
+      serializers.serialize(object.habitID,
+          specifiedType: const FullType(String)),
       'color',
       serializers.serialize(object.color, specifiedType: const FullType(int)),
       'name',
@@ -33,19 +38,16 @@ class _$CreateHabitApiSerializer
       serializers.serialize(object.areas,
           specifiedType:
               const FullType(BuiltList, const [const FullType(int)])),
-      'dateCreated',
-      serializers.serialize(object.dateCreated,
-          specifiedType: const FullType(DateTime)),
     ];
 
     return result;
   }
 
   @override
-  CreateHabitApi deserialize(
+  UpdateHabitReq deserialize(
       Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new CreateHabitApiBuilder();
+    final result = new UpdateHabitReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -53,6 +55,14 @@ class _$CreateHabitApiSerializer
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
+        case 'uid':
+          result.uid = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'habitID':
+          result.habitID = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'color':
           result.color = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
@@ -75,10 +85,6 @@ class _$CreateHabitApiSerializer
                       const FullType(BuiltList, const [const FullType(int)]))
               as BuiltList<dynamic>);
           break;
-        case 'dateCreated':
-          result.dateCreated = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime;
-          break;
       }
     }
 
@@ -86,7 +92,11 @@ class _$CreateHabitApiSerializer
   }
 }
 
-class _$CreateHabitApi extends CreateHabitApi {
+class _$UpdateHabitReq extends UpdateHabitReq {
+  @override
+  final String uid;
+  @override
+  final String habitID;
   @override
   final int color;
   @override
@@ -97,58 +107,61 @@ class _$CreateHabitApi extends CreateHabitApi {
   final int value;
   @override
   final BuiltList<int> areas;
-  @override
-  final DateTime dateCreated;
 
-  factory _$CreateHabitApi([void Function(CreateHabitApiBuilder) updates]) =>
-      (new CreateHabitApiBuilder()..update(updates)).build();
+  factory _$UpdateHabitReq([void Function(UpdateHabitReqBuilder) updates]) =>
+      (new UpdateHabitReqBuilder()..update(updates)).build();
 
-  _$CreateHabitApi._(
-      {this.color,
+  _$UpdateHabitReq._(
+      {this.uid,
+      this.habitID,
+      this.color,
       this.name,
       this.isPositive,
       this.value,
-      this.areas,
-      this.dateCreated})
+      this.areas})
       : super._() {
+    if (uid == null) {
+      throw new BuiltValueNullFieldError('UpdateHabitReq', 'uid');
+    }
+    if (habitID == null) {
+      throw new BuiltValueNullFieldError('UpdateHabitReq', 'habitID');
+    }
     if (color == null) {
-      throw new BuiltValueNullFieldError('CreateHabitApi', 'color');
+      throw new BuiltValueNullFieldError('UpdateHabitReq', 'color');
     }
     if (name == null) {
-      throw new BuiltValueNullFieldError('CreateHabitApi', 'name');
+      throw new BuiltValueNullFieldError('UpdateHabitReq', 'name');
     }
     if (isPositive == null) {
-      throw new BuiltValueNullFieldError('CreateHabitApi', 'isPositive');
+      throw new BuiltValueNullFieldError('UpdateHabitReq', 'isPositive');
     }
     if (value == null) {
-      throw new BuiltValueNullFieldError('CreateHabitApi', 'value');
+      throw new BuiltValueNullFieldError('UpdateHabitReq', 'value');
     }
     if (areas == null) {
-      throw new BuiltValueNullFieldError('CreateHabitApi', 'areas');
-    }
-    if (dateCreated == null) {
-      throw new BuiltValueNullFieldError('CreateHabitApi', 'dateCreated');
+      throw new BuiltValueNullFieldError('UpdateHabitReq', 'areas');
     }
   }
 
   @override
-  CreateHabitApi rebuild(void Function(CreateHabitApiBuilder) updates) =>
+  UpdateHabitReq rebuild(void Function(UpdateHabitReqBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  CreateHabitApiBuilder toBuilder() =>
-      new CreateHabitApiBuilder()..replace(this);
+  UpdateHabitReqBuilder toBuilder() =>
+      new UpdateHabitReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is CreateHabitApi &&
+    return other is UpdateHabitReq &&
+        uid == other.uid &&
+        habitID == other.habitID &&
         color == other.color &&
         name == other.name &&
         isPositive == other.isPositive &&
         value == other.value &&
-        areas == other.areas &&
-        dateCreated == other.dateCreated;
+        areas == other.areas;
   }
 
   @override
@@ -156,29 +169,40 @@ class _$CreateHabitApi extends CreateHabitApi {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, color.hashCode), name.hashCode),
-                    isPositive.hashCode),
-                value.hashCode),
-            areas.hashCode),
-        dateCreated.hashCode));
+                $jc(
+                    $jc($jc($jc(0, uid.hashCode), habitID.hashCode),
+                        color.hashCode),
+                    name.hashCode),
+                isPositive.hashCode),
+            value.hashCode),
+        areas.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('CreateHabitApi')
+    return (newBuiltValueToStringHelper('UpdateHabitReq')
+          ..add('uid', uid)
+          ..add('habitID', habitID)
           ..add('color', color)
           ..add('name', name)
           ..add('isPositive', isPositive)
           ..add('value', value)
-          ..add('areas', areas)
-          ..add('dateCreated', dateCreated))
+          ..add('areas', areas))
         .toString();
   }
 }
 
-class CreateHabitApiBuilder
-    implements Builder<CreateHabitApi, CreateHabitApiBuilder> {
-  _$CreateHabitApi _$v;
+class UpdateHabitReqBuilder
+    implements Builder<UpdateHabitReq, UpdateHabitReqBuilder> {
+  _$UpdateHabitReq _$v;
+
+  String _uid;
+  String get uid => _$this._uid;
+  set uid(String uid) => _$this._uid = uid;
+
+  String _habitID;
+  String get habitID => _$this._habitID;
+  set habitID(String habitID) => _$this._habitID = habitID;
 
   int _color;
   int get color => _$this._color;
@@ -200,50 +224,48 @@ class CreateHabitApiBuilder
   ListBuilder<int> get areas => _$this._areas ??= new ListBuilder<int>();
   set areas(ListBuilder<int> areas) => _$this._areas = areas;
 
-  DateTime _dateCreated;
-  DateTime get dateCreated => _$this._dateCreated;
-  set dateCreated(DateTime dateCreated) => _$this._dateCreated = dateCreated;
+  UpdateHabitReqBuilder();
 
-  CreateHabitApiBuilder();
-
-  CreateHabitApiBuilder get _$this {
+  UpdateHabitReqBuilder get _$this {
     if (_$v != null) {
+      _uid = _$v.uid;
+      _habitID = _$v.habitID;
       _color = _$v.color;
       _name = _$v.name;
       _isPositive = _$v.isPositive;
       _value = _$v.value;
       _areas = _$v.areas?.toBuilder();
-      _dateCreated = _$v.dateCreated;
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(CreateHabitApi other) {
+  void replace(UpdateHabitReq other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$CreateHabitApi;
+    _$v = other as _$UpdateHabitReq;
   }
 
   @override
-  void update(void Function(CreateHabitApiBuilder) updates) {
+  void update(void Function(UpdateHabitReqBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$CreateHabitApi build() {
-    _$CreateHabitApi _$result;
+  _$UpdateHabitReq build() {
+    _$UpdateHabitReq _$result;
     try {
       _$result = _$v ??
-          new _$CreateHabitApi._(
+          new _$UpdateHabitReq._(
+              uid: uid,
+              habitID: habitID,
               color: color,
               name: name,
               isPositive: isPositive,
               value: value,
-              areas: areas.build(),
-              dateCreated: dateCreated);
+              areas: areas.build());
     } catch (_) {
       String _$failedField;
       try {
@@ -251,7 +273,7 @@ class CreateHabitApiBuilder
         areas.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'CreateHabitApi', _$failedField, e.toString());
+            'UpdateHabitReq', _$failedField, e.toString());
       }
       rethrow;
     }

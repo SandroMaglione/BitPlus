@@ -1,10 +1,9 @@
 import 'dart:convert';
 
-import 'package:bitplus/app/data/models/api/create_habit_api.dart';
+import 'package:bitplus/app/data/models/api/create_habit_req.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
-import 'package:bitplus/core/database/collections.dart';
+import 'package:bitplus/app/data/models/api/update_habit_req.dart';
 import 'package:bitplus/core/error/failures.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:meta/meta.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,7 +15,19 @@ abstract class HabitRemoteDataSource {
   /// based on the user id provided
   Future<BuiltList<HabitApi>> getHabitList(String uid);
 
-  /// Creates an [CreateHabitApi] and uploads it to the database
+  /// Creates an [CreateHabitReq] and updates it into the database
+  ///
+  /// It returns the updated [HabitApi]
+  Future<HabitApi> updateHabit(
+    String uid,
+    String habitID,
+    String name,
+    bool isPositive,
+    int value,
+    BuiltList<int> areas,
+  );
+
+  /// Creates an [CreateHabitReq] and uploads it to the database
   ///
   /// It returns the new [HabitApi] with the new habitID assigned
   Future<HabitApi> createHabit(
@@ -24,7 +35,7 @@ abstract class HabitRemoteDataSource {
     String name,
     bool isPositive,
     int value,
-    BuiltList<int> lifeAreaIds,
+    BuiltList<int> areas,
   );
 
   /// Checks and habit, making the attribute `checked` true
@@ -35,79 +46,15 @@ abstract class HabitRemoteDataSource {
 }
 
 class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
-  final Crashlytics crashlytics;
   final http.Client client;
   final Firestore firestore;
+  final RandomColor randomColor;
 
   const HabitRemoteDataSourceImpl({
     @required this.firestore,
     @required this.client,
-    @required this.crashlytics,
+    @required this.randomColor,
   });
-
-  @override
-  Future<HabitApi> createHabit(
-    String uid,
-    String name,
-    bool isPositive,
-    int value,
-    BuiltList<int> lifeAreaIds,
-  ) async {
-    try {
-      final habit = CreateHabitApi(
-        (h) => h
-          ..color = RandomColor()
-              .randomColor(
-                colorSaturation: ColorSaturation.highSaturation,
-              )
-              .value
-          ..name = name
-          ..isPositive = isPositive
-          ..value = value
-          ..dateCreated = DateTime.now().toUtc()
-          ..areas = ListBuilder<int>(
-            lifeAreaIds,
-          ),
-      );
-
-      final habitMap = json.decode(
-        habit.toJson(),
-      );
-
-      final doc = await firestore
-          .collection(USER_COLLECTION)
-          .document(uid)
-          .collection(HABIT_COLLECTION)
-          .add(habitMap);
-
-      final returnHabit = HabitApi(
-        (h) => h
-          ..habitID = doc.documentID
-          ..color = RandomColor()
-              .randomColor(
-                colorHue: ColorHue.multiple(
-                  colorHues: [
-                    ColorHue.red,
-                    ColorHue.blue,
-                  ],
-                ),
-              )
-              .value
-          ..checked = false
-          ..name = name
-          ..isPositive = isPositive
-          ..value = value
-          ..areas = ListBuilder<int>(
-            lifeAreaIds,
-          ),
-      );
-      return returnHabit;
-    } on JsonUnsupportedObjectError {
-      throw JsonSerializationFailure(
-        message: 'Error while converting data, try again later',
-      );
-    }
-  }
 
   @override
   Future<BuiltList<HabitApi>> getHabitList(String uid) async {
@@ -184,6 +131,128 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     } else {
       throw FirestoreFailure(
         message: 'Client error while fetching habit list, try again',
+      );
+    }
+  }
+
+  @override
+  Future<HabitApi> createHabit(
+    String uid,
+    String name,
+    bool isPositive,
+    int value,
+    BuiltList<int> areas,
+  ) async {
+    final color = randomColor
+        .randomColor(
+          colorHue: ColorHue.multiple(
+            colorHues: [
+              ColorHue.red,
+              ColorHue.blue,
+            ],
+          ),
+        )
+        .value;
+
+    final habitReq = CreateHabitReq(
+      (h) => h
+        ..uid = uid
+        ..color = color
+        ..name = name
+        ..isPositive = isPositive
+        ..value = value
+        ..areas = areas.toBuilder(),
+    );
+
+    return await _manageHabit(
+      'https://us-central1-bitplus-95304.cloudfunctions.net/createHabit',
+      habitReq.toJson(),
+      (habitID) => HabitApi(
+        (h) => h
+          ..habitID = habitID
+          ..checked = false
+          ..color = color
+          ..name = name
+          ..isPositive = isPositive
+          ..value = value
+          ..areas = areas.toBuilder(),
+      ),
+    );
+  }
+
+  @override
+  Future<HabitApi> updateHabit(
+    String uid,
+    String habitID,
+    String name,
+    bool isPositive,
+    int value,
+    BuiltList<int> areas,
+  ) async {
+    final color = randomColor
+        .randomColor(
+          colorHue: ColorHue.multiple(
+            colorHues: [
+              ColorHue.red,
+              ColorHue.blue,
+            ],
+          ),
+        )
+        .value;
+
+    final habitReq = UpdateHabitReq(
+      (h) => h
+        ..uid = uid
+        ..habitID = habitID
+        ..color = color
+        ..name = name
+        ..isPositive = isPositive
+        ..value = value
+        ..areas = areas.toBuilder(),
+    );
+
+    return await _manageHabit(
+      'https://us-central1-bitplus-95304.cloudfunctions.net/updateHabit',
+      habitReq.toJson(),
+      (habitID) => HabitApi(
+        (h) => h
+          ..habitID = habitID
+          ..checked = false
+          ..color = color
+          ..name = name
+          ..isPositive = isPositive
+          ..value = value
+          ..areas = areas.toBuilder(),
+      ),
+    );
+  }
+
+  Future<HabitApi> _manageHabit(
+    String url,
+    String jsonBody,
+    HabitApi Function(String habitID) getHabit,
+  ) async {
+    try {
+      final resp = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: jsonBody,
+      );
+
+      if (resp.statusCode != 200) {
+        throw FirestoreFailure(
+          message: 'Client error while fetching habit list, try again',
+        );
+      } else {
+        return getHabit(resp.body);
+      }
+    } on http.ClientException {
+      throw FirestoreFailure(
+        message: 'Client error while fetching habit list, try again',
+      );
+    } on JsonUnsupportedObjectError {
+      throw JsonSerializationFailure(
+        message: 'Error while converting data, try again later',
       );
     }
   }
