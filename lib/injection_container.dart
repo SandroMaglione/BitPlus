@@ -64,17 +64,29 @@ Future<void> init() async {
     () => InitLifeAreaBloc(),
   );
 
+  serviceLocator.registerLazySingleton<HabitListBloc>(
+    () => HabitListBloc(
+      authBloc: serviceLocator(),
+    ),
+  );
+
+  serviceLocator.registerLazySingleton<HabitListStatusBloc>(
+    () => HabitListStatusBloc(
+      getHabitList: serviceLocator(),
+      habitListBloc: serviceLocator(),
+      authBloc: serviceLocator(),
+    ),
+  );
+
   serviceLocator.registerFactory<CreationHabitBloc>(
     () => CreationHabitBloc(),
   );
 
-  serviceLocator.registerLazySingleton<HabitBloc>(
-    () => HabitBloc(
-      checkHabit: serviceLocator(),
-      uncheckHabit: serviceLocator(),
-      getHabitList: serviceLocator(),
-      createHabit: serviceLocator(),
+  serviceLocator.registerFactory<CreationHabitStatusBloc>(
+    () => CreationHabitStatusBloc(
       authBloc: serviceLocator(),
+      createHabit: serviceLocator(),
+      habitListBloc: serviceLocator(),
     ),
   );
 

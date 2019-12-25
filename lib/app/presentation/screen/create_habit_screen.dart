@@ -14,7 +14,10 @@ class CreateHabitScreen extends StatelessWidget {
       providers: [
         BlocProvider<CreationHabitBloc>(
           create: (context) => serviceLocator<CreationHabitBloc>(),
-        )
+        ),
+        BlocProvider<CreationHabitStatusBloc>(
+          create: (context) => serviceLocator<CreationHabitStatusBloc>(),
+        ),
       ],
       child: CreateHabitContent(),
     );
@@ -28,95 +31,101 @@ class CreateHabitContent extends StatelessWidget {
       appBar: AppBar(
         title: Text('Create habit'),
       ),
-      body: BlocBuilder<HabitBloc, HabitState>(
-        builder: (context, state) {
-          return state.when(
-            initialHabitState: (_) => LoadingIndicator(
-              message: 'Loading habits...',
-            ),
-            loadingHabitState: (_) => LoadingIndicator(
-              message: 'Loading habits...',
-            ),
-            emptyHabitState: (_) => LoadingIndicator(
-              message: 'Loading habits...',
-            ),
-            errorHabitState: (_) => Text('Error habit list'),
-            loadedHabitState: (_) => Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: BlocBuilder<CreationHabitBloc, CreationHabit>(
-                builder: (context, state) => CustomScrollView(
-                  slivers: [
-                    SliverList(
-                      delegate: SliverChildListDelegate(
-                        [
-                          TextInputField(
-                            label: 'Name',
-                            onChanged: (value) {
-                              BlocProvider.of<CreationHabitBloc>(context).add(
-                                UpdateNameCreationHabitEvent(
-                                  name: value,
-                                ),
-                              );
-                            },
-                          ),
-                          ToggleButtons(
-                            children: SELECTABLE_VALUES
-                                .map(
-                                  (val) => Text('$val'),
-                                )
-                                .toList(),
-                            isSelected: state.valueSelected.toList(),
-                            onPressed: (index) {
-                              BlocProvider.of<CreationHabitBloc>(context).add(
-                                UpdateValueCreationHabitEvent(
-                                  indexSelected: index,
-                                ),
-                              );
-                            },
-                          ),
-                          Checkbox(
-                            value: state.isPositive,
-                            onChanged: (value) {
-                              BlocProvider.of<CreationHabitBloc>(context).add(
-                                UpdateIsPositiveCreationHabitEvent(
-                                  isPositive: value,
-                                ),
-                              );
-                            },
-                          ),
-                        ],
+      body: BlocListener<CreationHabitStatusBloc, CreationHabitStatusState>(
+        listener: (context, state) {
+          if (state is CreationHabitStatusSuccess) {
+            Navigator.of(context).pop();
+          }
+        },
+        child: BlocBuilder<CreationHabitStatusBloc, CreationHabitStatusState>(
+          builder: (context, state) {
+            return state.when(
+              creationHabitStatusLoading: (_) => LoadingIndicator(
+                message: 'Creating habit...',
+              ),
+              creationHabitStatusSuccess: (_) => Center(
+                child: Text('Success habit creation'),
+              ),
+              creationHabitStatusFailure: (state) => Center(
+                child: Text('Error: ${state.message}'),
+              ),
+              creationHabitStatusInProgress: (_) => Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: BlocBuilder<CreationHabitBloc, CreationHabit>(
+                  builder: (context, state) => CustomScrollView(
+                    slivers: [
+                      SliverList(
+                        delegate: SliverChildListDelegate(
+                          [
+                            TextInputField(
+                              label: 'Name',
+                              onChanged: (value) {
+                                BlocProvider.of<CreationHabitBloc>(context).add(
+                                  UpdateNameCreationHabitEvent(
+                                    name: value,
+                                  ),
+                                );
+                              },
+                            ),
+                            ToggleButtons(
+                              children: SELECTABLE_VALUES
+                                  .map(
+                                    (val) => Text('$val'),
+                                  )
+                                  .toList(),
+                              isSelected: state.valueSelected.toList(),
+                              onPressed: (index) {
+                                BlocProvider.of<CreationHabitBloc>(context).add(
+                                  UpdateValueCreationHabitEvent(
+                                    indexSelected: index,
+                                  ),
+                                );
+                              },
+                            ),
+                            Checkbox(
+                              value: state.isPositive,
+                              onChanged: (value) {
+                                BlocProvider.of<CreationHabitBloc>(context).add(
+                                  UpdateIsPositiveCreationHabitEvent(
+                                    isPositive: value,
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    SliverGrid(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        childAspectRatio: 1 / 1,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
+                      SliverGrid(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          childAspectRatio: 1 / 1,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                        ),
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            return SelectAreaValue(
+                              index: index,
+                              areaValue: state.lifeAreas[index],
+                              updateValue: () {
+                                BlocProvider.of<CreationHabitBloc>(context).add(
+                                  UpdateAreasCreationHabitEvent(
+                                    indexToUpdate: index,
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          childCount: AREA_NAMES.length,
+                        ),
                       ),
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          return SelectAreaValue(
-                            index: index,
-                            areaValue: state.lifeAreas[index],
-                            updateValue: () {
-                              BlocProvider.of<CreationHabitBloc>(context).add(
-                                UpdateAreasCreationHabitEvent(
-                                  indexToUpdate: index,
-                                ),
-                              );
-                            },
-                          );
-                        },
-                        childCount: AREA_NAMES.length,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _saveHabit(context),
@@ -137,16 +146,14 @@ class CreateHabitContent extends StatelessWidget {
     // print(areas);
     // print(isPositive);
 
-    BlocProvider.of<HabitBloc>(context).add(
-      CreateHabitEvent(
+    BlocProvider.of<CreationHabitStatusBloc>(context).add(
+      CreationHabitStatusEvent.creationHabitStatusCreateHabit(
         name: name,
         isPositive: isPositive,
         areas: areas,
         value: value,
       ),
     );
-
-    Navigator.of(context).pop();
   }
 }
 

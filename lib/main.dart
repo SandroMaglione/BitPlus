@@ -51,9 +51,12 @@ class MyApp extends StatelessWidget {
               AuthEvent.authOnStartup(),
             ),
         ),
-        BlocProvider<HabitBloc>(
-          create: (context) => di.serviceLocator<HabitBloc>(),
-        )
+        BlocProvider<HabitListBloc>(
+          create: (context) => di.serviceLocator<HabitListBloc>(),
+        ),
+        BlocProvider<HabitListStatusBloc>(
+          create: (context) => di.serviceLocator<HabitListStatusBloc>(),
+        ),
       ],
       child: MaterialApp(
         title: APP_NAME,
