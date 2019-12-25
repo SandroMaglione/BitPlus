@@ -3,7 +3,7 @@ description: An habit tracket and diary to create balance in your life flow
 author: Sandro Maglione <lass.maglio@gmail.com>
 homepage: https://www.sandromaglione.com
 
-version: 1.0.0+1
+version: 0.0.1+1
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
