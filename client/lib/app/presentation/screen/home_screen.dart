@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BitPlus'),
+        title: Text('How is your day going'),
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
@@ -61,22 +61,25 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         child: Column(
           children: <Widget>[
-            Container(
-              color: Colors.purple[300],
-              padding: const EdgeInsets.all(
-                6.0,
-              ),
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    '${DateTime.now().day}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      fontSize: 18.0,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      '${DateTime.now().day}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 18.0,
+                      ),
                     ),
-                  ),
-                  Text('${DateTime.now().month} / ${DateTime.now().year}'),
-                ],
+                    SizedBox(
+                      width: 12.0,
+                    ),
+                    Text('${DateTime.now().month} / ${DateTime.now().year}'),
+                  ],
+                ),
               ),
             ),
             BlocBuilder<HabitListStatusBloc, HabitListStatusState>(

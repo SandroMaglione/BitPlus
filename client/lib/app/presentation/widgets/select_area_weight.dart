@@ -1,4 +1,5 @@
 import 'package:bitplus/core/constants/areas_names.dart';
+import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class SelectAreaWeight extends StatelessWidget {
@@ -24,10 +25,10 @@ class SelectAreaWeight extends StatelessWidget {
               builder: (context, constraints) {
                 return AnimatedContainer(
                   duration: Duration(
-                    milliseconds: 250,
+                    milliseconds: 350,
                   ),
-                  curve: Curves.easeOutQuad,
-                  color: Colors.orangeAccent,
+                  curve: Curves.easeInOut,
+                  color: ACCENT_COLOR_LIGHT,
                   height: constraints.maxHeight * areaValue / 3,
                   width: constraints.maxWidth,
                 );

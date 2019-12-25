@@ -26,7 +26,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:random_color/random_color.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -208,7 +207,6 @@ Future<void> init() async {
     () => HabitRemoteDataSourceImpl(
       client: serviceLocator(),
       firestore: serviceLocator(),
-      randomColor: serviceLocator(),
     ),
   );
 
@@ -246,11 +244,7 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton<DataConnectionChecker>(
     () => DataConnectionChecker(),
   );
-
-  serviceLocator.registerLazySingleton<RandomColor>(
-    () => RandomColor(),
-  );
-
+  
   final sharedPreferences = await SharedPreferences.getInstance();
   serviceLocator.registerLazySingleton<SharedPreferences>(
     () => sharedPreferences,

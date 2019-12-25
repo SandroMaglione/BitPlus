@@ -1,6 +1,7 @@
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/core/router/router.gr.dart';
+import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -16,23 +17,22 @@ class HabitTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 30.0,
+        horizontal: 20.0,
       ),
       child: Card(
-        color: habit.checked ? Color(habit.color).withOpacity(0.12) : null,
-        margin: const EdgeInsets.only(bottom: 24.0, top: 12.0),
-        elevation: 6.0,
+        color: habit.checked ? Color(habit.color) : null,
+        margin: const EdgeInsets.only(
+          bottom: 2.0,
+          top: 2.0,
+        ),
+        elevation: 0.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30.0),
-          side: BorderSide(
-            color: Color(habit.color).withOpacity(0.56),
-            width: 3.0,
-          ),
+          borderRadius: BorderRadius.circular(12.0),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 16.0,
-            vertical: 10.0,
+            horizontal: 12.0,
+            vertical: 6.0,
           ),
           child: ListTile(
             title: Text('${habit.name}'),
@@ -62,12 +62,21 @@ class HabitTile extends StatelessWidget {
                   );
                 }
               },
-              child: CircleAvatar(
-                backgroundColor: Color(habit.color),
-                child: Icon(
-                  habit.checked ? Icons.check : Icons.cached,
-                ),
-              ),
+              child: !habit.checked
+                  ? CircleAvatar(
+                      child: Icon(
+                        Icons.check,
+                        color: WHITE,
+                      ),
+                      backgroundColor: Color(habit.color),
+                    )
+                  : CircleAvatar(
+                      child: Icon(
+                        Icons.check,
+                        color: WHITE,
+                      ),
+                      backgroundColor: Color(habit.color),
+                    ),
             ),
           ),
         ),

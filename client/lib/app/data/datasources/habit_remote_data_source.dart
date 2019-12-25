@@ -4,11 +4,12 @@ import 'package:bitplus/app/data/models/api/create_habit_req.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/data/models/api/update_habit_req.dart';
 import 'package:bitplus/core/error/failures.dart';
+import 'package:bitplus/core/theme/habit_color.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
-import 'package:random_color/random_color.dart';
 
 abstract class HabitRemoteDataSource {
   /// Returns a [BuiltList] of [HabitApi] retrieved from the database,
@@ -49,12 +50,10 @@ abstract class HabitRemoteDataSource {
 class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
   final http.Client client;
   final Firestore firestore;
-  final RandomColor randomColor;
 
   const HabitRemoteDataSourceImpl({
     @required this.firestore,
     @required this.client,
-    @required this.randomColor,
   });
 
   @override
@@ -144,16 +143,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     int value,
     BuiltList<int> areas,
   ) async {
-    final color = randomColor
-        .randomColor(
-          colorHue: ColorHue.multiple(
-            colorHues: [
-              ColorHue.red,
-              ColorHue.blue,
-            ],
-          ),
-        )
-        .value;
+    final color = getHabitColor().value;
 
     final habitReq = CreateHabitReq(
       (h) => h
@@ -191,16 +181,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     BuiltList<int> areas,
     bool checked,
   ) async {
-    final color = randomColor
-        .randomColor(
-          colorHue: ColorHue.multiple(
-            colorHues: [
-              ColorHue.red,
-              ColorHue.blue,
-            ],
-          ),
-        )
-        .value;
+    final color = getHabitColor().value;
 
     final habitReq = UpdateHabitReq(
       (h) => h

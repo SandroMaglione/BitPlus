@@ -30,7 +30,7 @@ class UpdateHabitScreen extends StatelessWidget {
       ],
       child: ManageHabitView(
         action: _updateHabit,
-        title: 'Create habit',
+        title: '${habit.name}',
       ),
     );
   }

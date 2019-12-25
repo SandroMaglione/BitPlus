@@ -1,3 +1,4 @@
+import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class LoadingIndicator extends StatelessWidget {
@@ -11,29 +12,25 @@ class LoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation(
-                  color ?? Colors.black,
-                ),
-              ),
-              if (message != null)
-                SizedBox(
-                  height: 24.0,
-                ),
-              if (message != null)
-                Text(
-                  '$message',
-                ),
-            ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation(
+              color ?? ACCENT_COLOR,
+            ),
           ),
-        ),
-      ],
+          if (message != null)
+            SizedBox(
+              height: 24.0,
+            ),
+          if (message != null)
+            Text(
+              '$message',
+            ),
+        ],
+      ),
     );
   }
 }
