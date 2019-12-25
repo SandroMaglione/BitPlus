@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:bitplus/app/domain/usecases/habit/get_habit_list.dart' as ghl;
 import 'package:bloc/bloc.dart';
 import 'package:bitplus/core/extensions/bloc_extension.dart';
-import './bloc.dart';
+import '../bloc.dart';
 
 /// Manage the fetching status while getting the habit list from the database
 class HabitListStatusBloc

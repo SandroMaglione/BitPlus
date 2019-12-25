@@ -4,7 +4,7 @@ import 'package:bitplus/app/domain/usecases/habit/create_habit.dart' as ch;
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 import 'package:bitplus/core/extensions/bloc_extension.dart';
-import './bloc.dart';
+import '../bloc.dart';
 
 class CreationHabitStatusBloc
     extends Bloc<CreationHabitStatusEvent, CreationHabitStatusState> {

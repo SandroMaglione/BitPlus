@@ -8,7 +8,7 @@ import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bloc/bloc.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:bitplus/core/extensions/bloc_extension.dart';
-import './bloc.dart';
+import '../bloc.dart';
 
 /// Store the list of habit of the current logged user fetched from the database
 ///

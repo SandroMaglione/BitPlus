@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:bitplus/app/data/models/creation_habit.dart';
 import 'package:bloc/bloc.dart';
 import 'package:built_collection/built_collection.dart';
-import './bloc.dart';
+import '../bloc.dart';
 
 const List<int> SELECTABLE_VALUES = [3, 5, 8, 13, 21];
 
