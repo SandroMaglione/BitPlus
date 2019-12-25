@@ -19,6 +19,9 @@ abstract class HabitListEvent extends Equatable {
   factory HabitListEvent.habitListAddCreated({@required HabitApi habit}) =
       HabitListAddCreated;
 
+  factory HabitListEvent.habitListAddUpdated({@required HabitApi habit}) =
+      HabitListAddUpdated;
+
   factory HabitListEvent.habitListFetched(
       {@required BuiltList<dynamic> habitList}) = HabitListFetched;
 
@@ -29,6 +32,7 @@ abstract class HabitListEvent extends Equatable {
       {@required R Function(HabitListCheck) habitListCheck,
       @required R Function(HabitListUncheck) habitListUncheck,
       @required R Function(HabitListAddCreated) habitListAddCreated,
+      @required R Function(HabitListAddUpdated) habitListAddUpdated,
       @required R Function(HabitListFetched) habitListFetched}) {
     switch (this._type) {
       case _HabitListEvent.HabitListCheck:
@@ -37,6 +41,8 @@ abstract class HabitListEvent extends Equatable {
         return habitListUncheck(this as HabitListUncheck);
       case _HabitListEvent.HabitListAddCreated:
         return habitListAddCreated(this as HabitListAddCreated);
+      case _HabitListEvent.HabitListAddUpdated:
+        return habitListAddUpdated(this as HabitListAddUpdated);
       case _HabitListEvent.HabitListFetched:
         return habitListFetched(this as HabitListFetched);
     }
@@ -81,6 +87,19 @@ class HabitListAddCreated extends HabitListEvent {
 
   @override
   String toString() => 'HabitListAddCreated(habit:${this.habit})';
+  @override
+  List get props => [habit];
+}
+
+@immutable
+class HabitListAddUpdated extends HabitListEvent {
+  const HabitListAddUpdated({@required this.habit})
+      : super(_HabitListEvent.HabitListAddUpdated);
+
+  final HabitApi habit;
+
+  @override
+  String toString() => 'HabitListAddUpdated(habit:${this.habit})';
   @override
   List get props => [habit];
 }

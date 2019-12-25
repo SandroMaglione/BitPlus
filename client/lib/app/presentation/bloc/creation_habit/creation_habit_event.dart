@@ -1,3 +1,4 @@
+import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:super_enum/super_enum.dart';
 
 part 'creation_habit_event.g.dart';
@@ -20,4 +21,8 @@ enum _CreationHabitEvent {
     DataField('indexToUpdate', int),
   ])
   UpdateAreasCreationHabitEvent,
+  @Data(fields: [
+    DataField('habit', HabitApi),
+  ])
+  InitializeHabitCreationHabitEvent,
 }

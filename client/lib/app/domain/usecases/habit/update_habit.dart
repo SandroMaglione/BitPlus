@@ -22,7 +22,8 @@ class UpdateHabit implements UseCase<HabitApi, Params> {
       params.name,
       params.isPositive,
       params.experience,
-      params.lifeAreaIds,
+      params.areas,
+      params.checked,
     );
   }
 }
@@ -33,7 +34,8 @@ class Params extends Equatable {
   final String name;
   final bool isPositive;
   final int experience;
-  final BuiltList<int> lifeAreaIds;
+  final BuiltList<int> areas;
+  final bool checked;
 
   const Params({
     @required this.name,
@@ -41,7 +43,8 @@ class Params extends Equatable {
     @required this.uid,
     @required this.isPositive,
     @required this.experience,
-    @required this.lifeAreaIds,
+    @required this.areas,
+    @required this.checked,
   });
 
   @override
@@ -51,6 +54,7 @@ class Params extends Equatable {
         name,
         isPositive,
         experience,
-        lifeAreaIds,
+        areas,
+        checked,
       ];
 }

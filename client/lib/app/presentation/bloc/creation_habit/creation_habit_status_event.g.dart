@@ -16,17 +16,31 @@ abstract class CreationHabitStatusEvent extends Equatable {
       @required int value,
       @required BuiltList<dynamic> areas}) = CreationHabitStatusCreateHabit;
 
+  factory CreationHabitStatusEvent.creationHabitStatusUpdateHabit(
+      {@required String habitID,
+      @required String name,
+      @required bool isPositive,
+      @required int value,
+      @required BuiltList<dynamic> areas,
+      @required bool checked}) = CreationHabitStatusUpdateHabit;
+
   final _CreationHabitStatusEvent _type;
 
 //ignore: missing_return
   R when<R>(
       {@required
           R Function(CreationHabitStatusCreateHabit)
-              creationHabitStatusCreateHabit}) {
+              creationHabitStatusCreateHabit,
+      @required
+          R Function(CreationHabitStatusUpdateHabit)
+              creationHabitStatusUpdateHabit}) {
     switch (this._type) {
       case _CreationHabitStatusEvent.CreationHabitStatusCreateHabit:
         return creationHabitStatusCreateHabit(
             this as CreationHabitStatusCreateHabit);
+      case _CreationHabitStatusEvent.CreationHabitStatusUpdateHabit:
+        return creationHabitStatusUpdateHabit(
+            this as CreationHabitStatusUpdateHabit);
     }
   }
 
@@ -56,4 +70,34 @@ class CreationHabitStatusCreateHabit extends CreationHabitStatusEvent {
       'CreationHabitStatusCreateHabit(name:${this.name},isPositive:${this.isPositive},value:${this.value},areas:${this.areas})';
   @override
   List get props => [name, isPositive, value, areas];
+}
+
+@immutable
+class CreationHabitStatusUpdateHabit extends CreationHabitStatusEvent {
+  const CreationHabitStatusUpdateHabit(
+      {@required this.habitID,
+      @required this.name,
+      @required this.isPositive,
+      @required this.value,
+      @required this.areas,
+      @required this.checked})
+      : super(_CreationHabitStatusEvent.CreationHabitStatusUpdateHabit);
+
+  final String habitID;
+
+  final String name;
+
+  final bool isPositive;
+
+  final int value;
+
+  final BuiltList<dynamic> areas;
+
+  final bool checked;
+
+  @override
+  String toString() =>
+      'CreationHabitStatusUpdateHabit(habitID:${this.habitID},name:${this.name},isPositive:${this.isPositive},value:${this.value},areas:${this.areas},checked:${this.checked})';
+  @override
+  List get props => [habitID, name, isPositive, value, areas, checked];
 }

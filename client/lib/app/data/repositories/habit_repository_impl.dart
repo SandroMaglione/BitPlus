@@ -74,6 +74,7 @@ class HabitRepositoryImpl implements HabitRepository {
     bool isPositive,
     int value,
     BuiltList<int> areas,
+    bool checked,
   ) async =>
       await Task<HabitApi>(
         () => habitRemoteDataSource.updateHabit(
@@ -83,6 +84,7 @@ class HabitRepositoryImpl implements HabitRepository {
           isPositive,
           value,
           areas,
+          checked,
         ),
       ).attempt().mapLeftToFailure().run();
 }

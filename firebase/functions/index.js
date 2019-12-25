@@ -32,7 +32,7 @@ exports.getTodayHabitList = functions.https.onRequest(async (req, res) => {
             'isPositive': habitData.isPositive,
             'color': habitData.color,
             'value': habitData.value,
-            'areas': habitData.lifeAreas,
+            'areas': habitData.areas,
             'name': habitData.name
         };
 

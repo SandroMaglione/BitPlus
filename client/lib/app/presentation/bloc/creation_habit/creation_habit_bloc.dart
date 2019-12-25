@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/data/models/creation_habit.dart';
 import 'package:bloc/bloc.dart';
 import 'package:built_collection/built_collection.dart';
 import '../bloc.dart';
 
 const List<int> SELECTABLE_VALUES = [3, 5, 8, 13, 21];
+const int INIT_SELECTED_VALUE_INDEX = 0;
 
 class CreationHabitBloc extends Bloc<CreationHabitEvent, CreationHabit> {
   @override
@@ -12,10 +14,13 @@ class CreationHabitBloc extends Bloc<CreationHabitEvent, CreationHabit> {
         (h) => h
           ..name = ''
           ..isPositive = true
-          ..value = 1
-          ..valueSelectedIndex = 0
+          ..value = SELECTABLE_VALUES[INIT_SELECTED_VALUE_INDEX]
+          ..valueSelectedIndex = INIT_SELECTED_VALUE_INDEX
           ..valueSelected = ListBuilder<bool>(
-            List<bool>.generate(5, (index) => index == 0),
+            List<bool>.generate(
+              5,
+              (index) => index == INIT_SELECTED_VALUE_INDEX,
+            ),
           )
           ..lifeAreas = ListBuilder<int>(
             List<int>.filled(12, 0),
@@ -27,6 +32,10 @@ class CreationHabitBloc extends Bloc<CreationHabitEvent, CreationHabit> {
     CreationHabitEvent event,
   ) async* {
     yield* event.when(
+      initializeHabitCreationHabitEvent: (e) =>
+          _mapInitializeHabitCreationHabitEvent(
+        e.habit,
+      ),
       updateNameCreationHabitEvent: (e) => _mapUpdateNameCreationHabitEvent(e),
       updateIsPositiveCreationHabitEvent: (e) =>
           _mapUpdateIsPositiveCreationHabitEvent(e),
@@ -34,6 +43,29 @@ class CreationHabitBloc extends Bloc<CreationHabitEvent, CreationHabit> {
           _mapUpdateValueCreationHabitEvent(e),
       updateAreasCreationHabitEvent: (e) =>
           _mapUpdateAreasCreationHabitEvent(e),
+    );
+  }
+
+  Stream<CreationHabit> _mapInitializeHabitCreationHabitEvent(
+    HabitApi habit,
+  ) async* {
+    final indexOfValueSelected = SELECTABLE_VALUES.indexOf(habit.value);
+    final indexValueSelected =
+        indexOfValueSelected != -1 ? indexOfValueSelected : 0;
+
+    yield state.rebuild(
+      (h) => h
+        ..name = habit.name
+        ..isPositive = habit.isPositive
+        ..value = habit.value
+        ..valueSelectedIndex = indexValueSelected
+        ..valueSelected = ListBuilder<bool>(
+          List<bool>.generate(
+            5,
+            (index) => index == indexValueSelected,
+          ),
+        )
+        ..lifeAreas = habit.areas.toBuilder(),
     );
   }
 

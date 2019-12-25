@@ -12,4 +12,13 @@ enum _CreationHabitStatusEvent {
     DataField('areas', BuiltList),
   ])
   CreationHabitStatusCreateHabit,
+  @Data(fields: [
+    DataField('habitID', String),
+    DataField('name', String),
+    DataField('isPositive', bool),
+    DataField('value', int),
+    DataField('areas', BuiltList),
+    DataField('checked', bool),
+  ])
+  CreationHabitStatusUpdateHabit,
 }

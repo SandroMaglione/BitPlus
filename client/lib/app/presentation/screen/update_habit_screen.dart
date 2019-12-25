@@ -1,29 +1,41 @@
+import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/app/presentation/views/manage_habit_view.dart';
 import 'package:bitplus/injection_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CreateHabitScreen extends StatelessWidget {
+class UpdateHabitScreen extends StatelessWidget {
+  final HabitApi habit;
+
+  const UpdateHabitScreen({
+    @required this.habit,
+  });
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<CreationHabitBloc>(
-          create: (context) => serviceLocator<CreationHabitBloc>(),
+          create: (context) => serviceLocator<CreationHabitBloc>()
+            ..add(
+              CreationHabitEvent.initializeHabitCreationHabitEvent(
+                habit: habit,
+              ),
+            ),
         ),
         BlocProvider<CreationHabitStatusBloc>(
           create: (context) => serviceLocator<CreationHabitStatusBloc>(),
         ),
       ],
       child: ManageHabitView(
-        action: _saveHabit,
+        action: _updateHabit,
         title: 'Create habit',
       ),
     );
   }
 
-  void _saveHabit(BuildContext context) {
+  void _updateHabit(BuildContext context) {
     final String name = BlocProvider.of<CreationHabitBloc>(context).state.name;
     final int value = BlocProvider.of<CreationHabitBloc>(context).state.value;
     final areas = BlocProvider.of<CreationHabitBloc>(context).state.lifeAreas;
@@ -31,11 +43,13 @@ class CreateHabitScreen extends StatelessWidget {
         BlocProvider.of<CreationHabitBloc>(context).state.isPositive;
 
     BlocProvider.of<CreationHabitStatusBloc>(context).add(
-      CreationHabitStatusEvent.creationHabitStatusCreateHabit(
+      CreationHabitStatusEvent.creationHabitStatusUpdateHabit(
+        habitID: habit.habitID,
         name: name,
         isPositive: isPositive,
         areas: areas,
         value: value,
+        checked: habit.checked,
       ),
     );
   }

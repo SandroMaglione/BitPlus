@@ -22,6 +22,9 @@ abstract class CreationHabitEvent extends Equatable {
   factory CreationHabitEvent.updateAreasCreationHabitEvent(
       {@required int indexToUpdate}) = UpdateAreasCreationHabitEvent;
 
+  factory CreationHabitEvent.initializeHabitCreationHabitEvent(
+      {@required HabitApi habit}) = InitializeHabitCreationHabitEvent;
+
   final _CreationHabitEvent _type;
 
 //ignore: missing_return
@@ -36,7 +39,10 @@ abstract class CreationHabitEvent extends Equatable {
               updateValueCreationHabitEvent,
       @required
           R Function(UpdateAreasCreationHabitEvent)
-              updateAreasCreationHabitEvent}) {
+              updateAreasCreationHabitEvent,
+      @required
+          R Function(InitializeHabitCreationHabitEvent)
+              initializeHabitCreationHabitEvent}) {
     switch (this._type) {
       case _CreationHabitEvent.UpdateNameCreationHabitEvent:
         return updateNameCreationHabitEvent(
@@ -50,6 +56,9 @@ abstract class CreationHabitEvent extends Equatable {
       case _CreationHabitEvent.UpdateAreasCreationHabitEvent:
         return updateAreasCreationHabitEvent(
             this as UpdateAreasCreationHabitEvent);
+      case _CreationHabitEvent.InitializeHabitCreationHabitEvent:
+        return initializeHabitCreationHabitEvent(
+            this as InitializeHabitCreationHabitEvent);
     }
   }
 
@@ -110,4 +119,17 @@ class UpdateAreasCreationHabitEvent extends CreationHabitEvent {
       'UpdateAreasCreationHabitEvent(indexToUpdate:${this.indexToUpdate})';
   @override
   List get props => [indexToUpdate];
+}
+
+@immutable
+class InitializeHabitCreationHabitEvent extends CreationHabitEvent {
+  const InitializeHabitCreationHabitEvent({@required this.habit})
+      : super(_CreationHabitEvent.InitializeHabitCreationHabitEvent);
+
+  final HabitApi habit;
+
+  @override
+  String toString() => 'InitializeHabitCreationHabitEvent(habit:${this.habit})';
+  @override
+  List get props => [habit];
 }

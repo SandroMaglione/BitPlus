@@ -1,5 +1,6 @@
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
+import 'package:bitplus/core/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -36,6 +37,15 @@ class HabitTile extends StatelessWidget {
           child: ListTile(
             title: Text('${habit.name}'),
             subtitle: Text('${habit.habitID}'),
+            leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  Router.updateHabitScreen,
+                  arguments: habit,
+                );
+              },
+              icon: Icon(Icons.update),
+            ),
             trailing: InkWell(
               onTap: () {
                 if (habit.checked) {

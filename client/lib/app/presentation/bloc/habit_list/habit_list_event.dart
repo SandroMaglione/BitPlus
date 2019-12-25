@@ -19,6 +19,10 @@ enum _HabitListEvent {
   ])
   HabitListAddCreated,
   @Data(fields: [
+    DataField('habit', HabitApi),
+  ])
+  HabitListAddUpdated,
+  @Data(fields: [
     DataField('habitList', BuiltList),
   ])
   HabitListFetched,

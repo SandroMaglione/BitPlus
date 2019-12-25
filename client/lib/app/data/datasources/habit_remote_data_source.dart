@@ -25,6 +25,7 @@ abstract class HabitRemoteDataSource {
     bool isPositive,
     int value,
     BuiltList<int> areas,
+    bool checked,
   );
 
   /// Creates an [CreateHabitReq] and uploads it to the database
@@ -188,6 +189,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     bool isPositive,
     int value,
     BuiltList<int> areas,
+    bool checked,
   ) async {
     final color = randomColor
         .randomColor(
@@ -217,7 +219,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
       (habitID) => HabitApi(
         (h) => h
           ..habitID = habitID
-          ..checked = false
+          ..checked = checked
           ..color = color
           ..name = name
           ..isPositive = isPositive

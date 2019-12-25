@@ -30,6 +30,7 @@ abstract class HabitRepository {
     bool isPositive,
     int value,
     BuiltList<int> areas,
+    bool checked,
   );
 
   /// Makes the attribute `checked` of the habit true

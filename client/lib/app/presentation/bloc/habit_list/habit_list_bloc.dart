@@ -34,6 +34,7 @@ class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
     yield* event.when(
       habitListFetched: (e) => _mapHabitListFetched(e.habitList),
       habitListAddCreated: (e) => _mapHabitListAddCreated(e.habit),
+      habitListAddUpdated: (e) => _mapHabitListAddUpdated(e.habit),
       habitListCheck: (e) => checkUserLogged(
         authBloc.state,
         _mapHabitListCheck,
@@ -123,6 +124,14 @@ class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
         habit,
         ...state,
       ],
+    );
+  }
+
+  Stream<BuiltList<HabitApi>> _mapHabitListAddUpdated(HabitApi habit) async* {
+    yield BuiltList<HabitApi>(
+      state.map(
+        (h) => h.habitID == habit.habitID ? habit : h,
+      ),
     );
   }
 }

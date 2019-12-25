@@ -9,6 +9,7 @@ import 'package:bitplus/app/domain/usecases/habit/check_habit.dart';
 import 'package:bitplus/app/domain/usecases/habit/create_habit.dart';
 import 'package:bitplus/app/domain/usecases/habit/get_habit_list.dart';
 import 'package:bitplus/app/domain/usecases/habit/uncheck_habit.dart';
+import 'package:bitplus/app/domain/usecases/habit/update_habit.dart';
 import 'package:bitplus/app/domain/usecases/profile/get_user.dart';
 import 'package:bitplus/app/domain/usecases/profile/is_signed_in_user.dart';
 import 'package:bitplus/app/domain/usecases/profile/sign_in_credentials.dart';
@@ -89,6 +90,7 @@ Future<void> init() async {
     () => CreationHabitStatusBloc(
       authBloc: serviceLocator(),
       createHabit: serviceLocator(),
+      updateHabit: serviceLocator(),
       habitListBloc: serviceLocator(),
     ),
   );
@@ -160,6 +162,12 @@ Future<void> init() async {
 
   serviceLocator.registerLazySingleton(
     () => CreateHabit(
+      habitRepository: serviceLocator(),
+    ),
+  );
+
+  serviceLocator.registerLazySingleton(
+    () => UpdateHabit(
       habitRepository: serviceLocator(),
     ),
   );
