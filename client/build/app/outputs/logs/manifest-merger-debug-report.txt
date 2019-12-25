@@ -1,0 +1,730 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:1:1-30:12
+INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:1:1-30:12
+INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:1:1-30:12
+INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:1:1-30:12
+MERGED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:1:1-30:12
+MERGED from [:google_sign_in] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [:firebase_crashlytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_crashlytics\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:google_sign_in_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\google_sign_in_web\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:firebase_auth] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:firebase_auth_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_auth_web\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:cloud_firestore] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:firebase_core] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
+MERGED from [:firebase_core_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core_web\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-17:12
+MERGED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-20:12
+MERGED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-19:12
+MERGED from [:shared_preferences] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:shared_preferences_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences_web\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:shared_preferences_macos] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences_macos\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.firebase:firebase-analytics:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2fd3c28c930b887bb73e55d4eeb25fec\firebase-analytics-17.2.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:17:1-55:12
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:17:1-36:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\251a960771c99b4e7c8eeca6e6c51ffd\play-services-measurement-sdk-17.2.0\AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-clearcut:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\ef135d8843be6fc9a49d4cbd9d04d5ff\play-services-clearcut-17.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-phenotype:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a1f08729810cbf30b9cc422724292ebc\play-services-phenotype-17.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:firebase-config:19.0.4] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\7aca904935200450685d9a287aca23a1\firebase-config-19.0.4\AndroidManifest.xml:17:1-38:12
+MERGED from [com.google.firebase:firebase-messaging:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\31853ae8975fe3cde1016d8ae57847a1\jetified-firebase-messaging-20.0.1\AndroidManifest.xml:17:1-37:12
+MERGED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:17:1-47:12
+MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2641449fc7d30ddeaa55bc51253909d8\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:2:1-26:12
+MERGED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:17:1-42:12
+MERGED from [com.google.firebase:firebase-abt:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\d81e71b56c848fe9fb12dbe90c5895f8\firebase-abt-19.0.0\AndroidManifest.xml:2:1-19:12
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\80b5b89c1bb00424c7a2b1d406acd533\firebase-auth-interop-19.0.0\AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f6dfec93c340cb91059c968736fc3b3\jetified-firebase-common-19.3.0\AndroidManifest.xml:15:1-39:12
+MERGED from [com.google.android.gms:play-services-auth:16.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\79b011c3b7e20f19a699c5a5e12de14a\jetified-play-services-auth-16.0.1\AndroidManifest.xml:17:1-39:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:16.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\3dc36db47c040afce4902dc38935b1f1\jetified-play-services-auth-api-phone-16.0.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-auth-base:16.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0ad2a253d77ab6f620c645d09046310d\jetified-play-services-auth-base-16.0.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\660a71f6747fd5c24e1350e29a18a8f3\firebase-iid-interop-17.0.0\AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\95589446422a82a4c8e66884d430dfdc\play-services-base-17.1.0\AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0af5f7527d3497aa32199d606bde681b\play-services-tasks-17.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:17:1-40:12
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\e40cb5360647cd4af05a950936a505cf\play-services-measurement-sdk-api-17.2.0\AndroidManifest.xml:17:1-27:12
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\bc28e8a3c2de196ba082543846cf0627\play-services-measurement-base-17.2.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\8ed557e349bb15e8ca22849012157774\play-services-stats-17.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\ade17d36688a3a7c2d97e38ff47dbf03\firebase-measurement-connector-18.0.0\AndroidManifest.xml:17:1-25:12
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\bff5742b9b3e18165974b4fef727b7bf\play-services-ads-identifier-17.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\9b40fa0f91d0d7f465007eaf95d9c8c3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:17:1-28:12
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\8ff787912e1d2695084da0837e3db8d7\fragment-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\180f69338c9541a49e644952929d29ad\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\d7ce7fb8210d444c0cdd9ebe64eafd09\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0a2c8dc3dcf0276eab34fc5072ed9f86\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\27f99ff7d258e1b72e1d50f6e6586102\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4db40d581d2af1bddf33ac8cf6e3b9dd\coordinatorlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a55f8363fe1fb2ec808d210431c1ceba\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4afc43297cf7cbad276ea437cd03c808\slidingpanelayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\b8f182c645fed4d755cb0b60bf9fa035\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0b49d2118fa99241d75d95708ae8dc32\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\46a326c071af869985ac95ff9788f1ae\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\38374455619aaf29947093e78ad1e879\core-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\21fdcb7b7c7380b04c28b936cc4288fc\lifecycle-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\5d1b81f9a875e45553e6980aeaa6d24a\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a6cc0eac4bfd9ba14606e303db45046e\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f15511674198cb839e903d8eb80d9bef\jetified-firebase-components-16.0.0\AndroidManifest.xml:15:1-23:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\1316548f539910f244328db11148015d\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\e14a2843fa5a176f900666fa086b6263\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\08bbbcd409457979df8dcd72c215ef00\lifecycle-viewmodel-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\5aae3aa230c06ce193cb7d64e38b5ab0\versionedparcelable-1.0.0\AndroidManifest.xml:17:1-25:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\26feb68d3e0710c7c8b28305c74f64e5\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\3639c759ee8b862c210bc7acca18bc44\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\210427efcfefdacd1c1f7030808d8b2b\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2e3d3fd2baa5f7a3437cc974c079fee6\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a9557ff5686587c5f78318c30f36cae9\grpc-android-1.21.0\AndroidManifest.xml:2:1-13:12
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.9] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f1fbaaaea782b5965b3f850856282965\crashlytics-2.9.9\AndroidManifest.xml:2:1-19:12
+MERGED from [com.google.firebase:protolite-well-known-types:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\6fe9aba7f10c337cf61d7aaad8436055\protolite-well-known-types-17.0.0\AndroidManifest.xml:2:1-11:12
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.8] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\17700f70d8fa235e92660ff23d5fb62d\crashlytics-core-2.6.8\AndroidManifest.xml:45:1-56:12
+MERGED from [com.crashlytics.sdk.android:answers:1.4.7] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\064b5a8512a38d43223d48877883e617\jetified-answers-1.4.7\AndroidManifest.xml:2:1-13:12
+MERGED from [io.fabric.sdk.android:fabric:1.4.8] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\02eabae41e2c2e1b34605facfe01ea5b\fabric-1.4.8\AndroidManifest.xml:22:1-33:12
+MERGED from [com.crashlytics.sdk.android:beta:1.2.10] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f30b9ee328ff11c5c605007e4d593fa\beta-1.2.10\AndroidManifest.xml:2:1-13:12
+MERGED from [com.google.firebase:firebase-database-collection:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\835ad1f0ea342c8013bfa38f0ac4620d\firebase-database-collection-17.0.0\AndroidManifest.xml:2:1-7:12
+INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+	package
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:2:5-41
+		INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\debug\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:1:1-30:12
+		INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\debug\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:1:1-30:12
+		INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\debug\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:1:11-69
+application
+ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:8:5-29:19
+MERGED from [:firebase_crashlytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_crashlytics\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_crashlytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_crashlytics\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_auth] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_auth] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:cloud_firestore] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:cloud_firestore] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_core] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_core] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-13:19
+MERGED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:9:5-15:19
+MERGED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:9:5-15:19
+MERGED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-18:19
+MERGED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-18:19
+MERGED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-17:19
+MERGED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-17:19
+MERGED from [com.google.firebase:firebase-analytics:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2fd3c28c930b887bb73e55d4eeb25fec\firebase-analytics-17.2.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-analytics:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2fd3c28c930b887bb73e55d4eeb25fec\firebase-analytics-17.2.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:24:5-38:19
+MERGED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:24:5-38:19
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:28:5-53:19
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:28:5-53:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:26:5-34:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:26:5-34:19
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\251a960771c99b4e7c8eeca6e6c51ffd\play-services-measurement-sdk-17.2.0\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\251a960771c99b4e7c8eeca6e6c51ffd\play-services-measurement-sdk-17.2.0\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-clearcut:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\ef135d8843be6fc9a49d4cbd9d04d5ff\play-services-clearcut-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-clearcut:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\ef135d8843be6fc9a49d4cbd9d04d5ff\play-services-clearcut-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-phenotype:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a1f08729810cbf30b9cc422724292ebc\play-services-phenotype-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-phenotype:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a1f08729810cbf30b9cc422724292ebc\play-services-phenotype-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.firebase:firebase-config:19.0.4] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\7aca904935200450685d9a287aca23a1\firebase-config-19.0.4\AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.firebase:firebase-config:19.0.4] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\7aca904935200450685d9a287aca23a1\firebase-config-19.0.4\AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.firebase:firebase-messaging:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\31853ae8975fe3cde1016d8ae57847a1\jetified-firebase-messaging-20.0.1\AndroidManifest.xml:22:5-35:19
+MERGED from [com.google.firebase:firebase-messaging:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\31853ae8975fe3cde1016d8ae57847a1\jetified-firebase-messaging-20.0.1\AndroidManifest.xml:22:5-35:19
+MERGED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:28:5-45:19
+MERGED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:28:5-45:19
+MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2641449fc7d30ddeaa55bc51253909d8\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:16:5-24:19
+MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2641449fc7d30ddeaa55bc51253909d8\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:16:5-24:19
+MERGED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:23:5-40:19
+MERGED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:23:5-40:19
+MERGED from [com.google.firebase:firebase-abt:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\d81e71b56c848fe9fb12dbe90c5895f8\firebase-abt-19.0.0\AndroidManifest.xml:11:5-17:19
+MERGED from [com.google.firebase:firebase-abt:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\d81e71b56c848fe9fb12dbe90c5895f8\firebase-abt-19.0.0\AndroidManifest.xml:11:5-17:19
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\80b5b89c1bb00424c7a2b1d406acd533\firebase-auth-interop-19.0.0\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\80b5b89c1bb00424c7a2b1d406acd533\firebase-auth-interop-19.0.0\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f6dfec93c340cb91059c968736fc3b3\jetified-firebase-common-19.3.0\AndroidManifest.xml:25:5-37:19
+MERGED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f6dfec93c340cb91059c968736fc3b3\jetified-firebase-common-19.3.0\AndroidManifest.xml:25:5-37:19
+MERGED from [com.google.android.gms:play-services-auth:16.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\79b011c3b7e20f19a699c5a5e12de14a\jetified-play-services-auth-16.0.1\AndroidManifest.xml:22:5-37:19
+MERGED from [com.google.android.gms:play-services-auth:16.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\79b011c3b7e20f19a699c5a5e12de14a\jetified-play-services-auth-16.0.1\AndroidManifest.xml:22:5-37:19
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\660a71f6747fd5c24e1350e29a18a8f3\firebase-iid-interop-17.0.0\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\660a71f6747fd5c24e1350e29a18a8f3\firebase-iid-interop-17.0.0\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\95589446422a82a4c8e66884d430dfdc\play-services-base-17.1.0\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\95589446422a82a4c8e66884d430dfdc\play-services-base-17.1.0\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0af5f7527d3497aa32199d606bde681b\play-services-tasks-17.0.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0af5f7527d3497aa32199d606bde681b\play-services-tasks-17.0.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:28:5-38:19
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\bc28e8a3c2de196ba082543846cf0627\play-services-measurement-base-17.2.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\bc28e8a3c2de196ba082543846cf0627\play-services-measurement-base-17.2.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\8ed557e349bb15e8ca22849012157774\play-services-stats-17.0.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\8ed557e349bb15e8ca22849012157774\play-services-stats-17.0.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\ade17d36688a3a7c2d97e38ff47dbf03\firebase-measurement-connector-18.0.0\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\ade17d36688a3a7c2d97e38ff47dbf03\firebase-measurement-connector-18.0.0\AndroidManifest.xml:22:5-23:19
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\bff5742b9b3e18165974b4fef727b7bf\play-services-ads-identifier-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\bff5742b9b3e18165974b4fef727b7bf\play-services-ads-identifier-17.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\9b40fa0f91d0d7f465007eaf95d9c8c3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\9b40fa0f91d0d7f465007eaf95d9c8c3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:22:5-26:19
+MERGED from [androidx.core:core:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\38374455619aaf29947093e78ad1e879\core-1.0.0\AndroidManifest.xml:22:5-89
+MERGED from [androidx.core:core:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\38374455619aaf29947093e78ad1e879\core-1.0.0\AndroidManifest.xml:22:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\5aae3aa230c06ce193cb7d64e38b5ab0\versionedparcelable-1.0.0\AndroidManifest.xml:22:5-23:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\5aae3aa230c06ce193cb7d64e38b5ab0\versionedparcelable-1.0.0\AndroidManifest.xml:22:5-23:19
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.9] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f1fbaaaea782b5965b3f850856282965\crashlytics-2.9.9\AndroidManifest.xml:11:5-17:19
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.9] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f1fbaaaea782b5965b3f850856282965\crashlytics-2.9.9\AndroidManifest.xml:11:5-17:19
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.8] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\17700f70d8fa235e92660ff23d5fb62d\crashlytics-core-2.6.8\AndroidManifest.xml:54:5-20
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.8] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\17700f70d8fa235e92660ff23d5fb62d\crashlytics-core-2.6.8\AndroidManifest.xml:54:5-20
+MERGED from [com.crashlytics.sdk.android:answers:1.4.7] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\064b5a8512a38d43223d48877883e617\jetified-answers-1.4.7\AndroidManifest.xml:11:5-20
+MERGED from [com.crashlytics.sdk.android:answers:1.4.7] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\064b5a8512a38d43223d48877883e617\jetified-answers-1.4.7\AndroidManifest.xml:11:5-20
+MERGED from [io.fabric.sdk.android:fabric:1.4.8] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\02eabae41e2c2e1b34605facfe01ea5b\fabric-1.4.8\AndroidManifest.xml:31:5-20
+MERGED from [io.fabric.sdk.android:fabric:1.4.8] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\02eabae41e2c2e1b34605facfe01ea5b\fabric-1.4.8\AndroidManifest.xml:31:5-20
+MERGED from [com.crashlytics.sdk.android:beta:1.2.10] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f30b9ee328ff11c5c605007e4d593fa\beta-1.2.10\AndroidManifest.xml:11:5-20
+MERGED from [com.crashlytics.sdk.android:beta:1.2.10] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f30b9ee328ff11c5c605007e4d593fa\beta-1.2.10\AndroidManifest.xml:11:5-20
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\38374455619aaf29947093e78ad1e879\core-1.0.0\AndroidManifest.xml:22:18-86
+	android:label
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:10:9-32
+	android:icon
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:11:9-43
+	android:name
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:9:9-57
+activity#com.sandromaglione.bitplus.MainActivity
+ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:12:9-23:20
+	android:launchMode
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:14:13-43
+	android:hardwareAccelerated
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:17:13-47
+	android:windowSoftInputMode
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:18:13-55
+	android:configChanges
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:16:13-163
+	android:theme
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:15:13-47
+	android:name
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:13:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:19:13-22:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:20:17-68
+	android:name
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:20:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:21:17-76
+	android:name
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:21:27-74
+meta-data#flutterEmbedding
+ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:26:9-28:33
+	android:value
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:28:13-30
+	android:name
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml:27:13-44
+uses-sdk
+INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml
+MERGED from [:google_sign_in] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:google_sign_in] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_crashlytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_crashlytics\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_crashlytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_crashlytics\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:google_sign_in_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\google_sign_in_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:google_sign_in_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\google_sign_in_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_auth] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_auth] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_auth_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_auth_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_auth_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_auth_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:cloud_firestore] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:cloud_firestore] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_core_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_macos] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_macos] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-analytics:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2fd3c28c930b887bb73e55d4eeb25fec\firebase-analytics-17.2.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-analytics:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2fd3c28c930b887bb73e55d4eeb25fec\firebase-analytics-17.2.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\251a960771c99b4e7c8eeca6e6c51ffd\play-services-measurement-sdk-17.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\251a960771c99b4e7c8eeca6e6c51ffd\play-services-measurement-sdk-17.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-clearcut:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\ef135d8843be6fc9a49d4cbd9d04d5ff\play-services-clearcut-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-clearcut:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\ef135d8843be6fc9a49d4cbd9d04d5ff\play-services-clearcut-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-phenotype:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a1f08729810cbf30b9cc422724292ebc\play-services-phenotype-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-phenotype:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a1f08729810cbf30b9cc422724292ebc\play-services-phenotype-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-config:19.0.4] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\7aca904935200450685d9a287aca23a1\firebase-config-19.0.4\AndroidManifest.xml:21:5-23:41
+MERGED from [com.google.firebase:firebase-config:19.0.4] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\7aca904935200450685d9a287aca23a1\firebase-config-19.0.4\AndroidManifest.xml:21:5-23:41
+MERGED from [com.google.firebase:firebase-messaging:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\31853ae8975fe3cde1016d8ae57847a1\jetified-firebase-messaging-20.0.1\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-messaging:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\31853ae8975fe3cde1016d8ae57847a1\jetified-firebase-messaging-20.0.1\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2641449fc7d30ddeaa55bc51253909d8\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2641449fc7d30ddeaa55bc51253909d8\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:21:5-44
+MERGED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:21:5-44
+MERGED from [com.google.firebase:firebase-abt:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\d81e71b56c848fe9fb12dbe90c5895f8\firebase-abt-19.0.0\AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.firebase:firebase-abt:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\d81e71b56c848fe9fb12dbe90c5895f8\firebase-abt-19.0.0\AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\80b5b89c1bb00424c7a2b1d406acd533\firebase-auth-interop-19.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\80b5b89c1bb00424c7a2b1d406acd533\firebase-auth-interop-19.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f6dfec93c340cb91059c968736fc3b3\jetified-firebase-common-19.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f6dfec93c340cb91059c968736fc3b3\jetified-firebase-common-19.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-auth:16.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\79b011c3b7e20f19a699c5a5e12de14a\jetified-play-services-auth-16.0.1\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:16.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\79b011c3b7e20f19a699c5a5e12de14a\jetified-play-services-auth-16.0.1\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:16.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\3dc36db47c040afce4902dc38935b1f1\jetified-play-services-auth-api-phone-16.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:16.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\3dc36db47c040afce4902dc38935b1f1\jetified-play-services-auth-api-phone-16.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:16.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0ad2a253d77ab6f620c645d09046310d\jetified-play-services-auth-base-16.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:16.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0ad2a253d77ab6f620c645d09046310d\jetified-play-services-auth-base-16.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\660a71f6747fd5c24e1350e29a18a8f3\firebase-iid-interop-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-iid-interop:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\660a71f6747fd5c24e1350e29a18a8f3\firebase-iid-interop-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\95589446422a82a4c8e66884d430dfdc\play-services-base-17.1.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\95589446422a82a4c8e66884d430dfdc\play-services-base-17.1.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0af5f7527d3497aa32199d606bde681b\play-services-tasks-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0af5f7527d3497aa32199d606bde681b\play-services-tasks-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\e40cb5360647cd4af05a950936a505cf\play-services-measurement-sdk-api-17.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\e40cb5360647cd4af05a950936a505cf\play-services-measurement-sdk-api-17.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\bc28e8a3c2de196ba082543846cf0627\play-services-measurement-base-17.2.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-measurement-base:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\bc28e8a3c2de196ba082543846cf0627\play-services-measurement-base-17.2.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\8ed557e349bb15e8ca22849012157774\play-services-stats-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-stats:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\8ed557e349bb15e8ca22849012157774\play-services-stats-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\ade17d36688a3a7c2d97e38ff47dbf03\firebase-measurement-connector-18.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-measurement-connector:18.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\ade17d36688a3a7c2d97e38ff47dbf03\firebase-measurement-connector-18.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\bff5742b9b3e18165974b4fef727b7bf\play-services-ads-identifier-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-ads-identifier:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\bff5742b9b3e18165974b4fef727b7bf\play-services-ads-identifier-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\9b40fa0f91d0d7f465007eaf95d9c8c3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\9b40fa0f91d0d7f465007eaf95d9c8c3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\8ff787912e1d2695084da0837e3db8d7\fragment-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\8ff787912e1d2695084da0837e3db8d7\fragment-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\180f69338c9541a49e644952929d29ad\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\180f69338c9541a49e644952929d29ad\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\d7ce7fb8210d444c0cdd9ebe64eafd09\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\d7ce7fb8210d444c0cdd9ebe64eafd09\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0a2c8dc3dcf0276eab34fc5072ed9f86\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0a2c8dc3dcf0276eab34fc5072ed9f86\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\27f99ff7d258e1b72e1d50f6e6586102\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\27f99ff7d258e1b72e1d50f6e6586102\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4db40d581d2af1bddf33ac8cf6e3b9dd\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4db40d581d2af1bddf33ac8cf6e3b9dd\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a55f8363fe1fb2ec808d210431c1ceba\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a55f8363fe1fb2ec808d210431c1ceba\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4afc43297cf7cbad276ea437cd03c808\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4afc43297cf7cbad276ea437cd03c808\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\b8f182c645fed4d755cb0b60bf9fa035\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\b8f182c645fed4d755cb0b60bf9fa035\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0b49d2118fa99241d75d95708ae8dc32\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0b49d2118fa99241d75d95708ae8dc32\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\46a326c071af869985ac95ff9788f1ae\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\46a326c071af869985ac95ff9788f1ae\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\38374455619aaf29947093e78ad1e879\core-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\38374455619aaf29947093e78ad1e879\core-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\21fdcb7b7c7380b04c28b936cc4288fc\lifecycle-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\21fdcb7b7c7380b04c28b936cc4288fc\lifecycle-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\5d1b81f9a875e45553e6980aeaa6d24a\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\5d1b81f9a875e45553e6980aeaa6d24a\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a6cc0eac4bfd9ba14606e303db45046e\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a6cc0eac4bfd9ba14606e303db45046e\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f15511674198cb839e903d8eb80d9bef\jetified-firebase-components-16.0.0\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-components:16.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f15511674198cb839e903d8eb80d9bef\jetified-firebase-components-16.0.0\AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\1316548f539910f244328db11148015d\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\1316548f539910f244328db11148015d\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\e14a2843fa5a176f900666fa086b6263\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\e14a2843fa5a176f900666fa086b6263\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\08bbbcd409457979df8dcd72c215ef00\lifecycle-viewmodel-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\08bbbcd409457979df8dcd72c215ef00\lifecycle-viewmodel-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\5aae3aa230c06ce193cb7d64e38b5ab0\versionedparcelable-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\5aae3aa230c06ce193cb7d64e38b5ab0\versionedparcelable-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\26feb68d3e0710c7c8b28305c74f64e5\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\26feb68d3e0710c7c8b28305c74f64e5\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\3639c759ee8b862c210bc7acca18bc44\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\3639c759ee8b862c210bc7acca18bc44\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\210427efcfefdacd1c1f7030808d8b2b\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\210427efcfefdacd1c1f7030808d8b2b\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2e3d3fd2baa5f7a3437cc974c079fee6\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2e3d3fd2baa5f7a3437cc974c079fee6\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a9557ff5686587c5f78318c30f36cae9\grpc-android-1.21.0\AndroidManifest.xml:7:5-9:41
+MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a9557ff5686587c5f78318c30f36cae9\grpc-android-1.21.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.9] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f1fbaaaea782b5965b3f850856282965\crashlytics-2.9.9\AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.9] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f1fbaaaea782b5965b3f850856282965\crashlytics-2.9.9\AndroidManifest.xml:7:5-43
+MERGED from [com.google.firebase:protolite-well-known-types:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\6fe9aba7f10c337cf61d7aaad8436055\protolite-well-known-types-17.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:protolite-well-known-types:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\6fe9aba7f10c337cf61d7aaad8436055\protolite-well-known-types-17.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.8] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\17700f70d8fa235e92660ff23d5fb62d\crashlytics-core-2.6.8\AndroidManifest.xml:50:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.8] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\17700f70d8fa235e92660ff23d5fb62d\crashlytics-core-2.6.8\AndroidManifest.xml:50:5-43
+MERGED from [com.crashlytics.sdk.android:answers:1.4.7] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\064b5a8512a38d43223d48877883e617\jetified-answers-1.4.7\AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:answers:1.4.7] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\064b5a8512a38d43223d48877883e617\jetified-answers-1.4.7\AndroidManifest.xml:7:5-43
+MERGED from [io.fabric.sdk.android:fabric:1.4.8] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\02eabae41e2c2e1b34605facfe01ea5b\fabric-1.4.8\AndroidManifest.xml:27:5-43
+MERGED from [io.fabric.sdk.android:fabric:1.4.8] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\02eabae41e2c2e1b34605facfe01ea5b\fabric-1.4.8\AndroidManifest.xml:27:5-43
+MERGED from [com.crashlytics.sdk.android:beta:1.2.10] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f30b9ee328ff11c5c605007e4d593fa\beta-1.2.10\AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:beta:1.2.10] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f30b9ee328ff11c5c605007e4d593fa\beta-1.2.10\AndroidManifest.xml:7:5-43
+MERGED from [com.google.firebase:firebase-database-collection:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\835ad1f0ea342c8013bfa38f0ac4620d\firebase-database-collection-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-database-collection:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\835ad1f0ea342c8013bfa38f0ac4620d\firebase-database-collection-17.0.0\AndroidManifest.xml:5:5-44
+INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\debug\AndroidManifest.xml
+INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\debug\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\debug\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\debug\AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\debug\AndroidManifest.xml:6:5-66
+MERGED from [:google_sign_in] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-67
+MERGED from [:google_sign_in] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\google_sign_in\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-67
+MERGED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-67
+MERGED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-67
+MERGED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-67
+MERGED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-67
+MERGED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:22:5-67
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:22:5-67
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:22:5-67
+MERGED from [com.google.firebase:firebase-config:19.0.4] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\7aca904935200450685d9a287aca23a1\firebase-config-19.0.4\AndroidManifest.xml:26:5-67
+MERGED from [com.google.firebase:firebase-config:19.0.4] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\7aca904935200450685d9a287aca23a1\firebase-config-19.0.4\AndroidManifest.xml:26:5-67
+MERGED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2641449fc7d30ddeaa55bc51253909d8\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:14:5-67
+MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2641449fc7d30ddeaa55bc51253909d8\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:14:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\e40cb5360647cd4af05a950936a505cf\play-services-measurement-sdk-api-17.2.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\e40cb5360647cd4af05a950936a505cf\play-services-measurement-sdk-api-17.2.0\AndroidManifest.xml:23:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.9] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f1fbaaaea782b5965b3f850856282965\crashlytics-2.9.9\AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.9] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f1fbaaaea782b5965b3f850856282965\crashlytics-2.9.9\AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.8] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\17700f70d8fa235e92660ff23d5fb62d\crashlytics-core-2.6.8\AndroidManifest.xml:52:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.8] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\17700f70d8fa235e92660ff23d5fb62d\crashlytics-core-2.6.8\AndroidManifest.xml:52:5-67
+MERGED from [com.crashlytics.sdk.android:answers:1.4.7] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\064b5a8512a38d43223d48877883e617\jetified-answers-1.4.7\AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:answers:1.4.7] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\064b5a8512a38d43223d48877883e617\jetified-answers-1.4.7\AndroidManifest.xml:9:5-67
+MERGED from [io.fabric.sdk.android:fabric:1.4.8] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\02eabae41e2c2e1b34605facfe01ea5b\fabric-1.4.8\AndroidManifest.xml:29:5-67
+MERGED from [io.fabric.sdk.android:fabric:1.4.8] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\02eabae41e2c2e1b34605facfe01ea5b\fabric-1.4.8\AndroidManifest.xml:29:5-67
+MERGED from [com.crashlytics.sdk.android:beta:1.2.10] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f30b9ee328ff11c5c605007e4d593fa\beta-1.2.10\AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:beta:1.2.10] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f30b9ee328ff11c5c605007e4d593fa\beta-1.2.10\AndroidManifest.xml:9:5-67
+	android:name
+		ADDED from C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\android\app\src\debug\AndroidManifest.xml:6:22-64
+service#com.google.firebase.components.ComponentDiscoveryService
+ADDED from [:firebase_crashlytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_crashlytics\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_auth] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_auth] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:cloud_firestore] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:cloud_firestore] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_core] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:10:9-14:19
+MERGED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:10:9-14:19
+MERGED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:13:9-17:19
+MERGED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:13:9-17:19
+MERGED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-16:19
+MERGED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-16:19
+MERGED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:31:9-37:19
+MERGED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:31:9-37:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:27:9-33:19
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:27:9-33:19
+MERGED from [com.google.firebase:firebase-config:19.0.4] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\7aca904935200450685d9a287aca23a1\firebase-config-19.0.4\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-config:19.0.4] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\7aca904935200450685d9a287aca23a1\firebase-config-19.0.4\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2641449fc7d30ddeaa55bc51253909d8\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:17:9-23:19
+MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2641449fc7d30ddeaa55bc51253909d8\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:17:9-23:19
+MERGED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:33:9-39:19
+MERGED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:33:9-39:19
+MERGED from [com.google.firebase:firebase-abt:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\d81e71b56c848fe9fb12dbe90c5895f8\firebase-abt-19.0.0\AndroidManifest.xml:12:9-16:19
+MERGED from [com.google.firebase:firebase-abt:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\d81e71b56c848fe9fb12dbe90c5895f8\firebase-abt-19.0.0\AndroidManifest.xml:12:9-16:19
+MERGED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f6dfec93c340cb91059c968736fc3b3\jetified-firebase-common-19.3.0\AndroidManifest.xml:32:9-36:35
+MERGED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f6dfec93c340cb91059c968736fc3b3\jetified-firebase-common-19.3.0\AndroidManifest.xml:32:9-36:35
+	android:exported
+		ADDED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:33:13-37
+	tools:targetApi
+		ADDED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f6dfec93c340cb91059c968736fc3b3\jetified-firebase-common-19.3.0\AndroidManifest.xml:36:13-32
+	android:directBootAware
+		ADDED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f6dfec93c340cb91059c968736fc3b3\jetified-firebase-common-19.3.0\AndroidManifest.xml:34:13-43
+	android:name
+		ADDED from [:firebase_crashlytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_crashlytics\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-89
+meta-data#com.google.firebase.components:io.flutter.plugins.firebase.crashlytics.firebasecrashlytics.FlutterFirebaseAppRegistrar
+ADDED from [:firebase_crashlytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_crashlytics\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+	android:value
+		ADDED from [:firebase_crashlytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_crashlytics\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+	android:name
+		ADDED from [:firebase_crashlytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_crashlytics\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-150
+meta-data#com.google.firebase.components:io.flutter.plugins.firebaseauth.FlutterFirebaseAppRegistrar
+ADDED from [:firebase_auth] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+	android:value
+		ADDED from [:firebase_auth] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+	android:name
+		ADDED from [:firebase_auth] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-122
+meta-data#com.google.firebase.components:io.flutter.plugins.firebase.cloudfirestore.FlutterFirebaseAppRegistrar
+ADDED from [:cloud_firestore] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+	android:value
+		ADDED from [:cloud_firestore] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+	android:name
+		ADDED from [:cloud_firestore] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-133
+meta-data#com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar
+ADDED from [:firebase_core] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+	android:value
+		ADDED from [:firebase_core] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+	android:name
+		ADDED from [:firebase_core] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-123
+meta-data#com.google.firebase.components:io.flutter.plugins.firebaseperformance.FlutterFirebaseAppRegistrar
+ADDED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-13:85
+	android:value
+		ADDED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:13:17-82
+	android:name
+		ADDED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:12:17-129
+service#io.flutter.plugins.firebasemessaging.FlutterFirebaseMessagingService
+ADDED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+	android:name
+		ADDED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-101
+intent-filter#action:name:com.google.firebase.MESSAGING_EVENT
+ADDED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:29
+action#com.google.firebase.MESSAGING_EVENT
+ADDED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-78
+	android:name
+		ADDED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:10:25-75
+meta-data#com.google.firebase.components:io.flutter.plugins.firebasemessaging.FlutterFirebaseAppRegistrar
+ADDED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-16:85
+	android:value
+		ADDED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:16:17-82
+	android:name
+		ADDED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-127
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:7:5-79
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:23:5-79
+MERGED from [com.google.firebase:firebase-config:19.0.4] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\7aca904935200450685d9a287aca23a1\firebase-config-19.0.4\AndroidManifest.xml:25:5-79
+MERGED from [com.google.firebase:firebase-config:19.0.4] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\7aca904935200450685d9a287aca23a1\firebase-config-19.0.4\AndroidManifest.xml:25:5-79
+MERGED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:22:5-79
+MERGED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:22:5-79
+MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2641449fc7d30ddeaa55bc51253909d8\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:13:5-79
+MERGED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2641449fc7d30ddeaa55bc51253909d8\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:13:5-79
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\e40cb5360647cd4af05a950936a505cf\play-services-measurement-sdk-api-17.2.0\AndroidManifest.xml:24:5-79
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\e40cb5360647cd4af05a950936a505cf\play-services-measurement-sdk-api-17.2.0\AndroidManifest.xml:24:5-79
+MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a9557ff5686587c5f78318c30f36cae9\grpc-android-1.21.0\AndroidManifest.xml:11:5-79
+MERGED from [io.grpc:grpc-android:1.21.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\a9557ff5686587c5f78318c30f36cae9\grpc-android-1.21.0\AndroidManifest.xml:11:5-79
+	android:name
+		ADDED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:7:22-76
+uses-permission#android.permission.WAKE_LOCK
+ADDED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:9:5-68
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:24:5-68
+MERGED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:24:5-68
+MERGED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:24:5-68
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\e40cb5360647cd4af05a950936a505cf\play-services-measurement-sdk-api-17.2.0\AndroidManifest.xml:25:5-68
+MERGED from [com.google.android.gms:play-services-measurement-sdk-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\e40cb5360647cd4af05a950936a505cf\play-services-measurement-sdk-api-17.2.0\AndroidManifest.xml:25:5-68
+	android:name
+		ADDED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:9:22-65
+meta-data#com.google.firebase.components:io.flutter.plugins.firebaseanalytics.FlutterFirebaseAppRegistrar
+ADDED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-15:85
+	android:value
+		ADDED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:15:17-82
+	android:name
+		ADDED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:14:17-127
+provider#com.google.firebase.perf.provider.FirebasePerfProvider
+ADDED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:25:9-29:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:27:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:28:13-37
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:29:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:26:13-82
+meta-data#com.google.firebase.components:com.google.firebase.perf.FirebasePerfRegistrar
+ADDED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:34:13-36:85
+	android:value
+		ADDED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:36:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:35:17-109
+uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:26:5-110
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:26:5-110
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:26:5-110
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:26:22-107
+receiver#com.google.android.gms.measurement.AppMeasurementReceiver
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:29:9-33:20
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:31:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:32:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:30:13-85
+receiver#com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:34:9-42:20
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:29:9-37:20
+MERGED from [com.google.android.gms:play-services-measurement-impl:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f65aebbbf63006c70930d241881dd1b2\play-services-measurement-impl-17.2.0\AndroidManifest.xml:29:9-37:20
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:36:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:37:13-36
+	android:permission
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:38:13-69
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:35:13-100
+intent-filter#action:name:com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:39:13-41:29
+action#com.android.vending.INSTALL_REFERRER
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:40:17-79
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:40:25-76
+service#com.google.android.gms.measurement.AppMeasurementService
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:44:9-47:40
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:46:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:47:13-37
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:45:13-84
+service#com.google.android.gms.measurement.AppMeasurementJobService
+ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:48:9-52:72
+	android:enabled
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:50:13-35
+	android:exported
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:51:13-37
+	android:permission
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:52:13-69
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:49:13-87
+meta-data#com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar
+ADDED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:30:13-32:85
+	android:value
+		ADDED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:32:17-82
+	android:name
+		ADDED from [com.google.android.gms:play-services-measurement-api:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\cd85e24145bf2b19558b44b5bf7fc2d2\play-services-measurement-api-17.2.0\AndroidManifest.xml:31:17-139
+meta-data#com.google.firebase.components:com.google.firebase.remoteconfig.RemoteConfigRegistrar
+ADDED from [com.google.firebase:firebase-config:19.0.4] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\7aca904935200450685d9a287aca23a1\firebase-config-19.0.4\AndroidManifest.xml:32:13-34:85
+	android:value
+		ADDED from [com.google.firebase:firebase-config:19.0.4] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\7aca904935200450685d9a287aca23a1\firebase-config-19.0.4\AndroidManifest.xml:34:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-config:19.0.4] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\7aca904935200450685d9a287aca23a1\firebase-config-19.0.4\AndroidManifest.xml:33:17-117
+service#com.google.firebase.messaging.FirebaseMessagingService
+ADDED from [com.google.firebase:firebase-messaging:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\31853ae8975fe3cde1016d8ae57847a1\jetified-firebase-messaging-20.0.1\AndroidManifest.xml:28:9-34:19
+	android:exported
+		ADDED from [com.google.firebase:firebase-messaging:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\31853ae8975fe3cde1016d8ae57847a1\jetified-firebase-messaging-20.0.1\AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [com.google.firebase:firebase-messaging:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\31853ae8975fe3cde1016d8ae57847a1\jetified-firebase-messaging-20.0.1\AndroidManifest.xml:29:13-82
+uses-permission#com.google.android.c2dm.permission.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:26:5-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:26:22-79
+meta-data#com.google.firebase.components:com.google.firebase.iid.Registrar
+ADDED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:32:13-34:85
+	android:value
+		ADDED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:34:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:33:17-96
+receiver#com.google.firebase.iid.FirebaseInstanceIdReceiver
+ADDED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:37:9-44:20
+	android:exported
+		ADDED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:39:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:40:13-73
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:38:13-78
+intent-filter#action:name:com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:41:13-43:29
+action#com.google.android.c2dm.intent.RECEIVE
+ADDED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:42:17-81
+	android:name
+		ADDED from [com.google.firebase:firebase-iid:20.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f81f8ea6c3850e9345c94b0b276cc941\firebase-iid-20.0.1\AndroidManifest.xml:42:25-78
+meta-data#com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar
+ADDED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2641449fc7d30ddeaa55bc51253909d8\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:20:13-22:85
+	android:value
+		ADDED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2641449fc7d30ddeaa55bc51253909d8\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:22:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-firestore:21.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2641449fc7d30ddeaa55bc51253909d8\jetified-firebase-firestore-21.3.0\AndroidManifest.xml:21:17-111
+activity#com.google.firebase.auth.internal.FederatedSignInActivity
+ADDED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:24:9-31:50
+	android:excludeFromRecents
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:26:13-46
+	android:launchMode
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:28:13-44
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:27:13-36
+	android:permission
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:29:13-102
+	android:theme
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:30:13-72
+	tools:replace
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:31:13-47
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:25:13-85
+meta-data#com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar
+ADDED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:36:13-38:85
+	android:value
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:38:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:19.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\fe7084eec0ac82837f165e71f055d89d\firebase-auth-19.2.0\AndroidManifest.xml:37:17-109
+meta-data#com.google.firebase.components:com.google.firebase.abt.component.AbtRegistrar
+ADDED from [com.google.firebase:firebase-abt:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\d81e71b56c848fe9fb12dbe90c5895f8\firebase-abt-19.0.0\AndroidManifest.xml:13:13-15:85
+	android:value
+		ADDED from [com.google.firebase:firebase-abt:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\d81e71b56c848fe9fb12dbe90c5895f8\firebase-abt-19.0.0\AndroidManifest.xml:15:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-abt:19.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\d81e71b56c848fe9fb12dbe90c5895f8\firebase-abt-19.0.0\AndroidManifest.xml:14:17-109
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f6dfec93c340cb91059c968736fc3b3\jetified-firebase-common-19.3.0\AndroidManifest.xml:26:9-30:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f6dfec93c340cb91059c968736fc3b3\jetified-firebase-common-19.3.0\AndroidManifest.xml:28:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f6dfec93c340cb91059c968736fc3b3\jetified-firebase-common-19.3.0\AndroidManifest.xml:29:13-37
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f6dfec93c340cb91059c968736fc3b3\jetified-firebase-common-19.3.0\AndroidManifest.xml:30:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-common:19.3.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\4f6dfec93c340cb91059c968736fc3b3\jetified-firebase-common-19.3.0\AndroidManifest.xml:27:13-77
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:16.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\79b011c3b7e20f19a699c5a5e12de14a\jetified-play-services-auth-16.0.1\AndroidManifest.xml:23:9-27:75
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:16.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\79b011c3b7e20f19a699c5a5e12de14a\jetified-play-services-auth-16.0.1\AndroidManifest.xml:25:13-46
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:16.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\79b011c3b7e20f19a699c5a5e12de14a\jetified-play-services-auth-16.0.1\AndroidManifest.xml:26:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:16.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\79b011c3b7e20f19a699c5a5e12de14a\jetified-play-services-auth-16.0.1\AndroidManifest.xml:27:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:16.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\79b011c3b7e20f19a699c5a5e12de14a\jetified-play-services-auth-16.0.1\AndroidManifest.xml:24:13-93
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:16.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\79b011c3b7e20f19a699c5a5e12de14a\jetified-play-services-auth-16.0.1\AndroidManifest.xml:33:9-36:110
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:16.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\79b011c3b7e20f19a699c5a5e12de14a\jetified-play-services-auth-16.0.1\AndroidManifest.xml:35:13-36
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:16.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\79b011c3b7e20f19a699c5a5e12de14a\jetified-play-services-auth-16.0.1\AndroidManifest.xml:36:13-107
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:16.0.1] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\79b011c3b7e20f19a699c5a5e12de14a\jetified-play-services-auth-16.0.1\AndroidManifest.xml:34:13-89
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\95589446422a82a4c8e66884d430dfdc\play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\95589446422a82a4c8e66884d430dfdc\play-services-base-17.1.0\AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\95589446422a82a4c8e66884d430dfdc\play-services-base-17.1.0\AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:17.1.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\95589446422a82a4c8e66884d430dfdc\play-services-base-17.1.0\AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\9b40fa0f91d0d7f465007eaf95d9c8c3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\9b40fa0f91d0d7f465007eaf95d9c8c3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:17.0.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\9b40fa0f91d0d7f465007eaf95d9c8c3\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+provider#com.crashlytics.android.CrashlyticsInitProvider
+ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.9] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f1fbaaaea782b5965b3f850856282965\crashlytics-2.9.9\AndroidManifest.xml:12:9-16:38
+	android:authorities
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.9] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f1fbaaaea782b5965b3f850856282965\crashlytics-2.9.9\AndroidManifest.xml:14:13-75
+	android:exported
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.9] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f1fbaaaea782b5965b3f850856282965\crashlytics-2.9.9\AndroidManifest.xml:15:13-37
+	android:initOrder
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.9] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f1fbaaaea782b5965b3f850856282965\crashlytics-2.9.9\AndroidManifest.xml:16:13-35
+	android:name
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.9.9] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\f1fbaaaea782b5965b3f850856282965\crashlytics-2.9.9\AndroidManifest.xml:13:13-75
