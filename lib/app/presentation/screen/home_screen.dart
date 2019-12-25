@@ -1,5 +1,6 @@
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
+import 'package:bitplus/app/presentation/widgets/habit_tile.dart';
 import 'package:bitplus/app/presentation/widgets/loading_indicator.dart';
 import 'package:bitplus/core/router/router.gr.dart';
 import 'package:built_collection/built_collection.dart';
@@ -58,9 +59,14 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         ],
-        child: BlocBuilder<HabitListStatusBloc, HabitListStatusState>(
-          builder: (context, state) =>
-              _buildHabitListStatusBloc(context, state),
+        child: Column(
+          children: <Widget>[
+            Text('${DateTime.now()}'),
+            BlocBuilder<HabitListStatusBloc, HabitListStatusState>(
+              builder: (context, state) =>
+                  _buildHabitListStatusBloc(context, state),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -88,80 +94,15 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       habitListStatusSuccess: (_) =>
           BlocBuilder<HabitListBloc, BuiltList<HabitApi>>(
-        builder: (context, state) => SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: state.isEmpty
-                ? Text('No habit yet created')
-                : Column(
-                    children: state
-                        .map(
-                          (habit) => Card(
-                            margin:
-                                const EdgeInsets.only(bottom: 24.0, top: 12.0),
-                            elevation: 12.0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0,
-                                vertical: 6.0,
-                              ),
-                              child: Stack(
-                                children: [
-                                  LayoutBuilder(
-                                    builder: (context, constraints) =>
-                                        Container(
-                                      color:
-                                          Color(habit.color).withOpacity(0.15),
-                                      height: 10,
-                                      width: constraints.maxWidth *
-                                          habit.value /
-                                          21,
-                                    ),
-                                  ),
-                                  ListTile(
-                                    title: Text('${habit.name}'),
-                                    subtitle: Text('${habit.habitID}'),
-                                    trailing: InkWell(
-                                      onTap: () {
-                                        if (habit.checked) {
-                                          BlocProvider.of<HabitListBloc>(
-                                                  context)
-                                              .add(
-                                            HabitListEvent.habitListCheck(
-                                              habitID: habit.habitID,
-                                            ),
-                                          );
-                                        } else {
-                                          BlocProvider.of<HabitListBloc>(
-                                                  context)
-                                              .add(
-                                            HabitListEvent.habitListUncheck(
-                                              habitID: habit.habitID,
-                                            ),
-                                          );
-                                        }
-                                      },
-                                      child: CircleAvatar(
-                                        backgroundColor: Color(habit.color),
-                                        child: Icon(
-                                          habit.checked
-                                              ? Icons.check
-                                              : Icons.cached,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList(),
+        builder: (context, state) => Expanded(
+          child: state.isEmpty
+              ? Text('No habit yet created')
+              : ListView.builder(
+                  itemCount: state.length,
+                  itemBuilder: (context, index) => HabitTile(
+                    habit: state[index],
                   ),
-          ),
+                ),
         ),
       ),
     );

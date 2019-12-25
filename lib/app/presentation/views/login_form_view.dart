@@ -2,7 +2,6 @@ import 'package:bitplus/app/data/models/init_life_area.dart';
 import 'package:bitplus/app/data/models/init_login_form.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/app/presentation/widgets/text_input_field.dart';
-import 'package:bitplus/core/router/router.gr.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
