@@ -1,4 +1,8 @@
 import 'dart:async';
+import 'package:bitplus/app/domain/usecases/habit/check_habit.dart' as ch;
+import 'package:bitplus/app/domain/usecases/habit/uncheck_habit.dart' as uch;
+import 'package:bitplus/core/error/failures.dart';
+import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bloc/bloc.dart';
@@ -11,9 +15,13 @@ import './bloc.dart';
 /// Initially empty
 class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
   final AuthBloc authBloc;
+  final ch.CheckHabit checkHabit;
+  final uch.UncheckHabit uncheckHabit;
 
   HabitListBloc({
     @required this.authBloc,
+    @required this.checkHabit,
+    @required this.uncheckHabit,
   });
 
   @override
@@ -25,6 +33,7 @@ class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
   ) async* {
     yield* event.when(
       habitListFetched: (e) => _mapHabitListFetched(e.habitList),
+      habitListAddCreated: (e) => _mapHabitListAddCreated(e.habit),
       habitListCheck: (e) => checkUserLogged(
         authBloc.state,
         _mapHabitListCheck,
@@ -36,9 +45,6 @@ class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
         _mapHabitListUncheck,
         e,
         state,
-      ),
-      habitListAddCreated: (e) => _mapHabitListAddCreated(
-        e.habit,
       ),
     );
   }
@@ -52,12 +58,64 @@ class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
   Stream<BuiltList<HabitApi>> _mapHabitListUncheck(
     HabitListUncheck event,
     String uid,
-  ) async* {}
+  ) async* {
+    yield* _mapCheckToggle(
+      false,
+      event.habitID,
+      () => uncheckHabit(
+        uch.Params(
+          uid: uid,
+          habitID: event.habitID,
+        ),
+      ),
+    );
+  }
 
   Stream<BuiltList<HabitApi>> _mapHabitListCheck(
     HabitListCheck event,
     String uid,
-  ) async* {}
+  ) async* {
+    yield* _mapCheckToggle(
+      true,
+      event.habitID,
+      () => checkHabit(
+        ch.Params(
+          uid: uid,
+          habitID: event.habitID,
+        ),
+      ),
+    );
+  }
+
+  Stream<BuiltList<HabitApi>> _mapCheckToggle(
+    bool checked,
+    String habitID,
+    Future<Either<Failure, void>> Function() fun,
+  ) async* {
+    final stateBackup = state;
+
+    yield BuiltList<HabitApi>(
+      state.map(
+        (h) => h.habitID == habitID
+            ? h.rebuild(
+                (r) => r..checked = checked,
+              )
+            : h,
+      ),
+    );
+
+    final failOrHabit = await fun();
+
+    yield* failOrHabit.fold(
+      (failure) async* {
+        // TODO: Signal error to the user somehow
+        yield stateBackup;
+      },
+      (_) async* {
+        // TODO: Success, signal success?
+      },
+    );
+  }
 
   Stream<BuiltList<HabitApi>> _mapHabitListAddCreated(HabitApi habit) async* {
     yield BuiltList(

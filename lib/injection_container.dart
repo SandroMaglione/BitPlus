@@ -67,6 +67,8 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton<HabitListBloc>(
     () => HabitListBloc(
       authBloc: serviceLocator(),
+      checkHabit: serviceLocator(),
+      uncheckHabit: serviceLocator(),
     ),
   );
 

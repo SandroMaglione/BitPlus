@@ -61,7 +61,24 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         child: Column(
           children: <Widget>[
-            Text('${DateTime.now()}'),
+            Container(
+              color: Colors.purple[300],
+              padding: const EdgeInsets.all(
+                6.0,
+              ),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    '${DateTime.now().day}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  Text('${DateTime.now().month} / ${DateTime.now().year}'),
+                ],
+              ),
+            ),
             BlocBuilder<HabitListStatusBloc, HabitListStatusState>(
               builder: (context, state) =>
                   _buildHabitListStatusBloc(context, state),

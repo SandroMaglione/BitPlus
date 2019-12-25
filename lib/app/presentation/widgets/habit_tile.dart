@@ -18,6 +18,7 @@ class HabitTile extends StatelessWidget {
         horizontal: 30.0,
       ),
       child: Card(
+        color: habit.checked ? Color(habit.color).withOpacity(0.12) : null,
         margin: const EdgeInsets.only(bottom: 24.0, top: 12.0),
         elevation: 6.0,
         shape: RoundedRectangleBorder(
@@ -39,13 +40,13 @@ class HabitTile extends StatelessWidget {
               onTap: () {
                 if (habit.checked) {
                   BlocProvider.of<HabitListBloc>(context).add(
-                    HabitListEvent.habitListCheck(
+                    HabitListEvent.habitListUncheck(
                       habitID: habit.habitID,
                     ),
                   );
                 } else {
                   BlocProvider.of<HabitListBloc>(context).add(
-                    HabitListEvent.habitListUncheck(
+                    HabitListEvent.habitListCheck(
                       habitID: habit.habitID,
                     ),
                   );
