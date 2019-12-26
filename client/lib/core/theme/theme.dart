@@ -12,7 +12,7 @@ final ThemeData themeData = ThemeData(
   scaffoldBackgroundColor: SCAFFOLD_COLOR,
   appBarTheme: AppBarTheme(
     elevation: 0.0,
-    color: WHITE,
+    color: ACCENT_COLOR_LIGHT,
   ),
   buttonTheme: ButtonThemeData(
     buttonColor: BUTTON_COLOR,

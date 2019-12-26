@@ -30,10 +30,22 @@ class HabitTile extends StatelessWidget {
           ),
           backgroundColor: SCAFFOLD_COLOR,
         ),
-        leftContent: Container(),
+        leftContent: CircleAvatar(
+          child: Icon(
+            Icons.update,
+            color: ACCENT_COLOR_DARK,
+          ),
+          backgroundColor: SCAFFOLD_COLOR,
+        ),
         animationDuration: Duration(
           milliseconds: 900,
         ),
+        onSlideToRight: () {
+          Navigator.of(context).pushNamed(
+            Router.updateHabitScreen,
+            arguments: habit,
+          );
+        },
         onSlideToLeft: () => _toggleCheck(context),
         child: Card(
           color: habit.checked ? Color(habit.color) : null,
@@ -53,15 +65,6 @@ class HabitTile extends StatelessWidget {
             child: ListTile(
               title: Text('${habit.name}'),
               subtitle: Text('${habit.habitID}'),
-              leading: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(
-                    Router.updateHabitScreen,
-                    arguments: habit,
-                  );
-                },
-                icon: Icon(Icons.update),
-              ),
               trailing: habit.checked
                   ? CircleAvatar(
                       child: Icon(

@@ -5,12 +5,12 @@ class SlideActionTile extends StatefulWidget {
   final Widget child;
 
   /// Content displayed when slided from right to left
-  /// 
+  ///
   /// Default is [Icon]
   final Widget rightContent;
 
   /// Content displayed when slided from left to right
-  /// 
+  ///
   /// Default is [Icon]
   final Widget leftContent;
 
@@ -28,7 +28,7 @@ class SlideActionTile extends StatefulWidget {
 
   /// Duration of the transition when tile released
   ///
-  /// Deafult time is [600] milliseconds
+  /// Deafult time is [900] milliseconds
   final Duration animationDuration;
 
   /// Animation curve of the transition when tile released
@@ -52,7 +52,7 @@ class SlideActionTile extends StatefulWidget {
     this.onSlideToRight,
     this.animationCurve = Curves.elasticOut,
     this.animationDuration = const Duration(
-      milliseconds: 600,
+      milliseconds: 900,
     ),
   });
 
@@ -60,14 +60,9 @@ class SlideActionTile extends StatefulWidget {
   _SlideActionTileState createState() => _SlideActionTileState();
 }
 
+/// Manages the [Animation] of the tile
 class _SlideActionTileState extends State<SlideActionTile>
     with SingleTickerProviderStateMixin {
-  double _startPress = 0;
-  double _currentPress = 0;
-  bool _isMoving = false;
-  bool _isTriggeredOnLeft = false;
-  bool _isTriggeredOnRight = false;
-
   Animation<double> _animation;
   Tween<double> _tween;
   AnimationController _animController;
@@ -81,47 +76,19 @@ class _SlideActionTileState extends State<SlideActionTile>
 
   @override
   Widget build(BuildContext context) {
-    final w = MediaQuery.of(context).size.width;
+    // Update animation duration and curve on rebuild
     _animController.duration = widget.animationDuration;
     _curvedAnimation.curve = widget.animationCurve;
 
-    return GestureDetector(
-      onHorizontalDragUpdate: (details) {
-        setState(() {
-          _currentPress = details.localPosition.dx;
-          _isTriggeredOnRight =
-              _currentPress - _startPress > w * widget.triggerSlideAmount;
-          _isTriggeredOnLeft =
-              _startPress - _currentPress > w * widget.triggerSlideAmount;
-        });
-      },
-      onHorizontalDragStart: (details) {
-        setState(() {
-          _startPress = details.localPosition.dx;
-          _currentPress = details.localPosition.dx;
-          _isMoving = true;
-        });
-      },
-      onHorizontalDragEnd: (_) {
-        _resetAnimation();
-        _triggerSlideAction();
-
-        setState(() {
-          _isMoving = false;
-          _isTriggeredOnLeft = false;
-          _isTriggeredOnRight = false;
-        });
-      },
-      child: AnimatedContent(
-        isTriggeredOnLeft: _isTriggeredOnLeft,
-        isTriggeredOnRight: _isTriggeredOnRight,
-        translatePosition: _currentPress - _startPress,
-        child: widget.child,
-        isMoving: _isMoving,
-        animation: _animation,
-        leftContent: widget.leftContent,
-        rightContent: widget.rightContent,
-      ),
+    return SlideAnimationController(
+      child: widget.child,
+      animation: _animation,
+      animationReset: _resetAnimation,
+      leftContent: widget.leftContent,
+      rightContent: widget.rightContent,
+      onSlideToLeft: widget.onSlideToLeft,
+      onSlideToRight: widget.onSlideToRight,
+      triggerSlideAmount: widget.triggerSlideAmount,
     );
   }
 
@@ -138,13 +105,129 @@ class _SlideActionTileState extends State<SlideActionTile>
     );
 
     _tween = Tween(
-      begin: _currentPress - _startPress,
+      begin: 0,
       end: 0,
     );
 
     _animation = _tween.animate(
       _curvedAnimation,
     );
+  }
+
+  /// Reset and repeat the animation every slide
+  void _resetAnimation(double animationBegin) {
+    _animController.reset();
+    _tween.begin = animationBegin;
+    _animController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animController.dispose();
+    super.dispose();
+  }
+}
+
+/// Manages the gesture using a [GestureDetector]
+class SlideAnimationController extends StatefulWidget {
+  final Widget child;
+
+  final Widget rightContent;
+  final Widget leftContent;
+
+  final Function onSlideToRight;
+  final Function onSlideToLeft;
+
+  final double triggerSlideAmount;
+
+  final void Function(double animationBegin) animationReset;
+  final Animation<double> animation;
+
+  const SlideAnimationController({
+    @required this.child,
+    @required this.animationReset,
+    @required this.animation,
+    @required this.triggerSlideAmount,
+    @required this.leftContent,
+    @required this.rightContent,
+    @required this.onSlideToLeft,
+    @required this.onSlideToRight,
+  });
+
+  @override
+  _SlideAnimationControllerState createState() =>
+      _SlideAnimationControllerState();
+}
+
+class _SlideAnimationControllerState extends State<SlideAnimationController>
+    with SingleTickerProviderStateMixin {
+  double _startPress = 0;
+  double _currentPress = 0;
+  bool _isMoving = false;
+  bool _isTriggeredOnLeft = false;
+  bool _isTriggeredOnRight = false;
+
+  double get translatePosition => _currentPress - _startPress;
+
+  @override
+  Widget build(BuildContext context) {
+    final w = MediaQuery.of(context).size.width;
+
+    return GestureDetector(
+      onHorizontalDragUpdate: (details) => _horizontalDragUpdate(
+        details,
+        w,
+      ),
+      onHorizontalDragStart: _horizontalDragStart,
+      onHorizontalDragEnd: _horizontalDragEnd,
+      child: AnimatedContent(
+        child: widget.child,
+        translatePosition: translatePosition,
+        isTriggeredOnLeft: _isTriggeredOnLeft,
+        isTriggeredOnRight: _isTriggeredOnRight,
+        leftContent: widget.leftContent,
+        rightContent: widget.rightContent,
+        isMoving: _isMoving,
+        animation: widget.animation,
+      ),
+    );
+  }
+
+  /// Trigger animation and actions
+  ///
+  /// Reset [_isTriggeredOnLeft], [_isTriggeredOnRight], and [_isMoving] to false
+  void _horizontalDragEnd(DragEndDetails details) {
+    widget.animationReset(translatePosition);
+    _triggerSlideAction();
+
+    setState(() {
+      _isMoving = false;
+      _isTriggeredOnLeft = false;
+      _isTriggeredOnRight = false;
+    });
+  }
+
+  /// Initialize [_startPress], and [_isMoving] true
+  void _horizontalDragStart(DragStartDetails details) {
+    setState(() {
+      _startPress = details.localPosition.dx;
+      _currentPress = details.localPosition.dx;
+      _isMoving = true;
+    });
+  }
+
+  /// Update position and check triggers
+  void _horizontalDragUpdate(
+    DragUpdateDetails details,
+    double screenWidth,
+  ) {
+    setState(() {
+      _currentPress = details.localPosition.dx;
+      _isTriggeredOnRight =
+          translatePosition > screenWidth * widget.triggerSlideAmount;
+      _isTriggeredOnLeft =
+          -translatePosition > screenWidth * widget.triggerSlideAmount;
+    });
   }
 
   /// Call [onSlideToLeft] or [onSlideToRight] based if enough slide amount
@@ -154,19 +237,6 @@ class _SlideActionTileState extends State<SlideActionTile>
     } else if (_isTriggeredOnRight && widget.onSlideToRight != null) {
       widget.onSlideToRight();
     }
-  }
-
-  /// Reset and repeat the animation every slide
-  void _resetAnimation() {
-    _animController.reset();
-    _tween.begin = _currentPress - _startPress;
-    _animController.forward();
-  }
-
-  @override
-  void dispose() {
-    _animController.dispose();
-    super.dispose();
   }
 }
 
