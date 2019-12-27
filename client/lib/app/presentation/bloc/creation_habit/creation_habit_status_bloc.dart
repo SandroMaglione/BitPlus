@@ -63,6 +63,9 @@ class CreationHabitStatusBloc
         experience: event.value,
         isPositive: event.isPositive,
         areas: event.areas,
+        history: event.history,
+        streak: event.streak,
+        countChecks: event.countChecks,
         checked: event.checked,
       ),
     );
@@ -94,9 +97,9 @@ class CreationHabitStatusBloc
       ch.Params(
         uid: uid,
         name: event.name,
-        experience: event.value,
+        value: event.value,
         isPositive: event.isPositive,
-        lifeAreaIds: event.areas,
+        areas: event.areas,
       ),
     );
 

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:bitplus/app/presentation/screen/area_overview_screen.dart';
 import 'package:bitplus/app/presentation/screen/create_habit_screen.dart';
 import 'package:bitplus/app/presentation/screen/home_screen.dart';
 import 'package:bitplus/app/presentation/screen/loading_screen.dart';
@@ -14,4 +15,5 @@ class $Router {
   HomeScreen homeScreen;
   CreateHabitScreen createHabitScreen;
   UpdateHabitScreen updateHabitScreen;
+  AreaOverviewScreen areaOverviewScreen;
 }

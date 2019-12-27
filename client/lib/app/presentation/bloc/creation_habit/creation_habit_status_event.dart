@@ -17,6 +17,9 @@ enum _CreationHabitStatusEvent {
     DataField('name', String),
     DataField('isPositive', bool),
     DataField('value', int),
+    DataField('history', BuiltList),
+    DataField('streak', int),
+    DataField('countChecks', int),
     DataField('areas', BuiltList),
     DataField('checked', bool),
   ])

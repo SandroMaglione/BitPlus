@@ -15,28 +15,16 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(HabitStat.serializer)
       ..add(InitLoginForm.serializer)
       ..add(LifeArea.serializer)
-      ..add(LifeAreaStat.serializer)
       ..add(LoginStatusInfo.serializer)
       ..add(LoginStatusPage.serializer)
       ..add(PostUserAccount.serializer)
-      ..add(SocialUser.serializer)
-      ..add(SocialUserStat.serializer)
       ..add(Summary.serializer)
       ..add(SummaryStat.serializer)
       ..add(UpdateHabitReq.serializer)
       ..add(User.serializer)
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Habit)]),
-          () => new ListBuilder<Habit>())
-      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(HabitEntity)]),
           () => new ListBuilder<HabitEntity>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(HabitStat)]),
-          () => new ListBuilder<HabitStat>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(SocialUser)]),
-          () => new ListBuilder<SocialUser>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Summary)]),
           () => new ListBuilder<Summary>())

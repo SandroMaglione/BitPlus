@@ -20,3 +20,5 @@ export 'habit_list/habit_list_status_state.dart';
 export 'creation_habit/creation_habit_status_bloc.dart';
 export 'creation_habit/creation_habit_status_event.dart';
 export 'creation_habit/creation_habit_status_state.dart';
+export 'area_overview_bloc.dart';
+export 'area_overview_event.dart';

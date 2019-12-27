@@ -28,6 +28,9 @@ abstract class HabitRemoteDataSource {
     String name,
     bool isPositive,
     int value,
+    BuiltList<bool> history,
+    int streak,
+    int countChecks,
     BuiltList<int> areas,
     bool checked,
   );
@@ -68,10 +71,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
       final resp = await http.post(
         'https://us-central1-bitplus-95304.cloudfunctions.net/getTodayHabitList',
         headers: {'Content-Type': 'application/json'},
-        body: json.encode({
-          "uid": uid,
-          "dateRange": dateRange
-        }),
+        body: json.encode({"uid": uid, "dateRange": dateRange}),
       );
       final habitList = json.decode(resp.body);
       return BuiltList<HabitApi>(
@@ -177,6 +177,14 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
           ..name = name
           ..isPositive = isPositive
           ..value = value
+          ..history = ListBuilder<bool>(
+            List<bool>.filled(
+              31,
+              false,
+            ),
+          )
+          ..streak = 0
+          ..countChecks = 0
           ..areas = areas.toBuilder(),
       ),
     );
@@ -189,6 +197,9 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     String name,
     bool isPositive,
     int value,
+    BuiltList<bool> history,
+    int streak,
+    int countChecks,
     BuiltList<int> areas,
     bool checked,
   ) async {
@@ -216,6 +227,9 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
           ..name = name
           ..isPositive = isPositive
           ..value = value
+          ..history = history.toBuilder()
+          ..streak = streak
+          ..countChecks = countChecks
           ..areas = areas.toBuilder(),
       ),
     );

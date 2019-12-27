@@ -50,6 +50,9 @@ class UpdateHabitScreen extends StatelessWidget {
         areas: areas,
         value: value,
         checked: habit.checked,
+        streak: habit.streak,
+        countChecks: habit.countChecks,
+        history: habit.history,
       ),
     );
   }

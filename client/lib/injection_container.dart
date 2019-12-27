@@ -81,6 +81,12 @@ Future<void> init() async {
     ),
   );
 
+  serviceLocator.registerFactory<AreaOverviewBloc>(
+    () => AreaOverviewBloc(
+      authBloc: serviceLocator(),
+    ),
+  );
+
   serviceLocator.registerFactory<CreationHabitBloc>(
     () => CreationHabitBloc(),
   );
@@ -244,7 +250,7 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton<DataConnectionChecker>(
     () => DataConnectionChecker(),
   );
-  
+
   final sharedPreferences = await SharedPreferences.getInstance();
   serviceLocator.registerLazySingleton<SharedPreferences>(
     () => sharedPreferences,

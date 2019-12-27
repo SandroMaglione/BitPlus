@@ -2,9 +2,8 @@ import 'package:bitplus/app/data/models/creation_habit.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/app/presentation/widgets/loading_indicator.dart';
 import 'package:bitplus/app/presentation/widgets/select_area_weight.dart';
-import 'package:bitplus/app/presentation/widgets/slide_action_tile.dart';
 import 'package:bitplus/app/presentation/widgets/text_input_field.dart';
-import 'package:bitplus/core/constants/areas_names.dart';
+import 'package:bitplus/core/constants/life_areas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -106,7 +105,7 @@ class ManageHabitView extends StatelessWidget {
                               );
                             },
                           ),
-                          childCount: AREA_NAMES.length,
+                          childCount: LIFE_AREAS.length,
                         ),
                       ),
                     ],

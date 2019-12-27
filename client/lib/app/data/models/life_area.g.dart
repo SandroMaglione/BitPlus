@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'life_area.dart';
+part of life_area;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -18,20 +18,13 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
   Iterable<Object> serialize(Serializers serializers, LifeArea object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'lifeAreaID',
-      serializers.serialize(object.lifeAreaID,
-          specifiedType: const FullType(String)),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'value',
+      serializers.serialize(object.value,
+          specifiedType: const FullType(double)),
       'icon',
       serializers.serialize(object.icon, specifiedType: const FullType(String)),
-      'experience',
-      serializers.serialize(object.experience,
-          specifiedType: const FullType(int)),
-      'habits',
-      serializers.serialize(object.habits,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(Habit)])),
     ];
 
     return result;
@@ -48,27 +41,17 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
-        case 'lifeAreaID':
-          result.lifeAreaID = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
         case 'name':
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'value':
+          result.value = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double;
+          break;
         case 'icon':
           result.icon = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
-          break;
-        case 'experience':
-          result.experience = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
-          break;
-        case 'habits':
-          result.habits.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(Habit)]))
-              as BuiltList<dynamic>);
           break;
       }
     }
@@ -79,36 +62,24 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
 
 class _$LifeArea extends LifeArea {
   @override
-  final String lifeAreaID;
-  @override
   final String name;
   @override
+  final double value;
+  @override
   final String icon;
-  @override
-  final int experience;
-  @override
-  final BuiltList<Habit> habits;
 
   factory _$LifeArea([void Function(LifeAreaBuilder) updates]) =>
       (new LifeAreaBuilder()..update(updates)).build();
 
-  _$LifeArea._(
-      {this.lifeAreaID, this.name, this.icon, this.experience, this.habits})
-      : super._() {
-    if (lifeAreaID == null) {
-      throw new BuiltValueNullFieldError('LifeArea', 'lifeAreaID');
-    }
+  _$LifeArea._({this.name, this.value, this.icon}) : super._() {
     if (name == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'name');
     }
+    if (value == null) {
+      throw new BuiltValueNullFieldError('LifeArea', 'value');
+    }
     if (icon == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'icon');
-    }
-    if (experience == null) {
-      throw new BuiltValueNullFieldError('LifeArea', 'experience');
-    }
-    if (habits == null) {
-      throw new BuiltValueNullFieldError('LifeArea', 'habits');
     }
   }
 
@@ -123,29 +94,22 @@ class _$LifeArea extends LifeArea {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is LifeArea &&
-        lifeAreaID == other.lifeAreaID &&
         name == other.name &&
-        icon == other.icon &&
-        experience == other.experience &&
-        habits == other.habits;
+        value == other.value &&
+        icon == other.icon;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc($jc(0, lifeAreaID.hashCode), name.hashCode), icon.hashCode),
-            experience.hashCode),
-        habits.hashCode));
+    return $jf($jc($jc($jc(0, name.hashCode), value.hashCode), icon.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('LifeArea')
-          ..add('lifeAreaID', lifeAreaID)
           ..add('name', name)
-          ..add('icon', icon)
-          ..add('experience', experience)
-          ..add('habits', habits))
+          ..add('value', value)
+          ..add('icon', icon))
         .toString();
   }
 }
@@ -153,35 +117,25 @@ class _$LifeArea extends LifeArea {
 class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
   _$LifeArea _$v;
 
-  String _lifeAreaID;
-  String get lifeAreaID => _$this._lifeAreaID;
-  set lifeAreaID(String lifeAreaID) => _$this._lifeAreaID = lifeAreaID;
-
   String _name;
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
+
+  double _value;
+  double get value => _$this._value;
+  set value(double value) => _$this._value = value;
 
   String _icon;
   String get icon => _$this._icon;
   set icon(String icon) => _$this._icon = icon;
 
-  int _experience;
-  int get experience => _$this._experience;
-  set experience(int experience) => _$this._experience = experience;
-
-  ListBuilder<Habit> _habits;
-  ListBuilder<Habit> get habits => _$this._habits ??= new ListBuilder<Habit>();
-  set habits(ListBuilder<Habit> habits) => _$this._habits = habits;
-
   LifeAreaBuilder();
 
   LifeAreaBuilder get _$this {
     if (_$v != null) {
-      _lifeAreaID = _$v.lifeAreaID;
       _name = _$v.name;
+      _value = _$v.value;
       _icon = _$v.icon;
-      _experience = _$v.experience;
-      _habits = _$v.habits?.toBuilder();
       _$v = null;
     }
     return this;
@@ -202,26 +156,8 @@ class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
 
   @override
   _$LifeArea build() {
-    _$LifeArea _$result;
-    try {
-      _$result = _$v ??
-          new _$LifeArea._(
-              lifeAreaID: lifeAreaID,
-              name: name,
-              icon: icon,
-              experience: experience,
-              habits: habits.build());
-    } catch (_) {
-      String _$failedField;
-      try {
-        _$failedField = 'habits';
-        habits.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            'LifeArea', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result =
+        _$v ?? new _$LifeArea._(name: name, value: value, icon: icon);
     replace(_$result);
     return _$result;
   }

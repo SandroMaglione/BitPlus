@@ -22,6 +22,9 @@ class UpdateHabit implements UseCase<HabitApi, Params> {
       params.name,
       params.isPositive,
       params.experience,
+      params.history,
+      params.streak,
+      params.countChecks,
       params.areas,
       params.checked,
     );
@@ -33,28 +36,37 @@ class Params extends Equatable {
   final String habitID;
   final String name;
   final bool isPositive;
-  final int experience;
-  final BuiltList<int> areas;
   final bool checked;
+  final int experience;
+  final BuiltList<bool> history;
+  final int streak;
+  final int countChecks;
+  final BuiltList<int> areas;
 
   const Params({
     @required this.name,
     @required this.habitID,
     @required this.uid,
+    @required this.checked,
     @required this.isPositive,
     @required this.experience,
     @required this.areas,
-    @required this.checked,
+    @required this.history,
+    @required this.streak,
+    @required this.countChecks,
   });
 
   @override
   List<Object> get props => [
         uid,
+        checked,
         habitID,
         name,
         isPositive,
         experience,
         areas,
-        checked,
+        history,
+        streak,
+        countChecks,
       ];
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/data/models/creation_habit.dart';
+import 'package:bitplus/core/constants/parameters.dart';
 import 'package:bloc/bloc.dart';
 import 'package:built_collection/built_collection.dart';
 import '../bloc.dart';
@@ -106,7 +107,7 @@ class CreationHabitBloc extends Bloc<CreationHabitEvent, CreationHabit> {
       (h) => h
         ..lifeAreas = ListBuilder<int>(
           state.lifeAreas.rebuild((l) => l[event.indexToUpdate] =
-              l[event.indexToUpdate] >= 3 ? 0 : l[event.indexToUpdate] + 1),
+              l[event.indexToUpdate] >= MAX_AREA_VALUE ? 0 : l[event.indexToUpdate] + 1),
         ),
     );
   }

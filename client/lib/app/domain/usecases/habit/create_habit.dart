@@ -20,8 +20,8 @@ class CreateHabit implements UseCase<HabitApi, Params> {
       params.uid,
       params.name,
       params.isPositive,
-      params.experience,
-      params.lifeAreaIds,
+      params.value,
+      params.areas,
     );
   }
 }
@@ -30,15 +30,15 @@ class Params extends Equatable {
   final String uid;
   final String name;
   final bool isPositive;
-  final int experience;
-  final BuiltList<int> lifeAreaIds;
+  final int value;
+  final BuiltList<int> areas;
 
   const Params({
     @required this.name,
     @required this.uid,
     @required this.isPositive,
-    @required this.experience,
-    @required this.lifeAreaIds,
+    @required this.value,
+    @required this.areas,
   });
 
   @override
@@ -46,7 +46,7 @@ class Params extends Equatable {
         uid,
         name,
         isPositive,
-        experience,
-        lifeAreaIds,
+        value,
+        areas,
       ];
 }

@@ -1,4 +1,5 @@
-import 'package:bitplus/core/constants/areas_names.dart';
+import 'package:bitplus/core/constants/life_areas.dart';
+import 'package:bitplus/core/constants/parameters.dart';
 import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class SelectAreaWeight extends StatelessWidget {
                   ),
                   curve: Curves.easeInOut,
                   color: ACCENT_COLOR_LIGHT,
-                  height: constraints.maxHeight * areaValue / 3,
+                  height: constraints.maxHeight * areaValue / MAX_AREA_VALUE,
                   width: constraints.maxWidth,
                 );
               },
@@ -38,7 +39,7 @@ class SelectAreaWeight extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text('${AREA_NAMES[index]}'),
+                Text('${LIFE_AREAS[index].name}'),
                 Text(
                   '$areaValue',
                   style: TextStyle(

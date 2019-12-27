@@ -8,10 +8,7 @@ import 'package:bitplus/app/data/models/habit_entity.dart';
 import 'package:bitplus/app/data/models/habit_stat.dart';
 import 'package:bitplus/app/data/models/init_login_form.dart';
 import 'package:bitplus/app/data/models/life_area.dart';
-import 'package:bitplus/app/data/models/life_area_stat.dart';
 import 'package:bitplus/app/data/models/login_status_info.dart';
-import 'package:bitplus/app/data/models/social_user.dart';
-import 'package:bitplus/app/data/models/social_user_stat.dart';
 import 'package:bitplus/app/data/models/summary.dart';
 import 'package:bitplus/app/data/models/summary_stat.dart';
 import 'package:bitplus/app/data/models/user.dart';
@@ -31,9 +28,6 @@ part 'serializers.g.dart';
   Summary,
   SummaryStat,
   LifeArea,
-  LifeAreaStat,
-  SocialUser,
-  SocialUserStat,
   CreationHabit,
   HabitApi,
   PostUserAccount,

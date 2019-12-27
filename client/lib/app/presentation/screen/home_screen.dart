@@ -24,6 +24,30 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+            '${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.outlined_flag,
+            ),
+            onPressed: () => _signOut(context),
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.list,
+            ),
+            onPressed: () {
+              Navigator.of(context).pushNamed(
+                Router.areaOverviewScreen,
+                arguments:
+                    BlocProvider.of<HabitListBloc>(context).state.toList(),
+              );
+            },
+          ),
+        ],
+      ),
       body: MultiBlocListener(
         listeners: [
           BlocListener<AuthBloc, AuthState>(
@@ -40,27 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
         child: SafeArea(
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        '${DateTime.now().day}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 18.0,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 12.0,
-                      ),
-                      Text('${DateTime.now().month} / ${DateTime.now().year}'),
-                    ],
-                  ),
-                ),
-              ),
               BlocBuilder<HabitListStatusBloc, HabitListStatusState>(
                 builder: (context, state) =>
                     _buildHabitListStatusBloc(context, state),

@@ -32,6 +32,9 @@ abstract class HabitRepository {
     String name,
     bool isPositive,
     int value,
+    BuiltList<bool> history,
+    int streak,
+    int countChecks,
     BuiltList<int> areas,
     bool checked,
   );
