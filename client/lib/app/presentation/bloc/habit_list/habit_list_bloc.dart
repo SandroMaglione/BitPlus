@@ -99,7 +99,12 @@ class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
       state.map(
         (h) => h.habitID == habitID
             ? h.rebuild(
-                (r) => r..checked = checked,
+                (r) => r
+                  ..checked = checked
+                  ..history[0] = checked
+                  ..countChecks =
+                      checked ? r.countChecks + 1 : r.countChecks - 1
+                  ..streak = checked ? r.streak + 1 : r.streak - 1,
               )
             : h,
       ),
