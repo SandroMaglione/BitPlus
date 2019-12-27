@@ -14,6 +14,7 @@ import 'package:bitplus/app/presentation/screen/create_habit_screen.dart';
 import 'package:bitplus/app/presentation/screen/update_habit_screen.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/presentation/screen/area_overview_screen.dart';
+import 'package:bitplus/app/presentation/screen/history_map_screen.dart';
 
 class Router {
   static const loadingScreen = '/';
@@ -22,6 +23,7 @@ class Router {
   static const createHabitScreen = '/createHabitScreen';
   static const updateHabitScreen = '/updateHabitScreen';
   static const areaOverviewScreen = '/areaOverviewScreen';
+  static const historyMapScreen = '/historyMapScreen';
   static GlobalKey<NavigatorState> get navigatorKey =>
       getNavigatorKey<Router>();
   static NavigatorState get navigator => navigatorKey.currentState;
@@ -67,8 +69,33 @@ class Router {
           builder: (_) => AreaOverviewScreen(habitList: typedArgs),
           settings: settings,
         );
+      case historyMapScreen:
+        if (hasInvalidArgs<HistoryMapScreenArguments>(args, isRequired: true)) {
+          return misTypedArgsRoute<HistoryMapScreenArguments>(args);
+        }
+        final typedArgs = args as HistoryMapScreenArguments;
+        return MaterialPageRoute(
+          builder: (_) => HistoryMapScreen(
+              history: typedArgs.history,
+              name: typedArgs.name,
+              color: typedArgs.color),
+          settings: settings,
+        );
       default:
         return unknownRoutePage(settings.name);
     }
   }
+}
+
+//--------------------------------------------------------------------------
+// Arguments holder classes
+//---------------------------------------------------------------------------
+
+//HistoryMapScreen arguments holder class
+class HistoryMapScreenArguments {
+  final List<int> history;
+  final String name;
+  final int color;
+  HistoryMapScreenArguments(
+      {@required this.history, @required this.name, @required this.color});
 }

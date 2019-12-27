@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/data/models/user.dart';
+import 'package:bitplus/core/constants/parameters.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/app/data/models/life_area.dart';
 import 'package:bitplus/core/constants/life_areas.dart';
@@ -51,6 +52,14 @@ class AreaOverviewBloc extends Bloc<AreaOverviewEvent, BuiltList<LifeArea>> {
                     index,
                     user.areas[index],
                     habitList,
+                  )
+                  ..history = _getLifeAreaHistory(
+                    index,
+                    habitList,
+                  ).toBuilder()
+                  ..countChecks = _getLifeAreaCountChecks(
+                    index,
+                    habitList,
                   ),
               ),
             ),
@@ -59,6 +68,46 @@ class AreaOverviewBloc extends Bloc<AreaOverviewEvent, BuiltList<LifeArea>> {
           .toList(),
     );
   }
+
+  BuiltList<int> _getLifeAreaHistory(
+    int areaIndex,
+    BuiltList<HabitApi> habitList,
+  ) =>
+      BuiltList<int>(
+        List<int>.filled(DEFAULT_DATE_RANGE, 0)
+            .asMap()
+            .map(
+              (dayIndex, count) => MapEntry(
+                dayIndex,
+                habitList
+                    .map(
+                      (habit) =>
+                          habit.history[dayIndex] && habit.areas[areaIndex] > 0
+                              ? 1
+                              : 0,
+                    )
+                    .reduce((v, e) => v + e),
+              ),
+            )
+            .values
+            .toList(),
+      );
+
+  int _getLifeAreaCountChecks(
+    int areaIndex,
+    BuiltList<HabitApi> habitList,
+  ) =>
+      habitList
+          .asMap()
+          .map(
+            (index, habit) => MapEntry(
+              index,
+              habit.areas[areaIndex] > 0 ? habit.countChecks : 0,
+            ),
+          )
+          .values
+          .toList()
+          .reduce((v, e) => v + e);
 
   double _getLifeAreaValue(
     int areaIndex,
@@ -69,7 +118,7 @@ class AreaOverviewBloc extends Bloc<AreaOverviewEvent, BuiltList<LifeArea>> {
           .asMap()
           .map(
             (index, habit) => MapEntry(index,
-                habit.countChecks * (habit.areas[areaIndex] * userWeight / 4)),
+                habit.countChecks * (habit.areas[areaIndex] * (userWeight + 1) / 4)),
           )
           .values
           .toList()

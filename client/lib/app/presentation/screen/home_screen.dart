@@ -1,5 +1,6 @@
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
+import 'package:bitplus/app/presentation/widgets/custom_app_bar.dart';
 import 'package:bitplus/app/presentation/widgets/habit_tile.dart';
 import 'package:bitplus/app/presentation/widgets/loading_indicator.dart';
 import 'package:bitplus/core/router/router.gr.dart';
@@ -23,62 +24,64 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-            '${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.outlined_flag,
-            ),
-            onPressed: () => _signOut(context),
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.list,
-            ),
-            onPressed: () {
-              Navigator.of(context).pushNamed(
-                Router.areaOverviewScreen,
-                arguments:
-                    BlocProvider.of<HabitListBloc>(context).state.toList(),
-              );
-            },
-          ),
-        ],
-      ),
-      body: MultiBlocListener(
-        listeners: [
-          BlocListener<AuthBloc, AuthState>(
-            listener: (context, state) {
-              if (state is AuthUnauthenticated) {
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                  Router.loginScreen,
-                  (_) => false,
-                );
-              }
-            },
-          ),
-        ],
-        child: SafeArea(
-          child: Column(
-            children: <Widget>[
-              BlocBuilder<HabitListStatusBloc, HabitListStatusState>(
-                builder: (context, state) =>
-                    _buildHabitListStatusBloc(context, state),
+    return SafeArea(
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title:
+              '${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}',
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.outlined_flag,
               ),
-            ],
+              onPressed: () => _signOut(context),
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.list,
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  Router.areaOverviewScreen,
+                  arguments:
+                      BlocProvider.of<HabitListBloc>(context).state.toList(),
+                );
+              },
+            ),
+          ],
+        ),
+        body: MultiBlocListener(
+          listeners: [
+            BlocListener<AuthBloc, AuthState>(
+              listener: (context, state) {
+                if (state is AuthUnauthenticated) {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    Router.loginScreen,
+                    (_) => false,
+                  );
+                }
+              },
+            ),
+          ],
+          child: SafeArea(
+            child: Column(
+              children: <Widget>[
+                BlocBuilder<HabitListStatusBloc, HabitListStatusState>(
+                  builder: (context, state) =>
+                      _buildHabitListStatusBloc(context, state),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add_circle),
-        onPressed: () {
-          Navigator.of(context).pushNamed(
-            Router.createHabitScreen,
-          );
-        },
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add_circle),
+          onPressed: () {
+            Navigator.of(context).pushNamed(
+              Router.createHabitScreen,
+            );
+          },
+        ),
       ),
     );
   }

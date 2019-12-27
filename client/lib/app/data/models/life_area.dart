@@ -3,6 +3,7 @@ library life_area;
 import 'dart:convert';
 
 import 'package:bitplus/core/serializers/serializers.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -17,6 +18,12 @@ abstract class LifeArea implements Built<LifeArea, LifeAreaBuilder> {
   String get name;
   @BuiltValueField(wireName: 'value')
   double get value;
+  @BuiltValueField(wireName: 'color')
+  int get color;
+  @BuiltValueField(wireName: 'countChecks')
+  int get countChecks;
+  @BuiltValueField(wireName: 'history')
+  BuiltList<int> get history;
   @BuiltValueField(wireName: 'icon')
   String get icon;
   String toJson() {

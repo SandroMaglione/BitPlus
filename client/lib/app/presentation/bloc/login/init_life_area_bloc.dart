@@ -5,7 +5,7 @@ import 'package:built_collection/built_collection.dart';
 import '../bloc.dart';
 
 // TODO: Define max possible points to assign to life areas
-const int MAX_POINTS = 20;
+const int MAX_POINTS = 30;
 
 /// Manage the assignment of points to each area during the inital login process
 class InitLifeAreaBloc extends Bloc<InitLifeAreaEvent, InitLifeArea> {

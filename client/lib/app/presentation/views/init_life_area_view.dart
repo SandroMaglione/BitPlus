@@ -1,4 +1,5 @@
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
+import 'package:bitplus/core/constants/life_areas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bitplus/app/data/models/init_life_area.dart';
@@ -22,7 +23,7 @@ class InitLifeAreaView extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Text('Area ${index + 1}'),
+                          Text('${LIFE_AREAS[index].name}'),
                           Text('${state.values[index]}'),
                           IconButton(
                             icon: Icon(Icons.add),

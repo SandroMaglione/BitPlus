@@ -65,16 +65,28 @@ class HabitTile extends StatelessWidget {
             child: ListTile(
               title: Text('${habit.name}'),
               subtitle: Text('${habit.countChecks} times in lasy 30 days'),
-              trailing: CircleAvatar(
-                child: Text(
-                  'x${habit.streak}',
-                  style: TextStyle(
-                    color: Color(habit.color),
-                    fontWeight: FontWeight.w700,
+              trailing: InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                    Router.historyMapScreen,
+                    arguments: HistoryMapScreenArguments(
+                      history: habit.history.map((day) => day ? 1 : 0).toList(),
+                      name: habit.name,
+                      color: habit.color,
+                    ),
+                  );
+                },
+                child: CircleAvatar(
+                  child: Text(
+                    'x${habit.streak}',
+                    style: TextStyle(
+                      color: Color(habit.color),
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
+                  backgroundColor: SCAFFOLD_COLOR,
+                  foregroundColor: Color(habit.color),
                 ),
-                backgroundColor: SCAFFOLD_COLOR,
-                foregroundColor: Color(habit.color),
               ),
             ),
           ),

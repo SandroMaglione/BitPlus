@@ -51,7 +51,7 @@ exports.getTodayHabitList = functions.https.onRequest(async (req, res) => {
         }
 
         // Compute current consecutive days check streak
-        let checkStreak = 0;
+        let checkStreak = isChecked ? 1 : 0;
         while (dayChecks[checkStreak + 1]) {
             ++checkStreak;
         }

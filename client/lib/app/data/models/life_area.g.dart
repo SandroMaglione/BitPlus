@@ -23,6 +23,15 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
       'value',
       serializers.serialize(object.value,
           specifiedType: const FullType(double)),
+      'color',
+      serializers.serialize(object.color, specifiedType: const FullType(int)),
+      'countChecks',
+      serializers.serialize(object.countChecks,
+          specifiedType: const FullType(int)),
+      'history',
+      serializers.serialize(object.history,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(int)])),
       'icon',
       serializers.serialize(object.icon, specifiedType: const FullType(String)),
     ];
@@ -49,6 +58,20 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
           result.value = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
           break;
+        case 'color':
+          result.color = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'countChecks':
+          result.countChecks = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'history':
+          result.history.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(int)]))
+              as BuiltList<dynamic>);
+          break;
         case 'icon':
           result.icon = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
@@ -66,17 +89,39 @@ class _$LifeArea extends LifeArea {
   @override
   final double value;
   @override
+  final int color;
+  @override
+  final int countChecks;
+  @override
+  final BuiltList<int> history;
+  @override
   final String icon;
 
   factory _$LifeArea([void Function(LifeAreaBuilder) updates]) =>
       (new LifeAreaBuilder()..update(updates)).build();
 
-  _$LifeArea._({this.name, this.value, this.icon}) : super._() {
+  _$LifeArea._(
+      {this.name,
+      this.value,
+      this.color,
+      this.countChecks,
+      this.history,
+      this.icon})
+      : super._() {
     if (name == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'name');
     }
     if (value == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'value');
+    }
+    if (color == null) {
+      throw new BuiltValueNullFieldError('LifeArea', 'color');
+    }
+    if (countChecks == null) {
+      throw new BuiltValueNullFieldError('LifeArea', 'countChecks');
+    }
+    if (history == null) {
+      throw new BuiltValueNullFieldError('LifeArea', 'history');
     }
     if (icon == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'icon');
@@ -96,12 +141,20 @@ class _$LifeArea extends LifeArea {
     return other is LifeArea &&
         name == other.name &&
         value == other.value &&
+        color == other.color &&
+        countChecks == other.countChecks &&
+        history == other.history &&
         icon == other.icon;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, name.hashCode), value.hashCode), icon.hashCode));
+    return $jf($jc(
+        $jc(
+            $jc($jc($jc($jc(0, name.hashCode), value.hashCode), color.hashCode),
+                countChecks.hashCode),
+            history.hashCode),
+        icon.hashCode));
   }
 
   @override
@@ -109,6 +162,9 @@ class _$LifeArea extends LifeArea {
     return (newBuiltValueToStringHelper('LifeArea')
           ..add('name', name)
           ..add('value', value)
+          ..add('color', color)
+          ..add('countChecks', countChecks)
+          ..add('history', history)
           ..add('icon', icon))
         .toString();
   }
@@ -125,6 +181,18 @@ class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
   double get value => _$this._value;
   set value(double value) => _$this._value = value;
 
+  int _color;
+  int get color => _$this._color;
+  set color(int color) => _$this._color = color;
+
+  int _countChecks;
+  int get countChecks => _$this._countChecks;
+  set countChecks(int countChecks) => _$this._countChecks = countChecks;
+
+  ListBuilder<int> _history;
+  ListBuilder<int> get history => _$this._history ??= new ListBuilder<int>();
+  set history(ListBuilder<int> history) => _$this._history = history;
+
   String _icon;
   String get icon => _$this._icon;
   set icon(String icon) => _$this._icon = icon;
@@ -135,6 +203,9 @@ class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
     if (_$v != null) {
       _name = _$v.name;
       _value = _$v.value;
+      _color = _$v.color;
+      _countChecks = _$v.countChecks;
+      _history = _$v.history?.toBuilder();
       _icon = _$v.icon;
       _$v = null;
     }
@@ -156,8 +227,27 @@ class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
 
   @override
   _$LifeArea build() {
-    final _$result =
-        _$v ?? new _$LifeArea._(name: name, value: value, icon: icon);
+    _$LifeArea _$result;
+    try {
+      _$result = _$v ??
+          new _$LifeArea._(
+              name: name,
+              value: value,
+              color: color,
+              countChecks: countChecks,
+              history: history.build(),
+              icon: icon);
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'history';
+        history.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'LifeArea', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
