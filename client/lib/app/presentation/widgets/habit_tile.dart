@@ -64,23 +64,18 @@ class HabitTile extends StatelessWidget {
             ),
             child: ListTile(
               title: Text('${habit.name}'),
-              subtitle: Text('${habit.habitID}'),
-              trailing: habit.checked
-                  ? CircleAvatar(
-                      child: Icon(
-                        Icons.check,
-                        color: WHITE,
-                      ),
-                      backgroundColor: Color(habit.color),
-                    )
-                  : CircleAvatar(
-                      child: Icon(
-                        Icons.error_outline,
-                        color: Color(habit.color),
-                      ),
-                      backgroundColor: SCAFFOLD_COLOR,
-                      foregroundColor: Color(habit.color),
-                    ),
+              subtitle: Text('${habit.countChecks} times in lasy 30 days'),
+              trailing: CircleAvatar(
+                child: Text(
+                  'x${habit.streak}',
+                  style: TextStyle(
+                    color: Color(habit.color),
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                backgroundColor: SCAFFOLD_COLOR,
+                foregroundColor: Color(habit.color),
+              ),
             ),
           ),
         ),

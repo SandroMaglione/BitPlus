@@ -10,36 +10,67 @@ const auth = admin.auth();
 
 // TODO: Add order to habits
 exports.getTodayHabitList = functions.https.onRequest(async (req, res) => {
-    const { userID } = req.body;
-    const todayDate = new Date();
-    const todayID = `${todayDate.getDate()}${todayDate.getMonth() + 1}${todayDate.getFullYear()}`;
-    let checks = [];
+    // Note: dateRange +1 because it counts today too (not in the streak)
+    const { uid, dateRange } = req.body;
 
+    // Generate today id string e.g. 12 Dec 2019 => "12122019"
+    const todayID = generateTodayId();
+
+    // Initialize list of habit to return
+    let habitCheck = [];
+
+    // Fetch all habits of user with 'uid'
     const habits = await db.collection('user')
-        .doc(userID)
+        .doc(uid)
         .collection("habit")
         .get();
 
     for (let i = 0; i < habits.size; ++i) {
-        const habitData = habits.docs[i].data();
+        // Export habit id and data
         const docHabitID = habits.docs[i].id;
+        const habitData = habits.docs[i].data();
+
+        // Compute true/false today check
         const dailyCheck = habitData.check;
         const isChecked = dailyCheck != undefined && Array.isArray(dailyCheck) && dailyCheck.includes(todayID);
 
-        const respObj = {
+        // Compute list of true/false checked last 'dateRange' days
+        let endDate = new Date();
+        endDate.setDate(endDate.getDate() - dateRange);
+        let dayChecks = [];
+        let countChecks = 0;
+        for (let d = new Date(); d >= endDate; d.setDate(d.getDate() - 1)) {
+            const dString = dateToString(d);
+
+            if (dailyCheck.includes(dString)) {
+                ++countChecks;
+                dayChecks.push(true);
+            } else {
+                dayChecks.push(false);
+            }
+        }
+
+        // Compute current consecutive days check streak
+        let checkStreak = 0;
+        while (dayChecks[checkStreak + 1]) {
+            ++checkStreak;
+        }
+
+        habitCheck.push({
             'habitID': docHabitID,
             'checked': isChecked,
             'isPositive': habitData.isPositive,
             'color': habitData.color,
             'value': habitData.value,
             'areas': habitData.areas,
-            'name': habitData.name
-        };
-
-        checks.push(respObj);
+            'name': habitData.name,
+            'history': dayChecks,
+            'streak': checkStreak,
+            'countChecks': countChecks
+        });
     }
 
-    res.status(200).send(JSON.stringify(checks));
+    res.status(200).send(JSON.stringify(habitCheck));
 });
 
 exports.createHabit = functions.https.onRequest(async (req, res) => {
@@ -56,7 +87,7 @@ exports.createHabit = functions.https.onRequest(async (req, res) => {
             areas: areas,
             dateCreated: admin.firestore.Timestamp.fromDate(new Date())
         });
-        
+
     console.log('createHabit: Done', newHabit.id);
     res.status(200).send(newHabit.id);
 });
@@ -128,7 +159,6 @@ exports.storeUserProfile = functions.https.onRequest(async (req, res) => {
     res.status(200).send(uid);
 });
 
-const generateTodayId = () => {
-    const todayDate = new Date();
-    return `${todayDate.getDate()}${todayDate.getMonth() + 1}${todayDate.getFullYear()}`;
-}
+// Date-String conversion
+const dateToString = (date) => `${date.getDate()}${date.getMonth() + 1}${date.getFullYear()}`;
+const generateTodayId = () => dateToString(new Date());

@@ -5,7 +5,10 @@ import 'package:dartz/dartz.dart';
 
 abstract class HabitRepository {
   /// Get the list of all habit created by the user based on his/her uid
-  Future<Either<Failure, BuiltList<HabitApi>>> getHabitList(String uid);
+  Future<Either<Failure, BuiltList<HabitApi>>> getHabitList(
+    String uid,
+    int dateRange,
+  );
 
   /// Create a new habit associated to the user based on current uid
   ///

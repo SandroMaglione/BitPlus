@@ -37,6 +37,15 @@ class _$HabitApiSerializer implements StructuredSerializer<HabitApi> {
               const FullType(BuiltList, const [const FullType(int)])),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'history',
+      serializers.serialize(object.history,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(bool)])),
+      'streak',
+      serializers.serialize(object.streak, specifiedType: const FullType(int)),
+      'countChecks',
+      serializers.serialize(object.countChecks,
+          specifiedType: const FullType(int)),
     ];
 
     return result;
@@ -83,6 +92,20 @@ class _$HabitApiSerializer implements StructuredSerializer<HabitApi> {
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'history':
+          result.history.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(bool)]))
+              as BuiltList<dynamic>);
+          break;
+        case 'streak':
+          result.streak = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'countChecks':
+          result.countChecks = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
       }
     }
 
@@ -105,6 +128,12 @@ class _$HabitApi extends HabitApi {
   final BuiltList<int> areas;
   @override
   final String name;
+  @override
+  final BuiltList<bool> history;
+  @override
+  final int streak;
+  @override
+  final int countChecks;
 
   factory _$HabitApi([void Function(HabitApiBuilder) updates]) =>
       (new HabitApiBuilder()..update(updates)).build();
@@ -116,7 +145,10 @@ class _$HabitApi extends HabitApi {
       this.color,
       this.value,
       this.areas,
-      this.name})
+      this.name,
+      this.history,
+      this.streak,
+      this.countChecks})
       : super._() {
     if (habitID == null) {
       throw new BuiltValueNullFieldError('HabitApi', 'habitID');
@@ -139,6 +171,15 @@ class _$HabitApi extends HabitApi {
     if (name == null) {
       throw new BuiltValueNullFieldError('HabitApi', 'name');
     }
+    if (history == null) {
+      throw new BuiltValueNullFieldError('HabitApi', 'history');
+    }
+    if (streak == null) {
+      throw new BuiltValueNullFieldError('HabitApi', 'streak');
+    }
+    if (countChecks == null) {
+      throw new BuiltValueNullFieldError('HabitApi', 'countChecks');
+    }
   }
 
   @override
@@ -158,7 +199,10 @@ class _$HabitApi extends HabitApi {
         color == other.color &&
         value == other.value &&
         areas == other.areas &&
-        name == other.name;
+        name == other.name &&
+        history == other.history &&
+        streak == other.streak &&
+        countChecks == other.countChecks;
   }
 
   @override
@@ -167,12 +211,20 @@ class _$HabitApi extends HabitApi {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, habitID.hashCode), checked.hashCode),
-                        isPositive.hashCode),
-                    color.hashCode),
-                value.hashCode),
-            areas.hashCode),
-        name.hashCode));
+                    $jc(
+                        $jc(
+                            $jc(
+                                $jc(
+                                    $jc($jc(0, habitID.hashCode),
+                                        checked.hashCode),
+                                    isPositive.hashCode),
+                                color.hashCode),
+                            value.hashCode),
+                        areas.hashCode),
+                    name.hashCode),
+                history.hashCode),
+            streak.hashCode),
+        countChecks.hashCode));
   }
 
   @override
@@ -184,7 +236,10 @@ class _$HabitApi extends HabitApi {
           ..add('color', color)
           ..add('value', value)
           ..add('areas', areas)
-          ..add('name', name))
+          ..add('name', name)
+          ..add('history', history)
+          ..add('streak', streak)
+          ..add('countChecks', countChecks))
         .toString();
   }
 }
@@ -220,6 +275,18 @@ class HabitApiBuilder implements Builder<HabitApi, HabitApiBuilder> {
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
 
+  ListBuilder<bool> _history;
+  ListBuilder<bool> get history => _$this._history ??= new ListBuilder<bool>();
+  set history(ListBuilder<bool> history) => _$this._history = history;
+
+  int _streak;
+  int get streak => _$this._streak;
+  set streak(int streak) => _$this._streak = streak;
+
+  int _countChecks;
+  int get countChecks => _$this._countChecks;
+  set countChecks(int countChecks) => _$this._countChecks = countChecks;
+
   HabitApiBuilder();
 
   HabitApiBuilder get _$this {
@@ -231,6 +298,9 @@ class HabitApiBuilder implements Builder<HabitApi, HabitApiBuilder> {
       _value = _$v.value;
       _areas = _$v.areas?.toBuilder();
       _name = _$v.name;
+      _history = _$v.history?.toBuilder();
+      _streak = _$v.streak;
+      _countChecks = _$v.countChecks;
       _$v = null;
     }
     return this;
@@ -261,12 +331,18 @@ class HabitApiBuilder implements Builder<HabitApi, HabitApiBuilder> {
               color: color,
               value: value,
               areas: areas.build(),
-              name: name);
+              name: name,
+              history: history.build(),
+              streak: streak,
+              countChecks: countChecks);
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'areas';
         areas.build();
+
+        _$failedField = 'history';
+        history.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'HabitApi', _$failedField, e.toString());

@@ -18,17 +18,23 @@ class GetHabitList implements UseCase<BuiltList<HabitApi>, Params> {
   Future<Either<Failure, BuiltList<HabitApi>>> call(Params params) {
     return habitRepository.getHabitList(
       params.uid,
+      params.dateRange,
     );
   }
 }
 
 class Params extends Equatable {
   final String uid;
+  final int dateRange;
 
   const Params({
     @required this.uid,
+    @required this.dateRange,
   });
 
   @override
-  List<Object> get props => [uid];
+  List<Object> get props => [
+        uid,
+        dateRange,
+      ];
 }

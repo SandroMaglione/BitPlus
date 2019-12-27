@@ -44,9 +44,11 @@ class HabitListStatusBloc
   ) async* {
     yield HabitListStatusState.habitListStatusLoading();
 
+    // TODO: Default date range currently is 30 days (1 month)
     final failOrHabitList = await getHabitList(
       ghl.Params(
         uid: uid,
+        dateRange: 30,
       ),
     );
 

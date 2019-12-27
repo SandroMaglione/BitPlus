@@ -59,10 +59,12 @@ class HabitRepositoryImpl implements HabitRepository {
   @override
   Future<Either<Failure, BuiltList<HabitApi>>> getHabitList(
     String uid,
+    int dateRange,
   ) async =>
       await Task<BuiltList<HabitApi>>(
         () => habitRemoteDataSource.getHabitList(
           uid,
+          dateRange,
         ),
       ).attempt().mapLeftToFailure().run();
 

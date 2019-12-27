@@ -13,26 +13,38 @@ part 'habit_api.g.dart';
 ///
 /// `
 /// {
-///     "habitID": "0EBnmcJB7TLdEkuLIry1",
+///     "habitID": "CebuGYIOqoz2xetmbUGx",
 ///     "checked": false,
-///     "isPositive": false,
-///     "color": 4281612864,
-///     "value": 1,
+///     "isPositive": true,
+///     "color": 4280490306,
+///     "value": 13,
 ///     "areas": [
 ///         3,
 ///         3,
+///         0,
+///         0,
 ///         3,
-///         1,
-///         1,
-///         1,
-///         2,
-///         2,
-///         2,
+///         0,
+///         0,
+///         0,
+///         0,
 ///         0,
 ///         0,
 ///         0
 ///     ],
-///     "name": "Lessminus"
+///     "name": "Call it a day",
+///     "history": [
+///         false,
+///         true,
+///         true,
+///         false,
+///         false,
+///         false,
+///         false,
+///         false
+///     ],
+///     "streak": 2,
+///     "countChecks": 2
 /// }
 /// `
 abstract class HabitApi implements Built<HabitApi, HabitApiBuilder> {
@@ -54,6 +66,12 @@ abstract class HabitApi implements Built<HabitApi, HabitApiBuilder> {
   BuiltList<int> get areas;
   @BuiltValueField(wireName: 'name')
   String get name;
+  @BuiltValueField(wireName: 'history')
+  BuiltList<bool> get history;
+  @BuiltValueField(wireName: 'streak')
+  int get streak;
+  @BuiltValueField(wireName: 'countChecks')
+  int get countChecks;
 
   String toJson() {
     return json.encode(serializers.serializeWith(HabitApi.serializer, this));

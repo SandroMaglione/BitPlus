@@ -14,7 +14,10 @@ import 'package:http/http.dart' as http;
 abstract class HabitRemoteDataSource {
   /// Returns a [BuiltList] of [HabitApi] retrieved from the database,
   /// based on the user id provided
-  Future<BuiltList<HabitApi>> getHabitList(String uid);
+  Future<BuiltList<HabitApi>> getHabitList(
+    String uid,
+    int dateRange,
+  );
 
   /// Creates an [CreateHabitReq] and updates it into the database
   ///
@@ -57,13 +60,17 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
   });
 
   @override
-  Future<BuiltList<HabitApi>> getHabitList(String uid) async {
+  Future<BuiltList<HabitApi>> getHabitList(
+    String uid,
+    int dateRange,
+  ) async {
     try {
       final resp = await http.post(
         'https://us-central1-bitplus-95304.cloudfunctions.net/getTodayHabitList',
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
-          "userID": uid,
+          "uid": uid,
+          "dateRange": dateRange
         }),
       );
       final habitList = json.decode(resp.body);
@@ -77,6 +84,10 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     } on http.ClientException {
       throw FirestoreFailure(
         message: 'Client error while fetching habit list, try again',
+      );
+    } on FormatException {
+      throw FirestoreFailure(
+        message: 'Format error while fetching habit list, try again later',
       );
     }
   }
