@@ -24,8 +24,8 @@ class HabitTile extends StatelessWidget {
         rightContent: CircleAvatar(
           child: Icon(
             habit.checked
-                ? Icons.remove_circle_outline
-                : Icons.check_circle_outline,
+                ? Icons.exposure_neg_1
+                : Icons.exposure_plus_1,
             color: Color(habit.color),
           ),
           backgroundColor: SCAFFOLD_COLOR,
@@ -52,10 +52,6 @@ class HabitTile extends StatelessWidget {
           margin: const EdgeInsets.only(
             bottom: 6.0,
             top: 6.0,
-          ),
-          elevation: 0.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.0),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(

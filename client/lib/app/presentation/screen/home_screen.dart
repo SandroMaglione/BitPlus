@@ -33,21 +33,15 @@ class _HomeScreenState extends State<HomeScreen> {
           actions: <Widget>[
             IconButton(
               icon: Icon(
-                Icons.outlined_flag,
+                Icons.exit_to_app,
               ),
               onPressed: () => _signOut(context),
             ),
             IconButton(
               icon: Icon(
-                Icons.list,
+                Icons.subject,
               ),
-              onPressed: () {
-                Navigator.of(context).pushNamed(
-                  Router.areaOverviewScreen,
-                  arguments:
-                      BlocProvider.of<HabitListBloc>(context).state.toList(),
-                );
-              },
+              onPressed: () {},
             ),
           ],
         ),

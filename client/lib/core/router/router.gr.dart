@@ -13,7 +13,6 @@ import 'package:bitplus/app/presentation/screen/home_screen.dart';
 import 'package:bitplus/app/presentation/screen/create_habit_screen.dart';
 import 'package:bitplus/app/presentation/screen/update_habit_screen.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
-import 'package:bitplus/app/presentation/screen/area_overview_screen.dart';
 import 'package:bitplus/app/presentation/screen/history_map_screen.dart';
 
 class Router {
@@ -22,7 +21,6 @@ class Router {
   static const homeScreen = '/homeScreen';
   static const createHabitScreen = '/createHabitScreen';
   static const updateHabitScreen = '/updateHabitScreen';
-  static const areaOverviewScreen = '/areaOverviewScreen';
   static const historyMapScreen = '/historyMapScreen';
   static GlobalKey<NavigatorState> get navigatorKey =>
       getNavigatorKey<Router>();
@@ -58,15 +56,6 @@ class Router {
         final typedArgs = args as HabitApi;
         return MaterialPageRoute(
           builder: (_) => UpdateHabitScreen(habit: typedArgs),
-          settings: settings,
-        );
-      case areaOverviewScreen:
-        if (hasInvalidArgs<List<HabitApi>>(args, isRequired: true)) {
-          return misTypedArgsRoute<List<HabitApi>>(args);
-        }
-        final typedArgs = args as List<HabitApi>;
-        return MaterialPageRoute(
-          builder: (_) => AreaOverviewScreen(habitList: typedArgs),
           settings: settings,
         );
       case historyMapScreen:

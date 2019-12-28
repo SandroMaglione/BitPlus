@@ -28,5 +28,8 @@ final ThemeData themeData = ThemeData(
   cardTheme: CardTheme(
     elevation: 0.0,
     color: WHITE,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(12.0),
+    ),
   ),
 );

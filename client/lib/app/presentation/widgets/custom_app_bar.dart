@@ -49,58 +49,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ],
           ),
           InkWell(
-            onTap: () {
-              Navigator.of(context).pushNamed(
-                Router.areaOverviewScreen,
-                arguments:
-                    BlocProvider.of<HabitListBloc>(context).state.toList(),
-              );
-            },
+            onTap: () {},
             child: Icon(
-              Icons.settings,
+              Icons.subject,
               color: ACCENT_COLOR_DARK,
             ),
           ),
         ],
-      ),
-    );
-
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 32.0,
-          vertical: 24.0,
-        ),
-        child: Row(
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  subtitle ?? 'Welcome',
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w300,
-                  ),
-                ),
-                Text(
-                  title ?? 'Welcome',
-                  style: TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ],
-            ),
-            if (actions != null)
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: actions,
-                ),
-              ),
-          ],
-        ),
       ),
     );
   }
