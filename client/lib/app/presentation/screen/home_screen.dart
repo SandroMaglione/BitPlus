@@ -1,6 +1,7 @@
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/app/presentation/views/area_list_view.dart';
 import 'package:bitplus/app/presentation/views/habit_list_view.dart';
+import 'package:bitplus/app/presentation/views/info_view.dart';
 import 'package:bitplus/app/presentation/widgets/custom_app_bar.dart';
 import 'package:bitplus/core/router/router.gr.dart';
 import 'package:bitplus/core/theme/colors.dart';
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
           child: SafeArea(
-            child: _displayNavigationScreen(),
+            child: _displayNavigationScreen,
           ),
         ),
         bottomNavigationBar: ClipRRect(
@@ -97,12 +98,14 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _displayNavigationScreen() {
+  Widget get _displayNavigationScreen {
     switch (_bottomNavigationIndex) {
       case 0:
         return HabitListView();
       case 1:
         return AreaListView();
+      case 3:
+        return InfoView();
       default:
         return HabitListView();
     }

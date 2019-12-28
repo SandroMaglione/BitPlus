@@ -20,8 +20,8 @@ class HistoryMapScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-          subtitle: name,
-          title: 'Last ${history.length} days',
+          title: name,
+          subtitle: 'Last ${history.length} days',
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(
@@ -32,6 +32,7 @@ class HistoryMapScreen extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 5,
                     childAspectRatio: 1 / 1,
@@ -42,7 +43,8 @@ class HistoryMapScreen extends StatelessWidget {
                   itemBuilder: (context, index) => HistoryTile(
                     color: Color(color),
                     history: history[index],
-                    colorOpacity: history[index] / history.reduce(max),
+                    colorOpacity: history[index] /
+                        (history.reduce(max) != 0 ? history.reduce(max) : 1),
                     date: DateTime.now().subtract(
                       Duration(days: index),
                     ),

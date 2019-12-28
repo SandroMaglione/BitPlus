@@ -123,6 +123,6 @@ class AreaTile extends StatelessWidget {
           : percentageActivity > .5 && percentageArea < .5
               ? Colors.orangeAccent
               : percentageActivity > .25 && percentageArea < .5
-                  ? Colors.lightGreenAccent
-                  : Colors.greenAccent;
+                  ? Colors.greenAccent
+                  : Colors.blueAccent;
 }
