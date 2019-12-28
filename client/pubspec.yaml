@@ -54,6 +54,7 @@ dependencies:
   auto_route: ^0.2.0+1
 
   #UI
+  flutter_statusbarcolor: ^0.2.3
 
 dev_dependencies:
   flutter_test:

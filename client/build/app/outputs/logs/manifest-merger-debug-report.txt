@@ -13,6 +13,7 @@ MERGED from [:firebase_auth_web] C:\Users\Sandro Maglione\projects\bitplus\BitPl
 MERGED from [:cloud_firestore] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\cloud_firestore\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core_web\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_statusbarcolor] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\flutter_statusbarcolor\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-17:12
 MERGED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-20:12
 MERGED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-19:12
@@ -234,6 +235,8 @@ MERGED from [:firebase_core] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\c
 MERGED from [:firebase_core] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_core_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_statusbarcolor] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\flutter_statusbarcolor\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_statusbarcolor] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\flutter_statusbarcolor\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44

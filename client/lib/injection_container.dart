@@ -84,6 +84,7 @@ Future<void> init() async {
   serviceLocator.registerFactory<AreaOverviewBloc>(
     () => AreaOverviewBloc(
       authBloc: serviceLocator(),
+      habitListBloc: serviceLocator(),
     ),
   );
 

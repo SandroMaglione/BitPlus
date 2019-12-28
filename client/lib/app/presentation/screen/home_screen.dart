@@ -1,10 +1,9 @@
-import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
+import 'package:bitplus/app/presentation/views/area_list_view.dart';
+import 'package:bitplus/app/presentation/views/habit_list_view.dart';
 import 'package:bitplus/app/presentation/widgets/custom_app_bar.dart';
-import 'package:bitplus/app/presentation/widgets/habit_tile.dart';
-import 'package:bitplus/app/presentation/widgets/loading_indicator.dart';
 import 'package:bitplus/core/router/router.gr.dart';
-import 'package:built_collection/built_collection.dart';
+import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,6 +13,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _bottomNavigationIndex = 0;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -64,14 +65,48 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
           child: SafeArea(
-            child: Column(
-              children: <Widget>[
-                BlocBuilder<HabitListStatusBloc, HabitListStatusState>(
-                  builder: (context, state) =>
-                      _buildHabitListStatusBloc(context, state),
+            child: _displayNavigationScreen(),
+          ),
+        ),
+        bottomNavigationBar: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(16.0),
+            topRight: Radius.circular(16.0),
+          ),
+          child: BottomNavigationBar(
+            currentIndex: _bottomNavigationIndex,
+            selectedItemColor: ACCENT_COLOR_DARK,
+            unselectedItemColor: ACCENT_COLOR_DARK.withOpacity(0.56),
+            backgroundColor: WHITE,
+            showSelectedLabels: true,
+            showUnselectedLabels: false,
+            onTap: (index) => setState(() => _bottomNavigationIndex = index),
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.inbox,
                 ),
-              ],
-            ),
+                title: Text('Habits'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.list,
+                ),
+                title: Text('Areas'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.share,
+                ),
+                title: Text('Share'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.info_outline,
+                ),
+                title: Text('Info'),
+              ),
+            ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
@@ -86,32 +121,15 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildHabitListStatusBloc(
-      BuildContext context, HabitListStatusState state) {
-    return state.when(
-      habitListStatusInitial: (_) => LoadingIndicator(
-        message: 'Initializing habits...',
-      ),
-      habitListStatusLoading: (_) => LoadingIndicator(
-        message: 'Loading habits...',
-      ),
-      habitListStatusFailure: (state) => Center(
-        child: Text('Error: ${state.message}'),
-      ),
-      habitListStatusSuccess: (_) =>
-          BlocBuilder<HabitListBloc, BuiltList<HabitApi>>(
-        builder: (context, state) => Expanded(
-          child: state.isEmpty
-              ? Text('No habit yet created')
-              : ListView.builder(
-                  itemCount: state.length,
-                  itemBuilder: (context, index) => HabitTile(
-                    habit: state[index],
-                  ),
-                ),
-        ),
-      ),
-    );
+  Widget _displayNavigationScreen() {
+    switch (_bottomNavigationIndex) {
+      case 0:
+        return HabitListView();
+      case 1:
+        return AreaListView();
+      default:
+        return HabitListView();
+    }
   }
 
   void _signOut(BuildContext context) {

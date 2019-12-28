@@ -1,5 +1,6 @@
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/core/router/router.gr.dart';
+import 'package:bitplus/core/theme/colors.dart';
 import 'package:bitplus/core/theme/theme.dart';
 import 'package:bitplus/core/utils/simple_bloc_delegate.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bitplus/injection_container.dart' as di;
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 // TODO: Add check internet connection and relative Failure
 const String APP_NAME = "BitPlus";
@@ -27,6 +29,10 @@ void main() async {
 
   // Pass all uncaught errors from the framework to Crashlytics.
   FlutterError.onError = Crashlytics.instance.recordFlutterError;
+
+  // Status bar color
+  await FlutterStatusbarcolor.setStatusBarColor(SCAFFOLD_COLOR);
+  FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
 
   await di.init();
   runApp(
@@ -56,6 +62,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<HabitListStatusBloc>(
           create: (context) => di.serviceLocator<HabitListStatusBloc>(),
+        ),
+        BlocProvider<AreaOverviewBloc>(
+          create: (context) => di.serviceLocator<AreaOverviewBloc>(),
         ),
       ],
       child: MaterialApp(

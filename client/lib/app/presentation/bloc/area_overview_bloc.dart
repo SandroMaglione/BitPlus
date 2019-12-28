@@ -12,10 +12,21 @@ import './bloc.dart';
 
 class AreaOverviewBloc extends Bloc<AreaOverviewEvent, BuiltList<LifeArea>> {
   final AuthBloc authBloc;
+  final HabitListBloc habitListBloc;
+  StreamSubscription habitListSub;
 
   AreaOverviewBloc({
     @required this.authBloc,
-  });
+    @required this.habitListBloc,
+  }) {
+    habitListSub = habitListBloc.listen(
+      (state) => add(
+        AreaOverviewEvent.areaOverviewInitialize(
+          habitList: state,
+        ),
+      ),
+    );
+  }
 
   @override
   BuiltList<LifeArea> get initialState => LIFE_AREAS;
@@ -117,11 +128,19 @@ class AreaOverviewBloc extends Bloc<AreaOverviewEvent, BuiltList<LifeArea>> {
       habitList
           .asMap()
           .map(
-            (index, habit) => MapEntry(index,
-                habit.countChecks * (habit.areas[areaIndex] * (userWeight + 1) / 4)),
+            (index, habit) => MapEntry(
+                index,
+                habit.countChecks *
+                    (habit.areas[areaIndex] * (userWeight + 1) / 4)),
           )
           .values
           .toList()
           .reduce((v, e) => v + e) /
       (userWeight + 1);
+
+  @override
+  Future<void> close() {
+    habitListSub.cancel();
+    return super.close();
+  }
 }
