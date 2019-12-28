@@ -30,20 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: CustomAppBar(
           title:
               '${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}',
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.exit_to_app,
-              ),
-              onPressed: () => _signOut(context),
-            ),
-            IconButton(
-              icon: Icon(
-                Icons.subject,
-              ),
-              onPressed: () {},
-            ),
-          ],
+          leftAction: () => _signOut(context),
         ),
         body: MultiBlocListener(
           listeners: [

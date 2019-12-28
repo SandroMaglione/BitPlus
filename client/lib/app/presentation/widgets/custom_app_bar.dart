@@ -1,15 +1,18 @@
-import 'package:bitplus/app/presentation/bloc/bloc.dart';
-import 'package:bitplus/core/router/router.gr.dart';
 import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final String subtitle;
-  final List<Widget> actions;
+  final Function rightAction;
+  final Function leftAction;
 
-  const CustomAppBar({this.actions, this.title, this.subtitle});
+  const CustomAppBar({
+    this.title,
+    this.subtitle,
+    this.leftAction,
+    this.rightAction,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +27,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Icon(
-            Icons.person,
-            color: ACCENT_COLOR_DARK,
+          InkWell(
+            onTap: leftAction,
+            child: Icon(
+              Icons.exit_to_app,
+              color: ACCENT_COLOR_DARK,
+            ),
           ),
           Column(
             children: <Widget>[
@@ -49,7 +55,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ],
           ),
           InkWell(
-            onTap: () {},
+            onTap: rightAction,
             child: Icon(
               Icons.subject,
               color: ACCENT_COLOR_DARK,

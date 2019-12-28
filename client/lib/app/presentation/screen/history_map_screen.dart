@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bitplus/app/presentation/widgets/custom_app_bar.dart';
+import 'package:bitplus/app/presentation/widgets/history_tile.dart';
 import 'package:flutter/material.dart';
 
 class HistoryMapScreen extends StatelessWidget {
@@ -32,25 +33,18 @@ class HistoryMapScreen extends StatelessWidget {
               Expanded(
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 7,
+                    crossAxisCount: 5,
                     childAspectRatio: 1 / 1,
                     crossAxisSpacing: 0,
                     mainAxisSpacing: 0,
                   ),
                   itemCount: history.length,
-                  itemBuilder: (context, index) => Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 1,
-                        color: Color.fromRGBO(0, 0, 0, 0.24),
-                      ),
-                      color: Color(color).withOpacity(
-                        history[index] / history.reduce(max),
-                      ),
-                    ),
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Text('${history[index]}'),
+                  itemBuilder: (context, index) => HistoryTile(
+                    color: Color(color),
+                    history: history[index],
+                    colorOpacity: history[index] / history.reduce(max),
+                    date: DateTime.now().subtract(
+                      Duration(days: index),
                     ),
                   ),
                 ),

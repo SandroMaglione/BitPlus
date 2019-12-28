@@ -38,6 +38,9 @@ dependencies:
   # bloc support enum
   super_enum: ^0.2.0
 
+  # date formatting
+  intl: ^0.16.0
+
   # google sign-in
   google_sign_in: ^4.1.0
 
