@@ -6,6 +6,7 @@ import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:bitplus/core/extensions/color_extension.dart';
 
 class HabitTile extends StatelessWidget {
   final HabitApi habit;
@@ -23,9 +24,7 @@ class HabitTile extends StatelessWidget {
       child: SlideActionTile(
         rightContent: CircleAvatar(
           child: Icon(
-            habit.checked
-                ? Icons.exposure_neg_1
-                : Icons.exposure_plus_1,
+            habit.checked ? Icons.exposure_neg_1 : Icons.exposure_plus_1,
             color: Color(habit.color),
           ),
           backgroundColor: SCAFFOLD_COLOR,
@@ -59,8 +58,23 @@ class HabitTile extends StatelessWidget {
               vertical: 6.0,
             ),
             child: ListTile(
-              title: Text('${habit.name}'),
-              subtitle: Text('${habit.countChecks} times in lasy 30 days'),
+              title: Text(
+                '${habit.name}',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  color: Color(habit.color).makeTextLight && habit.checked
+                      ? WHITE
+                      : ACCENT_COLOR_DARK,
+                ),
+              ),
+              subtitle: Text(
+                '${habit.countChecks} times in lasy 30 days',
+                style: TextStyle(
+                  color: Color(habit.color).makeTextLight && habit.checked
+                      ? WHITE.withOpacity(0.84)
+                      : ACCENT_COLOR_DARK.withOpacity(0.54),
+                ),
+              ),
               trailing: InkWell(
                 onTap: () {
                   Navigator.of(context).pushNamed(

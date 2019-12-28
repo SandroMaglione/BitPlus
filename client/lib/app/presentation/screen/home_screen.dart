@@ -6,6 +6,7 @@ import 'package:bitplus/core/router/router.gr.dart';
 import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -29,7 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         appBar: CustomAppBar(
           title:
-              '${DateTime.now().day} / ${DateTime.now().month} / ${DateTime.now().year}',
+              '${DateFormat('EEEE').format(DateTime.now())}',
+          subtitle:
+              '${DateFormat('d MMMM y').format(DateTime.now())}',
           leftAction: () => _signOut(context),
         ),
         body: MultiBlocListener(
@@ -89,14 +92,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add_circle),
-          onPressed: () {
-            Navigator.of(context).pushNamed(
-              Router.createHabitScreen,
-            );
-          },
         ),
       ),
     );

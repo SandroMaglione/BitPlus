@@ -1,3 +1,4 @@
+import 'package:bitplus/core/router/router.gr.dart';
 import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -27,13 +28,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          InkWell(
-            onTap: leftAction,
-            child: Icon(
-              Icons.exit_to_app,
-              color: ACCENT_COLOR_DARK,
-            ),
-          ),
+          _backAction(context),
           Column(
             children: <Widget>[
               Text(
@@ -54,13 +49,25 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ],
           ),
-          InkWell(
-            onTap: rightAction,
-            child: Icon(
-              Icons.subject,
-              color: ACCENT_COLOR_DARK,
-            ),
-          ),
+          rightAction != null
+              ? GestureDetector(
+                  onTap: rightAction,
+                  child: Icon(
+                    Icons.subject,
+                    color: ACCENT_COLOR_DARK,
+                  ),
+                )
+              : GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      Router.createHabitScreen,
+                    );
+                  },
+                  child: Icon(
+                    Icons.playlist_add,
+                    color: ACCENT_COLOR_DARK,
+                  ),
+                ),
         ],
       ),
     );
@@ -71,4 +78,20 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         double.infinity,
         96.0,
       );
+
+  Widget _backAction(BuildContext context) => Navigator.of(context).canPop()
+      ? GestureDetector(
+          onTap: () => Navigator.of(context).pop(),
+          child: Icon(
+            Icons.arrow_back,
+            color: ACCENT_COLOR_DARK,
+          ),
+        )
+      : GestureDetector(
+          onTap: leftAction,
+          child: Icon(
+            Icons.exit_to_app,
+            color: ACCENT_COLOR_DARK,
+          ),
+        );
 }
