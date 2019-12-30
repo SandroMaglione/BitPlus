@@ -10,17 +10,17 @@ enum _CreationHabitEvent {
   ])
   UpdateNameCreationHabitEvent,
   @Data(fields: [
-    DataField('isPositive', bool),
+    DataField('color', int),
   ])
-  UpdateIsPositiveCreationHabitEvent,
-  @Data(fields: [
-    DataField('indexSelected', int),
-  ])
-  UpdateValueCreationHabitEvent,
+  UpdateColorCreationHabitEvent,
   @Data(fields: [
     DataField('indexToUpdate', int),
   ])
-  UpdateAreasCreationHabitEvent,
+  AddAreasCreationHabitEvent,
+  @Data(fields: [
+    DataField('indexToUpdate', int),
+  ])
+  SubtractAreasCreationHabitEvent,
   @Data(fields: [
     DataField('habit', HabitApi),
   ])

@@ -10,11 +10,8 @@ part 'creation_habit.g.dart';
 abstract class CreationHabit implements Built<CreationHabit, CreationHabitBuilder> {
   // Fields
   String get name;
-  bool get isPositive;
-  int get value;
+  int get color;
   BuiltList<int> get lifeAreas;
-  int get valueSelectedIndex;
-  BuiltList<bool> get valueSelected;
 
   CreationHabit._();
 

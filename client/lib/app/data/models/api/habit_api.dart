@@ -56,12 +56,8 @@ abstract class HabitApi implements Built<HabitApi, HabitApiBuilder> {
   String get habitID;
   @BuiltValueField(wireName: 'checked')
   bool get checked;
-  @BuiltValueField(wireName: 'isPositive')
-  bool get isPositive;
   @BuiltValueField(wireName: 'color')
   int get color;
-  @BuiltValueField(wireName: 'value')
-  int get value;
   @BuiltValueField(wireName: 'areas')
   BuiltList<int> get areas;
   @BuiltValueField(wireName: 'name')

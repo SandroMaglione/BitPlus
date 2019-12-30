@@ -30,16 +30,14 @@ class HabitRepositoryImpl implements HabitRepository {
   Future<Either<Failure, HabitApi>> createHabit(
     String uid,
     String name,
-    bool isPositive,
-    int value,
+    int color,
     BuiltList<int> areas,
   ) async =>
       await Task<HabitApi>(
         () => habitRemoteDataSource.createHabit(
           uid,
           name,
-          isPositive,
-          value,
+          color,
           areas,
         ),
       ).attempt().mapLeftToFailure().run();
@@ -73,8 +71,7 @@ class HabitRepositoryImpl implements HabitRepository {
     String uid,
     String habitID,
     String name,
-    bool isPositive,
-    int value,
+    int color,
     BuiltList<bool> history,
     int streak,
     int countChecks,
@@ -86,8 +83,7 @@ class HabitRepositoryImpl implements HabitRepository {
           uid,
           habitID,
           name,
-          isPositive,
-          value,
+          color,
           history,
           streak,
           countChecks,

@@ -21,22 +21,12 @@ class _$CreationHabitSerializer implements StructuredSerializer<CreationHabit> {
     final result = <Object>[
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
-      'isPositive',
-      serializers.serialize(object.isPositive,
-          specifiedType: const FullType(bool)),
-      'value',
-      serializers.serialize(object.value, specifiedType: const FullType(int)),
+      'color',
+      serializers.serialize(object.color, specifiedType: const FullType(int)),
       'lifeAreas',
       serializers.serialize(object.lifeAreas,
           specifiedType:
               const FullType(BuiltList, const [const FullType(int)])),
-      'valueSelectedIndex',
-      serializers.serialize(object.valueSelectedIndex,
-          specifiedType: const FullType(int)),
-      'valueSelected',
-      serializers.serialize(object.valueSelected,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(bool)])),
     ];
 
     return result;
@@ -58,28 +48,14 @@ class _$CreationHabitSerializer implements StructuredSerializer<CreationHabit> {
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'isPositive':
-          result.isPositive = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
-          break;
-        case 'value':
-          result.value = serializers.deserialize(value,
+        case 'color':
+          result.color = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
         case 'lifeAreas':
           result.lifeAreas.replace(serializers.deserialize(value,
                   specifiedType:
                       const FullType(BuiltList, const [const FullType(int)]))
-              as BuiltList<dynamic>);
-          break;
-        case 'valueSelectedIndex':
-          result.valueSelectedIndex = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
-          break;
-        case 'valueSelected':
-          result.valueSelected.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(bool)]))
               as BuiltList<dynamic>);
           break;
       }
@@ -93,44 +69,22 @@ class _$CreationHabit extends CreationHabit {
   @override
   final String name;
   @override
-  final bool isPositive;
-  @override
-  final int value;
+  final int color;
   @override
   final BuiltList<int> lifeAreas;
-  @override
-  final int valueSelectedIndex;
-  @override
-  final BuiltList<bool> valueSelected;
 
   factory _$CreationHabit([void Function(CreationHabitBuilder) updates]) =>
       (new CreationHabitBuilder()..update(updates)).build();
 
-  _$CreationHabit._(
-      {this.name,
-      this.isPositive,
-      this.value,
-      this.lifeAreas,
-      this.valueSelectedIndex,
-      this.valueSelected})
-      : super._() {
+  _$CreationHabit._({this.name, this.color, this.lifeAreas}) : super._() {
     if (name == null) {
       throw new BuiltValueNullFieldError('CreationHabit', 'name');
     }
-    if (isPositive == null) {
-      throw new BuiltValueNullFieldError('CreationHabit', 'isPositive');
-    }
-    if (value == null) {
-      throw new BuiltValueNullFieldError('CreationHabit', 'value');
+    if (color == null) {
+      throw new BuiltValueNullFieldError('CreationHabit', 'color');
     }
     if (lifeAreas == null) {
       throw new BuiltValueNullFieldError('CreationHabit', 'lifeAreas');
-    }
-    if (valueSelectedIndex == null) {
-      throw new BuiltValueNullFieldError('CreationHabit', 'valueSelectedIndex');
-    }
-    if (valueSelected == null) {
-      throw new BuiltValueNullFieldError('CreationHabit', 'valueSelected');
     }
   }
 
@@ -146,34 +100,22 @@ class _$CreationHabit extends CreationHabit {
     if (identical(other, this)) return true;
     return other is CreationHabit &&
         name == other.name &&
-        isPositive == other.isPositive &&
-        value == other.value &&
-        lifeAreas == other.lifeAreas &&
-        valueSelectedIndex == other.valueSelectedIndex &&
-        valueSelected == other.valueSelected;
+        color == other.color &&
+        lifeAreas == other.lifeAreas;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc($jc($jc(0, name.hashCode), isPositive.hashCode),
-                    value.hashCode),
-                lifeAreas.hashCode),
-            valueSelectedIndex.hashCode),
-        valueSelected.hashCode));
+    return $jf(
+        $jc($jc($jc(0, name.hashCode), color.hashCode), lifeAreas.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('CreationHabit')
           ..add('name', name)
-          ..add('isPositive', isPositive)
-          ..add('value', value)
-          ..add('lifeAreas', lifeAreas)
-          ..add('valueSelectedIndex', valueSelectedIndex)
-          ..add('valueSelected', valueSelected))
+          ..add('color', color)
+          ..add('lifeAreas', lifeAreas))
         .toString();
   }
 }
@@ -186,40 +128,22 @@ class CreationHabitBuilder
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
 
-  bool _isPositive;
-  bool get isPositive => _$this._isPositive;
-  set isPositive(bool isPositive) => _$this._isPositive = isPositive;
-
-  int _value;
-  int get value => _$this._value;
-  set value(int value) => _$this._value = value;
+  int _color;
+  int get color => _$this._color;
+  set color(int color) => _$this._color = color;
 
   ListBuilder<int> _lifeAreas;
   ListBuilder<int> get lifeAreas =>
       _$this._lifeAreas ??= new ListBuilder<int>();
   set lifeAreas(ListBuilder<int> lifeAreas) => _$this._lifeAreas = lifeAreas;
 
-  int _valueSelectedIndex;
-  int get valueSelectedIndex => _$this._valueSelectedIndex;
-  set valueSelectedIndex(int valueSelectedIndex) =>
-      _$this._valueSelectedIndex = valueSelectedIndex;
-
-  ListBuilder<bool> _valueSelected;
-  ListBuilder<bool> get valueSelected =>
-      _$this._valueSelected ??= new ListBuilder<bool>();
-  set valueSelected(ListBuilder<bool> valueSelected) =>
-      _$this._valueSelected = valueSelected;
-
   CreationHabitBuilder();
 
   CreationHabitBuilder get _$this {
     if (_$v != null) {
       _name = _$v.name;
-      _isPositive = _$v.isPositive;
-      _value = _$v.value;
+      _color = _$v.color;
       _lifeAreas = _$v.lifeAreas?.toBuilder();
-      _valueSelectedIndex = _$v.valueSelectedIndex;
-      _valueSelected = _$v.valueSelected?.toBuilder();
       _$v = null;
     }
     return this;
@@ -244,20 +168,12 @@ class CreationHabitBuilder
     try {
       _$result = _$v ??
           new _$CreationHabit._(
-              name: name,
-              isPositive: isPositive,
-              value: value,
-              lifeAreas: lifeAreas.build(),
-              valueSelectedIndex: valueSelectedIndex,
-              valueSelected: valueSelected.build());
+              name: name, color: color, lifeAreas: lifeAreas.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'lifeAreas';
         lifeAreas.build();
-
-        _$failedField = 'valueSelected';
-        valueSelected.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'CreationHabit', _$failedField, e.toString());

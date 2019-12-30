@@ -60,8 +60,7 @@ class CreationHabitStatusBloc
         uid: uid,
         habitID: event.habitID,
         name: event.name,
-        experience: event.value,
-        isPositive: event.isPositive,
+        color: event.color,
         areas: event.areas,
         history: event.history,
         streak: event.streak,
@@ -97,8 +96,7 @@ class CreationHabitStatusBloc
       ch.Params(
         uid: uid,
         name: event.name,
-        value: event.value,
-        isPositive: event.isPositive,
+        color: event.color,
         areas: event.areas,
       ),
     );

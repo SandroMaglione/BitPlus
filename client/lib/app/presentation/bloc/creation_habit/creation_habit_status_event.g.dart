@@ -12,15 +12,13 @@ abstract class CreationHabitStatusEvent extends Equatable {
 
   factory CreationHabitStatusEvent.creationHabitStatusCreateHabit(
       {@required String name,
-      @required bool isPositive,
-      @required int value,
+      @required int color,
       @required BuiltList<dynamic> areas}) = CreationHabitStatusCreateHabit;
 
   factory CreationHabitStatusEvent.creationHabitStatusUpdateHabit(
       {@required String habitID,
       @required String name,
-      @required bool isPositive,
-      @required int value,
+      @required int color,
       @required BuiltList<dynamic> history,
       @required int streak,
       @required int countChecks,
@@ -54,25 +52,20 @@ abstract class CreationHabitStatusEvent extends Equatable {
 @immutable
 class CreationHabitStatusCreateHabit extends CreationHabitStatusEvent {
   const CreationHabitStatusCreateHabit(
-      {@required this.name,
-      @required this.isPositive,
-      @required this.value,
-      @required this.areas})
+      {@required this.name, @required this.color, @required this.areas})
       : super(_CreationHabitStatusEvent.CreationHabitStatusCreateHabit);
 
   final String name;
 
-  final bool isPositive;
-
-  final int value;
+  final int color;
 
   final BuiltList<dynamic> areas;
 
   @override
   String toString() =>
-      'CreationHabitStatusCreateHabit(name:${this.name},isPositive:${this.isPositive},value:${this.value},areas:${this.areas})';
+      'CreationHabitStatusCreateHabit(name:${this.name},color:${this.color},areas:${this.areas})';
   @override
-  List get props => [name, isPositive, value, areas];
+  List get props => [name, color, areas];
 }
 
 @immutable
@@ -80,8 +73,7 @@ class CreationHabitStatusUpdateHabit extends CreationHabitStatusEvent {
   const CreationHabitStatusUpdateHabit(
       {@required this.habitID,
       @required this.name,
-      @required this.isPositive,
-      @required this.value,
+      @required this.color,
       @required this.history,
       @required this.streak,
       @required this.countChecks,
@@ -93,9 +85,7 @@ class CreationHabitStatusUpdateHabit extends CreationHabitStatusEvent {
 
   final String name;
 
-  final bool isPositive;
-
-  final int value;
+  final int color;
 
   final BuiltList<dynamic> history;
 
@@ -109,17 +99,8 @@ class CreationHabitStatusUpdateHabit extends CreationHabitStatusEvent {
 
   @override
   String toString() =>
-      'CreationHabitStatusUpdateHabit(habitID:${this.habitID},name:${this.name},isPositive:${this.isPositive},value:${this.value},history:${this.history},streak:${this.streak},countChecks:${this.countChecks},areas:${this.areas},checked:${this.checked})';
+      'CreationHabitStatusUpdateHabit(habitID:${this.habitID},name:${this.name},color:${this.color},history:${this.history},streak:${this.streak},countChecks:${this.countChecks},areas:${this.areas},checked:${this.checked})';
   @override
-  List get props => [
-        habitID,
-        name,
-        isPositive,
-        value,
-        history,
-        streak,
-        countChecks,
-        areas,
-        checked
-      ];
+  List get props =>
+      [habitID, name, color, history, streak, countChecks, areas, checked];
 }

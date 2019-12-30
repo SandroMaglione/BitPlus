@@ -13,14 +13,14 @@ abstract class CreationHabitEvent extends Equatable {
   factory CreationHabitEvent.updateNameCreationHabitEvent(
       {@required String name}) = UpdateNameCreationHabitEvent;
 
-  factory CreationHabitEvent.updateIsPositiveCreationHabitEvent(
-      {@required bool isPositive}) = UpdateIsPositiveCreationHabitEvent;
+  factory CreationHabitEvent.updateColorCreationHabitEvent(
+      {@required int color}) = UpdateColorCreationHabitEvent;
 
-  factory CreationHabitEvent.updateValueCreationHabitEvent(
-      {@required int indexSelected}) = UpdateValueCreationHabitEvent;
+  factory CreationHabitEvent.addAreasCreationHabitEvent(
+      {@required int indexToUpdate}) = AddAreasCreationHabitEvent;
 
-  factory CreationHabitEvent.updateAreasCreationHabitEvent(
-      {@required int indexToUpdate}) = UpdateAreasCreationHabitEvent;
+  factory CreationHabitEvent.subtractAreasCreationHabitEvent(
+      {@required int indexToUpdate}) = SubtractAreasCreationHabitEvent;
 
   factory CreationHabitEvent.initializeHabitCreationHabitEvent(
       {@required HabitApi habit}) = InitializeHabitCreationHabitEvent;
@@ -32,14 +32,13 @@ abstract class CreationHabitEvent extends Equatable {
       {@required
           R Function(UpdateNameCreationHabitEvent) updateNameCreationHabitEvent,
       @required
-          R Function(UpdateIsPositiveCreationHabitEvent)
-              updateIsPositiveCreationHabitEvent,
+          R Function(UpdateColorCreationHabitEvent)
+              updateColorCreationHabitEvent,
       @required
-          R Function(UpdateValueCreationHabitEvent)
-              updateValueCreationHabitEvent,
+          R Function(AddAreasCreationHabitEvent) addAreasCreationHabitEvent,
       @required
-          R Function(UpdateAreasCreationHabitEvent)
-              updateAreasCreationHabitEvent,
+          R Function(SubtractAreasCreationHabitEvent)
+              subtractAreasCreationHabitEvent,
       @required
           R Function(InitializeHabitCreationHabitEvent)
               initializeHabitCreationHabitEvent}) {
@@ -47,15 +46,14 @@ abstract class CreationHabitEvent extends Equatable {
       case _CreationHabitEvent.UpdateNameCreationHabitEvent:
         return updateNameCreationHabitEvent(
             this as UpdateNameCreationHabitEvent);
-      case _CreationHabitEvent.UpdateIsPositiveCreationHabitEvent:
-        return updateIsPositiveCreationHabitEvent(
-            this as UpdateIsPositiveCreationHabitEvent);
-      case _CreationHabitEvent.UpdateValueCreationHabitEvent:
-        return updateValueCreationHabitEvent(
-            this as UpdateValueCreationHabitEvent);
-      case _CreationHabitEvent.UpdateAreasCreationHabitEvent:
-        return updateAreasCreationHabitEvent(
-            this as UpdateAreasCreationHabitEvent);
+      case _CreationHabitEvent.UpdateColorCreationHabitEvent:
+        return updateColorCreationHabitEvent(
+            this as UpdateColorCreationHabitEvent);
+      case _CreationHabitEvent.AddAreasCreationHabitEvent:
+        return addAreasCreationHabitEvent(this as AddAreasCreationHabitEvent);
+      case _CreationHabitEvent.SubtractAreasCreationHabitEvent:
+        return subtractAreasCreationHabitEvent(
+            this as SubtractAreasCreationHabitEvent);
       case _CreationHabitEvent.InitializeHabitCreationHabitEvent:
         return initializeHabitCreationHabitEvent(
             this as InitializeHabitCreationHabitEvent);
@@ -80,43 +78,42 @@ class UpdateNameCreationHabitEvent extends CreationHabitEvent {
 }
 
 @immutable
-class UpdateIsPositiveCreationHabitEvent extends CreationHabitEvent {
-  const UpdateIsPositiveCreationHabitEvent({@required this.isPositive})
-      : super(_CreationHabitEvent.UpdateIsPositiveCreationHabitEvent);
+class UpdateColorCreationHabitEvent extends CreationHabitEvent {
+  const UpdateColorCreationHabitEvent({@required this.color})
+      : super(_CreationHabitEvent.UpdateColorCreationHabitEvent);
 
-  final bool isPositive;
+  final int color;
 
   @override
-  String toString() =>
-      'UpdateIsPositiveCreationHabitEvent(isPositive:${this.isPositive})';
+  String toString() => 'UpdateColorCreationHabitEvent(color:${this.color})';
   @override
-  List get props => [isPositive];
+  List get props => [color];
 }
 
 @immutable
-class UpdateValueCreationHabitEvent extends CreationHabitEvent {
-  const UpdateValueCreationHabitEvent({@required this.indexSelected})
-      : super(_CreationHabitEvent.UpdateValueCreationHabitEvent);
-
-  final int indexSelected;
-
-  @override
-  String toString() =>
-      'UpdateValueCreationHabitEvent(indexSelected:${this.indexSelected})';
-  @override
-  List get props => [indexSelected];
-}
-
-@immutable
-class UpdateAreasCreationHabitEvent extends CreationHabitEvent {
-  const UpdateAreasCreationHabitEvent({@required this.indexToUpdate})
-      : super(_CreationHabitEvent.UpdateAreasCreationHabitEvent);
+class AddAreasCreationHabitEvent extends CreationHabitEvent {
+  const AddAreasCreationHabitEvent({@required this.indexToUpdate})
+      : super(_CreationHabitEvent.AddAreasCreationHabitEvent);
 
   final int indexToUpdate;
 
   @override
   String toString() =>
-      'UpdateAreasCreationHabitEvent(indexToUpdate:${this.indexToUpdate})';
+      'AddAreasCreationHabitEvent(indexToUpdate:${this.indexToUpdate})';
+  @override
+  List get props => [indexToUpdate];
+}
+
+@immutable
+class SubtractAreasCreationHabitEvent extends CreationHabitEvent {
+  const SubtractAreasCreationHabitEvent({@required this.indexToUpdate})
+      : super(_CreationHabitEvent.SubtractAreasCreationHabitEvent);
+
+  final int indexToUpdate;
+
+  @override
+  String toString() =>
+      'SubtractAreasCreationHabitEvent(indexToUpdate:${this.indexToUpdate})';
   @override
   List get props => [indexToUpdate];
 }

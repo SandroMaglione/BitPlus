@@ -24,13 +24,8 @@ class _$HabitApiSerializer implements StructuredSerializer<HabitApi> {
       'checked',
       serializers.serialize(object.checked,
           specifiedType: const FullType(bool)),
-      'isPositive',
-      serializers.serialize(object.isPositive,
-          specifiedType: const FullType(bool)),
       'color',
       serializers.serialize(object.color, specifiedType: const FullType(int)),
-      'value',
-      serializers.serialize(object.value, specifiedType: const FullType(int)),
       'areas',
       serializers.serialize(object.areas,
           specifiedType:
@@ -70,16 +65,8 @@ class _$HabitApiSerializer implements StructuredSerializer<HabitApi> {
           result.checked = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool;
           break;
-        case 'isPositive':
-          result.isPositive = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
-          break;
         case 'color':
           result.color = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
-          break;
-        case 'value':
-          result.value = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
         case 'areas':
@@ -119,11 +106,7 @@ class _$HabitApi extends HabitApi {
   @override
   final bool checked;
   @override
-  final bool isPositive;
-  @override
   final int color;
-  @override
-  final int value;
   @override
   final BuiltList<int> areas;
   @override
@@ -141,9 +124,7 @@ class _$HabitApi extends HabitApi {
   _$HabitApi._(
       {this.habitID,
       this.checked,
-      this.isPositive,
       this.color,
-      this.value,
       this.areas,
       this.name,
       this.history,
@@ -156,14 +137,8 @@ class _$HabitApi extends HabitApi {
     if (checked == null) {
       throw new BuiltValueNullFieldError('HabitApi', 'checked');
     }
-    if (isPositive == null) {
-      throw new BuiltValueNullFieldError('HabitApi', 'isPositive');
-    }
     if (color == null) {
       throw new BuiltValueNullFieldError('HabitApi', 'color');
-    }
-    if (value == null) {
-      throw new BuiltValueNullFieldError('HabitApi', 'value');
     }
     if (areas == null) {
       throw new BuiltValueNullFieldError('HabitApi', 'areas');
@@ -195,9 +170,7 @@ class _$HabitApi extends HabitApi {
     return other is HabitApi &&
         habitID == other.habitID &&
         checked == other.checked &&
-        isPositive == other.isPositive &&
         color == other.color &&
-        value == other.value &&
         areas == other.areas &&
         name == other.name &&
         history == other.history &&
@@ -212,14 +185,8 @@ class _$HabitApi extends HabitApi {
             $jc(
                 $jc(
                     $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc($jc(0, habitID.hashCode),
-                                        checked.hashCode),
-                                    isPositive.hashCode),
-                                color.hashCode),
-                            value.hashCode),
+                        $jc($jc($jc(0, habitID.hashCode), checked.hashCode),
+                            color.hashCode),
                         areas.hashCode),
                     name.hashCode),
                 history.hashCode),
@@ -232,9 +199,7 @@ class _$HabitApi extends HabitApi {
     return (newBuiltValueToStringHelper('HabitApi')
           ..add('habitID', habitID)
           ..add('checked', checked)
-          ..add('isPositive', isPositive)
           ..add('color', color)
-          ..add('value', value)
           ..add('areas', areas)
           ..add('name', name)
           ..add('history', history)
@@ -255,17 +220,9 @@ class HabitApiBuilder implements Builder<HabitApi, HabitApiBuilder> {
   bool get checked => _$this._checked;
   set checked(bool checked) => _$this._checked = checked;
 
-  bool _isPositive;
-  bool get isPositive => _$this._isPositive;
-  set isPositive(bool isPositive) => _$this._isPositive = isPositive;
-
   int _color;
   int get color => _$this._color;
   set color(int color) => _$this._color = color;
-
-  int _value;
-  int get value => _$this._value;
-  set value(int value) => _$this._value = value;
 
   ListBuilder<int> _areas;
   ListBuilder<int> get areas => _$this._areas ??= new ListBuilder<int>();
@@ -293,9 +250,7 @@ class HabitApiBuilder implements Builder<HabitApi, HabitApiBuilder> {
     if (_$v != null) {
       _habitID = _$v.habitID;
       _checked = _$v.checked;
-      _isPositive = _$v.isPositive;
       _color = _$v.color;
-      _value = _$v.value;
       _areas = _$v.areas?.toBuilder();
       _name = _$v.name;
       _history = _$v.history?.toBuilder();
@@ -327,9 +282,7 @@ class HabitApiBuilder implements Builder<HabitApi, HabitApiBuilder> {
           new _$HabitApi._(
               habitID: habitID,
               checked: checked,
-              isPositive: isPositive,
               color: color,
-              value: value,
               areas: areas.build(),
               name: name,
               history: history.build(),

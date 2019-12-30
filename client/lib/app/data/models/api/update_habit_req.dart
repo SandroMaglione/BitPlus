@@ -23,10 +23,6 @@ abstract class UpdateHabitReq
   int get color;
   @BuiltValueField(wireName: 'name')
   String get name;
-  @BuiltValueField(wireName: 'isPositive')
-  bool get isPositive;
-  @BuiltValueField(wireName: 'value')
-  int get value;
   @BuiltValueField(wireName: 'areas')
   BuiltList<int> get areas;
 

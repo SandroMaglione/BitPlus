@@ -26,8 +26,7 @@ abstract class HabitRemoteDataSource {
     String uid,
     String habitID,
     String name,
-    bool isPositive,
-    int value,
+    int color,
     BuiltList<bool> history,
     int streak,
     int countChecks,
@@ -41,8 +40,7 @@ abstract class HabitRemoteDataSource {
   Future<HabitApi> createHabit(
     String uid,
     String name,
-    bool isPositive,
-    int value,
+    int color,
     BuiltList<int> areas,
   );
 
@@ -150,19 +148,14 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
   Future<HabitApi> createHabit(
     String uid,
     String name,
-    bool isPositive,
-    int value,
+    int color,
     BuiltList<int> areas,
   ) async {
-    final color = getHabitColor().value;
-
     final habitReq = CreateHabitReq(
       (h) => h
         ..uid = uid
         ..color = color
         ..name = name
-        ..isPositive = isPositive
-        ..value = value
         ..areas = areas.toBuilder(),
     );
 
@@ -175,8 +168,6 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
           ..checked = false
           ..color = color
           ..name = name
-          ..isPositive = isPositive
-          ..value = value
           ..history = ListBuilder<bool>(
             List<bool>.filled(
               31,
@@ -195,24 +186,19 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     String uid,
     String habitID,
     String name,
-    bool isPositive,
-    int value,
+    int color,
     BuiltList<bool> history,
     int streak,
     int countChecks,
     BuiltList<int> areas,
     bool checked,
   ) async {
-    final color = getHabitColor().value;
-
     final habitReq = UpdateHabitReq(
       (h) => h
         ..uid = uid
         ..habitID = habitID
         ..color = color
         ..name = name
-        ..isPositive = isPositive
-        ..value = value
         ..areas = areas.toBuilder(),
     );
 
@@ -225,8 +211,6 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
           ..checked = checked
           ..color = color
           ..name = name
-          ..isPositive = isPositive
-          ..value = value
           ..history = history.toBuilder()
           ..streak = streak
           ..countChecks = countChecks

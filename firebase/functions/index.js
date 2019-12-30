@@ -59,9 +59,7 @@ exports.getTodayHabitList = functions.https.onRequest(async (req, res) => {
         habitCheck.push({
             'habitID': docHabitID,
             'checked': isChecked,
-            'isPositive': habitData.isPositive,
             'color': habitData.color,
-            'value': habitData.value,
             'areas': habitData.areas,
             'name': habitData.name,
             'history': dayChecks,
@@ -74,7 +72,7 @@ exports.getTodayHabitList = functions.https.onRequest(async (req, res) => {
 });
 
 exports.createHabit = functions.https.onRequest(async (req, res) => {
-    const { uid, color, name, isPositive, value, areas } = req.body;
+    const { uid, color, name, areas } = req.body;
 
     const newHabit = await db.collection('user')
         .doc(uid)
@@ -82,8 +80,6 @@ exports.createHabit = functions.https.onRequest(async (req, res) => {
         .add({
             color: color,
             name: name,
-            isPositive: isPositive,
-            value: value,
             areas: areas,
             dateCreated: admin.firestore.Timestamp.fromDate(new Date())
         });
@@ -93,7 +89,7 @@ exports.createHabit = functions.https.onRequest(async (req, res) => {
 });
 
 exports.updateHabit = functions.https.onRequest(async (req, res) => {
-    const { uid, habitID, color, name, isPositive, value, areas } = req.body;
+    const { uid, habitID, color, name, areas } = req.body;
 
     await db.collection('user')
         .doc(uid)
@@ -102,8 +98,6 @@ exports.updateHabit = functions.https.onRequest(async (req, res) => {
         .update({
             color: color,
             name: name,
-            isPositive: isPositive,
-            value: value,
             areas: areas
         });
 

@@ -17,8 +17,7 @@ abstract class HabitRepository {
   Future<Either<Failure, HabitApi>> createHabit(
     String uid,
     String name,
-    bool isPositive,
-    int value,
+    int color,
     BuiltList<int> areas,
   );
 
@@ -30,8 +29,7 @@ abstract class HabitRepository {
     String uid,
     String habitID,
     String name,
-    bool isPositive,
-    int value,
+    int color,
     BuiltList<bool> history,
     int streak,
     int countChecks,

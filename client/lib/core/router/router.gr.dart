@@ -10,8 +10,7 @@ import 'package:auto_route/router_utils.dart';
 import 'package:bitplus/app/presentation/screen/loading_screen.dart';
 import 'package:bitplus/app/presentation/screen/login_screen.dart';
 import 'package:bitplus/app/presentation/screen/home_screen.dart';
-import 'package:bitplus/app/presentation/screen/create_habit_screen.dart';
-import 'package:bitplus/app/presentation/screen/update_habit_screen.dart';
+import 'package:bitplus/app/presentation/screen/creation_habit_screen.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/presentation/screen/history_map_screen.dart';
 
@@ -19,8 +18,7 @@ class Router {
   static const loadingScreen = '/';
   static const loginScreen = '/loginScreen';
   static const homeScreen = '/homeScreen';
-  static const createHabitScreen = '/createHabitScreen';
-  static const updateHabitScreen = '/updateHabitScreen';
+  static const creationHabitScreen = '/creationHabitScreen';
   static const historyMapScreen = '/historyMapScreen';
   static GlobalKey<NavigatorState> get navigatorKey =>
       getNavigatorKey<Router>();
@@ -44,18 +42,13 @@ class Router {
           builder: (_) => HomeScreen(),
           settings: settings,
         );
-      case createHabitScreen:
-        return MaterialPageRoute(
-          builder: (_) => CreateHabitScreen(),
-          settings: settings,
-        );
-      case updateHabitScreen:
-        if (hasInvalidArgs<HabitApi>(args, isRequired: true)) {
+      case creationHabitScreen:
+        if (hasInvalidArgs<HabitApi>(args)) {
           return misTypedArgsRoute<HabitApi>(args);
         }
         final typedArgs = args as HabitApi;
         return MaterialPageRoute(
-          builder: (_) => UpdateHabitScreen(habit: typedArgs),
+          builder: (_) => CreationHabitScreen(habit: typedArgs),
           settings: settings,
         );
       case historyMapScreen:

@@ -7,16 +7,14 @@ part 'creation_habit_status_event.g.dart';
 enum _CreationHabitStatusEvent {
   @Data(fields: [
     DataField('name', String),
-    DataField('isPositive', bool),
-    DataField('value', int),
+    DataField('color', int),
     DataField('areas', BuiltList),
   ])
   CreationHabitStatusCreateHabit,
   @Data(fields: [
     DataField('habitID', String),
     DataField('name', String),
-    DataField('isPositive', bool),
-    DataField('value', int),
+    DataField('color', int),
     DataField('history', BuiltList),
     DataField('streak', int),
     DataField('countChecks', int),

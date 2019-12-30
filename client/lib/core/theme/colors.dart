@@ -32,3 +32,12 @@ const Color BUTTON_COLOR = Color(0xFF0062CC);
 const Color SPLASH_COLOR = Color(0xFFfafafa);
 const Color TEXT_COLOR = Color(0xFF212529);
 const String FONT_FAMILY = 'Effra';
+
+const List<Color> HABIT_COLORS = [
+  Color(0xFFFED766),
+  Color(0xFFEAC435),
+  Color(0xFFDD4B1A),
+  Color(0xFFB80C09),
+  Color(0xFF01BAEF),
+  Color(0xFF231942),
+];

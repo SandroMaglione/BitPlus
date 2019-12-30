@@ -26,11 +26,6 @@ class _$CreateHabitReqSerializer
       serializers.serialize(object.color, specifiedType: const FullType(int)),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
-      'isPositive',
-      serializers.serialize(object.isPositive,
-          specifiedType: const FullType(bool)),
-      'value',
-      serializers.serialize(object.value, specifiedType: const FullType(int)),
       'areas',
       serializers.serialize(object.areas,
           specifiedType:
@@ -64,14 +59,6 @@ class _$CreateHabitReqSerializer
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'isPositive':
-          result.isPositive = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
-          break;
-        case 'value':
-          result.value = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
-          break;
         case 'areas':
           result.areas.replace(serializers.deserialize(value,
                   specifiedType:
@@ -93,22 +80,12 @@ class _$CreateHabitReq extends CreateHabitReq {
   @override
   final String name;
   @override
-  final bool isPositive;
-  @override
-  final int value;
-  @override
   final BuiltList<int> areas;
 
   factory _$CreateHabitReq([void Function(CreateHabitReqBuilder) updates]) =>
       (new CreateHabitReqBuilder()..update(updates)).build();
 
-  _$CreateHabitReq._(
-      {this.uid,
-      this.color,
-      this.name,
-      this.isPositive,
-      this.value,
-      this.areas})
+  _$CreateHabitReq._({this.uid, this.color, this.name, this.areas})
       : super._() {
     if (uid == null) {
       throw new BuiltValueNullFieldError('CreateHabitReq', 'uid');
@@ -118,12 +95,6 @@ class _$CreateHabitReq extends CreateHabitReq {
     }
     if (name == null) {
       throw new BuiltValueNullFieldError('CreateHabitReq', 'name');
-    }
-    if (isPositive == null) {
-      throw new BuiltValueNullFieldError('CreateHabitReq', 'isPositive');
-    }
-    if (value == null) {
-      throw new BuiltValueNullFieldError('CreateHabitReq', 'value');
     }
     if (areas == null) {
       throw new BuiltValueNullFieldError('CreateHabitReq', 'areas');
@@ -145,18 +116,13 @@ class _$CreateHabitReq extends CreateHabitReq {
         uid == other.uid &&
         color == other.color &&
         name == other.name &&
-        isPositive == other.isPositive &&
-        value == other.value &&
         areas == other.areas;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc(
-            $jc($jc($jc($jc(0, uid.hashCode), color.hashCode), name.hashCode),
-                isPositive.hashCode),
-            value.hashCode),
+        $jc($jc($jc(0, uid.hashCode), color.hashCode), name.hashCode),
         areas.hashCode));
   }
 
@@ -166,8 +132,6 @@ class _$CreateHabitReq extends CreateHabitReq {
           ..add('uid', uid)
           ..add('color', color)
           ..add('name', name)
-          ..add('isPositive', isPositive)
-          ..add('value', value)
           ..add('areas', areas))
         .toString();
   }
@@ -189,14 +153,6 @@ class CreateHabitReqBuilder
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
 
-  bool _isPositive;
-  bool get isPositive => _$this._isPositive;
-  set isPositive(bool isPositive) => _$this._isPositive = isPositive;
-
-  int _value;
-  int get value => _$this._value;
-  set value(int value) => _$this._value = value;
-
   ListBuilder<int> _areas;
   ListBuilder<int> get areas => _$this._areas ??= new ListBuilder<int>();
   set areas(ListBuilder<int> areas) => _$this._areas = areas;
@@ -208,8 +164,6 @@ class CreateHabitReqBuilder
       _uid = _$v.uid;
       _color = _$v.color;
       _name = _$v.name;
-      _isPositive = _$v.isPositive;
-      _value = _$v.value;
       _areas = _$v.areas?.toBuilder();
       _$v = null;
     }
@@ -235,12 +189,7 @@ class CreateHabitReqBuilder
     try {
       _$result = _$v ??
           new _$CreateHabitReq._(
-              uid: uid,
-              color: color,
-              name: name,
-              isPositive: isPositive,
-              value: value,
-              areas: areas.build());
+              uid: uid, color: color, name: name, areas: areas.build());
     } catch (_) {
       String _$failedField;
       try {

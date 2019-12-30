@@ -6,23 +6,12 @@ import 'package:bloc/bloc.dart';
 import 'package:built_collection/built_collection.dart';
 import '../bloc.dart';
 
-const List<int> SELECTABLE_VALUES = [3, 5, 8, 13, 21];
-const int INIT_SELECTED_VALUE_INDEX = 0;
-
 class CreationHabitBloc extends Bloc<CreationHabitEvent, CreationHabit> {
   @override
   CreationHabit get initialState => CreationHabit(
         (h) => h
           ..name = ''
-          ..isPositive = true
-          ..value = SELECTABLE_VALUES[INIT_SELECTED_VALUE_INDEX]
-          ..valueSelectedIndex = INIT_SELECTED_VALUE_INDEX
-          ..valueSelected = ListBuilder<bool>(
-            List<bool>.generate(
-              5,
-              (index) => index == INIT_SELECTED_VALUE_INDEX,
-            ),
-          )
+          ..color = 0
           ..lifeAreas = ListBuilder<int>(
             List<int>.filled(12, 0),
           ),
@@ -38,43 +27,25 @@ class CreationHabitBloc extends Bloc<CreationHabitEvent, CreationHabit> {
         e.habit,
       ),
       updateNameCreationHabitEvent: (e) => _mapUpdateNameCreationHabitEvent(e),
-      updateIsPositiveCreationHabitEvent: (e) =>
-          _mapUpdateIsPositiveCreationHabitEvent(e),
-      updateValueCreationHabitEvent: (e) =>
-          _mapUpdateValueCreationHabitEvent(e),
-      updateAreasCreationHabitEvent: (e) =>
-          _mapUpdateAreasCreationHabitEvent(e),
+      updateColorCreationHabitEvent: (e) =>
+          _mapUpdateColorCreationHabitEvent(e),
+      addAreasCreationHabitEvent: (e) => _mapAddAreasCreationHabitEvent(e),
+      subtractAreasCreationHabitEvent: (e) =>
+          _mapSubtractAreasCreationHabitEvent(e),
     );
   }
 
   Stream<CreationHabit> _mapInitializeHabitCreationHabitEvent(
     HabitApi habit,
   ) async* {
-    final indexOfValueSelected = SELECTABLE_VALUES.indexOf(habit.value);
-    final indexValueSelected =
-        indexOfValueSelected != -1 ? indexOfValueSelected : 0;
-
-    yield state.rebuild(
-      (h) => h
-        ..name = habit.name
-        ..isPositive = habit.isPositive
-        ..value = habit.value
-        ..valueSelectedIndex = indexValueSelected
-        ..valueSelected = ListBuilder<bool>(
-          List<bool>.generate(
-            5,
-            (index) => index == indexValueSelected,
-          ),
-        )
-        ..lifeAreas = habit.areas.toBuilder(),
-    );
-  }
-
-  Stream<CreationHabit> _mapUpdateIsPositiveCreationHabitEvent(
-      UpdateIsPositiveCreationHabitEvent event) async* {
-    yield state.rebuild(
-      (h) => h..isPositive = event.isPositive,
-    );
+    if (habit != null) {
+      yield state.rebuild(
+        (h) => h
+          ..name = habit.name
+          ..color = habit.color
+          ..lifeAreas = habit.areas.toBuilder(),
+      );
+    }
   }
 
   Stream<CreationHabit> _mapUpdateNameCreationHabitEvent(
@@ -84,30 +55,31 @@ class CreationHabitBloc extends Bloc<CreationHabitEvent, CreationHabit> {
     );
   }
 
-  Stream<CreationHabit> _mapUpdateValueCreationHabitEvent(
-      UpdateValueCreationHabitEvent event) async* {
+  Stream<CreationHabit> _mapUpdateColorCreationHabitEvent(
+      UpdateColorCreationHabitEvent event) async* {
+    yield state.rebuild(
+      (h) => h..color = event.color,
+    );
+  }
+
+  Stream<CreationHabit> _mapAddAreasCreationHabitEvent(
+      AddAreasCreationHabitEvent event) async* {
     yield state.rebuild(
       (h) => h
-        ..valueSelectedIndex = event.indexSelected
-        ..value = SELECTABLE_VALUES[event.indexSelected]
-        ..valueSelected = ListBuilder<bool>(
-          state.valueSelected.rebuild(
-            (v) {
-              v[state.valueSelectedIndex] = false;
-              v[event.indexSelected] = true;
-            },
-          ),
+        ..lifeAreas = ListBuilder<int>(
+          state.lifeAreas.rebuild((l) => l[event.indexToUpdate] +=
+              l[event.indexToUpdate] >= MAX_AREA_VALUE ? 0 : 1),
         ),
     );
   }
 
-  Stream<CreationHabit> _mapUpdateAreasCreationHabitEvent(
-      UpdateAreasCreationHabitEvent event) async* {
+  Stream<CreationHabit> _mapSubtractAreasCreationHabitEvent(
+      SubtractAreasCreationHabitEvent event) async* {
     yield state.rebuild(
       (h) => h
         ..lifeAreas = ListBuilder<int>(
-          state.lifeAreas.rebuild((l) => l[event.indexToUpdate] =
-              l[event.indexToUpdate] >= MAX_AREA_VALUE ? 0 : l[event.indexToUpdate] + 1),
+          state.lifeAreas.rebuild((l) => l[event.indexToUpdate] -=
+              l[event.indexToUpdate] <= -MAX_AREA_VALUE ? 0 : 1),
         ),
     );
   }

@@ -19,8 +19,7 @@ class CreateHabit implements UseCase<HabitApi, Params> {
     return habitRepository.createHabit(
       params.uid,
       params.name,
-      params.isPositive,
-      params.value,
+      params.color,
       params.areas,
     );
   }
@@ -29,15 +28,13 @@ class CreateHabit implements UseCase<HabitApi, Params> {
 class Params extends Equatable {
   final String uid;
   final String name;
-  final bool isPositive;
-  final int value;
+  final int color;
   final BuiltList<int> areas;
 
   const Params({
     @required this.name,
     @required this.uid,
-    @required this.isPositive,
-    @required this.value,
+    @required this.color,
     @required this.areas,
   });
 
@@ -45,8 +42,7 @@ class Params extends Equatable {
   List<Object> get props => [
         uid,
         name,
-        isPositive,
-        value,
+        color,
         areas,
       ];
 }

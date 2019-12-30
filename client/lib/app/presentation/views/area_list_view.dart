@@ -15,11 +15,11 @@ class AreaListView extends StatelessWidget {
         itemCount: state.length,
         itemBuilder: (context, index) => AreaTile(
           area: state[index],
-          percentageActivity: state[index].value /
+          percentageArea: state[index].value /
               state
                   .map((a) => a.value)
                   .reduce((max, value) => value > max ? value : max),
-          percentageArea: ((BlocProvider.of<AuthBloc>(context).state
+          percentageActivity: ((BlocProvider.of<AuthBloc>(context).state
                           as Authenticated)
                       .user
                       .areas[index] +

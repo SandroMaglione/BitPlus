@@ -41,7 +41,7 @@ class HabitTile extends StatelessWidget {
         ),
         onSlideToRight: () {
           Navigator.of(context).pushNamed(
-            Router.updateHabitScreen,
+            Router.creationHabitScreen,
             arguments: habit,
           );
         },
@@ -68,7 +68,7 @@ class HabitTile extends StatelessWidget {
                 ),
               ),
               subtitle: Text(
-                '${habit.countChecks} times in lasy 30 days',
+                '${habit.countChecks} times in last 30 days',
                 style: TextStyle(
                   color: Color(habit.color).makeTextLight && habit.checked
                       ? WHITE.withOpacity(0.84)

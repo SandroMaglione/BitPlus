@@ -29,11 +29,6 @@ class _$UpdateHabitReqSerializer
       serializers.serialize(object.color, specifiedType: const FullType(int)),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
-      'isPositive',
-      serializers.serialize(object.isPositive,
-          specifiedType: const FullType(bool)),
-      'value',
-      serializers.serialize(object.value, specifiedType: const FullType(int)),
       'areas',
       serializers.serialize(object.areas,
           specifiedType:
@@ -71,14 +66,6 @@ class _$UpdateHabitReqSerializer
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'isPositive':
-          result.isPositive = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
-          break;
-        case 'value':
-          result.value = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
-          break;
         case 'areas':
           result.areas.replace(serializers.deserialize(value,
                   specifiedType:
@@ -102,23 +89,13 @@ class _$UpdateHabitReq extends UpdateHabitReq {
   @override
   final String name;
   @override
-  final bool isPositive;
-  @override
-  final int value;
-  @override
   final BuiltList<int> areas;
 
   factory _$UpdateHabitReq([void Function(UpdateHabitReqBuilder) updates]) =>
       (new UpdateHabitReqBuilder()..update(updates)).build();
 
   _$UpdateHabitReq._(
-      {this.uid,
-      this.habitID,
-      this.color,
-      this.name,
-      this.isPositive,
-      this.value,
-      this.areas})
+      {this.uid, this.habitID, this.color, this.name, this.areas})
       : super._() {
     if (uid == null) {
       throw new BuiltValueNullFieldError('UpdateHabitReq', 'uid');
@@ -131,12 +108,6 @@ class _$UpdateHabitReq extends UpdateHabitReq {
     }
     if (name == null) {
       throw new BuiltValueNullFieldError('UpdateHabitReq', 'name');
-    }
-    if (isPositive == null) {
-      throw new BuiltValueNullFieldError('UpdateHabitReq', 'isPositive');
-    }
-    if (value == null) {
-      throw new BuiltValueNullFieldError('UpdateHabitReq', 'value');
     }
     if (areas == null) {
       throw new BuiltValueNullFieldError('UpdateHabitReq', 'areas');
@@ -159,22 +130,14 @@ class _$UpdateHabitReq extends UpdateHabitReq {
         habitID == other.habitID &&
         color == other.color &&
         name == other.name &&
-        isPositive == other.isPositive &&
-        value == other.value &&
         areas == other.areas;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc($jc($jc(0, uid.hashCode), habitID.hashCode),
-                        color.hashCode),
-                    name.hashCode),
-                isPositive.hashCode),
-            value.hashCode),
+        $jc($jc($jc($jc(0, uid.hashCode), habitID.hashCode), color.hashCode),
+            name.hashCode),
         areas.hashCode));
   }
 
@@ -185,8 +148,6 @@ class _$UpdateHabitReq extends UpdateHabitReq {
           ..add('habitID', habitID)
           ..add('color', color)
           ..add('name', name)
-          ..add('isPositive', isPositive)
-          ..add('value', value)
           ..add('areas', areas))
         .toString();
   }
@@ -212,14 +173,6 @@ class UpdateHabitReqBuilder
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
 
-  bool _isPositive;
-  bool get isPositive => _$this._isPositive;
-  set isPositive(bool isPositive) => _$this._isPositive = isPositive;
-
-  int _value;
-  int get value => _$this._value;
-  set value(int value) => _$this._value = value;
-
   ListBuilder<int> _areas;
   ListBuilder<int> get areas => _$this._areas ??= new ListBuilder<int>();
   set areas(ListBuilder<int> areas) => _$this._areas = areas;
@@ -232,8 +185,6 @@ class UpdateHabitReqBuilder
       _habitID = _$v.habitID;
       _color = _$v.color;
       _name = _$v.name;
-      _isPositive = _$v.isPositive;
-      _value = _$v.value;
       _areas = _$v.areas?.toBuilder();
       _$v = null;
     }
@@ -263,8 +214,6 @@ class UpdateHabitReqBuilder
               habitID: habitID,
               color: color,
               name: name,
-              isPositive: isPositive,
-              value: value,
               areas: areas.build());
     } catch (_) {
       String _$failedField;

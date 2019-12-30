@@ -20,8 +20,7 @@ class UpdateHabit implements UseCase<HabitApi, Params> {
       params.uid,
       params.habitID,
       params.name,
-      params.isPositive,
-      params.experience,
+      params.color,
       params.history,
       params.streak,
       params.countChecks,
@@ -35,9 +34,8 @@ class Params extends Equatable {
   final String uid;
   final String habitID;
   final String name;
-  final bool isPositive;
   final bool checked;
-  final int experience;
+  final int color;
   final BuiltList<bool> history;
   final int streak;
   final int countChecks;
@@ -48,8 +46,7 @@ class Params extends Equatable {
     @required this.habitID,
     @required this.uid,
     @required this.checked,
-    @required this.isPositive,
-    @required this.experience,
+    @required this.color,
     @required this.areas,
     @required this.history,
     @required this.streak,
@@ -62,8 +59,7 @@ class Params extends Equatable {
         checked,
         habitID,
         name,
-        isPositive,
-        experience,
+        color,
         areas,
         history,
         streak,

@@ -7,12 +7,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String subtitle;
   final Function rightAction;
   final Function leftAction;
+  final IconData rightIcon;
 
   const CustomAppBar({
     this.title,
     this.subtitle,
     this.leftAction,
     this.rightAction,
+    this.rightIcon,
   });
 
   @override
@@ -53,14 +55,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ? GestureDetector(
                   onTap: rightAction,
                   child: Icon(
-                    Icons.subject,
+                    rightIcon,
                     color: ACCENT_COLOR_DARK,
                   ),
                 )
               : GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed(
-                      Router.createHabitScreen,
+                      Router.creationHabitScreen,
                     );
                   },
                   child: Icon(
