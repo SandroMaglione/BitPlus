@@ -15,7 +15,7 @@ class LoadingScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is AuthUnauthenticated) {
             Navigator.of(context).pushReplacementNamed(
-              Router.loginScreen,
+              Router.initLifeAreaScreen,
             );
           } else if (state is Authenticated) {
             Navigator.of(context).pushReplacementNamed(

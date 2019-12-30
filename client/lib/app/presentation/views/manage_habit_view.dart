@@ -85,31 +85,16 @@ class ManageHabitView extends StatelessWidget {
                         childCount: HABIT_COLORS.length,
                       ),
                     ),
-                    SliverGrid(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        childAspectRatio: 3 / 4,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                      ),
+                    SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (context, index) => SelectAreaWeight(
-                          index: index,
+                          areaName: LIFE_AREAS[index].name,
+                          color: state.lifeAreas[index] >= 0 ? Colors.greenAccent : Colors.redAccent,
+                          areaPercentage: state.lifeAreas[index].abs() / 4,
                           areaValue: state.lifeAreas[index],
-                          addValue: () {
-                            BlocProvider.of<CreationHabitBloc>(context).add(
-                              AddAreasCreationHabitEvent(
-                                indexToUpdate: index,
-                              ),
-                            );
-                          },
-                          subtractValue: () {
-                            BlocProvider.of<CreationHabitBloc>(context).add(
-                              SubtractAreasCreationHabitEvent(
-                                indexToUpdate: index,
-                              ),
-                            );
-                          },
+                          addValue: () => _addAreaValue(context, index),
+                          subtractValue: () =>
+                              _subtractAreaValue(context, index),
                         ),
                         childCount: LIFE_AREAS.length,
                       ),
@@ -120,6 +105,22 @@ class ManageHabitView extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+
+  void _subtractAreaValue(BuildContext context, int index) {
+    BlocProvider.of<CreationHabitBloc>(context).add(
+      SubtractAreasCreationHabitEvent(
+        indexToUpdate: index,
+      ),
+    );
+  }
+
+  void _addAreaValue(BuildContext context, int index) {
+    BlocProvider.of<CreationHabitBloc>(context).add(
+      AddAreasCreationHabitEvent(
+        indexToUpdate: index,
       ),
     );
   }

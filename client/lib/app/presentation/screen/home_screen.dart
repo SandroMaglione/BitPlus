@@ -30,10 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-          title:
-              '${DateFormat('EEEE').format(DateTime.now())}',
-          subtitle:
-              '${DateFormat('d MMMM y').format(DateTime.now())}',
+          title: '${DateFormat('EEEE').format(DateTime.now())}',
+          subtitle: '${DateFormat('d MMMM y').format(DateTime.now())}',
           leftAction: () => _signOut(context),
         ),
         body: MultiBlocListener(
@@ -42,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
               listener: (context, state) {
                 if (state is AuthUnauthenticated) {
                   Navigator.of(context).pushNamedAndRemoveUntil(
-                    Router.loginScreen,
+                    Router.initLifeAreaScreen,
                     (_) => false,
                   );
                 }

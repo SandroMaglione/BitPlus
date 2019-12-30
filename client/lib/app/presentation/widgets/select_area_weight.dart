@@ -1,52 +1,113 @@
-import 'package:bitplus/core/constants/life_areas.dart';
-import 'package:bitplus/core/constants/parameters.dart';
 import 'package:flutter/material.dart';
 
 class SelectAreaWeight extends StatelessWidget {
-  final int index;
+  final String areaName;
   final int areaValue;
+  final Color color;
+  final double areaPercentage;
   final Function addValue;
   final Function subtractValue;
 
   const SelectAreaWeight({
-    @required this.index,
+    @required this.areaName,
     @required this.areaValue,
+    @required this.areaPercentage,
     @required this.addValue,
     @required this.subtractValue,
+    @required this.color,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: _valueAreaColor,
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        vertical: 8.0,
+      ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          IconButton(
-            icon: Icon(Icons.arrow_drop_up),
-            onPressed: addValue,
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12.0),
+                topRight: Radius.circular(12.0),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 4.0,
+                horizontal: 20.0,
+              ),
+              child: Row(
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.remove),
+                    onPressed: subtractValue,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                        vertical: 12.0,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 4.0,
+                            ),
+                            child: Text(
+                              areaName,
+                              style: TextStyle(
+                                fontSize: 16.0,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 4.0,
+                            ),
+                            child: Text(
+                              '$areaValue points assigned',
+                              style: TextStyle(
+                                fontSize: 12.0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.add),
+                    onPressed: addValue,
+                  ),
+                ],
+              ),
+            ),
           ),
-          Text('${LIFE_AREAS[index].name}$areaValue'),
-          // Text(
-          //   '$areaValue',
-          //   style: TextStyle(
-          //     fontWeight: FontWeight.w900,
-          //     fontSize: 42,
-          //   ),
-          // ),
-          IconButton(
-            icon: Icon(Icons.arrow_drop_down),
-            onPressed: subtractValue,
+          LayoutBuilder(
+            builder: (ctx, cns) {
+              print(cns.maxWidth);
+              print(cns.maxHeight);
+              return AnimatedContainer(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.0),
+                  color: color,
+                ),
+                duration: Duration(
+                  milliseconds: 350,
+                ),
+                curve: Curves.easeOut,
+                height: 4.0,
+                width: cns.maxWidth * areaPercentage >= 0
+                    ? cns.maxWidth * areaPercentage
+                    : 0,
+              );
+            },
           ),
         ],
       ),
     );
   }
-
-  Color get _valueAreaColor => areaValue == 0
-      ? Colors.white
-      : areaValue < 0
-          ? Colors.redAccent.withOpacity(areaValue.abs() / MAX_AREA_VALUE)
-          : Colors.greenAccent.withOpacity(areaValue / MAX_AREA_VALUE);
 }

@@ -41,10 +41,6 @@ Future<void> init() async {
     ),
   );
 
-  serviceLocator.registerFactory<LoginStatusBloc>(
-    () => LoginStatusBloc(),
-  );
-
   serviceLocator.registerFactory<LoginCredentialsBloc>(
     () => LoginCredentialsBloc(
       loginValidator: serviceLocator(),

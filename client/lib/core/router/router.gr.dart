@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:auto_route/router_utils.dart';
 import 'package:bitplus/app/presentation/screen/loading_screen.dart';
-import 'package:bitplus/app/presentation/screen/login_screen.dart';
+import 'package:bitplus/app/presentation/screen/init_life_area_screen.dart';
+import 'package:bitplus/app/presentation/screen/login_form_screen.dart';
 import 'package:bitplus/app/presentation/screen/home_screen.dart';
 import 'package:bitplus/app/presentation/screen/creation_habit_screen.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
@@ -16,7 +17,8 @@ import 'package:bitplus/app/presentation/screen/history_map_screen.dart';
 
 class Router {
   static const loadingScreen = '/';
-  static const loginScreen = '/loginScreen';
+  static const initLifeAreaScreen = '/initLifeAreaScreen';
+  static const loginFormScreen = '/loginFormScreen';
   static const homeScreen = '/homeScreen';
   static const creationHabitScreen = '/creationHabitScreen';
   static const historyMapScreen = '/historyMapScreen';
@@ -32,9 +34,18 @@ class Router {
           builder: (_) => LoadingScreen(),
           settings: settings,
         );
-      case loginScreen:
+      case initLifeAreaScreen:
         return MaterialPageRoute(
-          builder: (_) => LoginScreen(),
+          builder: (_) => InitLifeAreaScreen(),
+          settings: settings,
+        );
+      case loginFormScreen:
+        if (hasInvalidArgs<List<int>>(args)) {
+          return misTypedArgsRoute<List<int>>(args);
+        }
+        final typedArgs = args as List<int>;
+        return MaterialPageRoute(
+          builder: (_) => LoginFormScreen(typedArgs),
           settings: settings,
         );
       case homeScreen:
