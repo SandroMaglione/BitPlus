@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:bitplus/app/data/models/history_check.dart';
 import 'package:bitplus/app/domain/usecases/habit/check_habit.dart' as ch;
 import 'package:bitplus/app/domain/usecases/habit/uncheck_habit.dart' as uch;
 import 'package:bitplus/core/error/failures.dart';
@@ -101,7 +102,9 @@ class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
             ? h.rebuild(
                 (r) => r
                   ..checked = checked
-                  ..history[0] = checked
+                  ..history[0] = h.history[0].rebuild(
+                    (h) => h..isChecked = checked,
+                  )
                   ..countChecks =
                       checked ? r.countChecks + 1 : r.countChecks - 1
                   ..streak = checked ? r.streak + 1 : r.streak - 1,

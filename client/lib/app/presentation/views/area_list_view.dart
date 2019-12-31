@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:bitplus/app/data/models/life_area.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/app/presentation/widgets/area_tile.dart';
@@ -15,27 +13,6 @@ class AreaListView extends StatelessWidget {
       builder: (context, state) => StaggeredListAnimation(
         buildChild: (index) => AreaTile(
           area: state[index],
-          percentageArea: state[index].value /
-              state
-                  .map((a) => a.value)
-                  .reduce((max, value) => value > max ? value : max),
-          percentageActivity: ((BlocProvider.of<AuthBloc>(context).state
-                          as Authenticated)
-                      .user
-                      .areas[index] +
-                  ((BlocProvider.of<AuthBloc>(context).state as Authenticated)
-                          .user
-                          .areas
-                          .reduce((v1, v2) => v1 + v2)) /
-                      (BlocProvider.of<AuthBloc>(context).state
-                              as Authenticated)
-                          .user
-                          .areas
-                          .length) /
-              (BlocProvider.of<AuthBloc>(context).state as Authenticated)
-                  .user
-                  .areas
-                  .reduce(max),
         ),
         itemCount: state.length,
       ),

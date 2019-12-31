@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:bitplus/app/data/models/api/create_habit_req.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/data/models/api/update_habit_req.dart';
+import 'package:bitplus/app/data/models/history_check.dart';
 import 'package:bitplus/core/error/failures.dart';
-import 'package:bitplus/core/theme/habit_color.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:built_collection/built_collection.dart';
@@ -27,7 +27,7 @@ abstract class HabitRemoteDataSource {
     String habitID,
     String name,
     int color,
-    BuiltList<bool> history,
+    BuiltList<HistoryCheck> history,
     int streak,
     int countChecks,
     BuiltList<int> areas,
@@ -168,10 +168,18 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
           ..checked = false
           ..color = color
           ..name = name
-          ..history = ListBuilder<bool>(
-            List<bool>.filled(
+          ..history = ListBuilder<HistoryCheck>(
+            List<HistoryCheck>.generate(
               31,
-              false,
+              (index) => HistoryCheck(
+                (h) => h
+                  ..isChecked = false
+                  ..day = DateTime.now().subtract(
+                    Duration(
+                      days: index,
+                    ),
+                  ),
+              ),
             ),
           )
           ..streak = 0
@@ -187,7 +195,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     String habitID,
     String name,
     int color,
-    BuiltList<bool> history,
+    BuiltList<HistoryCheck> history,
     int streak,
     int countChecks,
     BuiltList<int> areas,

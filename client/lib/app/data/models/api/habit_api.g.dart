@@ -35,7 +35,7 @@ class _$HabitApiSerializer implements StructuredSerializer<HabitApi> {
       'history',
       serializers.serialize(object.history,
           specifiedType:
-              const FullType(BuiltList, const [const FullType(bool)])),
+              const FullType(BuiltList, const [const FullType(HistoryCheck)])),
       'streak',
       serializers.serialize(object.streak, specifiedType: const FullType(int)),
       'countChecks',
@@ -81,8 +81,8 @@ class _$HabitApiSerializer implements StructuredSerializer<HabitApi> {
           break;
         case 'history':
           result.history.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(bool)]))
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(HistoryCheck)]))
               as BuiltList<dynamic>);
           break;
         case 'streak':
@@ -112,7 +112,7 @@ class _$HabitApi extends HabitApi {
   @override
   final String name;
   @override
-  final BuiltList<bool> history;
+  final BuiltList<HistoryCheck> history;
   @override
   final int streak;
   @override
@@ -232,9 +232,10 @@ class HabitApiBuilder implements Builder<HabitApi, HabitApiBuilder> {
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
 
-  ListBuilder<bool> _history;
-  ListBuilder<bool> get history => _$this._history ??= new ListBuilder<bool>();
-  set history(ListBuilder<bool> history) => _$this._history = history;
+  ListBuilder<HistoryCheck> _history;
+  ListBuilder<HistoryCheck> get history =>
+      _$this._history ??= new ListBuilder<HistoryCheck>();
+  set history(ListBuilder<HistoryCheck> history) => _$this._history = history;
 
   int _streak;
   int get streak => _$this._streak;

@@ -1,4 +1,5 @@
 import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/history_check.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -36,7 +37,7 @@ class Params extends Equatable {
   final String name;
   final bool checked;
   final int color;
-  final BuiltList<bool> history;
+  final BuiltList<HistoryCheck> history;
   final int streak;
   final int countChecks;
   final BuiltList<int> areas;

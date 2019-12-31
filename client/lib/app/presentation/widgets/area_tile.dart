@@ -6,13 +6,9 @@ import 'package:flutter/material.dart';
 
 class AreaTile extends StatelessWidget {
   final LifeArea area;
-  final double percentageActivity;
-  final double percentageArea;
 
   const AreaTile({
     @required this.area,
-    @required this.percentageActivity,
-    @required this.percentageArea,
   });
 
   @override
@@ -29,6 +25,7 @@ class AreaTile extends StatelessWidget {
               Router.historyMapScreen,
               arguments: HistoryMapScreenArguments(
                 history: area.history.toList(),
+                habitHistory: area.habitChecks.toList(),
                 name: area.name,
                 color: area.color,
               ),
@@ -76,11 +73,11 @@ class AreaTile extends StatelessWidget {
                           ),
                         ),
                         AreaProgressIndicator(
-                          value: percentageArea,
+                          value: area.percentageActivity,
                           color: _colorAlert.withOpacity(0.84),
                         ),
                         AreaProgressIndicator(
-                          value: percentageActivity,
+                          value: area.percentageArea,
                           color: SCAFFOLD_COLOR,
                         ),
                         Padding(
@@ -106,23 +103,25 @@ class AreaTile extends StatelessWidget {
     );
   }
 
-  IconData get _iconAlert => percentageActivity > .75 && percentageArea < .25
-      ? Icons.sentiment_very_dissatisfied
-      : percentageActivity > .5 && percentageArea < .25
-          ? Icons.sentiment_dissatisfied
-          : percentageActivity > .5 && percentageArea < .5
-              ? Icons.sentiment_neutral
-              : percentageActivity > .25 && percentageArea < .5
-                  ? Icons.sentiment_satisfied
-                  : Icons.sentiment_very_satisfied;
+  IconData get _iconAlert =>
+      area.percentageArea > .75 && area.percentageActivity < .25
+          ? Icons.sentiment_very_dissatisfied
+          : area.percentageArea > .5 && area.percentageActivity < .25
+              ? Icons.sentiment_dissatisfied
+              : area.percentageArea > .5 && area.percentageActivity < .5
+                  ? Icons.sentiment_neutral
+                  : area.percentageArea > .25 && area.percentageActivity < .5
+                      ? Icons.sentiment_satisfied
+                      : Icons.sentiment_very_satisfied;
 
-  Color get _colorAlert => percentageActivity > .75 && percentageArea < .25
-      ? Colors.black87
-      : percentageActivity > .5 && percentageArea < .25
-          ? Colors.redAccent
-          : percentageActivity > .5 && percentageArea < .5
-              ? Colors.orangeAccent
-              : percentageActivity > .25 && percentageArea < .5
-                  ? Colors.greenAccent
-                  : Colors.blueAccent;
+  Color get _colorAlert =>
+      area.percentageArea > .75 && area.percentageActivity < .25
+          ? Colors.black87
+          : area.percentageArea > .5 && area.percentageActivity < .25
+              ? Colors.redAccent
+              : area.percentageArea > .5 && area.percentageActivity < .5
+                  ? Colors.orangeAccent
+                  : area.percentageArea > .25 && area.percentageActivity < .5
+                      ? Colors.greenAccent
+                      : Colors.blueAccent;
 }

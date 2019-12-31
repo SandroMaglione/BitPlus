@@ -30,6 +30,9 @@ class LoadingIndicator extends StatelessWidget {
           if (message != null)
             Text(
               '$message',
+              style: TextStyle(
+                color: ACCENT_COLOR_DARK,
+              ),
             ),
         ],
       ),

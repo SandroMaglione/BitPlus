@@ -2,6 +2,7 @@ library habit_api;
 
 import 'dart:convert';
 
+import 'package:bitplus/app/data/models/history_check.dart';
 import 'package:bitplus/core/serializers/serializers.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
@@ -63,7 +64,7 @@ abstract class HabitApi implements Built<HabitApi, HabitApiBuilder> {
   @BuiltValueField(wireName: 'name')
   String get name;
   @BuiltValueField(wireName: 'history')
-  BuiltList<bool> get history;
+  BuiltList<HistoryCheck> get history;
   @BuiltValueField(wireName: 'streak')
   int get streak;
   @BuiltValueField(wireName: 'countChecks')

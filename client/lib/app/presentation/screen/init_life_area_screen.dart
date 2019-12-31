@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
-import 'package:bitplus/app/presentation/widgets/custom_app_bar.dart';
 import 'package:bitplus/app/presentation/widgets/select_area_weight.dart';
 import 'package:bitplus/app/presentation/widgets/staggered_list_animation.dart';
 import 'package:bitplus/core/constants/life_areas.dart';

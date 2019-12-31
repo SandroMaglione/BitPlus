@@ -1,4 +1,3 @@
-import 'package:bitplus/app/data/models/init_life_area.dart';
 import 'package:bitplus/app/data/models/init_login_form.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/app/presentation/widgets/loading_indicator.dart';

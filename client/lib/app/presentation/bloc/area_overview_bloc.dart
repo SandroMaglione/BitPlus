@@ -1,7 +1,8 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/data/models/user.dart';
-import 'package:bitplus/core/constants/parameters.dart';
+import 'package:bitplus/core/services/area_value_algorithm.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/app/data/models/life_area.dart';
 import 'package:bitplus/core/constants/life_areas.dart';
@@ -13,11 +14,13 @@ import './bloc.dart';
 class AreaOverviewBloc extends Bloc<AreaOverviewEvent, BuiltList<LifeArea>> {
   final AuthBloc authBloc;
   final HabitListBloc habitListBloc;
+  final AreaValueAlgorithm areaValueAlgorithm;
   StreamSubscription habitListSub;
 
   AreaOverviewBloc({
     @required this.authBloc,
     @required this.habitListBloc,
+    @required this.areaValueAlgorithm,
   }) {
     habitListSub = habitListBloc.listen(
       (state) => add(
@@ -50,8 +53,43 @@ class AreaOverviewBloc extends Bloc<AreaOverviewEvent, BuiltList<LifeArea>> {
     User user,
   ) async* {
     final BuiltList<HabitApi> habitList = event.habitList;
+    final sumUserAreas = user.areas.reduce((v1, v2) => v1 + v2);
+    final maxUserAreas = user.areas.reduce(max);
 
-    yield BuiltList<LifeArea>(
+    final areaList = _buildLifeAreaList(
+      habitList,
+      user,
+      sumUserAreas,
+      maxUserAreas,
+    );
+
+
+    final maxAreaValue = areaList
+        .map(
+          (a) => a.value,
+        )
+        .reduce(max);
+
+    yield areaList
+        .asMap()
+        .map(
+          (index, area) => MapEntry(
+            index,
+            area.rebuild(
+              (a) => a..percentageActivity = a.value / maxAreaValue,
+            ),
+          ),
+        )
+        .values
+        .toBuiltList();
+  }
+
+  BuiltList<LifeArea> _buildLifeAreaList(
+    BuiltList<HabitApi> habitList,
+    User user,
+    int sumUserAreas,
+    int maxUserAreas,
+  ) =>
       state
           .asMap()
           .map(
@@ -59,84 +97,35 @@ class AreaOverviewBloc extends Bloc<AreaOverviewEvent, BuiltList<LifeArea>> {
               index,
               area.rebuild(
                 (a) => a
-                  ..value = _getLifeAreaValue(
+                  ..value = areaValueAlgorithm.buildValue(
                     index,
                     user.areas[index],
                     habitList,
                   )
-                  ..history = _getLifeAreaHistory(
+                  ..history = areaValueAlgorithm
+                      .buildHistory(
+                        index,
+                        habitList,
+                      )
+                      .toBuilder()
+                  ..countChecks = areaValueAlgorithm.buildCountChecks(
                     index,
                     habitList,
-                  ).toBuilder()
-                  ..countChecks = _getLifeAreaCountChecks(
-                    index,
-                    habitList,
-                  ),
+                  )
+                  ..habitChecks = areaValueAlgorithm
+                      .buildHabitActivity(
+                        index,
+                        habitList,
+                      )
+                      .toBuilder()
+                  ..percentageArea =
+                      ((user.areas[index] + sumUserAreas) / user.areas.length) /
+                          maxUserAreas,
               ),
             ),
           )
           .values
-          .toList(),
-    );
-  }
-
-  BuiltList<int> _getLifeAreaHistory(
-    int areaIndex,
-    BuiltList<HabitApi> habitList,
-  ) =>
-      BuiltList<int>(
-        List<int>.filled(DEFAULT_DATE_RANGE, 0)
-            .asMap()
-            .map(
-              (dayIndex, count) => MapEntry(
-                dayIndex,
-                habitList
-                    .map(
-                      (habit) =>
-                          habit.history[dayIndex] && habit.areas[areaIndex] > 0
-                              ? 1
-                              : 0,
-                    )
-                    .reduce((v, e) => v + e),
-              ),
-            )
-            .values
-            .toList(),
-      );
-
-  int _getLifeAreaCountChecks(
-    int areaIndex,
-    BuiltList<HabitApi> habitList,
-  ) =>
-      habitList
-          .asMap()
-          .map(
-            (index, habit) => MapEntry(
-              index,
-              habit.areas[areaIndex] > 0 ? habit.countChecks : 0,
-            ),
-          )
-          .values
-          .toList()
-          .reduce((v, e) => v + e);
-
-  double _getLifeAreaValue(
-    int areaIndex,
-    int userWeight,
-    BuiltList<HabitApi> habitList,
-  ) =>
-      habitList
-          .asMap()
-          .map(
-            (index, habit) => MapEntry(
-                index,
-                habit.countChecks *
-                    (habit.areas[areaIndex] * (userWeight + 1) / 4)),
-          )
-          .values
-          .toList()
-          .reduce((v, e) => v + e) /
-      (userWeight + 1);
+          .toBuiltList();
 
   @override
   Future<void> close() {

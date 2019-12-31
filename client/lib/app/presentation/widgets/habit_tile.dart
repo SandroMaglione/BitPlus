@@ -1,6 +1,7 @@
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/app/presentation/widgets/slide_action_tile.dart';
+import 'package:bitplus/app/presentation/widgets/streak_indicator.dart';
 import 'package:bitplus/core/router/router.gr.dart';
 import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
@@ -80,22 +81,18 @@ class HabitTile extends StatelessWidget {
                   Navigator.of(context).pushNamed(
                     Router.historyMapScreen,
                     arguments: HistoryMapScreenArguments(
-                      history: habit.history.map((day) => day ? 1 : 0).toList(),
+                      history: habit.history
+                          .map((historyCheck) => historyCheck.isChecked ? 1 : 0)
+                          .toList(),
+                      habitHistory: [],
                       name: habit.name,
                       color: habit.color,
                     ),
                   );
                 },
-                child: CircleAvatar(
-                  child: Text(
-                    'x${habit.streak}',
-                    style: TextStyle(
-                      color: Color(habit.color),
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  backgroundColor: SCAFFOLD_COLOR,
-                  foregroundColor: Color(habit.color),
+                child: StreakIndicator(
+                  color: habit.color,
+                  streak: habit.streak,
                 ),
               ),
             ),

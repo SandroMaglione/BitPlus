@@ -1,4 +1,5 @@
 import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/history_check.dart';
 import 'package:bitplus/core/error/failures.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:dartz/dartz.dart';
@@ -30,7 +31,7 @@ abstract class HabitRepository {
     String habitID,
     String name,
     int color,
-    BuiltList<bool> history,
+    BuiltList<HistoryCheck> history,
     int streak,
     int countChecks,
     BuiltList<int> areas,

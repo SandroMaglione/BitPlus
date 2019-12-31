@@ -14,6 +14,7 @@ import 'package:bitplus/app/presentation/screen/home_screen.dart';
 import 'package:bitplus/app/presentation/screen/creation_habit_screen.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/presentation/screen/history_map_screen.dart';
+import 'package:bitplus/app/data/models/history_habit.dart';
 
 class Router {
   static const loadingScreen = '/';
@@ -71,7 +72,8 @@ class Router {
           builder: (_) => HistoryMapScreen(
               history: typedArgs.history,
               name: typedArgs.name,
-              color: typedArgs.color),
+              color: typedArgs.color,
+              habitHistory: typedArgs.habitHistory),
           settings: settings,
         );
       default:
@@ -89,6 +91,10 @@ class HistoryMapScreenArguments {
   final List<int> history;
   final String name;
   final int color;
+  final List<HistoryHabit> habitHistory;
   HistoryMapScreenArguments(
-      {@required this.history, @required this.name, @required this.color});
+      {@required this.history,
+      @required this.name,
+      @required this.color,
+      @required this.habitHistory});
 }

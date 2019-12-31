@@ -1,5 +1,6 @@
 import 'package:bitplus/app/data/datasources/habit_remote_data_source.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/history_check.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/app/domain/repositories/habit_repository.dart';
 import 'package:bitplus/core/error/failures.dart';
@@ -72,7 +73,7 @@ class HabitRepositoryImpl implements HabitRepository {
     String habitID,
     String name,
     int color,
-    BuiltList<bool> history,
+    BuiltList<HistoryCheck> history,
     int streak,
     int countChecks,
     BuiltList<int> areas,

@@ -21,7 +21,24 @@ const MaterialColor PRIMARY_MATERIAL_COLOR = MaterialColor(
   },
 );
 
-const Color SCAFFOLD_COLOR = Color(0xFFf3f5fa);
+const int SCAFFOLD_INT_VALUE = 0xFFf3f5fa;
+const Color SCAFFOLD_COLOR = Color(SCAFFOLD_INT_VALUE);
+const MaterialColor SCAFFOLD_MATERIAL_COLOR = MaterialColor(
+  SCAFFOLD_INT_VALUE,
+  <int, Color>{
+    50: Color(SCAFFOLD_INT_VALUE),
+    100: Color(0xFFe1e7f0),
+    200: Color(0xFFcfd7e4),
+    300: Color(0xFFbac5d7),
+    400: Color(0xFFa9b6ca),
+    500: Color(0xFF98a7bf),
+    600: Color(0xFF8896ac),
+    700: Color(0xFF758092),
+    800: Color(0xFF646d7b),
+    900: Color(0xFF4f5662),
+  },
+);
+
 const Color SURFACE_DARK_COLOR = Color(0xFFe5e5e5);
 
 const Color ACCENT_COLOR = Color(0xFF311b92);

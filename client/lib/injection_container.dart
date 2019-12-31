@@ -18,7 +18,9 @@ import 'package:bitplus/app/domain/usecases/profile/sign_out.dart';
 import 'package:bitplus/app/domain/usecases/profile/sign_up_credentials.dart';
 import 'package:bitplus/app/domain/usecases/profile/sign_up_google.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
+import 'package:bitplus/core/constants/parameters.dart';
 import 'package:bitplus/core/network/network_info.dart';
+import 'package:bitplus/core/services/area_value_algorithm.dart';
 import 'package:bitplus/core/utils/login_validator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
@@ -81,6 +83,7 @@ Future<void> init() async {
     () => AreaOverviewBloc(
       authBloc: serviceLocator(),
       habitListBloc: serviceLocator(),
+      areaValueAlgorithm: serviceLocator(),
     ),
   );
 
@@ -216,6 +219,12 @@ Future<void> init() async {
   // Services
   serviceLocator.registerLazySingleton<LoginValidator>(
     () => LoginValidator(),
+  );
+
+  serviceLocator.registerLazySingleton<AreaValueAlgorithm>(
+    () => ValueAlgorithmV1(
+      DEFAULT_DATE_RANGE,
+    ),
   );
 
   // External
