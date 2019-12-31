@@ -68,7 +68,7 @@ class HabitTile extends StatelessWidget {
                 ),
               ),
               subtitle: Text(
-                '${habit.countChecks} times in last 30 days',
+                '${habit.countChecks} times in last ${habit.history.length} days',
                 style: TextStyle(
                   color: Color(habit.color).makeTextLight && habit.checked
                       ? WHITE.withOpacity(0.84)

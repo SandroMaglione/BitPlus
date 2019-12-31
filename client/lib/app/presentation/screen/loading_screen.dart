@@ -7,24 +7,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Loading'),
-      ),
-      body: BlocListener<AuthBloc, AuthState>(
-        listener: (context, state) {
-          if (state is AuthUnauthenticated) {
-            Navigator.of(context).pushReplacementNamed(
-              Router.initLifeAreaScreen,
-            );
-          } else if (state is Authenticated) {
-            Navigator.of(context).pushReplacementNamed(
-              Router.homeScreen,
-            );
-          }
-        },
-        child: BlocBuilder<AuthBloc, AuthState>(
-          builder: (context, state) => _buildAuthBloc(context, state),
+    return SafeArea(
+      child: Scaffold(
+        body: BlocListener<AuthBloc, AuthState>(
+          listener: (context, state) {
+            if (state is AuthUnauthenticated) {
+              Navigator.of(context).pushReplacementNamed(
+                Router.initLifeAreaScreen,
+              );
+            } else if (state is Authenticated) {
+              Navigator.of(context).pushReplacementNamed(
+                Router.homeScreen,
+              );
+            }
+          },
+          child: BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) => _buildAuthBloc(context, state),
+          ),
         ),
       ),
     );

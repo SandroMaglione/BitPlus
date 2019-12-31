@@ -18,7 +18,7 @@ class TextInputField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text('$label'),
+        Text(label),
         TextField(
           controller: controller,
           obscureText: isPassword,

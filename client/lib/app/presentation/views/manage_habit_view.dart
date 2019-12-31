@@ -42,6 +42,11 @@ class ManageHabitView extends StatelessWidget {
                         [
                           TextInputField(
                             label: 'Name',
+                            controller: TextEditingController(
+                              text: BlocProvider.of<CreationHabitBloc>(context)
+                                  .state
+                                  .name,
+                            ),
                             onChanged: (value) {
                               BlocProvider.of<CreationHabitBloc>(context).add(
                                 UpdateNameCreationHabitEvent(
@@ -89,7 +94,9 @@ class ManageHabitView extends StatelessWidget {
                       delegate: SliverChildBuilderDelegate(
                         (context, index) => SelectAreaWeight(
                           areaName: LIFE_AREAS[index].name,
-                          color: state.lifeAreas[index] >= 0 ? Colors.greenAccent : Colors.redAccent,
+                          color: state.lifeAreas[index] >= 0
+                              ? Colors.greenAccent
+                              : Colors.redAccent,
                           areaPercentage: state.lifeAreas[index].abs() / 4,
                           areaValue: state.lifeAreas[index],
                           addValue: () => _addAreaValue(context, index),

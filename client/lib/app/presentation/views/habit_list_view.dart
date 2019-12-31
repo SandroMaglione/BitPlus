@@ -6,12 +6,12 @@ import 'package:bitplus/app/presentation/widgets/staggered_list_animation.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class HabitListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         BlocBuilder<HabitListStatusBloc, HabitListStatusState>(
           builder: (context, state) =>
