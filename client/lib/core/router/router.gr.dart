@@ -72,6 +72,7 @@ class Router {
           builder: (_) => HistoryMapScreen(
               history: typedArgs.history,
               name: typedArgs.name,
+              areaIndex: typedArgs.areaIndex,
               color: typedArgs.color,
               habitHistory: typedArgs.habitHistory),
           settings: settings,
@@ -90,11 +91,13 @@ class Router {
 class HistoryMapScreenArguments {
   final List<int> history;
   final String name;
+  final int areaIndex;
   final int color;
   final List<HistoryHabit> habitHistory;
   HistoryMapScreenArguments(
       {@required this.history,
       @required this.name,
+      @required this.areaIndex,
       @required this.color,
       @required this.habitHistory});
 }

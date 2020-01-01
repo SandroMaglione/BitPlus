@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 
 class AreaTile extends StatelessWidget {
   final LifeArea area;
+  final int areaIndex;
 
   const AreaTile({
     @required this.area,
+    @required this.areaIndex,
   });
 
   @override
@@ -28,6 +30,7 @@ class AreaTile extends StatelessWidget {
                 habitHistory: area.habitChecks.toList(),
                 name: area.name,
                 color: area.color,
+                areaIndex: areaIndex,
               ),
             );
           },

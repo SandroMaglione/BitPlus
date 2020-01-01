@@ -3,6 +3,17 @@ import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {}
 
+class NoAuthUserFailure implements Failure {
+  final String message;
+
+  const NoAuthUserFailure({
+    @required this.message,
+  });
+
+  @override
+  List<Object> get props => [message];
+}
+
 class JsonSerializationFailure implements Failure {
   final String message;
 

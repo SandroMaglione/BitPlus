@@ -87,6 +87,7 @@ class HabitTile extends StatelessWidget {
                       habitHistory: [],
                       name: habit.name,
                       color: habit.color,
+                      areaIndex: -1,
                     ),
                   );
                 },

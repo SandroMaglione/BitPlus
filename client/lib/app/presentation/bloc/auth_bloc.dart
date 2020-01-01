@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bitplus/app/data/models/user.dart';
+import 'package:bitplus/core/error/failures.dart';
 import 'package:bitplus/core/usecase/usecase.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/app/domain/usecases/profile/get_user.dart';
@@ -83,5 +84,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }
       },
     );
+  }
+
+  User get user {
+    if (state is Authenticated) {
+      return (state as Authenticated).user;
+    } else {
+      throw NoAuthUserFailure(
+        message: 'No user logged in',
+      );
+    }
   }
 }

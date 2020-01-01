@@ -39,7 +39,7 @@ exports.getTodayHabitList = functions.https.onRequest(async (req, res) => {
         endDate.setDate(endDate.getDate() - dateRange);
         let dayChecks = [];
         let countChecks = 0;
-        for (let d = new Date(); d >= endDate; d.setDate(d.getDate() - 1)) {
+        for (let d = new Date(); d > endDate; d.setDate(d.getDate() - 1)) {
             const dString = dateToString(d);
             const dayCheckPush = {
                 day: new Date(d.getTime()),
@@ -61,7 +61,9 @@ exports.getTodayHabitList = functions.https.onRequest(async (req, res) => {
 
         // Compute current consecutive days check streak
         let checkStreak = isChecked ? 1 : 0;
-        while (dailyCheck != undefined && dayChecks[checkStreak + 1].isChecked) {
+        let checkIndex = 0;
+        while (dailyCheck != undefined && dayChecks[checkIndex + 1].isChecked) {
+            ++checkIndex;
             ++checkStreak;
         }
 

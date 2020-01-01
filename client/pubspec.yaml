@@ -60,6 +60,7 @@ dependencies:
   flutter_statusbarcolor: ^0.2.3
   flutter_staggered_animations: "^0.1.2"
   loading_animations: ^2.1.0
+  sticky_headers: ^0.1.8+1
 
 dev_dependencies:
   flutter_test:

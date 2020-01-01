@@ -1,20 +1,23 @@
-import 'dart:math';
-
 import 'package:bitplus/app/data/models/history_habit.dart';
+import 'package:bitplus/app/presentation/views/habit_list_view.dart';
+import 'package:bitplus/app/presentation/views/history_calendar_grid_view.dart';
+import 'package:bitplus/app/presentation/views/history_habit_list_view.dart';
 import 'package:bitplus/app/presentation/widgets/custom_app_bar.dart';
-import 'package:bitplus/app/presentation/widgets/history_habit_tile.dart';
-import 'package:bitplus/app/presentation/widgets/history_tile.dart';
+import 'package:bitplus/app/presentation/widgets/custom_bottom_bar.dart';
+import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 
-class HistoryMapScreen extends StatelessWidget {
+class HistoryMapScreen extends StatefulWidget {
   final List<int> history;
   final List<HistoryHabit> habitHistory;
   final String name;
   final int color;
+  final int areaIndex;
 
   HistoryMapScreen({
     @required this.history,
     @required this.name,
+    @required this.areaIndex,
     @required this.color,
     @required this.habitHistory,
   }) {
@@ -26,58 +29,46 @@ class HistoryMapScreen extends StatelessWidget {
   }
 
   @override
+  _HistoryMapScreenState createState() => _HistoryMapScreenState();
+}
+
+class _HistoryMapScreenState extends State<HistoryMapScreen> {
+  int _bottomNavigationIndex = 0;
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-          title: name,
-          subtitle: 'Last ${history.length} days',
+          title: widget.name,
+          subtitle: 'Last ${widget.history.length} days',
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16.0,
-            vertical: 24.0,
-          ),
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: CustomScrollView(
-                  slivers: <Widget>[
-                    SliverGrid(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) => HistoryTile(
-                          color: Color(color),
-                          history: history[index],
-                          colorOpacity: history[index] /
-                              (history.reduce(max) != 0
-                                  ? history.reduce(max)
-                                  : 1),
-                          date: DateTime.now().subtract(
-                            Duration(days: index),
-                          ),
-                        ),
-                        childCount: history.length,
-                      ),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 5,
-                        childAspectRatio: 1 / 1,
-                        crossAxisSpacing: 0,
-                        mainAxisSpacing: 0,
-                      ),
-                    ),
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) => HistoryHabitTile(
-                          historyHabit: habitHistory[index],
-                        ),
-                        childCount: habitHistory.length,
-                      ),
-                    ),
-                  ],
-                ),
+        body: _bottomNavigationIndex == 0
+            ? HistoryCalendarGridView(
+                color: widget.color,
+                history: widget.history,
+              )
+            : HistoryHabitListView(
+                areaIndex: widget.areaIndex,
+                habitHistory: widget.habitHistory,
               ),
-            ],
-          ),
+        bottomNavigationBar: CustomBottomBar(
+          currentIndex: _bottomNavigationIndex,
+          onTap: (index) => setState(() => _bottomNavigationIndex = index),
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.calendar_today,
+              ),
+              title: Text('Calendar'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.view_list,
+              ),
+              title: Text('History'),
+            ),
+          ],
         ),
       ),
     );

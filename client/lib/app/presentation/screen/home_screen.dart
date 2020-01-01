@@ -3,6 +3,7 @@ import 'package:bitplus/app/presentation/views/area_list_view.dart';
 import 'package:bitplus/app/presentation/views/habit_list_view.dart';
 import 'package:bitplus/app/presentation/views/info_view.dart';
 import 'package:bitplus/app/presentation/widgets/custom_app_bar.dart';
+import 'package:bitplus/app/presentation/widgets/custom_bottom_bar.dart';
 import 'package:bitplus/core/router/router.gr.dart';
 import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
@@ -51,46 +52,35 @@ class _HomeScreenState extends State<HomeScreen> {
             child: _displayNavigationScreen,
           ),
         ),
-        bottomNavigationBar: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(16.0),
-            topRight: Radius.circular(16.0),
-          ),
-          child: BottomNavigationBar(
-            currentIndex: _bottomNavigationIndex,
-            selectedItemColor: ACCENT_COLOR_DARK,
-            unselectedItemColor: ACCENT_COLOR_DARK.withOpacity(0.56),
-            backgroundColor: WHITE,
-            showSelectedLabels: true,
-            showUnselectedLabels: false,
-            onTap: (index) => setState(() => _bottomNavigationIndex = index),
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.inbox,
-                ),
-                title: Text('Habits'),
+        bottomNavigationBar: CustomBottomBar(
+          currentIndex: _bottomNavigationIndex,
+          onTap: (index) => setState(() => _bottomNavigationIndex = index),
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.inbox,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.list,
-                ),
-                title: Text('Areas'),
+              title: Text('Habits'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.list,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.share,
-                ),
-                title: Text('Share'),
+              title: Text('Areas'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.share,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.info_outline,
-                ),
-                title: Text('Info'),
+              title: Text('Share'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.info_outline,
               ),
-            ],
-          ),
+              title: Text('Info'),
+            ),
+          ],
         ),
       ),
     );

@@ -13,6 +13,7 @@ class AreaListView extends StatelessWidget {
       builder: (context, state) => StaggeredListAnimation(
         buildChild: (index) => AreaTile(
           area: state[index],
+          areaIndex: index,
         ),
         itemCount: state.length,
       ),
