@@ -3,57 +3,76 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class HistoryCalendarTile extends StatelessWidget {
-  final Color color;
-  final double colorOpacity;
-  final int history;
+  final int countPositive;
+  final int countNegative;
   final DateTime date;
 
   const HistoryCalendarTile({
     Key key,
-    @required this.color,
-    @required this.history,
+    @required this.countNegative,
+    @required this.countPositive,
     @required this.date,
-    @required this.colorOpacity,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(2.0),
+      padding: const EdgeInsets.all(4.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(4.0),
-        child: Opacity(
-          opacity: colorOpacity == 0 ? 0.72 : 1,
-          child: Container(
-            color: _applyColorOpacity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+        child: Container(
+          decoration: BoxDecoration(
+            color: SCAFFOLD_COLOR,
+            border: Border.all(
+              width: 1.0,
+              color: SCAFFOLD_MATERIAL_COLOR[600],
+            ),
+          ),
+          child: LayoutBuilder(
+            builder: (context, constraints) => Stack(
+              alignment: Alignment.center,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 8.0,
+                Positioned(
+                  top: 0,
+                  child: Container(
+                    width: constraints.maxWidth,
+                    height: countNegative + countPositive == 0
+                        ? 0
+                        : countPositive *
+                            constraints.maxHeight /
+                            (countNegative + countPositive),
+                    color: Colors.blueAccent.withOpacity(0.72),
                   ),
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        '${DateFormat('d').format(date)}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          color: colorOpacity == 0
-                              ? ACCENT_COLOR.withOpacity(0.36)
-                              : _makeTextLight ? WHITE : ACCENT_COLOR,
-                        ),
-                      ),
-                      Text(
-                        '${DateFormat('MMM').format(date)}',
-                        style: TextStyle(
-                          color: colorOpacity == 0
-                              ? ACCENT_COLOR.withOpacity(0.24)
-                              : _makeTextLight ? WHITE : ACCENT_COLOR,
-                        ),
-                      ),
-                    ],
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: Container(
+                    width: constraints.maxWidth,
+                    height: countNegative + countPositive == 0
+                        ? 0
+                        : countNegative *
+                            constraints.maxHeight /
+                            (countNegative + countPositive),
+                    color: Colors.redAccent.withOpacity(0.72),
                   ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      '${DateFormat('d').format(date)}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: ACCENT_COLOR_DARK,
+                      ),
+                    ),
+                    Text(
+                      '${DateFormat('MMM').format(date)}',
+                      style: TextStyle(
+                        color: ACCENT_COLOR_DARK,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -62,13 +81,4 @@ class HistoryCalendarTile extends StatelessWidget {
       ),
     );
   }
-
-  Color get _applyColorOpacity => colorOpacity == 0
-      ? WHITE
-      : color.withOpacity(
-          colorOpacity,
-        );
-
-  bool get _makeTextLight =>
-      colorOpacity != 0 && _applyColorOpacity.computeLuminance() < 0.6;
 }

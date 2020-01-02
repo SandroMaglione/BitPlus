@@ -63,7 +63,7 @@ BuiltList<LifeArea> LIFE_AREAS = BuiltList<LifeArea>(
         (l) => l
           ..name = 'spiritual'
           ..icon = 'icon'
-          ..color = 0xFFCBE896,
+          ..color = 0xFFF94440,
       ),
     ),
     LifeArea.fromSetting(

@@ -1,10 +1,15 @@
+import 'dart:math';
+
 import 'package:bitplus/app/data/models/life_area.dart';
+import 'package:bitplus/app/presentation/bloc/area_overview_bloc.dart';
+import 'package:bitplus/app/presentation/widgets/area_chart.dart';
 import 'package:bitplus/app/presentation/widgets/area_progress_indicator.dart';
+import 'package:bitplus/app/presentation/widgets/rich_text_activity.dart';
 import 'package:bitplus/core/router/router.gr.dart';
 import 'package:bitplus/core/theme/colors.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:bitplus/core/extensions/string_extension.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AreaPage extends StatelessWidget {
   final LifeArea area;
@@ -53,7 +58,7 @@ class AreaPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        area.name,
+                        area.name.capitalize,
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.w700,
@@ -74,82 +79,10 @@ class AreaPage extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 20.0,
-                      bottom: 20.0,
-                      right: 4.0,
-                      left: 4.0,
-                    ),
-                    child: LineChart(
-                      LineChartData(
-                        gridData: FlGridData(
-                          drawVerticalLine: true,
-                          drawHorizontalLine: true,
-                          getDrawingHorizontalLine: (val) => FlLine(
-                            color: SCAFFOLD_COLOR,
-                          ),
-                          getDrawingVerticalLine: (val) => FlLine(
-                            color: SCAFFOLD_COLOR,
-                          ),
-                        ),
-                        backgroundColor: WHITE,
-                        titlesData: FlTitlesData(
-                          show: true,
-                          leftTitles: SideTitles(
-                            showTitles: false,
-                          ),
-                          bottomTitles: SideTitles(
-                            showTitles: true,
-                            margin: 10.0,
-                            getTitles: (index) =>
-                                '${DateFormat('EEE').format(DateTime.now().subtract(Duration(days: index.toInt())))}',
-                          ),
-                        ),
-                        maxX: 6,
-                        minX: 0,
-                        extraLinesData: ExtraLinesData(
-                          showHorizontalLines: false,
-                          showVerticalLines: false,
-                        ),
-                        lineTouchData: LineTouchData(
-                          enabled: false,
-                        ),
-                        lineBarsData: [
-                          LineChartBarData(
-                            dotData: FlDotData(
-                              dotColor: Color(area.color).withOpacity(0.72),
-                              dotSize: 3.0,
-                            ),
-                            spots: area.history
-                                .getRange(0, 7)
-                                .toList()
-                                .reversed
-                                .toList()
-                                .asMap()
-                                .map(
-                                  (index, value) => MapEntry(
-                                    index,
-                                    FlSpot(
-                                      index.toDouble(),
-                                      value.toDouble(),
-                                    ),
-                                  ),
-                                )
-                                .values
-                                .toList(),
-                            isCurved: true,
-                            isStrokeCapRound: true,
-                            preventCurveOverShooting: true,
-                            colors: [
-                              Color(area.color).withOpacity(0.54),
-                            ],
-                            barWidth: 1.0,
-                            curveSmoothness: 0.0,
-                          )
-                        ],
-                      ),
-                    ),
+                  child: AreaChart(
+                    history: area.history.toList(),
+                    color: Color(area.color),
+                    maxY: _maxAreaCount(context),
                   ),
                 ),
                 Column(
@@ -164,47 +97,15 @@ class AreaPage extends StatelessWidget {
                       color: SCAFFOLD_COLOR,
                     ),
                     Divider(),
-                    RichText(
-                      text: TextSpan(
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          color: SCAFFOLD_MATERIAL_COLOR[800],
-                        ),
-                        children: [
-                          TextSpan(
-                            text: '${area.countChecksPositive}',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.blueAccent,
-                            ),
-                          ),
-                          TextSpan(
-                            text: ' good activities the last 30 days',
-                          ),
-                        ],
-                      ),
+                    RichTextActivity(
+                      amount: area.countChecksPositive,
+                      color: Colors.blueAccent,
+                      text: ' good activities the last 30 days',
                     ),
-                    RichText(
-                      text: TextSpan(
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          color: SCAFFOLD_MATERIAL_COLOR[800],
-                        ),
-                        children: [
-                          TextSpan(
-                            text: '${area.countChecksNegative}',
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.redAccent,
-                            ),
-                          ),
-                          TextSpan(
-                            text: ' bad activities the last 30 days',
-                          ),
-                        ],
-                      ),
+                    RichTextActivity(
+                      amount: area.countChecksNegative,
+                      color: Colors.redAccent,
+                      text: ' bad activities the last 30 days',
                     ),
                   ],
                 )
@@ -215,6 +116,14 @@ class AreaPage extends StatelessWidget {
       ),
     );
   }
+
+  double _maxAreaCount(BuildContext context) =>
+      BlocProvider.of<AreaOverviewBloc>(context).state.fold(
+            0.0,
+            (prevMax, current) => current.history.reduce(max) > prevMax
+                ? current.history.reduce(max).toDouble()
+                : prevMax,
+          );
 
   IconData get _iconAlert =>
       area.percentageArea > .75 && area.percentageActivity < .25

@@ -45,6 +45,7 @@ class _HistoryMapScreenState extends State<HistoryMapScreen> {
             ? HistoryCalendarGridView(
                 color: widget.color,
                 history: widget.history,
+                areaIndex: widget.areaIndex,
               )
             : HistoryHabitListView(
                 areaIndex: widget.areaIndex,
