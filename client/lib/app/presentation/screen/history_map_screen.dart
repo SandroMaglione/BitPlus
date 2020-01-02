@@ -1,10 +1,8 @@
 import 'package:bitplus/app/data/models/history_habit.dart';
-import 'package:bitplus/app/presentation/views/habit_list_view.dart';
 import 'package:bitplus/app/presentation/views/history_calendar_grid_view.dart';
 import 'package:bitplus/app/presentation/views/history_habit_list_view.dart';
 import 'package:bitplus/app/presentation/widgets/custom_app_bar.dart';
 import 'package:bitplus/app/presentation/widgets/custom_bottom_bar.dart';
-import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class HistoryMapScreen extends StatefulWidget {

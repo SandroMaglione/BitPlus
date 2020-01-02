@@ -1,5 +1,4 @@
 import 'package:bitplus/app/data/models/api/habit_api.dart';
-import 'package:bitplus/app/data/models/history_check.dart';
 import 'package:bitplus/app/data/models/history_habit.dart';
 import 'package:built_collection/built_collection.dart';
 
@@ -9,7 +8,12 @@ abstract class AreaValueAlgorithm {
     BuiltList<HabitApi> habitList,
   );
 
-  int buildCountChecks(
+  int buildCountChecksPositive(
+    int areaIndex,
+    BuiltList<HabitApi> habitList,
+  );
+
+  int buildCountChecksNegative(
     int areaIndex,
     BuiltList<HabitApi> habitList,
   );
@@ -55,16 +59,37 @@ class ValueAlgorithmV1 implements AreaValueAlgorithm {
   }
 
   @override
-  int buildCountChecks(
+  int buildCountChecksNegative(
     int areaIndex,
     BuiltList<HabitApi> habitList,
   ) =>
       habitList
+          .where((habit) => habit.areas[areaIndex] < 0)
+          .toList()
           .asMap()
           .map(
             (index, habit) => MapEntry(
               index,
-              habit.areas[areaIndex] > 0 ? habit.countChecks : 0,
+              habit.countChecks,
+            ),
+          )
+          .values
+          .toList()
+          .reduce((v, e) => v + e);
+
+  @override
+  int buildCountChecksPositive(
+    int areaIndex,
+    BuiltList<HabitApi> habitList,
+  ) =>
+      habitList
+          .where((habit) => habit.areas[areaIndex] > 0)
+          .toList()
+          .asMap()
+          .map(
+            (index, habit) => MapEntry(
+              index,
+              habit.countChecks,
             ),
           )
           .values

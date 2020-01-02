@@ -25,8 +25,11 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
           specifiedType: const FullType(double)),
       'color',
       serializers.serialize(object.color, specifiedType: const FullType(int)),
-      'countChecks',
-      serializers.serialize(object.countChecks,
+      'countChecksPositive',
+      serializers.serialize(object.countChecksPositive,
+          specifiedType: const FullType(int)),
+      'countChecksNegative',
+      serializers.serialize(object.countChecksNegative,
           specifiedType: const FullType(int)),
       'history',
       serializers.serialize(object.history,
@@ -72,8 +75,12 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
           result.color = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
-        case 'countChecks':
-          result.countChecks = serializers.deserialize(value,
+        case 'countChecksPositive':
+          result.countChecksPositive = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'countChecksNegative':
+          result.countChecksNegative = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
         case 'history':
@@ -115,7 +122,9 @@ class _$LifeArea extends LifeArea {
   @override
   final int color;
   @override
-  final int countChecks;
+  final int countChecksPositive;
+  @override
+  final int countChecksNegative;
   @override
   final BuiltList<int> history;
   @override
@@ -134,7 +143,8 @@ class _$LifeArea extends LifeArea {
       {this.name,
       this.value,
       this.color,
-      this.countChecks,
+      this.countChecksPositive,
+      this.countChecksNegative,
       this.history,
       this.habitChecks,
       this.percentageArea,
@@ -150,8 +160,11 @@ class _$LifeArea extends LifeArea {
     if (color == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'color');
     }
-    if (countChecks == null) {
-      throw new BuiltValueNullFieldError('LifeArea', 'countChecks');
+    if (countChecksPositive == null) {
+      throw new BuiltValueNullFieldError('LifeArea', 'countChecksPositive');
+    }
+    if (countChecksNegative == null) {
+      throw new BuiltValueNullFieldError('LifeArea', 'countChecksNegative');
     }
     if (history == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'history');
@@ -184,7 +197,8 @@ class _$LifeArea extends LifeArea {
         name == other.name &&
         value == other.value &&
         color == other.color &&
-        countChecks == other.countChecks &&
+        countChecksPositive == other.countChecksPositive &&
+        countChecksNegative == other.countChecksNegative &&
         history == other.history &&
         habitChecks == other.habitChecks &&
         percentageArea == other.percentageArea &&
@@ -200,9 +214,11 @@ class _$LifeArea extends LifeArea {
                 $jc(
                     $jc(
                         $jc(
-                            $jc($jc($jc(0, name.hashCode), value.hashCode),
-                                color.hashCode),
-                            countChecks.hashCode),
+                            $jc(
+                                $jc($jc($jc(0, name.hashCode), value.hashCode),
+                                    color.hashCode),
+                                countChecksPositive.hashCode),
+                            countChecksNegative.hashCode),
                         history.hashCode),
                     habitChecks.hashCode),
                 percentageArea.hashCode),
@@ -216,7 +232,8 @@ class _$LifeArea extends LifeArea {
           ..add('name', name)
           ..add('value', value)
           ..add('color', color)
-          ..add('countChecks', countChecks)
+          ..add('countChecksPositive', countChecksPositive)
+          ..add('countChecksNegative', countChecksNegative)
           ..add('history', history)
           ..add('habitChecks', habitChecks)
           ..add('percentageArea', percentageArea)
@@ -241,9 +258,15 @@ class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
   int get color => _$this._color;
   set color(int color) => _$this._color = color;
 
-  int _countChecks;
-  int get countChecks => _$this._countChecks;
-  set countChecks(int countChecks) => _$this._countChecks = countChecks;
+  int _countChecksPositive;
+  int get countChecksPositive => _$this._countChecksPositive;
+  set countChecksPositive(int countChecksPositive) =>
+      _$this._countChecksPositive = countChecksPositive;
+
+  int _countChecksNegative;
+  int get countChecksNegative => _$this._countChecksNegative;
+  set countChecksNegative(int countChecksNegative) =>
+      _$this._countChecksNegative = countChecksNegative;
 
   ListBuilder<int> _history;
   ListBuilder<int> get history => _$this._history ??= new ListBuilder<int>();
@@ -276,7 +299,8 @@ class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
       _name = _$v.name;
       _value = _$v.value;
       _color = _$v.color;
-      _countChecks = _$v.countChecks;
+      _countChecksPositive = _$v.countChecksPositive;
+      _countChecksNegative = _$v.countChecksNegative;
       _history = _$v.history?.toBuilder();
       _habitChecks = _$v.habitChecks?.toBuilder();
       _percentageArea = _$v.percentageArea;
@@ -309,7 +333,8 @@ class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
               name: name,
               value: value,
               color: color,
-              countChecks: countChecks,
+              countChecksPositive: countChecksPositive,
+              countChecksNegative: countChecksNegative,
               history: history.build(),
               habitChecks: habitChecks.build(),
               percentageArea: percentageArea,

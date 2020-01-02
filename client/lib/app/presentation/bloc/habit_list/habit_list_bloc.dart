@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:bitplus/app/data/models/history_check.dart';
 import 'package:bitplus/app/domain/usecases/habit/check_habit.dart' as ch;
 import 'package:bitplus/app/domain/usecases/habit/uncheck_habit.dart' as uch;
 import 'package:bitplus/core/error/failures.dart';

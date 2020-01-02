@@ -5,7 +5,6 @@ import 'package:bitplus/app/presentation/views/info_view.dart';
 import 'package:bitplus/app/presentation/widgets/custom_app_bar.dart';
 import 'package:bitplus/app/presentation/widgets/custom_bottom_bar.dart';
 import 'package:bitplus/core/router/router.gr.dart';
-import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';

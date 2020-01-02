@@ -63,7 +63,6 @@ class AreaOverviewBloc extends Bloc<AreaOverviewEvent, BuiltList<LifeArea>> {
       maxUserAreas,
     );
 
-
     final maxAreaValue = areaList
         .map(
           (a) => a.value,
@@ -108,7 +107,13 @@ class AreaOverviewBloc extends Bloc<AreaOverviewEvent, BuiltList<LifeArea>> {
                         habitList,
                       )
                       .toBuilder()
-                  ..countChecks = areaValueAlgorithm.buildCountChecks(
+                  ..countChecksPositive =
+                      areaValueAlgorithm.buildCountChecksPositive(
+                    index,
+                    habitList,
+                  )
+                  ..countChecksNegative =
+                      areaValueAlgorithm.buildCountChecksNegative(
                     index,
                     habitList,
                   )

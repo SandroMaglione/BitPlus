@@ -9,8 +9,6 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-import 'history_check.dart';
-
 part 'life_area.g.dart';
 
 abstract class LifeArea implements Built<LifeArea, LifeAreaBuilder> {
@@ -24,8 +22,10 @@ abstract class LifeArea implements Built<LifeArea, LifeAreaBuilder> {
   double get value;
   @BuiltValueField(wireName: 'color')
   int get color;
-  @BuiltValueField(wireName: 'countChecks')
-  int get countChecks;
+  @BuiltValueField(wireName: 'countChecksPositive')
+  int get countChecksPositive;
+  @BuiltValueField(wireName: 'countChecksNegative')
+  int get countChecksNegative;
   @BuiltValueField(wireName: 'history')
   BuiltList<int> get history;
   @BuiltValueField(wireName: 'habitChecks')
@@ -60,7 +60,8 @@ abstract class LifeArea implements Built<LifeArea, LifeAreaBuilder> {
         ..name = lifeAreaSetting.name
         ..color = lifeAreaSetting.color
         ..icon = lifeAreaSetting.icon
-        ..countChecks = 0
+        ..countChecksPositive = 0
+        ..countChecksNegative = 0
         ..history = ListBuilder<int>()
         ..percentageActivity = 0.0
         ..percentageArea = 0.0

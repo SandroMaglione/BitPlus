@@ -88,7 +88,7 @@ class AreaTile extends StatelessWidget {
                             vertical: 4.0,
                           ),
                           child: Text(
-                            '${area.countChecks} activities the last 30 days',
+                            '${area.countChecksPositive} activities the last 30 days',
                             style: TextStyle(
                               fontSize: 12.0,
                             ),
