@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:bitplus/core/error/failures.dart';
 import 'package:bitplus/core/usecase/usecase.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/app/domain/usecases/profile/get_user.dart';
 import 'package:bitplus/app/domain/usecases/profile/is_signed_in_user.dart';
@@ -36,6 +37,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       authSignIn: (e) => _mapAuthSignIn(e),
       authSignOut: (e) => _mapAuthSignOut(e),
       authSignInFromForm: (e) => _mapAuthSignInFromForm(e.user),
+      authUpdateAreas: (e) => _mapAuthUpdateAreas(e.areas),
+    );
+  }
+
+  Stream<AuthState> _mapAuthUpdateAreas(BuiltList<int> areas) async* {
+    yield AuthState.authenticated(
+      user: user.rebuild(
+        (u) => u..areas = areas.toBuilder(),
+      ),
     );
   }
 

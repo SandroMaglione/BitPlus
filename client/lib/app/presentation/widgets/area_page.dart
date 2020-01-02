@@ -9,6 +9,7 @@ import 'package:bitplus/core/router/router.gr.dart';
 import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:bitplus/core/extensions/string_extension.dart';
+import 'package:bitplus/core/extensions/build_collection_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AreaPage extends StatelessWidget {
@@ -24,7 +25,7 @@ class AreaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 16.0,
+        horizontal: 8.0,
         vertical: 8.0,
       ),
       child: Card(
@@ -62,7 +63,7 @@ class AreaPage extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.w700,
-                          color: ACCENT_COLOR_DARK,
+                          color: Color(area.color),
                         ),
                       ),
                       Padding(
@@ -96,7 +97,9 @@ class AreaPage extends StatelessWidget {
                       value: area.percentageArea,
                       color: SCAFFOLD_COLOR,
                     ),
-                    Divider(),
+                    SizedBox(
+                      height: 12.0,
+                    ),
                     RichTextActivity(
                       amount: area.countChecksPositive,
                       color: Colors.blueAccent,
@@ -120,7 +123,7 @@ class AreaPage extends StatelessWidget {
   double _maxAreaCount(BuildContext context) =>
       BlocProvider.of<AreaOverviewBloc>(context).state.fold(
             0.0,
-            (prevMax, current) => current.history.reduce(max) > prevMax
+            (prevMax, current) => current.history.reduceEmpty(0, max) > prevMax
                 ? current.history.reduce(max).toDouble()
                 : prevMax,
           );

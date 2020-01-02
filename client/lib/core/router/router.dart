@@ -5,6 +5,8 @@ import 'package:bitplus/app/presentation/screen/home_screen.dart';
 import 'package:bitplus/app/presentation/screen/init_life_area_screen.dart';
 import 'package:bitplus/app/presentation/screen/loading_screen.dart';
 import 'package:bitplus/app/presentation/screen/login_form_screen.dart';
+import 'package:bitplus/app/presentation/screen/profile_screen.dart';
+import 'package:bitplus/app/presentation/screen/update_life_area_screen.dart';
 
 @autoRouter
 class $Router {
@@ -16,4 +18,6 @@ class $Router {
   HomeScreen homeScreen;
   CreationHabitScreen creationHabitScreen;
   HistoryMapScreen historyMapScreen;
+  ProfileScreen profileScreen;
+  UpdateLifeAreaScreen updateLifeAreaScreen;
 }

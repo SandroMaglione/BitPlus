@@ -15,6 +15,8 @@ import 'package:bitplus/app/presentation/screen/creation_habit_screen.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/presentation/screen/history_map_screen.dart';
 import 'package:bitplus/app/data/models/history_habit.dart';
+import 'package:bitplus/app/presentation/screen/profile_screen.dart';
+import 'package:bitplus/app/presentation/screen/update_life_area_screen.dart';
 
 class Router {
   static const loadingScreen = '/';
@@ -23,6 +25,8 @@ class Router {
   static const homeScreen = '/homeScreen';
   static const creationHabitScreen = '/creationHabitScreen';
   static const historyMapScreen = '/historyMapScreen';
+  static const profileScreen = '/profileScreen';
+  static const updateLifeAreaScreen = '/updateLifeAreaScreen';
   static GlobalKey<NavigatorState> get navigatorKey =>
       getNavigatorKey<Router>();
   static NavigatorState get navigator => navigatorKey.currentState;
@@ -75,6 +79,20 @@ class Router {
               areaIndex: typedArgs.areaIndex,
               color: typedArgs.color,
               habitHistory: typedArgs.habitHistory),
+          settings: settings,
+        );
+      case profileScreen:
+        return MaterialPageRoute(
+          builder: (_) => ProfileScreen(),
+          settings: settings,
+        );
+      case updateLifeAreaScreen:
+        if (hasInvalidArgs<List<int>>(args, isRequired: true)) {
+          return misTypedArgsRoute<List<int>>(args);
+        }
+        final typedArgs = args as List<int>;
+        return MaterialPageRoute(
+          builder: (_) => UpdateLifeAreaScreen(areas: typedArgs),
           settings: settings,
         );
       default:

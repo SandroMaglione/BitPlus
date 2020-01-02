@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:bitplus/app/presentation/bloc/area_overview_bloc.dart';
 import 'package:bitplus/app/presentation/widgets/history_calendar_tile.dart';
 import 'package:flutter/material.dart';

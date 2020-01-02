@@ -1,15 +1,19 @@
 import 'package:bitplus/app/data/datasources/habit_remote_data_source.dart';
+import 'package:bitplus/app/data/datasources/life_area_remote_data_source.dart';
 import 'package:bitplus/app/data/datasources/profile_local_data_source.dart';
 import 'package:bitplus/app/data/datasources/profile_remote_data_source.dart';
 import 'package:bitplus/app/data/repositories/habit_repository_impl.dart';
+import 'package:bitplus/app/data/repositories/life_area_repository_impl.dart';
 import 'package:bitplus/app/data/repositories/profile_repository_impl.dart';
 import 'package:bitplus/app/domain/repositories/habit_repository.dart';
+import 'package:bitplus/app/domain/repositories/life_area_repository.dart';
 import 'package:bitplus/app/domain/repositories/profile_repository.dart';
 import 'package:bitplus/app/domain/usecases/habit/check_habit.dart';
 import 'package:bitplus/app/domain/usecases/habit/create_habit.dart';
 import 'package:bitplus/app/domain/usecases/habit/get_habit_list.dart';
 import 'package:bitplus/app/domain/usecases/habit/uncheck_habit.dart';
 import 'package:bitplus/app/domain/usecases/habit/update_habit.dart';
+import 'package:bitplus/app/domain/usecases/life_area/update_areas.dart';
 import 'package:bitplus/app/domain/usecases/profile/get_user.dart';
 import 'package:bitplus/app/domain/usecases/profile/is_signed_in_user.dart';
 import 'package:bitplus/app/domain/usecases/profile/sign_in_credentials.dart';
@@ -87,6 +91,13 @@ Future<void> init() async {
     ),
   );
 
+  serviceLocator.registerFactory<UpdateLifeAreaStatusBloc>(
+    () => UpdateLifeAreaStatusBloc(
+      authBloc: serviceLocator(),
+      updateAreas: serviceLocator(),
+    ),
+  );
+
   serviceLocator.registerFactory<CreationHabitBloc>(
     () => CreationHabitBloc(),
   );
@@ -111,6 +122,12 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton<HabitRepository>(
     () => HabitRepositoryImpl(
       habitRemoteDataSource: serviceLocator(),
+    ),
+  );
+
+  serviceLocator.registerLazySingleton<LifeAreaRepository>(
+    () => LifeAreaRepositoryImpl(
+      lifeAreaRemoteDataSource: serviceLocator(),
     ),
   );
 
@@ -189,6 +206,13 @@ Future<void> init() async {
     ),
   );
 
+  // Life area
+  serviceLocator.registerLazySingleton(
+    () => UpdateAreas(
+      lifeAreaRepository: serviceLocator(),
+    ),
+  );
+
   // Data sources
   serviceLocator.registerLazySingleton<NetworkInfo>(
     () => NetworkInfoImpl(
@@ -202,6 +226,12 @@ Future<void> init() async {
       firebaseAuth: serviceLocator(),
       firestore: serviceLocator(),
       googleSignIn: serviceLocator(),
+    ),
+  );
+
+  serviceLocator.registerLazySingleton<LifeAreaRemoteDataSource>(
+    () => LifeAreaRemoteDataSourceImpl(
+      client: serviceLocator(),
     ),
   );
 

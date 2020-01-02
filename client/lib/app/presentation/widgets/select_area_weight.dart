@@ -87,24 +87,20 @@ class SelectAreaWeight extends StatelessWidget {
             ),
           ),
           LayoutBuilder(
-            builder: (ctx, cns) {
-              print(cns.maxWidth);
-              print(cns.maxHeight);
-              return AnimatedContainer(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.0),
-                  color: color,
-                ),
-                duration: Duration(
-                  milliseconds: 350,
-                ),
-                curve: Curves.easeOut,
-                height: 4.0,
-                width: cns.maxWidth * areaPercentage >= 0
-                    ? cns.maxWidth * areaPercentage
-                    : 0,
-              );
-            },
+            builder: (ctx, cns) => AnimatedContainer(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.0),
+                color: color,
+              ),
+              duration: Duration(
+                milliseconds: 350,
+              ),
+              curve: Curves.easeOut,
+              height: 4.0,
+              width: cns.maxWidth * areaPercentage >= 0
+                  ? cns.maxWidth * areaPercentage
+                  : 0,
+            ),
           ),
         ],
       ),

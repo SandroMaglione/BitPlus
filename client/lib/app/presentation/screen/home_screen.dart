@@ -32,7 +32,12 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: CustomAppBar(
           title: '${DateFormat('EEEE').format(DateTime.now())}',
           subtitle: '${DateFormat('d MMMM y').format(DateTime.now())}',
-          leftAction: () => _signOut(context),
+          leftIcon: Icons.person_outline,
+          leftAction: () {
+            Navigator.of(context).pushNamed(
+              Router.profileScreen,
+            );
+          },
         ),
         body: MultiBlocListener(
           listeners: [
@@ -57,25 +62,19 @@ class _HomeScreenState extends State<HomeScreen> {
           items: [
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.inbox,
+                Icons.assessment,
               ),
               title: Text('Habits'),
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.list,
+                Icons.accessibility_new,
               ),
               title: Text('Areas'),
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.share,
-              ),
-              title: Text('Share'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.info_outline,
+                Icons.info,
               ),
               title: Text('Info'),
             ),
@@ -91,16 +90,10 @@ class _HomeScreenState extends State<HomeScreen> {
         return HabitListView();
       case 1:
         return AreaListView();
-      case 3:
+      case 2:
         return InfoView();
       default:
         return HabitListView();
     }
-  }
-
-  void _signOut(BuildContext context) {
-    BlocProvider.of<AuthBloc>(context).add(
-      AuthEvent.authSignOut(),
-    );
   }
 }

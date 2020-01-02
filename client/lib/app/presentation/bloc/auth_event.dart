@@ -1,4 +1,5 @@
 import 'package:bitplus/app/data/models/user.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:super_enum/super_enum.dart';
 
 part 'auth_event.g.dart';
@@ -15,4 +16,8 @@ enum _AuthEvent {
     DataField('user', User),
   ])
   AuthSignInFromForm,
+  @Data(fields: [
+    DataField('areas', BuiltList),
+  ])
+  AuthUpdateAreas,
 }

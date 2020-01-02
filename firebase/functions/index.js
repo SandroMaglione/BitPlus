@@ -82,6 +82,18 @@ exports.getTodayHabitList = functions.https.onRequest(async (req, res) => {
     res.status(200).send(JSON.stringify(habitCheck));
 });
 
+exports.updateAreas = functions.https.onRequest(async (req, res) => {
+    const { uid, areas } = req.body;
+
+    await db.collection('user')
+        .doc(uid)
+        .update({
+            areas: areas
+        });
+
+    res.status(200).send(uid);
+});
+
 exports.createHabit = functions.https.onRequest(async (req, res) => {
     const { uid, color, name, areas } = req.body;
 

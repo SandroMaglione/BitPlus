@@ -20,3 +20,6 @@ export 'creation_habit/creation_habit_status_event.dart';
 export 'creation_habit/creation_habit_status_state.dart';
 export 'area_overview_bloc.dart';
 export 'area_overview_event.dart';
+export 'update_life_area_status_bloc.dart';
+export 'update_life_area_status_event.dart';
+export 'update_life_area_status_state.dart';

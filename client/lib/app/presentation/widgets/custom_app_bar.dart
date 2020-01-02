@@ -8,13 +8,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Function rightAction;
   final Function leftAction;
   final IconData rightIcon;
+  final IconData leftIcon;
 
   const CustomAppBar({
-    this.title,
+    @required this.title,
     this.subtitle,
     this.leftAction,
     this.rightAction,
     this.rightIcon,
+    this.leftIcon,
   });
 
   @override
@@ -92,7 +94,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       : GestureDetector(
           onTap: leftAction,
           child: Icon(
-            Icons.exit_to_app,
+            leftIcon ?? Icons.exit_to_app,
             color: ACCENT_COLOR_DARK,
           ),
         );

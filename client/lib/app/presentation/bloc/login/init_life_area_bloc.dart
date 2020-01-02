@@ -23,6 +23,21 @@ class InitLifeAreaBloc extends Bloc<InitLifeAreaEvent, InitLifeArea> {
     yield* event.when(
       addPointInitLifeAreaEvent: (e) => _mapAddPointInitLifeAreaEvent(e),
       removePointInitLifeAreaEvent: (e) => _mapRemovePointInitLifeAreaEvent(e),
+      initializeInitLifeAreaEvent: (e) => _mapInitializeInitLifeAreaEvent(
+        e.areas,
+        e.pointsLeft,
+      ),
+    );
+  }
+
+  Stream<InitLifeArea> _mapInitializeInitLifeAreaEvent(
+    BuiltList<int> areas,
+    int pointsLeft,
+  ) async* {
+    yield state.rebuild(
+      (i) => i
+        ..pointsLeft = pointsLeft
+        ..values = areas.toBuilder(),
     );
   }
 

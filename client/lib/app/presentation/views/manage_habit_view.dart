@@ -40,20 +40,26 @@ class ManageHabitView extends StatelessWidget {
                     SliverList(
                       delegate: SliverChildListDelegate(
                         [
-                          TextInputField(
-                            label: 'Name',
-                            controller: TextEditingController(
-                              text: BlocProvider.of<CreationHabitBloc>(context)
-                                  .state
-                                  .name,
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 24.0,
                             ),
-                            onChanged: (value) {
-                              BlocProvider.of<CreationHabitBloc>(context).add(
-                                UpdateNameCreationHabitEvent(
-                                  name: value,
-                                ),
-                              );
-                            },
+                            child: TextInputField(
+                              label: 'Name',
+                              controller: TextEditingController(
+                                text:
+                                    BlocProvider.of<CreationHabitBloc>(context)
+                                        .state
+                                        .name,
+                              ),
+                              onChanged: (value) {
+                                BlocProvider.of<CreationHabitBloc>(context).add(
+                                  UpdateNameCreationHabitEvent(
+                                    name: value,
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                         ],
                       ),
@@ -67,7 +73,11 @@ class ManageHabitView extends StatelessWidget {
                       ),
                       delegate: SliverChildBuilderDelegate(
                         (context, index) => Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(
+                            left: 8.0,
+                            right: 8.0,
+                            bottom: 16.0,
+                          ),
                           child: InkWell(
                             onTap: () {
                               BlocProvider.of<CreationHabitBloc>(context).add(
@@ -95,7 +105,7 @@ class ManageHabitView extends StatelessWidget {
                         (context, index) => SelectAreaWeight(
                           areaName: LIFE_AREAS[index].name,
                           color: state.lifeAreas[index] >= 0
-                              ? Colors.greenAccent
+                              ? Colors.blueAccent
                               : Colors.redAccent,
                           areaPercentage: state.lifeAreas[index].abs() / 4,
                           areaValue: state.lifeAreas[index],

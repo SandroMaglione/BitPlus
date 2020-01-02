@@ -65,11 +65,17 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     String email,
     String password,
   ) async {
-    final result = await firebaseAuth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    return result.user.uid;
+    try {
+      final result = await firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return result.user.uid;
+    } on PlatformException {
+      throw FirebaseAuthFailure(
+        message: 'No user exist with this credentials, try again',
+      );
+    }
   }
 
   @override

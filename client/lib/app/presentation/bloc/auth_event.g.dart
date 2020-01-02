@@ -19,6 +19,9 @@ abstract class AuthEvent extends Equatable {
   factory AuthEvent.authSignInFromForm({@required User user}) =
       AuthSignInFromForm;
 
+  factory AuthEvent.authUpdateAreas({@required BuiltList<dynamic> areas}) =
+      AuthUpdateAreas;
+
   final _AuthEvent _type;
 
 //ignore: missing_return
@@ -26,7 +29,8 @@ abstract class AuthEvent extends Equatable {
       {@required R Function(AuthOnStartup) authOnStartup,
       @required R Function(AuthSignIn) authSignIn,
       @required R Function(AuthSignOut) authSignOut,
-      @required R Function(AuthSignInFromForm) authSignInFromForm}) {
+      @required R Function(AuthSignInFromForm) authSignInFromForm,
+      @required R Function(AuthUpdateAreas) authUpdateAreas}) {
     switch (this._type) {
       case _AuthEvent.AuthOnStartup:
         return authOnStartup(this as AuthOnStartup);
@@ -36,6 +40,8 @@ abstract class AuthEvent extends Equatable {
         return authSignOut(this as AuthSignOut);
       case _AuthEvent.AuthSignInFromForm:
         return authSignInFromForm(this as AuthSignInFromForm);
+      case _AuthEvent.AuthUpdateAreas:
+        return authUpdateAreas(this as AuthUpdateAreas);
     }
   }
 
@@ -90,4 +96,17 @@ class AuthSignInFromForm extends AuthEvent {
   String toString() => 'AuthSignInFromForm(user:${this.user})';
   @override
   List get props => [user];
+}
+
+@immutable
+class AuthUpdateAreas extends AuthEvent {
+  const AuthUpdateAreas({@required this.areas})
+      : super(_AuthEvent.AuthUpdateAreas);
+
+  final BuiltList<dynamic> areas;
+
+  @override
+  String toString() => 'AuthUpdateAreas(areas:${this.areas})';
+  @override
+  List get props => [areas];
 }
