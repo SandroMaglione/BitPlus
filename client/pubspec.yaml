@@ -56,6 +56,9 @@ dependencies:
   # auto router
   auto_route: ^0.2.0+1
 
+  # helper functions
+  dartx: ^0.3.0
+
   #UI
   flutter_statusbarcolor: ^0.2.3
   flutter_staggered_animations: "^0.1.2"

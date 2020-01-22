@@ -26,17 +26,13 @@ class AreaChart extends StatelessWidget {
       ),
       child: LineChart(
         LineChartData(
-          gridData: FlGridData(
-            drawVerticalLine: true,
-            drawHorizontalLine: true,
-            getDrawingHorizontalLine: (val) => FlLine(
-              color: SCAFFOLD_COLOR,
-            ),
-            getDrawingVerticalLine: (val) => FlLine(
-              color: SCAFFOLD_COLOR,
-            ),
+          gridData: const FlGridData(
+            drawVerticalLine: false,
+            drawHorizontalLine: false,
           ),
-          backgroundColor: WHITE,
+          borderData: FlBorderData(
+            show: false,
+          ),
           titlesData: FlTitlesData(
             show: true,
             leftTitles: const SideTitles(
@@ -45,8 +41,13 @@ class AreaChart extends StatelessWidget {
             bottomTitles: SideTitles(
               showTitles: true,
               margin: 10.0,
-              getTitles: (index) =>
-                  '${DateFormat('EEE').format(DateTime.now().subtract(Duration(days: 6 - index.toInt())))}',
+              getTitles: (index) {
+                if (index != 0 && index != 6) {
+                  return '${DateFormat('EEE').format(DateTime.now().subtract(Duration(days: 6 - index.toInt())))}';
+                } else {
+                  return '';
+                }
+              },
             ),
           ),
           maxX: 6,
@@ -62,8 +63,8 @@ class AreaChart extends StatelessWidget {
           lineBarsData: [
             LineChartBarData(
               dotData: FlDotData(
-                dotColor: color.withOpacity(0.72),
-                dotSize: 3.0,
+                dotColor: color.withOpacity(0.54),
+                dotSize: 0.0,
               ),
               spots: history
                   .getRange(0, 7)
@@ -88,8 +89,8 @@ class AreaChart extends StatelessWidget {
               colors: [
                 color.withOpacity(0.54),
               ],
-              barWidth: 1.0,
-              curveSmoothness: 0.0,
+              barWidth: 2.0,
+              curveSmoothness: 0.4,
             )
           ],
         ),

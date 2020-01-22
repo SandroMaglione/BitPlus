@@ -71,7 +71,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
         headers: {'Content-Type': 'application/json'},
         body: json.encode({"uid": uid, "dateRange": dateRange}),
       );
-      final List<HabitApi> habitList = json.decode(resp.body) as List<HabitApi>;
+      final habitList = json.decode(resp.body);
       return BuiltList<HabitApi>(
         habitList.map(
           (habit) => HabitApi.fromJson(

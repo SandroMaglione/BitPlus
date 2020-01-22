@@ -6,7 +6,6 @@ import 'package:bitplus/app/presentation/widgets/area_chart.dart';
 import 'package:bitplus/app/presentation/widgets/area_progress_indicator.dart';
 import 'package:bitplus/app/presentation/widgets/rich_text_activity.dart';
 import 'package:bitplus/core/router/router.gr.dart';
-import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:bitplus/core/extensions/string_extension.dart';
 import 'package:bitplus/core/extensions/build_collection_extension.dart';
@@ -42,78 +41,99 @@ class AreaPage extends StatelessWidget {
               ),
             );
           },
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 16.0,
-              bottom: 24.0,
-              left: 20.0,
-              right: 20.0,
-            ),
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8.0,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        area.name.capitalize,
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w700,
-                          color: Color(area.color),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: CircleAvatar(
-                          backgroundColor: SCAFFOLD_COLOR,
-                          foregroundColor: _colorAlert,
-                          child: Icon(
-                            _iconAlert,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24.0,
+                  vertical: 24.0,
                 ),
-                Expanded(
-                  child: AreaChart(
-                    history: area.history.toList(),
-                    color: Color(area.color),
-                    maxY: _maxAreaCount(context),
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      area.name.capitalize,
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w700,
+                        color: Color(area.color),
+                        letterSpacing: 1.0,
+                      ),
+                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: CircleAvatar(
+                    //     backgroundColor: SCAFFOLD_COLOR,
+                    //     foregroundColor: _colorAlert,
+                    //     child: Icon(
+                    //       _iconAlert,
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
                 ),
-                Column(
+              ),
+              Expanded(
+                child: AreaChart(
+                  history: area.history.toList(),
+                  color: Color(area.color),
+                  maxY: _maxAreaCount(context),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 16.0,
+                  bottom: 24.0,
+                  left: 24.0,
+                  right: 24.0,
+                ),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    AreaProgressIndicator(
-                      value: area.percentageActivity,
-                      color: _colorAlert.withOpacity(0.84),
-                    ),
-                    AreaProgressIndicator(
-                      value: area.percentageArea,
-                      color: SCAFFOLD_COLOR,
-                    ),
-                    const SizedBox(
-                      height: 12.0,
-                    ),
-                    RichTextActivity(
-                      amount: area.countChecksPositive,
-                      color: Colors.blueAccent,
-                      text: ' good activities the last 30 days',
-                    ),
-                    RichTextActivity(
-                      amount: area.countChecksNegative,
-                      color: Colors.redAccent,
-                      text: ' bad activities the last 30 days',
+                    // AreaProgressIndicator(
+                    //   value: area.percentageActivity,
+                    //   color: _colorAlert.withOpacity(0.84),
+                    // ),
+                    // AreaProgressIndicator(
+                    //   value: area.percentageArea,
+                    //   color: SCAFFOLD_COLOR,
+                    // ),
+                    // const SizedBox(
+                    //   height: 12.0,
+                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        RichTextActivity(
+                          amount: area.countChecksPositive,
+                          color: Colors.blueAccent,
+                          text: '',
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0,
+                            ),
+                            child: AreaProgressIndicator(
+                              value: area.countChecksPositive /
+                                  (area.countChecksPositive +
+                                      area.countChecksNegative),
+                              color: Colors.blueAccent.withOpacity(0.84),
+                              background: Colors.redAccent.withOpacity(0.84),
+                            ),
+                          ),
+                        ),
+                        RichTextActivity(
+                          amount: area.countChecksNegative,
+                          color: Colors.redAccent,
+                          text: '',
+                        ),
+                      ],
                     ),
                   ],
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
         ),
       ),

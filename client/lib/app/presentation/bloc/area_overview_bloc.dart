@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:dartx/dartx.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:bitplus/core/services/area_value_algorithm.dart';
@@ -71,6 +72,9 @@ class AreaOverviewBloc extends Bloc<AreaOverviewEvent, BuiltList<LifeArea>> {
         .reduce(max);
 
     yield areaList
+        .sortedBy((area) =>
+            area.countChecksPositive /
+            (area.countChecksPositive + area.countChecksNegative))
         .asMap()
         .map(
           (index, area) => MapEntry(
