@@ -38,11 +38,11 @@ class LifeAreaRemoteDataSourceImpl implements LifeAreaRemoteDataSource {
 
       return true;
     } on http.ClientException {
-      throw FirestoreFailure(
+      throw const FirestoreFailure(
         message: 'Client error while updating areas, try again',
       );
     } on FormatException {
-      throw FirestoreFailure(
+      throw const FirestoreFailure(
         message: 'Format error while updating areas, try again later',
       );
     }

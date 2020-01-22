@@ -97,7 +97,7 @@ class AreaPage extends StatelessWidget {
                       value: area.percentageArea,
                       color: SCAFFOLD_COLOR,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12.0,
                     ),
                     RichTextActivity(

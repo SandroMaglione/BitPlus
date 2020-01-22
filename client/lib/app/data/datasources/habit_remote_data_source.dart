@@ -30,9 +30,9 @@ abstract class HabitRemoteDataSource {
     BuiltList<HistoryCheck> history,
     int streak,
     int countChecks,
-    BuiltList<int> areas,
+    BuiltList<int> areas, {
     bool checked,
-  );
+  });
 
   /// Creates an [CreateHabitReq] and uploads it to the database
   ///
@@ -71,7 +71,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
         headers: {'Content-Type': 'application/json'},
         body: json.encode({"uid": uid, "dateRange": dateRange}),
       );
-      final habitList = json.decode(resp.body);
+      final List<HabitApi> habitList = json.decode(resp.body) as List<HabitApi>;
       return BuiltList<HabitApi>(
         habitList.map(
           (habit) => HabitApi.fromJson(
@@ -80,11 +80,11 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
         ),
       );
     } on http.ClientException {
-      throw FirestoreFailure(
+      throw const FirestoreFailure(
         message: 'Client error while fetching habit list, try again',
       );
     } on FormatException {
-      throw FirestoreFailure(
+      throw const FirestoreFailure(
         message: 'Format error while fetching habit list, try again later',
       );
     }
@@ -109,7 +109,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     if (resp.statusCode == 200) {
       return true;
     } else {
-      throw FirestoreFailure(
+      throw const FirestoreFailure(
         message: 'Client error while fetching habit list, try again',
       );
     }
@@ -134,11 +134,11 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     if (resp.statusCode == 200) {
       return true;
     } else if (resp.statusCode == 500) {
-      throw FirestoreFailure(
+      throw const FirestoreFailure(
         message: 'Error: could not handle the request, try again',
       );
     } else {
-      throw FirestoreFailure(
+      throw const FirestoreFailure(
         message: 'Client error while fetching habit list, try again',
       );
     }
@@ -159,7 +159,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
         ..areas = areas.toBuilder(),
     );
 
-    return await _manageHabit(
+    return _manageHabit(
       'https://us-central1-bitplus-95304.cloudfunctions.net/createHabit',
       habitReq.toJson(),
       (habitID) => HabitApi(
@@ -198,9 +198,9 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     BuiltList<HistoryCheck> history,
     int streak,
     int countChecks,
-    BuiltList<int> areas,
+    BuiltList<int> areas, {
     bool checked,
-  ) async {
+  }) async {
     final habitReq = UpdateHabitReq(
       (h) => h
         ..uid = uid
@@ -210,7 +210,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
         ..areas = areas.toBuilder(),
     );
 
-    return await _manageHabit(
+    return _manageHabit(
       'https://us-central1-bitplus-95304.cloudfunctions.net/updateHabit',
       habitReq.toJson(),
       (habitID) => HabitApi(
@@ -240,18 +240,18 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
       );
 
       if (resp.statusCode != 200) {
-        throw FirestoreFailure(
+        throw const FirestoreFailure(
           message: 'Client error while fetching habit list, try again',
         );
       } else {
         return getHabit(resp.body);
       }
     } on http.ClientException {
-      throw FirestoreFailure(
+      throw const FirestoreFailure(
         message: 'Client error while fetching habit list, try again',
       );
     } on JsonUnsupportedObjectError {
-      throw JsonSerializationFailure(
+      throw const JsonSerializationFailure(
         message: 'Error while converting data, try again later',
       );
     }

@@ -12,9 +12,9 @@ abstract class Summary implements Built<Summary, SummaryBuilder> {
   DateTime get date;
   int get dayTag; // TODO: Change DayTag from int to enum or Remote Config
 
-  Summary._();
-
   factory Summary([void Function(SummaryBuilder) updates]) = _$Summary;
+
+  Summary._();
 
   String toJsonString() {
     return json.encode(serializers.serializeWith(Summary.serializer, this));
@@ -29,8 +29,8 @@ abstract class Summary implements Built<Summary, SummaryBuilder> {
 
   Map<String, dynamic> toJsonMap() {
     return json.decode(
-      this.toJsonString(),
-    );
+      toJsonString(),
+    ) as Map<String, dynamic>;
   }
 
   static Serializer<Summary> get serializer => _$summarySerializer;

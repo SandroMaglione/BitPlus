@@ -7,18 +7,21 @@ import 'package:built_value/serializer.dart';
 
 part 'creation_habit.g.dart';
 
-abstract class CreationHabit implements Built<CreationHabit, CreationHabitBuilder> {
+abstract class CreationHabit
+    implements Built<CreationHabit, CreationHabitBuilder> {
   // Fields
   String get name;
   int get color;
   BuiltList<int> get lifeAreas;
 
+  factory CreationHabit([void Function(CreationHabitBuilder) updates]) =
+      _$CreationHabit;
+
   CreationHabit._();
 
-  factory CreationHabit([void Function(CreationHabitBuilder) updates]) = _$CreationHabit;
-
   String toJsonString() {
-    return json.encode(serializers.serializeWith(CreationHabit.serializer, this));
+    return json
+        .encode(serializers.serializeWith(CreationHabit.serializer, this));
   }
 
   static CreationHabit fromJson(Map<String, dynamic> jsonString) {
@@ -30,8 +33,8 @@ abstract class CreationHabit implements Built<CreationHabit, CreationHabitBuilde
 
   Map<String, dynamic> toJsonMap() {
     return json.decode(
-      this.toJsonString(),
-    );
+      toJsonString(),
+    ) as Map<String, dynamic>;
   }
 
   static Serializer<CreationHabit> get serializer => _$creationHabitSerializer;

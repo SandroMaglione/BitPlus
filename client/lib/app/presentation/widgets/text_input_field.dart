@@ -4,7 +4,7 @@ class TextInputField extends StatelessWidget {
   final String label;
   final TextEditingController controller;
   final bool isPassword;
-  final Function onChanged;
+  final void Function(String) onChanged;
 
   const TextInputField({
     @required this.label,

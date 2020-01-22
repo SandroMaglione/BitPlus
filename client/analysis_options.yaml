@@ -1,0 +1,18 @@
+include: package:lint/analysis_options.yaml
+
+linter:
+  rules:
+    # Good packages document everything
+    public_member_api_docs: true
+    # Blindly follow the Flutter code style, which prefers types everywhere
+    # always_specify_types: true
+    # The new tabs vs. spaces. Choose wisely
+    prefer_single_quotes: true
+    # Make constructors the first thing in every class
+    sort_constructors_first: true
+    # Util classes are awesome!
+    avoid_classes_with_only_static_members: false
+analyzer:
+    errors:
+      # Waiting for superenum to support BuiltList<T>
+      argument_type_not_assignable: warning

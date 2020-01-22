@@ -35,31 +35,31 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-final serviceLocator = GetIt.instance;
+final GetIt serviceLocator = GetIt.instance;
 
 Future<void> init() async {
   // Bloc
   serviceLocator.registerLazySingleton<AuthBloc>(
     () => AuthBloc(
-      getUser: serviceLocator(),
-      isSignedInUser: serviceLocator(),
-      signOut: serviceLocator(),
+      getUser: serviceLocator() as GetUser,
+      isSignedInUser: serviceLocator() as IsSignedInUser,
+      signOut: serviceLocator() as SignOut,
     ),
   );
 
   serviceLocator.registerFactory<LoginCredentialsBloc>(
     () => LoginCredentialsBloc(
-      loginValidator: serviceLocator(),
+      loginValidator: serviceLocator() as LoginValidator,
     ),
   );
 
   serviceLocator.registerFactory<LoginBloc>(
     () => LoginBloc(
-      authBloc: serviceLocator(),
-      signInCredentials: serviceLocator(),
-      signInGoogle: serviceLocator(),
-      signUpCredentials: serviceLocator(),
-      signUpGoogle: serviceLocator(),
+      authBloc: serviceLocator() as AuthBloc,
+      signInCredentials: serviceLocator() as SignInCredentials,
+      signInGoogle: serviceLocator() as SignInGoogle,
+      signUpCredentials: serviceLocator() as SignUpCredentials,
+      signUpGoogle: serviceLocator() as SignUpGoogle,
     ),
   );
 
@@ -69,32 +69,32 @@ Future<void> init() async {
 
   serviceLocator.registerLazySingleton<HabitListBloc>(
     () => HabitListBloc(
-      authBloc: serviceLocator(),
-      checkHabit: serviceLocator(),
-      uncheckHabit: serviceLocator(),
+      authBloc: serviceLocator() as AuthBloc,
+      checkHabit: serviceLocator() as CheckHabit,
+      uncheckHabit: serviceLocator() as UncheckHabit,
     ),
   );
 
   serviceLocator.registerLazySingleton<HabitListStatusBloc>(
     () => HabitListStatusBloc(
-      getHabitList: serviceLocator(),
-      habitListBloc: serviceLocator(),
-      authBloc: serviceLocator(),
+      authBloc: serviceLocator() as AuthBloc,
+      getHabitList: serviceLocator() as GetHabitList,
+      habitListBloc: serviceLocator() as HabitListBloc,
     ),
   );
 
   serviceLocator.registerFactory<AreaOverviewBloc>(
     () => AreaOverviewBloc(
-      authBloc: serviceLocator(),
-      habitListBloc: serviceLocator(),
-      areaValueAlgorithm: serviceLocator(),
+      authBloc: serviceLocator() as AuthBloc,
+      habitListBloc: serviceLocator() as HabitListBloc,
+      areaValueAlgorithm: serviceLocator() as AreaValueAlgorithm,
     ),
   );
 
   serviceLocator.registerFactory<UpdateLifeAreaStatusBloc>(
     () => UpdateLifeAreaStatusBloc(
-      authBloc: serviceLocator(),
-      updateAreas: serviceLocator(),
+      authBloc: serviceLocator() as AuthBloc,
+      updateAreas: serviceLocator() as UpdateAreas,
     ),
   );
 
@@ -104,30 +104,30 @@ Future<void> init() async {
 
   serviceLocator.registerFactory<CreationHabitStatusBloc>(
     () => CreationHabitStatusBloc(
-      authBloc: serviceLocator(),
-      createHabit: serviceLocator(),
-      updateHabit: serviceLocator(),
-      habitListBloc: serviceLocator(),
+      authBloc: serviceLocator() as AuthBloc,
+      createHabit: serviceLocator() as CreateHabit,
+      updateHabit: serviceLocator() as UpdateHabit,
+      habitListBloc: serviceLocator() as HabitListBloc,
     ),
   );
 
   // Repositories
   serviceLocator.registerLazySingleton<ProfileRepository>(
     () => ProfileRepositoryImpl(
-      profileLocalDataSource: serviceLocator(),
-      profileRemoteDataSource: serviceLocator(),
+      profileLocalDataSource: serviceLocator() as ProfileLocalDataSource,
+      profileRemoteDataSource: serviceLocator() as ProfileRemoteDataSource,
     ),
   );
 
   serviceLocator.registerLazySingleton<HabitRepository>(
     () => HabitRepositoryImpl(
-      habitRemoteDataSource: serviceLocator(),
+      habitRemoteDataSource: serviceLocator() as HabitRemoteDataSource,
     ),
   );
 
   serviceLocator.registerLazySingleton<LifeAreaRepository>(
     () => LifeAreaRepositoryImpl(
-      lifeAreaRemoteDataSource: serviceLocator(),
+      lifeAreaRemoteDataSource: serviceLocator() as LifeAreaRemoteDataSource,
     ),
   );
 
@@ -135,103 +135,103 @@ Future<void> init() async {
   // Profile
   serviceLocator.registerLazySingleton(
     () => SignInCredentials(
-      profileRepository: serviceLocator(),
+      profileRepository: serviceLocator() as ProfileRepository,
     ),
   );
 
   serviceLocator.registerLazySingleton(
     () => SignInGoogle(
-      profileRepository: serviceLocator(),
+      profileRepository: serviceLocator() as ProfileRepository,
     ),
   );
 
   serviceLocator.registerLazySingleton(
     () => SignUpGoogle(
-      profileRepository: serviceLocator(),
+      profileRepository: serviceLocator() as ProfileRepository,
     ),
   );
 
   serviceLocator.registerLazySingleton(
     () => SignUpCredentials(
-      profileRepository: serviceLocator(),
+      profileRepository: serviceLocator() as ProfileRepository,
     ),
   );
 
   serviceLocator.registerLazySingleton(
     () => IsSignedInUser(
-      profileRepository: serviceLocator(),
+      profileRepository: serviceLocator() as ProfileRepository,
     ),
   );
 
   serviceLocator.registerLazySingleton(
     () => GetUser(
-      profileRepository: serviceLocator(),
+      profileRepository: serviceLocator() as ProfileRepository,
     ),
   );
 
   serviceLocator.registerLazySingleton(
     () => SignOut(
-      profileRepository: serviceLocator(),
+      profileRepository: serviceLocator() as ProfileRepository,
     ),
   );
 
   // Habit
   serviceLocator.registerLazySingleton(
     () => CheckHabit(
-      habitRepository: serviceLocator(),
+      habitRepository: serviceLocator() as HabitRepository,
     ),
   );
 
   serviceLocator.registerLazySingleton(
     () => CreateHabit(
-      habitRepository: serviceLocator(),
+      habitRepository: serviceLocator() as HabitRepository,
     ),
   );
 
   serviceLocator.registerLazySingleton(
     () => UpdateHabit(
-      habitRepository: serviceLocator(),
+      habitRepository: serviceLocator() as HabitRepository,
     ),
   );
 
   serviceLocator.registerLazySingleton(
     () => GetHabitList(
-      habitRepository: serviceLocator(),
+      habitRepository: serviceLocator() as HabitRepository,
     ),
   );
 
   serviceLocator.registerLazySingleton(
     () => UncheckHabit(
-      habitRepository: serviceLocator(),
+      habitRepository: serviceLocator() as HabitRepository,
     ),
   );
 
   // Life area
   serviceLocator.registerLazySingleton(
     () => UpdateAreas(
-      lifeAreaRepository: serviceLocator(),
+      lifeAreaRepository: serviceLocator() as LifeAreaRepository,
     ),
   );
 
   // Data sources
   serviceLocator.registerLazySingleton<NetworkInfo>(
     () => NetworkInfoImpl(
-      connectionChecker: serviceLocator(),
+      dataConnectionChecker: serviceLocator() as DataConnectionChecker,
     ),
   );
 
   serviceLocator.registerLazySingleton<ProfileRemoteDataSource>(
     () => ProfileRemoteDataSourceImpl(
-      client: serviceLocator(),
-      firebaseAuth: serviceLocator(),
-      firestore: serviceLocator(),
-      googleSignIn: serviceLocator(),
+      client: serviceLocator() as http.Client,
+      firebaseAuth: serviceLocator() as FirebaseAuth,
+      firestore: serviceLocator() as Firestore,
+      googleSignIn: serviceLocator() as GoogleSignIn,
     ),
   );
 
   serviceLocator.registerLazySingleton<LifeAreaRemoteDataSource>(
     () => LifeAreaRemoteDataSourceImpl(
-      client: serviceLocator(),
+      client: serviceLocator() as http.Client,
     ),
   );
 
@@ -241,8 +241,8 @@ Future<void> init() async {
 
   serviceLocator.registerLazySingleton<HabitRemoteDataSource>(
     () => HabitRemoteDataSourceImpl(
-      client: serviceLocator(),
-      firestore: serviceLocator(),
+      client: serviceLocator() as http.Client,
+      firestore: serviceLocator() as Firestore,
     ),
   );
 

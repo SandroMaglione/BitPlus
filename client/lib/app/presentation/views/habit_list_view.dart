@@ -24,10 +24,10 @@ class HabitListView extends StatelessWidget {
   Widget _buildHabitListStatusBloc(
       BuildContext context, HabitListStatusState state) {
     return state.when(
-      habitListStatusInitial: (_) => LoadingIndicator(
+      habitListStatusInitial: (_) => const LoadingIndicator(
         message: 'Initializing habits...',
       ),
-      habitListStatusLoading: (_) => LoadingIndicator(
+      habitListStatusLoading: (_) => const LoadingIndicator(
         message: 'Loading habits...',
       ),
       habitListStatusFailure: (state) => Center(

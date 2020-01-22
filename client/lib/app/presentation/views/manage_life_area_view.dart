@@ -34,7 +34,7 @@ class ManageLifeAreaView extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     child: StaggeredListAnimation(
-                      duration: Duration(milliseconds: 1600),
+                      duration: const Duration(milliseconds: 1600),
                       offset: 300.0,
                       buildChild: (index) => SelectAreaWeight(
                         areaName: LIFE_AREAS[index].name,

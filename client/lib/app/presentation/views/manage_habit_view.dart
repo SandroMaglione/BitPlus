@@ -20,10 +20,10 @@ class ManageHabitView extends StatelessWidget {
       child: BlocBuilder<CreationHabitStatusBloc, CreationHabitStatusState>(
         builder: (context, state) {
           return state.when(
-            creationHabitStatusLoading: (_) => LoadingIndicator(
+            creationHabitStatusLoading: (_) => const LoadingIndicator(
               message: 'Creating habit...',
             ),
-            creationHabitStatusSuccess: (_) => Center(
+            creationHabitStatusSuccess: (_) => const Center(
               child: Text('Success habit creation'),
             ),
             creationHabitStatusFailure: (state) => Center(
@@ -65,7 +65,8 @@ class ManageHabitView extends StatelessWidget {
                       ),
                     ),
                     SliverGrid(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 6,
                         childAspectRatio: 1 / 1,
                         crossAxisSpacing: 10,

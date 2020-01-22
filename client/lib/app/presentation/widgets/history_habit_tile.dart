@@ -35,37 +35,33 @@ class HistoryHabitTile extends StatelessWidget {
           trailing: CircleAvatar(
             backgroundColor: SCAFFOLD_COLOR,
             child: LayoutBuilder(
-              builder: (context, constraints) {
-                print('mh: ${constraints.maxHeight}');
-                print('mw: ${constraints.maxWidth}');
-                return ClipOval(
-                  child: Stack(
-                    overflow: Overflow.clip,
-                    fit: StackFit.expand,
-                    alignment: Alignment.center,
-                    children: <Widget>[
-                      Positioned(
-                        bottom: 0,
-                        child: Container(
-                          height: historyHabit.habit.areas[areaIndex].abs() *
-                              constraints.maxHeight /
-                              4,
-                          width: constraints.maxWidth,
-                          color: historyHabit.habit.areas[areaIndex] > 0
-                              ? Colors.blueAccent.withOpacity(0.84)
-                              : Colors.redAccent.withOpacity(0.84),
-                        ),
+              builder: (context, constraints) => ClipOval(
+                child: Stack(
+                  overflow: Overflow.clip,
+                  fit: StackFit.expand,
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    Positioned(
+                      bottom: 0,
+                      child: Container(
+                        height: historyHabit.habit.areas[areaIndex].abs() *
+                            constraints.maxHeight /
+                            4,
+                        width: constraints.maxWidth,
+                        color: historyHabit.habit.areas[areaIndex] > 0
+                            ? Colors.blueAccent.withOpacity(0.84)
+                            : Colors.redAccent.withOpacity(0.84),
                       ),
-                      Icon(
-                        historyHabit.habit.areas[areaIndex] > 0
-                            ? Icons.thumb_up
-                            : Icons.thumb_down,
-                        color: ACCENT_COLOR_DARK,
-                      ),
-                    ],
-                  ),
-                );
-              },
+                    ),
+                    Icon(
+                      historyHabit.habit.areas[areaIndex] > 0
+                          ? Icons.thumb_up
+                          : Icons.thumb_down,
+                      color: ACCENT_COLOR_DARK,
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

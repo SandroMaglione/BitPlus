@@ -24,20 +24,20 @@ class HabitTile extends StatelessWidget {
       ),
       child: SlideActionTile(
         rightContent: CircleAvatar(
+          backgroundColor: SCAFFOLD_COLOR,
           child: Icon(
             habit.checked ? Icons.exposure_neg_1 : Icons.exposure_plus_1,
             color: Color(habit.color),
           ),
-          backgroundColor: SCAFFOLD_COLOR,
         ),
         leftContent: CircleAvatar(
+          backgroundColor: SCAFFOLD_COLOR,
           child: Icon(
             Icons.update,
             color: ACCENT_COLOR_DARK,
           ),
-          backgroundColor: SCAFFOLD_COLOR,
         ),
-        animationDuration: Duration(
+        animationDuration: const Duration(
           milliseconds: 900,
         ),
         onSlideToRight: () {

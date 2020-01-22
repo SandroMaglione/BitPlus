@@ -14,7 +14,7 @@ class UpdateLifeAreaBottomMenu extends StatelessWidget {
           children: <Widget>[
             FlatButton.icon(
               icon: Icon(Icons.arrow_back),
-              label: Text('Back'),
+              label: const Text('Back'),
               onPressed: () => Navigator.of(context).pop(),
             ),
             Text(
@@ -27,7 +27,7 @@ class UpdateLifeAreaBottomMenu extends StatelessWidget {
             ),
             FlatButton(
               onPressed: state.isAreasValid ? () => _update(context) : null,
-              child: Text('Update'),
+              child: const Text('Update'),
             ),
           ],
         ),

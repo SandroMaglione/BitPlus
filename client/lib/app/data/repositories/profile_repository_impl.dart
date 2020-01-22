@@ -24,68 +24,68 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, User>> getUser() async => await Task<User>(
+  Future<Either<Failure, User>> getUser() async => Task(
         () => profileRemoteDataSource.getSignedInUser(),
-      ).attempt().mapLeftToFailure().run();
+      ).runAll();
 
   @override
-  Future<Either<Failure, bool>> isSignedInUser() async => await Task<bool>(
+  Future<Either<Failure, bool>> isSignedInUser() async => Task(
         () => profileRemoteDataSource.isSignedInUser(),
-      ).attempt().mapLeftToFailure().run();
+      ).runAll();
 
   @override
   Future<Either<Failure, User>> signInCredentials(
     String email,
     String password,
   ) async =>
-      await Task<User>(
+      Task(
         () async {
           await profileRemoteDataSource.signInEmailAndPassword(email, password);
           return profileRemoteDataSource.getSignedInUser();
         },
-      ).attempt().mapLeftToFailure().run();
+      ).runAll();
 
   @override
-  Future<Either<Failure, User>> signInGoogle() async => await Task<User>(
+  Future<Either<Failure, User>> signInGoogle() async => Task(
         () async {
           await profileRemoteDataSource.signInGoogle();
           return profileRemoteDataSource.getSignedInUser();
         },
-      ).attempt().mapLeftToFailure().run();
+      ).runAll();
 
   @override
-  Future<Either<Failure, void>> signOut() async => await Task<void>(
+  Future<Either<Failure, void>> signOut() async => Task(
         () => profileRemoteDataSource.signOut(),
-      ).attempt().mapLeftToFailure().run();
+      ).runAll();
 
   @override
   Future<Either<Failure, User>> signUpGoogle(
     BuiltList<int> areas,
   ) async =>
-      await Task<User>(() async {
+      Task(() async {
         final firebaseUser = await profileRemoteDataSource.signInGoogle();
-        return await profileRemoteDataSource.createAccount(
+        return profileRemoteDataSource.createAccount(
           firebaseUser.uid,
           firebaseUser.email,
           areas,
         );
-      }).attempt().mapLeftToFailure().run();
+      }).runAll();
 
   @override
   Future<Either<Failure, User>> signUpCredentials(
     String email,
     String password,
     BuiltList<int> areas,
-  ) async =>
-      await Task<User>(() async {
+  ) =>
+      Task(() async {
         final uid = await profileRemoteDataSource.signUpCredentials(
           email,
           password,
         );
-        return await profileRemoteDataSource.createAccount(
+        return profileRemoteDataSource.createAccount(
           uid,
           email,
           areas,
         );
-      }).attempt().mapLeftToFailure().run();
+      }).runAll();
 }

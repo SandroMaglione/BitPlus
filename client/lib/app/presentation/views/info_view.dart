@@ -5,7 +5,7 @@ class InfoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        children: <Widget>[
+        children: const <Widget>[
           Text('Developed by'),
           Text('Sandro Maglione'),
           Text('sandromaglione.com'),

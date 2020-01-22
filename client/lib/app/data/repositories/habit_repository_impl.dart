@@ -20,12 +20,12 @@ class HabitRepositoryImpl implements HabitRepository {
     String uid,
     String habitID,
   ) async =>
-      await Task<void>(
+      Task(
         () => habitRemoteDataSource.checkHabit(
           uid,
           habitID,
         ),
-      ).attempt().mapLeftToFailure().run();
+      ).runAll();
 
   @override
   Future<Either<Failure, HabitApi>> createHabit(
@@ -34,38 +34,38 @@ class HabitRepositoryImpl implements HabitRepository {
     int color,
     BuiltList<int> areas,
   ) async =>
-      await Task<HabitApi>(
+      Task(
         () => habitRemoteDataSource.createHabit(
           uid,
           name,
           color,
           areas,
         ),
-      ).attempt().mapLeftToFailure().run();
+      ).runAll();
 
   @override
   Future<Either<Failure, void>> uncheckHabit(
     String uid,
     String habitID,
   ) async =>
-      await Task<void>(
+      Task(
         () => habitRemoteDataSource.uncheckHabit(
           uid,
           habitID,
         ),
-      ).attempt().mapLeftToFailure().run();
+      ).runAll();
 
   @override
   Future<Either<Failure, BuiltList<HabitApi>>> getHabitList(
     String uid,
     int dateRange,
   ) async =>
-      await Task<BuiltList<HabitApi>>(
+      Task(
         () => habitRemoteDataSource.getHabitList(
           uid,
           dateRange,
         ),
-      ).attempt().mapLeftToFailure().run();
+      ).runAll();
 
   @override
   Future<Either<Failure, HabitApi>> updateHabit(
@@ -79,7 +79,7 @@ class HabitRepositoryImpl implements HabitRepository {
     BuiltList<int> areas,
     bool checked,
   ) async =>
-      await Task<HabitApi>(
+      Task(
         () => habitRemoteDataSource.updateHabit(
           uid,
           habitID,
@@ -89,7 +89,7 @@ class HabitRepositoryImpl implements HabitRepository {
           streak,
           countChecks,
           areas,
-          checked,
+          checked: checked,
         ),
-      ).attempt().mapLeftToFailure().run();
+      ).runAll();
 }

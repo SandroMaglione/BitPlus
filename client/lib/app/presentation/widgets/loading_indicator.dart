@@ -19,12 +19,12 @@ class LoadingIndicator extends StatelessWidget {
         children: <Widget>[
           LoadingBouncingGrid.square(
             backgroundColor: ACCENT_COLOR_LIGHT,
-            duration: Duration(
+            duration: const Duration(
               milliseconds: 1500,
             ),
           ),
           if (message != null)
-            SizedBox(
+            const SizedBox(
               height: 24.0,
             ),
           if (message != null)

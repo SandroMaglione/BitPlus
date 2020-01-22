@@ -14,6 +14,8 @@ class StreakIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
+      backgroundColor: SCAFFOLD_COLOR,
+      foregroundColor: Color(color),
       child: Text(
         'x$streak',
         style: TextStyle(
@@ -21,8 +23,6 @@ class StreakIndicator extends StatelessWidget {
           fontWeight: FontWeight.w700,
         ),
       ),
-      backgroundColor: SCAFFOLD_COLOR,
-      foregroundColor: Color(color),
     );
   }
 }

@@ -52,7 +52,8 @@ class AreaOverviewBloc extends Bloc<AreaOverviewEvent, BuiltList<LifeArea>> {
     AreaOverviewInitialize event,
     User user,
   ) async* {
-    final BuiltList<HabitApi> habitList = event.habitList;
+    final BuiltList<HabitApi> habitList =
+        event.habitList as BuiltList<HabitApi>;
     final sumUserAreas = user.areas.reduce((v1, v2) => v1 + v2);
     final maxUserAreas = user.areas.reduce(max);
 

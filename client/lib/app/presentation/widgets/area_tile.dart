@@ -70,7 +70,7 @@ class AreaTile extends StatelessWidget {
                           ),
                           child: Text(
                             area.name,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16.0,
                             ),
                           ),
@@ -89,7 +89,7 @@ class AreaTile extends StatelessWidget {
                           ),
                           child: Text(
                             '${area.countChecksPositive} activities the last 30 days',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 12.0,
                             ),
                           ),

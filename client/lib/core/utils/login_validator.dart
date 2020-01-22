@@ -6,12 +6,12 @@ class LoginValidator {
     r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$',
   );
 
-  isValidEmail(String email) {
+  bool isValidEmail(String email) {
     return _emailRegExp.hasMatch(email);
   }
 
   // TODO: Impl isValidPassword()
-  isValidPassword(String password) {
+  bool isValidPassword(String password) {
     return true;
     // return _passwordRegExp.hasMatch(password);
   }

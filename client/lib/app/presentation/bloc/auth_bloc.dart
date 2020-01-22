@@ -100,7 +100,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (state is Authenticated) {
       return (state as Authenticated).user;
     } else {
-      throw NoAuthUserFailure(
+      throw const NoAuthUserFailure(
         message: 'No user logged in',
       );
     }

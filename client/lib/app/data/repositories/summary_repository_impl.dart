@@ -21,14 +21,14 @@ class SummaryRepositoryImpl implements SummaryRepository {
     String text,
     int dayTag,
   ) async =>
-      await Task<Summary>(
+      Task(
         () => summaryRemoteDataSource.createSummary(
           uid,
           date,
           text,
           dayTag,
         ),
-      ).attempt().mapLeftToFailure().run();
+      ).runAll();
 
   @override
   Future<Either<Failure, Summary>> getSummary(String uid, DateTime date) {

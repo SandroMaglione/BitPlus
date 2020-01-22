@@ -17,9 +17,9 @@ abstract class Habit implements Built<Habit, HabitBuilder> {
   BuiltList<int> get areas;
   int get color;
 
-  Habit._();
-
   factory Habit([void Function(HabitBuilder) updates]) = _$Habit;
+
+  Habit._();
 
   String toJsonString() {
     return json.encode(serializers.serializeWith(Habit.serializer, this));
@@ -34,8 +34,8 @@ abstract class Habit implements Built<Habit, HabitBuilder> {
 
   Map<String, dynamic> toJsonMap() {
     return json.decode(
-      this.toJsonString(),
-    );
+      toJsonString(),
+    ) as Map<String, dynamic>;
   }
 
   static Serializer<Habit> get serializer => _$habitSerializer;

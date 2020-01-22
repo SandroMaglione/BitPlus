@@ -81,7 +81,6 @@ class _SlideActionTileState extends State<SlideActionTile>
     _curvedAnimation.curve = widget.animationCurve;
 
     return SlideAnimationController(
-      child: widget.child,
       animation: _animation,
       animationReset: _resetAnimation,
       leftContent: widget.leftContent,
@@ -89,6 +88,7 @@ class _SlideActionTileState extends State<SlideActionTile>
       onSlideToLeft: widget.onSlideToLeft,
       onSlideToRight: widget.onSlideToRight,
       triggerSlideAmount: widget.triggerSlideAmount,
+      child: widget.child,
     );
   }
 
@@ -181,7 +181,6 @@ class _SlideAnimationControllerState extends State<SlideAnimationController>
       onHorizontalDragStart: _horizontalDragStart,
       onHorizontalDragEnd: _horizontalDragEnd,
       child: AnimatedContent(
-        child: widget.child,
         translatePosition: translatePosition,
         isTriggeredOnLeft: _isTriggeredOnLeft,
         isTriggeredOnRight: _isTriggeredOnRight,
@@ -189,6 +188,7 @@ class _SlideAnimationControllerState extends State<SlideAnimationController>
         rightContent: widget.rightContent,
         isMoving: _isMoving,
         animation: widget.animation,
+        child: widget.child,
       ),
     );
   }
@@ -266,10 +266,9 @@ class AnimatedContent extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
-        translatePosition > 0 ? onLeftContent : onRightContent,
+        if (translatePosition > 0) onLeftContent else onRightContent,
         AnimatedBuilder(
           animation: animation,
-          child: child,
           builder: (context, child) => Transform.scale(
             scale: isMoving ? 1.05 : 1,
             child: Transform.translate(
@@ -280,6 +279,7 @@ class AnimatedContent extends StatelessWidget {
               child: child,
             ),
           ),
+          child: child,
         ),
       ],
     );

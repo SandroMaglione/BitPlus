@@ -10,7 +10,7 @@ final ThemeData themeData = ThemeData(
   ),
   accentColor: ACCENT_COLOR,
   scaffoldBackgroundColor: SCAFFOLD_COLOR,
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     elevation: 0.0,
     color: ACCENT_COLOR_LIGHT,
   ),

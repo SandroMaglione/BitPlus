@@ -39,7 +39,7 @@ class AreaChart extends StatelessWidget {
           backgroundColor: WHITE,
           titlesData: FlTitlesData(
             show: true,
-            leftTitles: SideTitles(
+            leftTitles: const SideTitles(
               showTitles: false,
             ),
             bottomTitles: SideTitles(
@@ -52,11 +52,11 @@ class AreaChart extends StatelessWidget {
           maxX: 6,
           minX: 0,
           maxY: maxY,
-          extraLinesData: ExtraLinesData(
+          extraLinesData: const ExtraLinesData(
             showHorizontalLines: false,
             showVerticalLines: false,
           ),
-          lineTouchData: LineTouchData(
+          lineTouchData: const LineTouchData(
             enabled: false,
           ),
           lineBarsData: [

@@ -24,7 +24,7 @@ class InitLifeAreaBottomMenu extends StatelessWidget {
                         );
                       }
                     : null,
-            child: Text('Sign up'),
+            child: const Text('Sign up'),
           ),
           Text(
             '${BlocProvider.of<InitLifeAreaBloc>(context).state.pointsLeft}',
@@ -40,7 +40,7 @@ class InitLifeAreaBottomMenu extends StatelessWidget {
                 Router.loginFormScreen,
               );
             },
-            child: Text('Sign in'),
+            child: const Text('Sign in'),
           ),
         ],
       ),

@@ -5,8 +5,8 @@ class SelectAreaWeight extends StatelessWidget {
   final int areaValue;
   final Color color;
   final double areaPercentage;
-  final Function addValue;
-  final Function subtractValue;
+  final void Function() addValue;
+  final void Function() subtractValue;
 
   const SelectAreaWeight({
     @required this.areaName,
@@ -26,7 +26,7 @@ class SelectAreaWeight extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Card(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12.0),
                 topRight: Radius.circular(12.0),
@@ -58,7 +58,7 @@ class SelectAreaWeight extends StatelessWidget {
                             ),
                             child: Text(
                               areaName,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 16.0,
                               ),
                             ),
@@ -69,7 +69,7 @@ class SelectAreaWeight extends StatelessWidget {
                             ),
                             child: Text(
                               '$areaValue points assigned',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 12.0,
                               ),
                             ),
@@ -92,7 +92,7 @@ class SelectAreaWeight extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12.0),
                 color: color,
               ),
-              duration: Duration(
+              duration: const Duration(
                 milliseconds: 350,
               ),
               curve: Curves.easeOut,

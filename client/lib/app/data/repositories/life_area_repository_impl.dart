@@ -18,10 +18,10 @@ class LifeAreaRepositoryImpl implements LifeAreaRepository {
     String uid,
     BuiltList<int> areas,
   ) async =>
-      await Task<void>(
+      Task(
         () => lifeAreaRemoteDataSource.updateAreas(
           uid,
           areas,
         ),
-      ).attempt().mapLeftToFailure().run();
+      ).runAll();
 }

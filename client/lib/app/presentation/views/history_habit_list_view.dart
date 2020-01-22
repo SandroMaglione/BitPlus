@@ -25,7 +25,7 @@ class _HistoryHabitListViewState extends State<HistoryHabitListView> {
 
   @override
   void initState() {
-    List<List<HistoryHabit>> buildSubList = [];
+    final List<List<HistoryHabit>> buildSubList = [];
     int currentIndex = 0;
 
     for (int i = 0; i < widget.habitHistory.length - 1; ++i) {

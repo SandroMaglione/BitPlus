@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final String subtitle;
-  final Function rightAction;
-  final Function leftAction;
+  final void Function() rightAction;
+  final void Function() leftAction;
   final IconData rightIcon;
   final IconData leftIcon;
 
@@ -53,32 +53,33 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ],
           ),
-          rightAction != null
-              ? GestureDetector(
-                  onTap: rightAction,
-                  child: Icon(
-                    rightIcon,
-                    color: ACCENT_COLOR_DARK,
-                  ),
-                )
-              : GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed(
-                      Router.creationHabitScreen,
-                    );
-                  },
-                  child: Icon(
-                    Icons.playlist_add,
-                    color: ACCENT_COLOR_DARK,
-                  ),
-                ),
+          if (rightAction != null)
+            GestureDetector(
+              onTap: rightAction,
+              child: Icon(
+                rightIcon,
+                color: ACCENT_COLOR_DARK,
+              ),
+            )
+          else
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed(
+                  Router.creationHabitScreen,
+                );
+              },
+              child: Icon(
+                Icons.playlist_add,
+                color: ACCENT_COLOR_DARK,
+              ),
+            ),
         ],
       ),
     );
   }
 
   @override
-  Size get preferredSize => Size(
+  Size get preferredSize => const Size(
         double.infinity,
         96.0,
       );
