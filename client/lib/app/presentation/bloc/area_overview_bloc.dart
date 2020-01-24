@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:math';
-import 'package:dartx/dartx.dart';
+import 'package:bitplus/app/domain/usecases/life_area/update_areas_from_habit_list.dart';
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/data/models/user.dart';
-import 'package:bitplus/core/services/area_value_algorithm.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/app/data/models/life_area.dart';
 import 'package:bitplus/core/constants/life_areas.dart';
@@ -12,16 +10,18 @@ import 'package:built_collection/built_collection.dart';
 import 'package:bitplus/core/extensions/bloc_extension.dart';
 import './bloc.dart';
 
+/// Store [LifeArea] list, based on the [HabitApi] list fetched on startup
+/// and updated when user toggle and habit
 class AreaOverviewBloc extends Bloc<AreaOverviewEvent, BuiltList<LifeArea>> {
   final AuthBloc authBloc;
   final HabitListBloc habitListBloc;
-  final AreaValueAlgorithm areaValueAlgorithm;
+  final UpdateAreasFromHabitList updateAreasFromHabitList;
   StreamSubscription habitListSub;
 
   AreaOverviewBloc({
     @required this.authBloc,
     @required this.habitListBloc,
-    @required this.areaValueAlgorithm,
+    @required this.updateAreasFromHabitList,
   }) {
     habitListSub = habitListBloc.listen(
       (state) => add(
@@ -49,93 +49,19 @@ class AreaOverviewBloc extends Bloc<AreaOverviewEvent, BuiltList<LifeArea>> {
     );
   }
 
+  /// Update or initialize [LifeArea] list
   Stream<BuiltList<LifeArea>> _mapAreaOverviewInitialize(
     AreaOverviewInitialize event,
     User user,
   ) async* {
-    final BuiltList<HabitApi> habitList =
-        event.habitList as BuiltList<HabitApi>;
-    final sumUserAreas = user.areas.reduce((v1, v2) => v1 + v2);
-    final maxUserAreas = user.areas.reduce(max);
-
-    final areaList = _buildLifeAreaList(
-      habitList,
-      user,
-      sumUserAreas,
-      maxUserAreas,
+    yield updateAreasFromHabitList(
+      Params(
+        previousState: state,
+        user: user,
+        habitList: event.habitList,
+      ),
     );
-
-    final maxAreaValue = areaList
-        .map(
-          (a) => a.value,
-        )
-        .reduce(max);
-
-    yield areaList
-        .sortedBy((area) =>
-            area.countChecksPositive /
-            (area.countChecksPositive + area.countChecksNegative))
-        .asMap()
-        .map(
-          (index, area) => MapEntry(
-            index,
-            area.rebuild(
-              (a) => a..percentageActivity = a.value / maxAreaValue,
-            ),
-          ),
-        )
-        .values
-        .toBuiltList();
   }
-
-  BuiltList<LifeArea> _buildLifeAreaList(
-    BuiltList<HabitApi> habitList,
-    User user,
-    int sumUserAreas,
-    int maxUserAreas,
-  ) =>
-      state
-          .asMap()
-          .map(
-            (index, area) => MapEntry(
-              index,
-              area.rebuild(
-                (a) => a
-                  ..value = areaValueAlgorithm.buildValue(
-                    index,
-                    user.areas[index],
-                    habitList,
-                  )
-                  ..history = areaValueAlgorithm
-                      .buildHistory(
-                        index,
-                        habitList,
-                      )
-                      .toBuilder()
-                  ..countChecksPositive =
-                      areaValueAlgorithm.buildCountChecksPositive(
-                    index,
-                    habitList,
-                  )
-                  ..countChecksNegative =
-                      areaValueAlgorithm.buildCountChecksNegative(
-                    index,
-                    habitList,
-                  )
-                  ..habitChecks = areaValueAlgorithm
-                      .buildHabitActivity(
-                        index,
-                        habitList,
-                      )
-                      .toBuilder()
-                  ..percentageArea =
-                      ((user.areas[index] + sumUserAreas) / user.areas.length) /
-                          maxUserAreas,
-              ),
-            ),
-          )
-          .values
-          .toBuiltList();
 
   @override
   Future<void> close() {

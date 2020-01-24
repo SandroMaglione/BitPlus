@@ -23,6 +23,9 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
       'value',
       serializers.serialize(object.value,
           specifiedType: const FullType(double)),
+      'userWeight',
+      serializers.serialize(object.userWeight,
+          specifiedType: const FullType(int)),
       'color',
       serializers.serialize(object.color, specifiedType: const FullType(int)),
       'countChecksPositive',
@@ -70,6 +73,10 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
         case 'value':
           result.value = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
+          break;
+        case 'userWeight':
+          result.userWeight = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
           break;
         case 'color':
           result.color = serializers.deserialize(value,
@@ -120,6 +127,8 @@ class _$LifeArea extends LifeArea {
   @override
   final double value;
   @override
+  final int userWeight;
+  @override
   final int color;
   @override
   final int countChecksPositive;
@@ -142,6 +151,7 @@ class _$LifeArea extends LifeArea {
   _$LifeArea._(
       {this.name,
       this.value,
+      this.userWeight,
       this.color,
       this.countChecksPositive,
       this.countChecksNegative,
@@ -156,6 +166,9 @@ class _$LifeArea extends LifeArea {
     }
     if (value == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'value');
+    }
+    if (userWeight == null) {
+      throw new BuiltValueNullFieldError('LifeArea', 'userWeight');
     }
     if (color == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'color');
@@ -196,6 +209,7 @@ class _$LifeArea extends LifeArea {
     return other is LifeArea &&
         name == other.name &&
         value == other.value &&
+        userWeight == other.userWeight &&
         color == other.color &&
         countChecksPositive == other.countChecksPositive &&
         countChecksNegative == other.countChecksNegative &&
@@ -215,7 +229,11 @@ class _$LifeArea extends LifeArea {
                     $jc(
                         $jc(
                             $jc(
-                                $jc($jc($jc(0, name.hashCode), value.hashCode),
+                                $jc(
+                                    $jc(
+                                        $jc($jc(0, name.hashCode),
+                                            value.hashCode),
+                                        userWeight.hashCode),
                                     color.hashCode),
                                 countChecksPositive.hashCode),
                             countChecksNegative.hashCode),
@@ -231,6 +249,7 @@ class _$LifeArea extends LifeArea {
     return (newBuiltValueToStringHelper('LifeArea')
           ..add('name', name)
           ..add('value', value)
+          ..add('userWeight', userWeight)
           ..add('color', color)
           ..add('countChecksPositive', countChecksPositive)
           ..add('countChecksNegative', countChecksNegative)
@@ -253,6 +272,10 @@ class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
   double _value;
   double get value => _$this._value;
   set value(double value) => _$this._value = value;
+
+  int _userWeight;
+  int get userWeight => _$this._userWeight;
+  set userWeight(int userWeight) => _$this._userWeight = userWeight;
 
   int _color;
   int get color => _$this._color;
@@ -298,6 +321,7 @@ class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
     if (_$v != null) {
       _name = _$v.name;
       _value = _$v.value;
+      _userWeight = _$v.userWeight;
       _color = _$v.color;
       _countChecksPositive = _$v.countChecksPositive;
       _countChecksNegative = _$v.countChecksNegative;
@@ -332,6 +356,7 @@ class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
           new _$LifeArea._(
               name: name,
               value: value,
+              userWeight: userWeight,
               color: color,
               countChecksPositive: countChecksPositive,
               countChecksNegative: countChecksNegative,

@@ -17,9 +17,6 @@ MERGED from [:flutter_statusbarcolor] C:\Users\Sandro Maglione\projects\bitplus\
 MERGED from [:firebase_performance] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_performance\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-17:12
 MERGED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-20:12
 MERGED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-19:12
-MERGED from [:shared_preferences] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [:shared_preferences_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences_web\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [:shared_preferences_macos] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences_macos\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.firebase:firebase-analytics:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2fd3c28c930b887bb73e55d4eeb25fec\firebase-analytics-17.2.0\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:17:1-40:12
 MERGED from [com.google.android.gms:play-services-measurement:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\0bce18b3e9afc97ffbaf40da9478afaa\play-services-measurement-17.2.0\AndroidManifest.xml:17:1-55:12
@@ -243,12 +240,6 @@ MERGED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitP
 MERGED from [:firebase_messaging] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_analytics] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\firebase_analytics\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences_web] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences_macos] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences_macos] C:\Users\Sandro Maglione\projects\bitplus\BitPlus\client\build\shared_preferences_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-analytics:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2fd3c28c930b887bb73e55d4eeb25fec\firebase-analytics-17.2.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-analytics:17.2.0] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\2fd3c28c930b887bb73e55d4eeb25fec\firebase-analytics-17.2.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-perf:19.0.3] C:\Users\Sandro Maglione\.gradle\caches\transforms-2\files-2.1\db1b407468741989b1996c765412df3a\firebase-perf-19.0.3\AndroidManifest.xml:20:5-44

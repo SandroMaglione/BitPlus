@@ -12,14 +12,16 @@ import 'package:built_value/serializer.dart';
 part 'life_area.g.dart';
 
 abstract class LifeArea implements Built<LifeArea, LifeAreaBuilder> {
-  LifeArea._();
+  factory LifeArea([Function(LifeAreaBuilder b) updates]) = _$LifeArea;
 
-  factory LifeArea([updates(LifeAreaBuilder b)]) = _$LifeArea;
+  LifeArea._();
 
   @BuiltValueField(wireName: 'name')
   String get name;
   @BuiltValueField(wireName: 'value')
   double get value;
+  @BuiltValueField(wireName: 'userWeight')
+  int get userWeight;
   @BuiltValueField(wireName: 'color')
   int get color;
   @BuiltValueField(wireName: 'countChecksPositive')
@@ -54,21 +56,20 @@ abstract class LifeArea implements Built<LifeArea, LifeAreaBuilder> {
     );
   }
 
-  static LifeArea fromSetting(LifeAreaSetting lifeAreaSetting) {
-    return LifeArea(
-      (l) => l
-        ..name = lifeAreaSetting.name
-        ..color = lifeAreaSetting.color
-        ..icon = lifeAreaSetting.icon
-        ..countChecksPositive = 0
-        ..countChecksNegative = 0
-        ..history = ListBuilder<int>()
-        ..percentageActivity = 0.0
-        ..percentageArea = 0.0
-        ..value = 0
-        ..habitChecks = ListBuilder<HistoryHabit>(),
-    );
-  }
+  static LifeArea fromSetting(LifeAreaSetting lifeAreaSetting) => LifeArea(
+        (l) => l
+          ..name = lifeAreaSetting.name
+          ..color = lifeAreaSetting.color
+          ..icon = lifeAreaSetting.icon
+          ..countChecksPositive = 0
+          ..countChecksNegative = 0
+          ..history = ListBuilder<int>()
+          ..percentageActivity = 0.0
+          ..percentageArea = 0.0
+          ..value = 0
+          ..userWeight = 0
+          ..habitChecks = ListBuilder<HistoryHabit>(),
+      );
 
   static Serializer<LifeArea> get serializer => _$lifeAreaSerializer;
 }

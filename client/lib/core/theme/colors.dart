@@ -50,6 +50,9 @@ const Color SPLASH_COLOR = Color(0xFFfafafa);
 const Color TEXT_COLOR = Color(0xFF212529);
 const String FONT_FAMILY = 'Effra';
 
+const Color POSITIVE_COLOR = Colors.blueAccent;
+const Color NEGATIVE_COLOR = Colors.redAccent;
+
 const List<Color> HABIT_COLORS = [
   Color(0xFFFED766),
   Color(0xFFEAC435),

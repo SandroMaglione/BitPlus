@@ -13,9 +13,9 @@ import 'package:bitplus/injection_container.dart' as di;
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 
 // TODO: Add check internet connection and relative Failure
-const String APP_NAME = "BitPlus";
+const String APP_NAME = 'BitPlus';
 
-void main() async {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
 
   BlocSupervisor.delegate = SimpleBlocDelegate();
@@ -34,7 +34,7 @@ void main() async {
   await FlutterStatusbarcolor.setStatusBarColor(SCAFFOLD_COLOR);
   FlutterStatusbarcolor.setStatusBarWhiteForeground(false);
 
-  await di.init();
+  di.init();
   runApp(
     MyApp(),
   );

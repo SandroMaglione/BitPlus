@@ -72,6 +72,18 @@ class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
     );
   }
 
+  Stream<BuiltList<HabitApi>> _mapHabitListAddCreated(HabitApi habit) async* {
+    yield BuiltList([habit, ...state]);
+  }
+
+  Stream<BuiltList<HabitApi>> _mapHabitListAddUpdated(HabitApi habit) async* {
+    yield BuiltList<HabitApi>(
+      state.map(
+        (h) => h.habitID == habit.habitID ? habit : h,
+      ),
+    );
+  }
+
   Stream<BuiltList<HabitApi>> _mapHabitListCheck(
     HabitListCheck event,
     String uid,
@@ -88,6 +100,7 @@ class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
     );
   }
 
+  /// Check/Uncheck habit event
   Stream<BuiltList<HabitApi>> _mapCheckToggle(
     bool checked,
     String habitID,
@@ -122,23 +135,6 @@ class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
       (_) async* {
         // TODO: Success, signal success?
       },
-    );
-  }
-
-  Stream<BuiltList<HabitApi>> _mapHabitListAddCreated(HabitApi habit) async* {
-    yield BuiltList(
-      [
-        habit,
-        ...state,
-      ],
-    );
-  }
-
-  Stream<BuiltList<HabitApi>> _mapHabitListAddUpdated(HabitApi habit) async* {
-    yield BuiltList<HabitApi>(
-      state.map(
-        (h) => h.habitID == habit.habitID ? habit : h,
-      ),
     );
   }
 }

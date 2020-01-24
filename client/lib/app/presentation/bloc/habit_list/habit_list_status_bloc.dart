@@ -33,11 +33,14 @@ class HabitListStatusBloc
         authBloc.state,
         _mapHabitListStatusGetHabitList,
         e,
-        HabitListStatusState.habitListStatusFailure(message: 'ole'),
+        HabitListStatusState.habitListStatusFailure(
+          message: 'Error while fetching habits',
+        ),
       ),
     );
   }
 
+  /// Fetch last X days habit checks
   Stream<HabitListStatusState> _mapHabitListStatusGetHabitList(
     HabitListStatusGetHabitList event,
     String uid,

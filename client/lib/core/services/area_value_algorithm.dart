@@ -1,7 +1,7 @@
 import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/data/models/history_habit.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:bitplus/core/extensions/build_collection_extension.dart';
+import 'package:dartx/dartx.dart';
 
 abstract class AreaValueAlgorithm {
   BuiltList<int> buildHistory(
@@ -66,17 +66,10 @@ class ValueAlgorithmV1 implements AreaValueAlgorithm {
   ) =>
       habitList
           .where((habit) => habit.areas[areaIndex] < 0)
-          .toList()
-          .asMap()
           .map(
-            (index, habit) => MapEntry(
-              index,
-              habit.countChecks,
-            ),
+            (habit) => habit.countChecks,
           )
-          .values
-          .toBuiltList()
-          .reduceEmpty(0, (v, e) => v + e);
+          .sum();
 
   @override
   int buildCountChecksPositive(
@@ -85,17 +78,10 @@ class ValueAlgorithmV1 implements AreaValueAlgorithm {
   ) =>
       habitList
           .where((habit) => habit.areas[areaIndex] > 0)
-          .toList()
-          .asMap()
           .map(
-            (index, habit) => MapEntry(
-              index,
-              habit.countChecks,
-            ),
+            (habit) => habit.countChecks,
           )
-          .values
-          .toBuiltList()
-          .reduceEmpty(0, (v, e) => v + e);
+          .sum();
 
   @override
   BuiltList<int> buildHistory(
@@ -104,21 +90,16 @@ class ValueAlgorithmV1 implements AreaValueAlgorithm {
   ) =>
       BuiltList<int>(
         List<int>.filled(dateRange, 0)
-            .asMap()
-            .map(
-              (dayIndex, count) => MapEntry(
-                dayIndex,
-                habitList
-                    .map(
-                      (habit) => habit.history[dayIndex].isChecked &&
-                              habit.areas[areaIndex] > 0
-                          ? 1
-                          : 0,
-                    )
-                    .reduce((v, e) => v + e),
-              ),
+            .mapIndexed(
+              (dayIndex, count) => habitList
+                  .map(
+                    (habit) => habit.history[dayIndex].isChecked &&
+                            habit.areas[areaIndex] > 0 // Only positive habits
+                        ? 1
+                        : 0,
+                  )
+                  .sum(),
             )
-            .values
             .toList(),
       );
 
@@ -129,16 +110,12 @@ class ValueAlgorithmV1 implements AreaValueAlgorithm {
     BuiltList<HabitApi> habitList,
   ) =>
       habitList
-          .asMap()
           .map(
-            (index, habit) => MapEntry(
-                index,
+            (habit) =>
                 habit.countChecks *
-                    (habit.areas[areaIndex] * (userWeight + 1) / 4)),
+                (habit.areas[areaIndex] * (userWeight + 1) / 4),
           )
-          .values
-          .toList()
-          .reduce((v, e) => v + e) /
+          .sum() /
       (userWeight + 1);
 
   @override

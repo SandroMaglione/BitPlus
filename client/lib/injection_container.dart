@@ -14,6 +14,7 @@ import 'package:bitplus/app/domain/usecases/habit/get_habit_list.dart';
 import 'package:bitplus/app/domain/usecases/habit/uncheck_habit.dart';
 import 'package:bitplus/app/domain/usecases/habit/update_habit.dart';
 import 'package:bitplus/app/domain/usecases/life_area/update_areas.dart';
+import 'package:bitplus/app/domain/usecases/life_area/update_areas_from_habit_list.dart';
 import 'package:bitplus/app/domain/usecases/profile/get_user.dart';
 import 'package:bitplus/app/domain/usecases/profile/is_signed_in_user.dart';
 import 'package:bitplus/app/domain/usecases/profile/sign_in_credentials.dart';
@@ -32,12 +33,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-final serviceLocator = GetIt.instance;
+final GetIt serviceLocator = GetIt.instance;
 
-Future<void> init() async {
+void init() {
   // Bloc
   serviceLocator.registerLazySingleton<AuthBloc>(
     () => AuthBloc(
@@ -87,7 +87,7 @@ Future<void> init() async {
     () => AreaOverviewBloc(
       authBloc: serviceLocator(),
       habitListBloc: serviceLocator(),
-      areaValueAlgorithm: serviceLocator(),
+      updateAreasFromHabitList: serviceLocator(),
     ),
   );
 
@@ -128,6 +128,7 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton<LifeAreaRepository>(
     () => LifeAreaRepositoryImpl(
       lifeAreaRemoteDataSource: serviceLocator(),
+      areaValueAlgorithm: serviceLocator(),
     ),
   );
 
@@ -213,6 +214,12 @@ Future<void> init() async {
     ),
   );
 
+  serviceLocator.registerLazySingleton(
+    () => UpdateAreasFromHabitList(
+      lifeAreaRepository: serviceLocator(),
+    ),
+  );
+
   // Data sources
   serviceLocator.registerLazySingleton<NetworkInfo>(
     () => NetworkInfoImpl(
@@ -285,10 +292,5 @@ Future<void> init() async {
 
   serviceLocator.registerLazySingleton<DataConnectionChecker>(
     () => DataConnectionChecker(),
-  );
-
-  final sharedPreferences = await SharedPreferences.getInstance();
-  serviceLocator.registerLazySingleton<SharedPreferences>(
-    () => sharedPreferences,
   );
 }

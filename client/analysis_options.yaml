@@ -12,6 +12,7 @@ linter:
     # sort_constructors_first: true
     # Util classes are awesome!
     avoid_classes_with_only_static_members: false
+    argument_type_not_assignable: false
 analyzer:
     errors:
       # Waiting for superenum to support BuiltList<T>

@@ -31,13 +31,13 @@ class LoadingScreen extends StatelessWidget {
 
   Widget _buildAuthBloc(BuildContext context, AuthState state) {
     return state.when(
-      authUninitialized: (_) => LoadingIndicator(
+      authUninitialized: (_) => const LoadingIndicator(
         message: 'Loading auth...',
       ),
-      authenticated: (_) => LoadingIndicator(
+      authenticated: (_) => const LoadingIndicator(
         message: 'Success auth...',
       ),
-      authUnauthenticated: (_) => LoadingIndicator(
+      authUnauthenticated: (_) => const LoadingIndicator(
         message: 'Failure auth...',
       ),
     );

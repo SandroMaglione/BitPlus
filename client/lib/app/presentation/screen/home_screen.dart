@@ -1,7 +1,7 @@
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
-import 'package:bitplus/app/presentation/views/area_list_view.dart';
-import 'package:bitplus/app/presentation/views/habit_list_view.dart';
-import 'package:bitplus/app/presentation/views/info_view.dart';
+import 'package:bitplus/app/presentation/tabs/area_overview_tab.dart';
+import 'package:bitplus/app/presentation/tabs/habit_list_tab.dart';
+import 'package:bitplus/app/presentation/tabs/info_tab.dart';
 import 'package:bitplus/app/presentation/widgets/custom_app_bar.dart';
 import 'package:bitplus/app/presentation/widgets/custom_bottom_bar.dart';
 import 'package:bitplus/core/router/router.gr.dart';
@@ -29,16 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: CustomAppBar(
-          title: '${DateFormat('EEEE').format(DateTime.now())}',
-          subtitle: '${DateFormat('d MMMM y').format(DateTime.now())}',
-          leftIcon: Icons.person_outline,
-          leftAction: () {
-            Navigator.of(context).pushNamed(
-              Router.profileScreen,
-            );
-          },
-        ),
+        appBar: _customAppBar,
         body: MultiBlocListener(
           listeners: [
             BlocListener<AuthBloc, AuthState>(
@@ -56,44 +47,57 @@ class _HomeScreenState extends State<HomeScreen> {
             child: _displayNavigationScreen,
           ),
         ),
-        bottomNavigationBar: CustomBottomBar(
-          currentIndex: _bottomNavigationIndex,
-          onTap: (index) => setState(() => _bottomNavigationIndex = index),
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.assessment,
-              ),
-              title: Text('Habits'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.accessibility_new,
-              ),
-              title: Text('Areas'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.info,
-              ),
-              title: Text('Info'),
-            ),
-          ],
-        ),
+        bottomNavigationBar: _customBottomBar,
       ),
     );
   }
 
+  CustomAppBar get _customAppBar => CustomAppBar(
+        title: '${DateFormat('EEEE').format(DateTime.now())}',
+        subtitle: '${DateFormat('d MMMM y').format(DateTime.now())}',
+        leftIcon: Icons.person_outline,
+        leftAction: () {
+          Navigator.of(context).pushNamed(
+            Router.profileScreen,
+          );
+        },
+      );
+
+  CustomBottomBar get _customBottomBar => CustomBottomBar(
+        currentIndex: _bottomNavigationIndex,
+        onTap: (index) => setState(() => _bottomNavigationIndex = index),
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.assessment,
+            ),
+            title: const Text('Habits'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.accessibility_new,
+            ),
+            title: const Text('Areas'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.info,
+            ),
+            title: const Text('Info'),
+          ),
+        ],
+      );
+
   Widget get _displayNavigationScreen {
     switch (_bottomNavigationIndex) {
       case 0:
-        return HabitListView();
+        return HabitListTab();
       case 1:
-        return AreaListView();
+        return AreaOverviewTab();
       case 2:
-        return InfoView();
+        return InfoTab();
       default:
-        return HabitListView();
+        return HabitListTab();
     }
   }
 }

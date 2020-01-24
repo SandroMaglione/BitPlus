@@ -41,6 +41,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
+  /// Update user when areas updated
   Stream<AuthState> _mapAuthUpdateAreas(BuiltList<int> areas) async* {
     yield AuthState.authenticated(
       user: user.rebuild(
@@ -49,12 +50,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
+  /// Created [User] after sign in
   Stream<AuthState> _mapAuthSignInFromForm(User user) async* {
     yield AuthState.authenticated(
       user: user,
     );
   }
 
+  /// Called when app opened, checks if user is signed in
   Stream<AuthState> _mapAuthOnStartup(AuthOnStartup event) async* {
     final failOrIn = await isSignedInUser(NoParams());
 
@@ -67,7 +70,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       },
     );
   }
-
+  
   Stream<AuthState> _mapAuthSignIn(AuthSignIn event) async* {
     yield* _getUserSignIn();
   }
