@@ -1,4 +1,3 @@
-import 'package:bitplus/core/theme/colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

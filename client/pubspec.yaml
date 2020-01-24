@@ -57,6 +57,7 @@ dependencies:
   auto_route: ^0.2.0+1
 
   # helper functions
+  supercharged: ^1.1.0
   dartx: ^0.3.0
 
   #UI
@@ -65,6 +66,7 @@ dependencies:
   loading_animations: ^2.1.0
   sticky_headers: ^0.1.8+1
   fl_chart: ^0.6.2
+  smooth_page_indicator: ^0.1.3
 
 dev_dependencies:
   flutter_test:

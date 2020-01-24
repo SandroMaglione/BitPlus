@@ -8,7 +8,7 @@ import 'package:bitplus/app/presentation/widgets/rich_text_activity.dart';
 import 'package:bitplus/core/router/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:bitplus/core/extensions/string_extension.dart';
-import 'package:bitplus/core/extensions/build_collection_extension.dart';
+import 'package:supercharged/supercharged.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AreaPage extends StatelessWidget {
@@ -60,16 +60,6 @@ class AreaPage extends StatelessWidget {
                         letterSpacing: 1.0,
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: CircleAvatar(
-                    //     backgroundColor: SCAFFOLD_COLOR,
-                    //     foregroundColor: _colorAlert,
-                    //     child: Icon(
-                    //       _iconAlert,
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
@@ -90,17 +80,6 @@ class AreaPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    // AreaProgressIndicator(
-                    //   value: area.percentageActivity,
-                    //   color: _colorAlert.withOpacity(0.84),
-                    // ),
-                    // AreaProgressIndicator(
-                    //   value: area.percentageArea,
-                    //   color: SCAFFOLD_COLOR,
-                    // ),
-                    // const SizedBox(
-                    //   height: 12.0,
-                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -141,32 +120,9 @@ class AreaPage extends StatelessWidget {
   }
 
   double _maxAreaCount(BuildContext context) =>
-      BlocProvider.of<AreaOverviewBloc>(context).state.fold(
-            0.0,
-            (prevMax, current) => current.history.reduceEmpty(0, max) > prevMax
-                ? current.history.reduce(max).toDouble()
-                : prevMax,
-          );
-
-  IconData get _iconAlert =>
-      area.percentageArea > .75 && area.percentageActivity < .25
-          ? Icons.sentiment_very_dissatisfied
-          : area.percentageArea > .5 && area.percentageActivity < .25
-              ? Icons.sentiment_dissatisfied
-              : area.percentageArea > .5 && area.percentageActivity < .5
-                  ? Icons.sentiment_neutral
-                  : area.percentageArea > .25 && area.percentageActivity < .5
-                      ? Icons.sentiment_satisfied
-                      : Icons.sentiment_very_satisfied;
-
-  Color get _colorAlert =>
-      area.percentageArea > .75 && area.percentageActivity < .25
-          ? Colors.black87
-          : area.percentageArea > .5 && area.percentageActivity < .25
-              ? Colors.redAccent
-              : area.percentageArea > .5 && area.percentageActivity < .5
-                  ? Colors.orangeAccent
-                  : area.percentageArea > .25 && area.percentageActivity < .5
-                      ? Colors.greenAccent
-                      : Colors.blueAccent;
+      BlocProvider.of<AreaOverviewBloc>(context)
+          .state
+          .expand((h) => h.history)
+          .max()
+          .toDouble();
 }
