@@ -48,18 +48,6 @@ class ValueAlgorithmV1 implements AreaValueAlgorithm {
   );
 
   @override
-  double buildActivityPercentage(int areaIndex, BuiltList<int> userAreas) {
-    // TODO: implement buildActivityPercentage
-    return null;
-  }
-
-  @override
-  double buildAreaPercentage(int areaIndex) {
-    // TODO: implement buildAreaPercentage
-    return null;
-  }
-
-  @override
   int buildCountChecksNegative(
     int areaIndex,
     BuiltList<HabitApi> habitList,
@@ -146,4 +134,16 @@ class ValueAlgorithmV1 implements AreaValueAlgorithm {
             (subList) => subList,
           )
           .toBuiltList();
+
+  @override
+  double buildActivityPercentage(int areaIndex, BuiltList<int> userAreas) {
+    // TODO: implement buildActivityPercentage
+    return null;
+  }
+
+  @override
+  double buildAreaPercentage(int areaIndex) {
+    // TODO: implement buildAreaPercentage
+    return null;
+  }
 }

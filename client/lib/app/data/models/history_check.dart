@@ -8,10 +8,12 @@ import 'package:built_value/serializer.dart';
 
 part 'history_check.g.dart';
 
-abstract class HistoryCheck implements Built<HistoryCheck, HistoryCheckBuilder> {
-  HistoryCheck._();
+abstract class HistoryCheck
+    implements Built<HistoryCheck, HistoryCheckBuilder> {
+  factory HistoryCheck([Function(HistoryCheckBuilder b) updates]) =
+      _$HistoryCheck;
 
-  factory HistoryCheck([updates(HistoryCheckBuilder b)]) = _$HistoryCheck;
+  HistoryCheck._();
 
   @BuiltValueField(wireName: 'day')
   DateTime get day;

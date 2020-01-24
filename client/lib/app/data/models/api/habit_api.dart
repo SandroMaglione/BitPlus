@@ -49,9 +49,9 @@ part 'habit_api.g.dart';
 /// }
 /// `
 abstract class HabitApi implements Built<HabitApi, HabitApiBuilder> {
-  HabitApi._();
+  factory HabitApi([Function(HabitApiBuilder b) updates]) = _$HabitApi;
 
-  factory HabitApi([updates(HabitApiBuilder b)]) = _$HabitApi;
+  HabitApi._();
 
   @BuiltValueField(wireName: 'habitID')
   String get habitID;
