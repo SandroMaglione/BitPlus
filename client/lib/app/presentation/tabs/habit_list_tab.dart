@@ -30,8 +30,11 @@ class HabitListTab extends StatelessWidget {
       habitListStatusLoading: (_) => const LoadingIndicator(
         message: 'Loading habits...',
       ),
-      habitListStatusFailure: (state) => Center(
-        child: Text('Error: ${state.message}'),
+      habitListStatusFailure: (state) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text('Error: ${state.message}'),
+        ],
       ),
       habitListStatusSuccess: (_) =>
           BlocBuilder<HabitListBloc, BuiltList<Habit>>(
