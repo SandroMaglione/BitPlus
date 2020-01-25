@@ -122,14 +122,17 @@ class AreaCard extends StatelessWidget {
         ),
       );
 
-  double get _progressPercentage =>
-      area.countChecksPositive /
-      (area.countChecksPositive + area.countChecksNegative);
+  double get _progressPercentage {
+    final totalCount = area.countChecksPositive + area.countChecksNegative;
+    return totalCount != 0 ? area.countChecksPositive / totalCount : 0.5;
+  }
 
-  double _maxAreaCount(BuildContext context) =>
-      BlocProvider.of<AreaOverviewBloc>(context)
-          .state
-          .expand((h) => h.history)
-          .max()
-          .toDouble();
+  double _maxAreaCount(BuildContext context) {
+    final maxArea = BlocProvider.of<AreaOverviewBloc>(context)
+        .state
+        .expand((h) => h.history)
+        .max();
+
+    return maxArea != null ? maxArea.toDouble() : 3;
+  }
 }

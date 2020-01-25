@@ -7,6 +7,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// List of [Habit] to check/uncheck
 class HabitListTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,13 @@ class HabitListTab extends StatelessWidget {
           BlocBuilder<HabitListBloc, BuiltList<Habit>>(
         builder: (context, state) => Expanded(
           child: state.isEmpty
-              ? const Text('No habit yet created')
+              ? Container(
+                  alignment: Alignment.center,
+                  child: const Text(
+                    'It is time to create some habits!',
+                    textAlign: TextAlign.center,
+                  ),
+                )
               : StaggeredListAnimation(
                   buildChild: (index) => HabitTile(
                     habit: state[index],

@@ -6,6 +6,7 @@ import 'package:bitplus/core/router/router.gr.dart';
 import 'package:bitplus/injection_container.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter/material.dart';
+import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginFormScreen extends StatelessWidget {
@@ -58,78 +59,90 @@ class _LoginFormViewState extends State<LoginFormView> {
           body: BlocBuilder<LoginBloc, LoginState>(
             builder: (context, loginState) {
               return loginState.when(
-                loginInProgress: (_) =>
-                    BlocBuilder<LoginCredentialsBloc, InitLoginForm>(
-                  builder: (context, loginCredentialsState) => Padding(
-                    padding: const EdgeInsets.all(24.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        TextInputField(
-                          label: 'Email',
-                          controller: _emailController,
-                          onChanged: (value) {
-                            BlocProvider.of<LoginCredentialsBloc>(context).add(
-                              LoginCredentialsEvent.loginCredentialsChangeEmail(
-                                email: value,
-                              ),
-                            );
-                          },
-                        ),
-                        TextInputField(
-                          label: 'Password',
-                          controller: _passwordController,
-                          isPassword: true,
-                          onChanged: (value) {
-                            BlocProvider.of<LoginCredentialsBloc>(context).add(
-                              LoginCredentialsEvent
-                                  .loginCredentialsChangePassword(
-                                password: value,
-                              ),
-                            );
-                          },
-                        ),
-                        if (isAreasValid)
-                          RaisedButton.icon(
-                            onPressed: loginCredentialsState.isFormValid
-                                ? _signUpCredentials
-                                : null,
-                            icon: Icon(Icons.sentiment_satisfied),
-                            label: Text('SIGN UP EMAIL'),
-                          ),
-                        if (isAreasValid)
-                          RaisedButton.icon(
-                            onPressed: _signUpGoogle,
-                            icon: Icon(Icons.golf_course),
-                            label: Text('SIGN UP GOOGLE'),
-                          ),
-                        RaisedButton.icon(
-                          onPressed: loginCredentialsState.isFormValid
-                              ? _signInCredentials
-                              : null,
-                          icon: Icon(Icons.signal_cellular_4_bar),
-                          label: Text('SIGN IN EMAIL'),
-                        ),
-                        RaisedButton.icon(
-                          onPressed: _signInGoogle,
-                          icon: Icon(Icons.usb),
-                          label: Text('SIGN IN GOOGLE'),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                loginSubmitting: (_) => LoadingIndicator(
+                loginInProgress: (_) => _displayLoginForm(false, ''),
+                loginFailure: (state) => _displayLoginForm(true, state.message),
+                loginSuccess: (_) => const Text('Success'),
+                loginSubmitting: (_) => const LoadingIndicator(
                   message: 'Signing in',
-                ),
-                loginSuccess: (_) => Text('Success'),
-                loginFailure: (state) => LoadingIndicator(
-                  message: '${state.message}',
                 ),
               );
             },
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _displayLoginForm(bool hasError, String errorMessage) {
+    return BlocBuilder<LoginCredentialsBloc, InitLoginForm>(
+      builder: (context, loginCredentialsState) => Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            TextInputField(
+              label: 'Email',
+              controller: _emailController,
+              onChanged: (value) {
+                BlocProvider.of<LoginCredentialsBloc>(context).add(
+                  LoginCredentialsEvent.loginCredentialsChangeEmail(
+                    email: value,
+                  ),
+                );
+              },
+            ),
+            TextInputField(
+              label: 'Password',
+              controller: _passwordController,
+              isPassword: true,
+              onChanged: (value) {
+                BlocProvider.of<LoginCredentialsBloc>(context).add(
+                  LoginCredentialsEvent.loginCredentialsChangePassword(
+                    password: value,
+                  ),
+                );
+              },
+            ),
+            if (hasError)
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12.0,
+                ),
+                child: Text(
+                  errorMessage,
+                  style: TextStyle(
+                    color: NEGATIVE_COLOR,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+            if (isAreasValid)
+              RaisedButton.icon(
+                onPressed: loginCredentialsState.isFormValid
+                    ? _signUpCredentials
+                    : null,
+                icon: Icon(Icons.sentiment_satisfied),
+                label: Text('SIGN UP EMAIL'),
+              ),
+            if (isAreasValid)
+              RaisedButton.icon(
+                onPressed: _signUpGoogle,
+                icon: Icon(Icons.golf_course),
+                label: Text('SIGN UP GOOGLE'),
+              ),
+            RaisedButton.icon(
+              onPressed:
+                  loginCredentialsState.isFormValid ? _signInCredentials : null,
+              icon: Icon(Icons.signal_cellular_4_bar),
+              label: Text('SIGN IN EMAIL'),
+            ),
+            RaisedButton.icon(
+              onPressed: _signInGoogle,
+              icon: Icon(Icons.usb),
+              label: Text('SIGN IN GOOGLE'),
+            ),
+          ],
         ),
       ),
     );

@@ -92,6 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       );
 
+  /// Display different tabs
   Widget get _displayNavigationScreen {
     switch (_bottomNavigationIndex) {
       case 0:

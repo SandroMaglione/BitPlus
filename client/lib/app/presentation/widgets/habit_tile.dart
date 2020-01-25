@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/core/extensions/color_extension.dart';
 
+/// Slidable tile to check/uncheck habit
 class HabitTile extends StatelessWidget {
   final Habit habit;
 
