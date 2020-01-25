@@ -34,14 +34,8 @@ class AreaOverviewTab extends StatelessWidget {
 
   PageView _pageView(BuiltList<LifeArea> areas) => PageView.builder(
         controller: _controller,
-        itemBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 24.0,
-          ),
-          child: AreaCard(
-            area: areas[index],
-            areaIndex: index,
-          ),
+        itemBuilder: (context, index) => AreaCard(
+          area: areas[index],
         ),
         itemCount: areas.length,
       );

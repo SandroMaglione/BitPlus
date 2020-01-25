@@ -1,4 +1,4 @@
-import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/app/presentation/widgets/habit_tile.dart';
 import 'package:bitplus/app/presentation/widgets/loading_indicator.dart';
@@ -34,7 +34,7 @@ class HabitListTab extends StatelessWidget {
         child: Text('Error: ${state.message}'),
       ),
       habitListStatusSuccess: (_) =>
-          BlocBuilder<HabitListBloc, BuiltList<HabitApi>>(
+          BlocBuilder<HabitListBloc, BuiltList<Habit>>(
         builder: (context, state) => Expanded(
           child: state.isEmpty
               ? const Text('No habit yet created')

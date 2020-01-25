@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'init_login_form.dart';
+part of init_login_form;
 
 // **************************************************************************
 // BuiltValueGenerator

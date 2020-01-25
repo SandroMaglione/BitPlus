@@ -23,17 +23,24 @@ class _$HabitSerializer implements StructuredSerializer<Habit> {
           specifiedType: const FullType(String)),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
-      'isPositive',
-      serializers.serialize(object.isPositive,
+      'checked',
+      serializers.serialize(object.checked,
           specifiedType: const FullType(bool)),
-      'value',
-      serializers.serialize(object.value, specifiedType: const FullType(int)),
+      'color',
+      serializers.serialize(object.color, specifiedType: const FullType(int)),
+      'streak',
+      serializers.serialize(object.streak, specifiedType: const FullType(int)),
+      'countChecks',
+      serializers.serialize(object.countChecks,
+          specifiedType: const FullType(int)),
       'areas',
       serializers.serialize(object.areas,
           specifiedType:
               const FullType(BuiltList, const [const FullType(int)])),
-      'color',
-      serializers.serialize(object.color, specifiedType: const FullType(int)),
+      'history',
+      serializers.serialize(object.history,
+          specifiedType: const FullType(
+              BuiltList, const [const FullType(HistoryDayCheck)])),
     ];
 
     return result;
@@ -58,12 +65,20 @@ class _$HabitSerializer implements StructuredSerializer<Habit> {
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'isPositive':
-          result.isPositive = serializers.deserialize(value,
+        case 'checked':
+          result.checked = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool;
           break;
-        case 'value':
-          result.value = serializers.deserialize(value,
+        case 'color':
+          result.color = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'streak':
+          result.streak = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'countChecks':
+          result.countChecks = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
         case 'areas':
@@ -72,9 +87,11 @@ class _$HabitSerializer implements StructuredSerializer<Habit> {
                       const FullType(BuiltList, const [const FullType(int)]))
               as BuiltList<dynamic>);
           break;
-        case 'color':
-          result.color = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+        case 'history':
+          result.history.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(HistoryDayCheck)]))
+              as BuiltList<dynamic>);
           break;
       }
     }
@@ -89,13 +106,17 @@ class _$Habit extends Habit {
   @override
   final String name;
   @override
-  final bool isPositive;
+  final bool checked;
   @override
-  final int value;
+  final int color;
+  @override
+  final int streak;
+  @override
+  final int countChecks;
   @override
   final BuiltList<int> areas;
   @override
-  final int color;
+  final BuiltList<HistoryDayCheck> history;
 
   factory _$Habit([void Function(HabitBuilder) updates]) =>
       (new HabitBuilder()..update(updates)).build();
@@ -103,10 +124,12 @@ class _$Habit extends Habit {
   _$Habit._(
       {this.habitID,
       this.name,
-      this.isPositive,
-      this.value,
+      this.checked,
+      this.color,
+      this.streak,
+      this.countChecks,
       this.areas,
-      this.color})
+      this.history})
       : super._() {
     if (habitID == null) {
       throw new BuiltValueNullFieldError('Habit', 'habitID');
@@ -114,17 +137,23 @@ class _$Habit extends Habit {
     if (name == null) {
       throw new BuiltValueNullFieldError('Habit', 'name');
     }
-    if (isPositive == null) {
-      throw new BuiltValueNullFieldError('Habit', 'isPositive');
+    if (checked == null) {
+      throw new BuiltValueNullFieldError('Habit', 'checked');
     }
-    if (value == null) {
-      throw new BuiltValueNullFieldError('Habit', 'value');
+    if (color == null) {
+      throw new BuiltValueNullFieldError('Habit', 'color');
+    }
+    if (streak == null) {
+      throw new BuiltValueNullFieldError('Habit', 'streak');
+    }
+    if (countChecks == null) {
+      throw new BuiltValueNullFieldError('Habit', 'countChecks');
     }
     if (areas == null) {
       throw new BuiltValueNullFieldError('Habit', 'areas');
     }
-    if (color == null) {
-      throw new BuiltValueNullFieldError('Habit', 'color');
+    if (history == null) {
+      throw new BuiltValueNullFieldError('Habit', 'history');
     }
   }
 
@@ -141,10 +170,12 @@ class _$Habit extends Habit {
     return other is Habit &&
         habitID == other.habitID &&
         name == other.name &&
-        isPositive == other.isPositive &&
-        value == other.value &&
+        checked == other.checked &&
+        color == other.color &&
+        streak == other.streak &&
+        countChecks == other.countChecks &&
         areas == other.areas &&
-        color == other.color;
+        history == other.history;
   }
 
   @override
@@ -152,11 +183,15 @@ class _$Habit extends Habit {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, habitID.hashCode), name.hashCode),
-                    isPositive.hashCode),
-                value.hashCode),
+                $jc(
+                    $jc(
+                        $jc($jc($jc(0, habitID.hashCode), name.hashCode),
+                            checked.hashCode),
+                        color.hashCode),
+                    streak.hashCode),
+                countChecks.hashCode),
             areas.hashCode),
-        color.hashCode));
+        history.hashCode));
   }
 
   @override
@@ -164,10 +199,12 @@ class _$Habit extends Habit {
     return (newBuiltValueToStringHelper('Habit')
           ..add('habitID', habitID)
           ..add('name', name)
-          ..add('isPositive', isPositive)
-          ..add('value', value)
+          ..add('checked', checked)
+          ..add('color', color)
+          ..add('streak', streak)
+          ..add('countChecks', countChecks)
           ..add('areas', areas)
-          ..add('color', color))
+          ..add('history', history))
         .toString();
   }
 }
@@ -183,21 +220,31 @@ class HabitBuilder implements Builder<Habit, HabitBuilder> {
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
 
-  bool _isPositive;
-  bool get isPositive => _$this._isPositive;
-  set isPositive(bool isPositive) => _$this._isPositive = isPositive;
+  bool _checked;
+  bool get checked => _$this._checked;
+  set checked(bool checked) => _$this._checked = checked;
 
-  int _value;
-  int get value => _$this._value;
-  set value(int value) => _$this._value = value;
+  int _color;
+  int get color => _$this._color;
+  set color(int color) => _$this._color = color;
+
+  int _streak;
+  int get streak => _$this._streak;
+  set streak(int streak) => _$this._streak = streak;
+
+  int _countChecks;
+  int get countChecks => _$this._countChecks;
+  set countChecks(int countChecks) => _$this._countChecks = countChecks;
 
   ListBuilder<int> _areas;
   ListBuilder<int> get areas => _$this._areas ??= new ListBuilder<int>();
   set areas(ListBuilder<int> areas) => _$this._areas = areas;
 
-  int _color;
-  int get color => _$this._color;
-  set color(int color) => _$this._color = color;
+  ListBuilder<HistoryDayCheck> _history;
+  ListBuilder<HistoryDayCheck> get history =>
+      _$this._history ??= new ListBuilder<HistoryDayCheck>();
+  set history(ListBuilder<HistoryDayCheck> history) =>
+      _$this._history = history;
 
   HabitBuilder();
 
@@ -205,10 +252,12 @@ class HabitBuilder implements Builder<Habit, HabitBuilder> {
     if (_$v != null) {
       _habitID = _$v.habitID;
       _name = _$v.name;
-      _isPositive = _$v.isPositive;
-      _value = _$v.value;
-      _areas = _$v.areas?.toBuilder();
+      _checked = _$v.checked;
       _color = _$v.color;
+      _streak = _$v.streak;
+      _countChecks = _$v.countChecks;
+      _areas = _$v.areas?.toBuilder();
+      _history = _$v.history?.toBuilder();
       _$v = null;
     }
     return this;
@@ -235,15 +284,19 @@ class HabitBuilder implements Builder<Habit, HabitBuilder> {
           new _$Habit._(
               habitID: habitID,
               name: name,
-              isPositive: isPositive,
-              value: value,
+              checked: checked,
+              color: color,
+              streak: streak,
+              countChecks: countChecks,
               areas: areas.build(),
-              color: color);
+              history: history.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'areas';
         areas.build();
+        _$failedField = 'history';
+        history.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Habit', _$failedField, e.toString());

@@ -1,4 +1,4 @@
-import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/data/models/life_area.dart';
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:bitplus/core/error/failures.dart';
@@ -16,6 +16,6 @@ abstract class LifeAreaRepository {
   BuiltList<LifeArea> updateAreasFromHabitList(
     BuiltList<LifeArea> previousState,
     User user,
-    BuiltList<HabitApi> habitList,
+    BuiltList<Habit> habitList,
   );
 }

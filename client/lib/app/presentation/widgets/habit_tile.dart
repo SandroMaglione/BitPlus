@@ -1,4 +1,4 @@
-import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/app/presentation/widgets/slide_action_tile.dart';
 import 'package:bitplus/app/presentation/widgets/streak_indicator.dart';
@@ -10,7 +10,7 @@ import 'package:meta/meta.dart';
 import 'package:bitplus/core/extensions/color_extension.dart';
 
 class HabitTile extends StatelessWidget {
-  final HabitApi habit;
+  final Habit habit;
 
   const HabitTile({
     @required this.habit,
@@ -78,18 +78,7 @@ class HabitTile extends StatelessWidget {
               ),
               trailing: InkWell(
                 onTap: () {
-                  Navigator.of(context).pushNamed(
-                    Router.historyMapScreen,
-                    arguments: HistoryMapScreenArguments(
-                      history: habit.history
-                          .map((historyCheck) => historyCheck.isChecked ? 1 : 0)
-                          .toList(),
-                      habitHistory: [],
-                      name: habit.name,
-                      color: habit.color,
-                      areaIndex: -1,
-                    ),
-                  );
+                  // TODO: Show calendar with habit check history onTap
                 },
                 child: StreakIndicator(
                   color: habit.color,

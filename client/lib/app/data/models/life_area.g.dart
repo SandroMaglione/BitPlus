@@ -18,38 +18,35 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
   Iterable<Object> serialize(Serializers serializers, LifeArea object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'areaSettings',
+      serializers.serialize(object.areaSettings,
+          specifiedType: const FullType(LifeAreaSetting)),
       'value',
       serializers.serialize(object.value,
           specifiedType: const FullType(double)),
       'userWeight',
       serializers.serialize(object.userWeight,
           specifiedType: const FullType(int)),
-      'color',
-      serializers.serialize(object.color, specifiedType: const FullType(int)),
       'countChecksPositive',
       serializers.serialize(object.countChecksPositive,
           specifiedType: const FullType(int)),
       'countChecksNegative',
       serializers.serialize(object.countChecksNegative,
           specifiedType: const FullType(int)),
-      'history',
-      serializers.serialize(object.history,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(int)])),
-      'habitChecks',
-      serializers.serialize(object.habitChecks,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(HistoryHabit)])),
       'percentageArea',
       serializers.serialize(object.percentageArea,
           specifiedType: const FullType(double)),
       'percentageActivity',
       serializers.serialize(object.percentageActivity,
           specifiedType: const FullType(double)),
-      'icon',
-      serializers.serialize(object.icon, specifiedType: const FullType(String)),
+      'history',
+      serializers.serialize(object.history,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(int)])),
+      'historyHabit',
+      serializers.serialize(object.historyHabit,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(HistoryHabit)])),
     ];
 
     return result;
@@ -66,9 +63,10 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
-        case 'name':
-          result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+        case 'areaSettings':
+          result.areaSettings.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(LifeAreaSetting))
+              as LifeAreaSetting);
           break;
         case 'value':
           result.value = serializers.deserialize(value,
@@ -76,10 +74,6 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
           break;
         case 'userWeight':
           result.userWeight = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
-          break;
-        case 'color':
-          result.color = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
         case 'countChecksPositive':
@@ -90,18 +84,6 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
           result.countChecksNegative = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
-        case 'history':
-          result.history.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(int)]))
-              as BuiltList<dynamic>);
-          break;
-        case 'habitChecks':
-          result.habitChecks.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(HistoryHabit)]))
-              as BuiltList<dynamic>);
-          break;
         case 'percentageArea':
           result.percentageArea = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
@@ -110,9 +92,17 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
           result.percentageActivity = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double;
           break;
-        case 'icon':
-          result.icon = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+        case 'history':
+          result.history.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(int)]))
+              as BuiltList<dynamic>);
+          break;
+        case 'historyHabit':
+          result.historyHabit.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(HistoryHabit)]))
+              as BuiltList<dynamic>);
           break;
       }
     }
@@ -123,46 +113,40 @@ class _$LifeAreaSerializer implements StructuredSerializer<LifeArea> {
 
 class _$LifeArea extends LifeArea {
   @override
-  final String name;
+  final LifeAreaSetting areaSettings;
   @override
   final double value;
   @override
   final int userWeight;
   @override
-  final int color;
-  @override
   final int countChecksPositive;
   @override
   final int countChecksNegative;
-  @override
-  final BuiltList<int> history;
-  @override
-  final BuiltList<HistoryHabit> habitChecks;
   @override
   final double percentageArea;
   @override
   final double percentageActivity;
   @override
-  final String icon;
+  final BuiltList<int> history;
+  @override
+  final BuiltList<HistoryHabit> historyHabit;
 
   factory _$LifeArea([void Function(LifeAreaBuilder) updates]) =>
       (new LifeAreaBuilder()..update(updates)).build();
 
   _$LifeArea._(
-      {this.name,
+      {this.areaSettings,
       this.value,
       this.userWeight,
-      this.color,
       this.countChecksPositive,
       this.countChecksNegative,
-      this.history,
-      this.habitChecks,
       this.percentageArea,
       this.percentageActivity,
-      this.icon})
+      this.history,
+      this.historyHabit})
       : super._() {
-    if (name == null) {
-      throw new BuiltValueNullFieldError('LifeArea', 'name');
+    if (areaSettings == null) {
+      throw new BuiltValueNullFieldError('LifeArea', 'areaSettings');
     }
     if (value == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'value');
@@ -170,20 +154,11 @@ class _$LifeArea extends LifeArea {
     if (userWeight == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'userWeight');
     }
-    if (color == null) {
-      throw new BuiltValueNullFieldError('LifeArea', 'color');
-    }
     if (countChecksPositive == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'countChecksPositive');
     }
     if (countChecksNegative == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'countChecksNegative');
-    }
-    if (history == null) {
-      throw new BuiltValueNullFieldError('LifeArea', 'history');
-    }
-    if (habitChecks == null) {
-      throw new BuiltValueNullFieldError('LifeArea', 'habitChecks');
     }
     if (percentageArea == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'percentageArea');
@@ -191,8 +166,11 @@ class _$LifeArea extends LifeArea {
     if (percentageActivity == null) {
       throw new BuiltValueNullFieldError('LifeArea', 'percentageActivity');
     }
-    if (icon == null) {
-      throw new BuiltValueNullFieldError('LifeArea', 'icon');
+    if (history == null) {
+      throw new BuiltValueNullFieldError('LifeArea', 'history');
+    }
+    if (historyHabit == null) {
+      throw new BuiltValueNullFieldError('LifeArea', 'historyHabit');
     }
   }
 
@@ -207,17 +185,15 @@ class _$LifeArea extends LifeArea {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is LifeArea &&
-        name == other.name &&
+        areaSettings == other.areaSettings &&
         value == other.value &&
         userWeight == other.userWeight &&
-        color == other.color &&
         countChecksPositive == other.countChecksPositive &&
         countChecksNegative == other.countChecksNegative &&
-        history == other.history &&
-        habitChecks == other.habitChecks &&
         percentageArea == other.percentageArea &&
         percentageActivity == other.percentageActivity &&
-        icon == other.icon;
+        history == other.history &&
+        historyHabit == other.historyHabit;
   }
 
   @override
@@ -229,35 +205,29 @@ class _$LifeArea extends LifeArea {
                     $jc(
                         $jc(
                             $jc(
-                                $jc(
-                                    $jc(
-                                        $jc($jc(0, name.hashCode),
-                                            value.hashCode),
-                                        userWeight.hashCode),
-                                    color.hashCode),
-                                countChecksPositive.hashCode),
-                            countChecksNegative.hashCode),
-                        history.hashCode),
-                    habitChecks.hashCode),
-                percentageArea.hashCode),
-            percentageActivity.hashCode),
-        icon.hashCode));
+                                $jc($jc(0, areaSettings.hashCode),
+                                    value.hashCode),
+                                userWeight.hashCode),
+                            countChecksPositive.hashCode),
+                        countChecksNegative.hashCode),
+                    percentageArea.hashCode),
+                percentageActivity.hashCode),
+            history.hashCode),
+        historyHabit.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('LifeArea')
-          ..add('name', name)
+          ..add('areaSettings', areaSettings)
           ..add('value', value)
           ..add('userWeight', userWeight)
-          ..add('color', color)
           ..add('countChecksPositive', countChecksPositive)
           ..add('countChecksNegative', countChecksNegative)
-          ..add('history', history)
-          ..add('habitChecks', habitChecks)
           ..add('percentageArea', percentageArea)
           ..add('percentageActivity', percentageActivity)
-          ..add('icon', icon))
+          ..add('history', history)
+          ..add('historyHabit', historyHabit))
         .toString();
   }
 }
@@ -265,9 +235,11 @@ class _$LifeArea extends LifeArea {
 class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
   _$LifeArea _$v;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  LifeAreaSettingBuilder _areaSettings;
+  LifeAreaSettingBuilder get areaSettings =>
+      _$this._areaSettings ??= new LifeAreaSettingBuilder();
+  set areaSettings(LifeAreaSettingBuilder areaSettings) =>
+      _$this._areaSettings = areaSettings;
 
   double _value;
   double get value => _$this._value;
@@ -276,10 +248,6 @@ class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
   int _userWeight;
   int get userWeight => _$this._userWeight;
   set userWeight(int userWeight) => _$this._userWeight = userWeight;
-
-  int _color;
-  int get color => _$this._color;
-  set color(int color) => _$this._color = color;
 
   int _countChecksPositive;
   int get countChecksPositive => _$this._countChecksPositive;
@@ -291,16 +259,6 @@ class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
   set countChecksNegative(int countChecksNegative) =>
       _$this._countChecksNegative = countChecksNegative;
 
-  ListBuilder<int> _history;
-  ListBuilder<int> get history => _$this._history ??= new ListBuilder<int>();
-  set history(ListBuilder<int> history) => _$this._history = history;
-
-  ListBuilder<HistoryHabit> _habitChecks;
-  ListBuilder<HistoryHabit> get habitChecks =>
-      _$this._habitChecks ??= new ListBuilder<HistoryHabit>();
-  set habitChecks(ListBuilder<HistoryHabit> habitChecks) =>
-      _$this._habitChecks = habitChecks;
-
   double _percentageArea;
   double get percentageArea => _$this._percentageArea;
   set percentageArea(double percentageArea) =>
@@ -311,25 +269,29 @@ class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
   set percentageActivity(double percentageActivity) =>
       _$this._percentageActivity = percentageActivity;
 
-  String _icon;
-  String get icon => _$this._icon;
-  set icon(String icon) => _$this._icon = icon;
+  ListBuilder<int> _history;
+  ListBuilder<int> get history => _$this._history ??= new ListBuilder<int>();
+  set history(ListBuilder<int> history) => _$this._history = history;
+
+  ListBuilder<HistoryHabit> _historyHabit;
+  ListBuilder<HistoryHabit> get historyHabit =>
+      _$this._historyHabit ??= new ListBuilder<HistoryHabit>();
+  set historyHabit(ListBuilder<HistoryHabit> historyHabit) =>
+      _$this._historyHabit = historyHabit;
 
   LifeAreaBuilder();
 
   LifeAreaBuilder get _$this {
     if (_$v != null) {
-      _name = _$v.name;
+      _areaSettings = _$v.areaSettings?.toBuilder();
       _value = _$v.value;
       _userWeight = _$v.userWeight;
-      _color = _$v.color;
       _countChecksPositive = _$v.countChecksPositive;
       _countChecksNegative = _$v.countChecksNegative;
-      _history = _$v.history?.toBuilder();
-      _habitChecks = _$v.habitChecks?.toBuilder();
       _percentageArea = _$v.percentageArea;
       _percentageActivity = _$v.percentageActivity;
-      _icon = _$v.icon;
+      _history = _$v.history?.toBuilder();
+      _historyHabit = _$v.historyHabit?.toBuilder();
       _$v = null;
     }
     return this;
@@ -354,24 +316,25 @@ class LifeAreaBuilder implements Builder<LifeArea, LifeAreaBuilder> {
     try {
       _$result = _$v ??
           new _$LifeArea._(
-              name: name,
+              areaSettings: areaSettings.build(),
               value: value,
               userWeight: userWeight,
-              color: color,
               countChecksPositive: countChecksPositive,
               countChecksNegative: countChecksNegative,
-              history: history.build(),
-              habitChecks: habitChecks.build(),
               percentageArea: percentageArea,
               percentageActivity: percentageActivity,
-              icon: icon);
+              history: history.build(),
+              historyHabit: historyHabit.build());
     } catch (_) {
       String _$failedField;
       try {
+        _$failedField = 'areaSettings';
+        areaSettings.build();
+
         _$failedField = 'history';
         history.build();
-        _$failedField = 'habitChecks';
-        habitChecks.build();
+        _$failedField = 'historyHabit';
+        historyHabit.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'LifeArea', _$failedField, e.toString());

@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/data/models/creation_habit.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/core/constants/parameters.dart';
 import 'package:bloc/bloc.dart';
 import 'package:built_collection/built_collection.dart';
@@ -36,7 +36,7 @@ class CreationHabitBloc extends Bloc<CreationHabitEvent, CreationHabit> {
   }
 
   Stream<CreationHabit> _mapInitializeHabitCreationHabitEvent(
-    HabitApi habit,
+    Habit habit,
   ) async* {
     if (habit != null) {
       yield state.rebuild(

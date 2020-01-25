@@ -1,6 +1,5 @@
 import 'package:bitplus/app/data/datasources/habit_remote_data_source.dart';
 import 'package:bitplus/app/data/datasources/life_area_remote_data_source.dart';
-import 'package:bitplus/app/data/datasources/profile_local_data_source.dart';
 import 'package:bitplus/app/data/datasources/profile_remote_data_source.dart';
 import 'package:bitplus/app/data/repositories/habit_repository_impl.dart';
 import 'package:bitplus/app/data/repositories/life_area_repository_impl.dart';
@@ -114,7 +113,6 @@ void init() {
   // Repositories
   serviceLocator.registerLazySingleton<ProfileRepository>(
     () => ProfileRepositoryImpl(
-      profileLocalDataSource: serviceLocator(),
       profileRemoteDataSource: serviceLocator(),
     ),
   );
@@ -240,10 +238,6 @@ void init() {
     () => LifeAreaRemoteDataSourceImpl(
       client: serviceLocator(),
     ),
-  );
-
-  serviceLocator.registerLazySingleton<ProfileLocalDataSource>(
-    () => ProfileLocalDataSourceImpl(),
   );
 
   serviceLocator.registerLazySingleton<HabitRemoteDataSource>(

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'creation_habit.dart';
+part of creation_habit;
 
 // **************************************************************************
 // BuiltValueGenerator

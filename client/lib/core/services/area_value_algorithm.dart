@@ -1,28 +1,28 @@
-import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/data/models/history_habit.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:dartx/dartx.dart';
 
 abstract class AreaValueAlgorithm {
-  BuiltList<int> buildHistory(
+  BuiltList<int> getDailyChecksCount(
     int areaIndex,
-    BuiltList<HabitApi> habitList,
+    BuiltList<Habit> habitList,
   );
 
-  int buildCountChecksPositive(
+  int getCountChecksPositive(
     int areaIndex,
-    BuiltList<HabitApi> habitList,
+    BuiltList<Habit> habitList,
   );
 
-  int buildCountChecksNegative(
+  int getCountChecksNegative(
     int areaIndex,
-    BuiltList<HabitApi> habitList,
+    BuiltList<Habit> habitList,
   );
 
-  double buildValue(
+  double getUserValue(
     int areaIndex,
     int userWeight,
-    BuiltList<HabitApi> habitList,
+    BuiltList<Habit> habitList,
   );
 
   double buildAreaPercentage(
@@ -36,7 +36,7 @@ abstract class AreaValueAlgorithm {
 
   BuiltList<HistoryHabit> buildHabitActivity(
     int areaIndex,
-    BuiltList<HabitApi> habitList,
+    BuiltList<Habit> habitList,
   );
 }
 
@@ -48,9 +48,9 @@ class ValueAlgorithmV1 implements AreaValueAlgorithm {
   );
 
   @override
-  int buildCountChecksNegative(
+  int getCountChecksNegative(
     int areaIndex,
-    BuiltList<HabitApi> habitList,
+    BuiltList<Habit> habitList,
   ) =>
       habitList
           .where((habit) => habit.areas[areaIndex] < 0)
@@ -60,9 +60,9 @@ class ValueAlgorithmV1 implements AreaValueAlgorithm {
           .sum();
 
   @override
-  int buildCountChecksPositive(
+  int getCountChecksPositive(
     int areaIndex,
-    BuiltList<HabitApi> habitList,
+    BuiltList<Habit> habitList,
   ) =>
       habitList
           .where((habit) => habit.areas[areaIndex] > 0)
@@ -72,9 +72,9 @@ class ValueAlgorithmV1 implements AreaValueAlgorithm {
           .sum();
 
   @override
-  BuiltList<int> buildHistory(
+  BuiltList<int> getDailyChecksCount(
     int areaIndex,
-    BuiltList<HabitApi> habitList,
+    BuiltList<Habit> habitList,
   ) =>
       BuiltList<int>(
         List<int>.filled(dateRange, 0)
@@ -92,10 +92,10 @@ class ValueAlgorithmV1 implements AreaValueAlgorithm {
       );
 
   @override
-  double buildValue(
+  double getUserValue(
     int areaIndex,
     int userWeight,
-    BuiltList<HabitApi> habitList,
+    BuiltList<Habit> habitList,
   ) =>
       habitList
           .map(
@@ -109,7 +109,7 @@ class ValueAlgorithmV1 implements AreaValueAlgorithm {
   @override
   BuiltList<HistoryHabit> buildHabitActivity(
     int areaIndex,
-    BuiltList<HabitApi> habitList,
+    BuiltList<Habit> habitList,
   ) =>
       habitList
           .where(
@@ -121,10 +121,10 @@ class ValueAlgorithmV1 implements AreaValueAlgorithm {
                   (check) => check.isChecked,
                 )
                 .map(
-                  (historyCheck) => HistoryHabit(
+                  (historyDayCheck) => HistoryHabit(
                     (h) => h
                       ..habit = habit.toBuilder()
-                      ..historyCheck = historyCheck.toBuilder(),
+                      ..historyDayCheck = historyDayCheck.toBuilder(),
                   ),
                 )
                 .toBuiltList(),

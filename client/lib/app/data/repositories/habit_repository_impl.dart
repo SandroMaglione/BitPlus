@@ -1,6 +1,6 @@
 import 'package:bitplus/app/data/datasources/habit_remote_data_source.dart';
-import 'package:bitplus/app/data/models/api/habit_api.dart';
-import 'package:bitplus/app/data/models/history_check.dart';
+import 'package:bitplus/app/data/models/habit.dart';
+import 'package:bitplus/app/data/models/history_day_check.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/app/domain/repositories/habit_repository.dart';
 import 'package:bitplus/core/error/failures.dart';
@@ -28,7 +28,7 @@ class HabitRepositoryImpl implements HabitRepository {
       ).runAll();
 
   @override
-  Future<Either<Failure, HabitApi>> createHabit(
+  Future<Either<Failure, Habit>> createHabit(
     String uid,
     String name,
     int color,
@@ -56,7 +56,7 @@ class HabitRepositoryImpl implements HabitRepository {
       ).runAll();
 
   @override
-  Future<Either<Failure, BuiltList<HabitApi>>> getHabitList(
+  Future<Either<Failure, BuiltList<Habit>>> getHabitList(
     String uid,
     int dateRange,
   ) async =>
@@ -68,12 +68,12 @@ class HabitRepositoryImpl implements HabitRepository {
       ).runAll();
 
   @override
-  Future<Either<Failure, HabitApi>> updateHabit(
+  Future<Either<Failure, Habit>> updateHabit(
     String uid,
     String habitID,
     String name,
     int color,
-    BuiltList<HistoryCheck> history,
+    BuiltList<HistoryDayCheck> history,
     int streak,
     int countChecks,
     BuiltList<int> areas,

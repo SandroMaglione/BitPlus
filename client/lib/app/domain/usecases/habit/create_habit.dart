@@ -1,4 +1,4 @@
-import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -7,7 +7,7 @@ import 'package:bitplus/core/error/failures.dart';
 import 'package:bitplus/core/usecase/usecase.dart';
 import 'package:dartz/dartz.dart';
 
-class CreateHabit implements UseCase<HabitApi, Params> {
+class CreateHabit implements UseCase<Habit, Params> {
   final HabitRepository habitRepository;
 
   const CreateHabit({
@@ -15,7 +15,7 @@ class CreateHabit implements UseCase<HabitApi, Params> {
   });
 
   @override
-  Future<Either<Failure, HabitApi>> call(Params params) {
+  Future<Either<Failure, Habit>> call(Params params) {
     return habitRepository.createHabit(
       params.uid,
       params.name,

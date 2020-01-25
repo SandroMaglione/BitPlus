@@ -1,3 +1,5 @@
+library init_life_area;
+
 import 'dart:convert';
 
 import 'package:bitplus/core/serializers/serializers.dart';
@@ -7,17 +9,18 @@ import 'package:built_value/serializer.dart';
 
 part 'init_life_area.g.dart';
 
+/// Manages the assignment of points to each area
 abstract class InitLifeArea
     implements Built<InitLifeArea, InitLifeAreaBuilder> {
-  BuiltList<int> get values;
-  int get pointsLeft;
-
-  bool get isAreasValid => pointsLeft == 0;
+  factory InitLifeArea([void Function(InitLifeAreaBuilder) updates]) =
+      _$InitLifeArea;
 
   InitLifeArea._();
 
-  factory InitLifeArea([void Function(InitLifeAreaBuilder) updates]) =
-      _$InitLifeArea;
+  int get pointsLeft;
+  BuiltList<int> get values;
+
+  bool get isAreasValid => pointsLeft == 0;
 
   String toJson() {
     return json

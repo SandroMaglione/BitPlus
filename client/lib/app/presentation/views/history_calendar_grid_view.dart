@@ -2,7 +2,6 @@ import 'package:bitplus/app/presentation/bloc/area_overview_bloc.dart';
 import 'package:bitplus/app/presentation/widgets/history_calendar_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bitplus/core/extensions/date_time_extension.dart';
 
 class HistoryCalendarGridView extends StatelessWidget {
   final List<int> history;
@@ -26,51 +25,21 @@ class HistoryCalendarGridView extends StatelessWidget {
         crossAxisSpacing: 0,
         mainAxisSpacing: 0,
       ),
-      itemBuilder: (context, index) => HistoryCalendarTile(
-        countNegative: BlocProvider.of<AreaOverviewBloc>(context)
-            .state[areaIndex]
-            .habitChecks
-            .where(
-              (hc) => hc.historyCheck.day.isSameDay(
-                DateTime.now().subtract(
-                  Duration(
-                    days: index,
-                  ),
-                ),
-              ),
-            )
-            .fold(
-              0,
-              (prev, habit) =>
-                  prev +
-                  (habit.historyCheck.isChecked &&
-                          habit.habit.areas[areaIndex] < 0
-                      ? habit.habit.areas[areaIndex].abs()
-                      : 0),
-            ),
-        countPositive: BlocProvider.of<AreaOverviewBloc>(context)
-            .state[areaIndex]
-            .habitChecks
-            .where(
-              (hc) => hc.historyCheck.day.isSameDay(
-                DateTime.now().subtract(
-                  Duration(days: index),
-                ),
-              ),
-            )
-            .fold(
-              0,
-              (prev, habit) =>
-                  prev +
-                  (habit.historyCheck.isChecked &&
-                          habit.habit.areas[areaIndex] > 0
-                      ? habit.habit.areas[areaIndex].abs()
-                      : 0),
-            ),
-        date: DateTime.now().subtract(
-          Duration(days: index),
-        ),
-      ),
+      itemBuilder: (context, index) {
+        final DateTime day = DateTime.now().subtract(
+          Duration(
+            days: index,
+          ),
+        );
+
+        return HistoryCalendarTile(
+          countNegative: BlocProvider.of<AreaOverviewBloc>(context)
+              .getCountNegativeInDay(areaIndex, day),
+          countPositive: BlocProvider.of<AreaOverviewBloc>(context)
+              .getCountPositiveInDay(areaIndex, day),
+          date: day,
+        );
+      },
       itemCount: history.length,
     );
   }

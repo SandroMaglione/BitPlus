@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:meta/meta.dart';
 import 'package:bitplus/app/domain/usecases/habit/get_habit_list.dart' as ghl;
@@ -61,7 +61,7 @@ class HabitListStatusBloc
           message: 'Error while getting the habit, try again later',
         );
       },
-      (BuiltList<HabitApi> habitList) async* {
+      (BuiltList<Habit> habitList) async* {
         habitListBloc.add(
           HabitListEvent.habitListFetched(
             habitList: habitList,

@@ -30,7 +30,7 @@ class HistoryHabitTile extends StatelessWidget {
             ),
           ),
           subtitle: Text(
-            '${DateFormat('d MMM y').format(historyHabit.historyCheck.day)}',
+            '${DateFormat('d MMM y').format(historyHabit.historyDayCheck.day)}',
           ),
           trailing: CircleAvatar(
             backgroundColor: SCAFFOLD_COLOR,

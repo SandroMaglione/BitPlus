@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:bitplus/app/data/models/api/create_habit_req.dart';
-import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/data/models/api/update_habit_req.dart';
-import 'package:bitplus/app/data/models/history_check.dart';
+import 'package:bitplus/app/data/models/habit.dart';
+import 'package:bitplus/app/data/models/history_day_check.dart';
 import 'package:bitplus/core/error/failures.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
@@ -12,22 +12,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 
 abstract class HabitRemoteDataSource {
-  /// Returns a [BuiltList] of [HabitApi] retrieved from the database,
+  /// Returns a [BuiltList] of [Habit] retrieved from the database,
   /// based on the user id provided
-  Future<BuiltList<HabitApi>> getHabitList(
+  Future<BuiltList<Habit>> getHabitList(
     String uid,
     int dateRange,
   );
 
   /// Creates an [CreateHabitReq] and updates it into the database
   ///
-  /// It returns the updated [HabitApi]
-  Future<HabitApi> updateHabit(
+  /// It returns the updated [Habit]
+  Future<Habit> updateHabit(
     String uid,
     String habitID,
     String name,
     int color,
-    BuiltList<HistoryCheck> history,
+    BuiltList<HistoryDayCheck> history,
     int streak,
     int countChecks,
     BuiltList<int> areas, {
@@ -36,8 +36,8 @@ abstract class HabitRemoteDataSource {
 
   /// Creates an [CreateHabitReq] and uploads it to the database
   ///
-  /// It returns the new [HabitApi] with the new habitID assigned
-  Future<HabitApi> createHabit(
+  /// It returns the new [Habit] with the new habitID assigned
+  Future<Habit> createHabit(
     String uid,
     String name,
     int color,
@@ -61,7 +61,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
   });
 
   @override
-  Future<BuiltList<HabitApi>> getHabitList(
+  Future<BuiltList<Habit>> getHabitList(
     String uid,
     int dateRange,
   ) async {
@@ -72,9 +72,9 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
         body: json.encode({"uid": uid, "dateRange": dateRange}),
       );
       final habitList = json.decode(resp.body);
-      return BuiltList<HabitApi>(
+      return BuiltList<Habit>(
         habitList.map(
-          (habit) => HabitApi.fromJson(
+          (habit) => Habit.fromJson(
             json.encode(habit),
           ),
         ),
@@ -145,7 +145,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
   }
 
   @override
-  Future<HabitApi> createHabit(
+  Future<Habit> createHabit(
     String uid,
     String name,
     int color,
@@ -162,16 +162,16 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     return _manageHabit(
       'https://us-central1-bitplus-95304.cloudfunctions.net/createHabit',
       habitReq.toJson(),
-      (habitID) => HabitApi(
+      (habitID) => Habit(
         (h) => h
           ..habitID = habitID
           ..checked = false
           ..color = color
           ..name = name
-          ..history = ListBuilder<HistoryCheck>(
-            List<HistoryCheck>.generate(
+          ..history = ListBuilder<HistoryDayCheck>(
+            List<HistoryDayCheck>.generate(
               31,
-              (index) => HistoryCheck(
+              (index) => HistoryDayCheck(
                 (h) => h
                   ..isChecked = false
                   ..day = DateTime.now().subtract(
@@ -190,12 +190,12 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
   }
 
   @override
-  Future<HabitApi> updateHabit(
+  Future<Habit> updateHabit(
     String uid,
     String habitID,
     String name,
     int color,
-    BuiltList<HistoryCheck> history,
+    BuiltList<HistoryDayCheck> history,
     int streak,
     int countChecks,
     BuiltList<int> areas, {
@@ -213,7 +213,7 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     return _manageHabit(
       'https://us-central1-bitplus-95304.cloudfunctions.net/updateHabit',
       habitReq.toJson(),
-      (habitID) => HabitApi(
+      (habitID) => Habit(
         (h) => h
           ..habitID = habitID
           ..checked = checked
@@ -227,10 +227,10 @@ class HabitRemoteDataSourceImpl implements HabitRemoteDataSource {
     );
   }
 
-  Future<HabitApi> _manageHabit(
+  Future<Habit> _manageHabit(
     String url,
     String jsonBody,
-    HabitApi Function(String habitID) getHabit,
+    Habit Function(String habitID) getHabit,
   ) async {
     try {
       final resp = await http.post(

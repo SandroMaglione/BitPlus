@@ -1,21 +1,21 @@
-import 'package:bitplus/app/data/models/api/habit_api.dart';
-import 'package:bitplus/app/data/models/history_check.dart';
+import 'package:bitplus/app/data/models/habit.dart';
+import 'package:bitplus/app/data/models/history_day_check.dart';
 import 'package:bitplus/core/error/failures.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class HabitRepository {
   /// Get the list of all habit created by the user based on his/her uid
-  Future<Either<Failure, BuiltList<HabitApi>>> getHabitList(
+  Future<Either<Failure, BuiltList<Habit>>> getHabitList(
     String uid,
     int dateRange,
   );
 
   /// Create a new habit associated to the user based on current uid
   ///
-  /// It posts an object [CreateHabitApi] and returns a new [HabitApi],
+  /// It posts an object [CreateHabit] and returns a new [Habit],
   /// to append to the current stored list
-  Future<Either<Failure, HabitApi>> createHabit(
+  Future<Either<Failure, Habit>> createHabit(
     String uid,
     String name,
     int color,
@@ -24,14 +24,14 @@ abstract class HabitRepository {
 
   /// Updates habit data associated to the user based on current uid
   ///
-  /// It posts an object [CreateHabitApi] and returns a new [HabitApi],
+  /// It posts an object [CreateHabit] and returns a new [Habit],
   /// to update into the current stored list
-  Future<Either<Failure, HabitApi>> updateHabit(
+  Future<Either<Failure, Habit>> updateHabit(
     String uid,
     String habitID,
     String name,
     int color,
-    BuiltList<HistoryCheck> history,
+    BuiltList<HistoryDayCheck> history,
     int streak,
     int countChecks,
     BuiltList<int> areas,

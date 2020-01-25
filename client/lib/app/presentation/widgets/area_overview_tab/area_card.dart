@@ -11,11 +11,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AreaCard extends StatelessWidget {
   final LifeArea area;
-  final int areaIndex;
 
   const AreaCard({
     @required this.area,
-    @required this.areaIndex,
   });
 
   @override
@@ -23,7 +21,7 @@ class AreaCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8.0,
-        vertical: 8.0,
+        vertical: 32.0,
       ),
       child: Card(
         child: InkWell(
@@ -53,13 +51,7 @@ class AreaCard extends StatelessWidget {
   void _onTapViewAreaInfo(BuildContext context) {
     Navigator.of(context).pushNamed(
       Router.historyMapScreen,
-      arguments: HistoryMapScreenArguments(
-        history: area.history.toList(),
-        habitHistory: area.habitChecks.toList(),
-        name: area.name,
-        color: area.color,
-        areaIndex: areaIndex,
-      ),
+      arguments: area,
     );
   }
 

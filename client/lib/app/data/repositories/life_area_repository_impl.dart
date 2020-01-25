@@ -1,5 +1,5 @@
 import 'package:bitplus/app/data/datasources/life_area_remote_data_source.dart';
-import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/data/models/life_area.dart';
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:bitplus/app/domain/repositories/life_area_repository.dart';
@@ -37,7 +37,7 @@ class LifeAreaRepositoryImpl implements LifeAreaRepository {
   BuiltList<LifeArea> updateAreasFromHabitList(
     BuiltList<LifeArea> previousState,
     User user,
-    BuiltList<HabitApi> habitList,
+    BuiltList<Habit> habitList,
   ) {
     final areaList = _buildLifeAreaList(
       previousState,
@@ -60,7 +60,7 @@ class LifeAreaRepositoryImpl implements LifeAreaRepository {
 
   BuiltList<LifeArea> _buildLifeAreaList(
     BuiltList<LifeArea> previousState,
-    BuiltList<HabitApi> habitList,
+    BuiltList<Habit> habitList,
     User user,
   ) {
     final sumUserAreas = user.areas.sum();
@@ -71,28 +71,26 @@ class LifeAreaRepositoryImpl implements LifeAreaRepository {
           (index, area) => area.rebuild(
             (a) => a
               ..userWeight = user.areas[index]
-              ..value = areaValueAlgorithm.buildValue(
+              ..value = areaValueAlgorithm.getUserValue(
                 index,
                 user.areas[index],
                 habitList,
               )
               ..history = areaValueAlgorithm
-                  .buildHistory(
+                  .getDailyChecksCount(
                     index,
                     habitList,
                   )
                   .toBuilder()
-              ..countChecksPositive =
-                  areaValueAlgorithm.buildCountChecksPositive(
+              ..countChecksPositive = areaValueAlgorithm.getCountChecksPositive(
                 index,
                 habitList,
               )
-              ..countChecksNegative =
-                  areaValueAlgorithm.buildCountChecksNegative(
+              ..countChecksNegative = areaValueAlgorithm.getCountChecksNegative(
                 index,
                 habitList,
               )
-              ..habitChecks = areaValueAlgorithm
+              ..historyHabit = areaValueAlgorithm
                   .buildHabitActivity(
                     index,
                     habitList,

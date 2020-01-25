@@ -1,4 +1,4 @@
-import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:super_enum/super_enum.dart';
 
@@ -15,11 +15,11 @@ enum _HabitListEvent {
   ])
   HabitListUncheck,
   @Data(fields: [
-    DataField('habit', HabitApi),
+    DataField('habit', Habit),
   ])
   HabitListAddCreated,
   @Data(fields: [
-    DataField('habit', HabitApi),
+    DataField('habit', Habit),
   ])
   HabitListAddUpdated,
   @Data(fields: [

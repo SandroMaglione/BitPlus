@@ -23,7 +23,7 @@ abstract class CreationHabitEvent extends Equatable {
       {@required int indexToUpdate}) = SubtractAreasCreationHabitEvent;
 
   factory CreationHabitEvent.initializeHabitCreationHabitEvent(
-      {@required HabitApi habit}) = InitializeHabitCreationHabitEvent;
+      {@required Habit habit}) = InitializeHabitCreationHabitEvent;
 
   final _CreationHabitEvent _type;
 
@@ -123,7 +123,7 @@ class InitializeHabitCreationHabitEvent extends CreationHabitEvent {
   const InitializeHabitCreationHabitEvent({@required this.habit})
       : super(_CreationHabitEvent.InitializeHabitCreationHabitEvent);
 
-  final HabitApi habit;
+  final Habit habit;
 
   @override
   String toString() => 'InitializeHabitCreationHabitEvent(habit:${this.habit})';

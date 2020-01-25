@@ -1,3 +1,5 @@
+library init_login_form;
+
 import 'dart:convert';
 
 import 'package:bitplus/core/serializers/serializers.dart';
@@ -6,17 +8,18 @@ import 'package:built_value/serializer.dart';
 
 part 'init_login_form.g.dart';
 
+/// Validity of field during the login process
 abstract class InitLoginForm
     implements Built<InitLoginForm, InitLoginFormBuilder> {
+  factory InitLoginForm([void Function(InitLoginFormBuilder) updates]) =
+      _$InitLoginForm;
+
+  InitLoginForm._();
+
   bool get isEmailValid;
   bool get isPasswordValid;
 
   bool get isFormValid => isPasswordValid && isEmailValid;
-
-  InitLoginForm._();
-
-  factory InitLoginForm([void Function(InitLoginFormBuilder) updates]) =
-      _$InitLoginForm;
 
   String toJson() {
     return json

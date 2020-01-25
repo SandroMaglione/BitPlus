@@ -10,28 +10,16 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CreateHabitReq.serializer)
       ..add(CreationHabit.serializer)
       ..add(Habit.serializer)
-      ..add(HabitApi.serializer)
-      ..add(HabitEntity.serializer)
-      ..add(HabitStat.serializer)
-      ..add(HistoryCheck.serializer)
+      ..add(HistoryDayCheck.serializer)
       ..add(HistoryHabit.serializer)
       ..add(InitLoginForm.serializer)
       ..add(LifeArea.serializer)
       ..add(LifeAreaSetting.serializer)
-      ..add(LoginStatusInfo.serializer)
       ..add(LoginStatusPage.serializer)
       ..add(PostUserAccount.serializer)
-      ..add(Summary.serializer)
-      ..add(SummaryStat.serializer)
       ..add(UpdateHabitReq.serializer)
       ..add(User.serializer)
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(HabitEntity)]),
-          () => new ListBuilder<HabitEntity>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Summary)]),
-          () => new ListBuilder<Summary>())
-      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => new ListBuilder<int>())
       ..addBuilderFactory(
@@ -50,11 +38,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(int)]),
           () => new ListBuilder<int>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(int)]),
-          () => new ListBuilder<int>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(HistoryCheck)]),
-          () => new ListBuilder<HistoryCheck>())
+          const FullType(BuiltList, const [const FullType(HistoryDayCheck)]),
+          () => new ListBuilder<HistoryDayCheck>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => new ListBuilder<int>())

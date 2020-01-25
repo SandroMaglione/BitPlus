@@ -8,17 +8,28 @@ import 'package:built_value/serializer.dart';
 
 part 'life_area_setting.g.dart';
 
-abstract class LifeAreaSetting implements Built<LifeAreaSetting, LifeAreaSettingBuilder> {
+/// Fixed info about each area.
+///
+/// Area id, name, and color.
+abstract class LifeAreaSetting
+    implements Built<LifeAreaSetting, LifeAreaSettingBuilder> {
+  factory LifeAreaSetting([Function(LifeAreaSettingBuilder b) updates]) =
+      _$LifeAreaSetting;
+
   LifeAreaSetting._();
 
-  factory LifeAreaSetting([updates(LifeAreaSettingBuilder b)]) = _$LifeAreaSetting;
+  /// Unique identifier of the area.
+  ///
+  /// Used to get the reference of the area from [LIFE_AREAS].
+  /// Every area has by default its own id. The orders of the list
+  /// may change, but the original [areaID] will remain the same.
+  int get areaID;
 
-  @BuiltValueField(wireName: 'name')
+  /// Name of the area
   String get name;
-  @BuiltValueField(wireName: 'color')
+
+  /// Color [int] of the area
   int get color;
-  @BuiltValueField(wireName: 'icon')
-  String get icon;
 
   String toJson() {
     return json.encode(
@@ -38,5 +49,6 @@ abstract class LifeAreaSetting implements Built<LifeAreaSetting, LifeAreaSetting
     );
   }
 
-  static Serializer<LifeAreaSetting> get serializer => _$lifeAreaSettingSerializer;
+  static Serializer<LifeAreaSetting> get serializer =>
+      _$lifeAreaSettingSerializer;
 }

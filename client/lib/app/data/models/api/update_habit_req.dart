@@ -9,21 +9,18 @@ import 'package:built_value/serializer.dart';
 
 part 'update_habit_req.g.dart';
 
+/// Send user and habit id to update habit with new parameters
 abstract class UpdateHabitReq
     implements Built<UpdateHabitReq, UpdateHabitReqBuilder> {
+  factory UpdateHabitReq([Function(UpdateHabitReqBuilder b) updates]) =
+      _$UpdateHabitReq;
+
   UpdateHabitReq._();
 
-  factory UpdateHabitReq([updates(UpdateHabitReqBuilder b)]) = _$UpdateHabitReq;
-
-  @BuiltValueField(wireName: 'uid')
   String get uid;
-  @BuiltValueField(wireName: 'habitID')
   String get habitID;
-  @BuiltValueField(wireName: 'color')
   int get color;
-  @BuiltValueField(wireName: 'name')
   String get name;
-  @BuiltValueField(wireName: 'areas')
   BuiltList<int> get areas;
 
   String toJson() {

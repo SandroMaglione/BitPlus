@@ -20,12 +20,12 @@ class _$LifeAreaSettingSerializer
   Iterable<Object> serialize(Serializers serializers, LifeAreaSetting object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
+      'areaID',
+      serializers.serialize(object.areaID, specifiedType: const FullType(int)),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
       'color',
       serializers.serialize(object.color, specifiedType: const FullType(int)),
-      'icon',
-      serializers.serialize(object.icon, specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -43,6 +43,10 @@ class _$LifeAreaSettingSerializer
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
+        case 'areaID':
+          result.areaID = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
         case 'name':
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
@@ -50,10 +54,6 @@ class _$LifeAreaSettingSerializer
         case 'color':
           result.color = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
-          break;
-        case 'icon':
-          result.icon = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
           break;
       }
     }
@@ -64,24 +64,24 @@ class _$LifeAreaSettingSerializer
 
 class _$LifeAreaSetting extends LifeAreaSetting {
   @override
+  final int areaID;
+  @override
   final String name;
   @override
   final int color;
-  @override
-  final String icon;
 
   factory _$LifeAreaSetting([void Function(LifeAreaSettingBuilder) updates]) =>
       (new LifeAreaSettingBuilder()..update(updates)).build();
 
-  _$LifeAreaSetting._({this.name, this.color, this.icon}) : super._() {
+  _$LifeAreaSetting._({this.areaID, this.name, this.color}) : super._() {
+    if (areaID == null) {
+      throw new BuiltValueNullFieldError('LifeAreaSetting', 'areaID');
+    }
     if (name == null) {
       throw new BuiltValueNullFieldError('LifeAreaSetting', 'name');
     }
     if (color == null) {
       throw new BuiltValueNullFieldError('LifeAreaSetting', 'color');
-    }
-    if (icon == null) {
-      throw new BuiltValueNullFieldError('LifeAreaSetting', 'icon');
     }
   }
 
@@ -97,22 +97,23 @@ class _$LifeAreaSetting extends LifeAreaSetting {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is LifeAreaSetting &&
+        areaID == other.areaID &&
         name == other.name &&
-        color == other.color &&
-        icon == other.icon;
+        color == other.color;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc($jc(0, name.hashCode), color.hashCode), icon.hashCode));
+    return $jf(
+        $jc($jc($jc(0, areaID.hashCode), name.hashCode), color.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('LifeAreaSetting')
+          ..add('areaID', areaID)
           ..add('name', name)
-          ..add('color', color)
-          ..add('icon', icon))
+          ..add('color', color))
         .toString();
   }
 }
@@ -120,6 +121,10 @@ class _$LifeAreaSetting extends LifeAreaSetting {
 class LifeAreaSettingBuilder
     implements Builder<LifeAreaSetting, LifeAreaSettingBuilder> {
   _$LifeAreaSetting _$v;
+
+  int _areaID;
+  int get areaID => _$this._areaID;
+  set areaID(int areaID) => _$this._areaID = areaID;
 
   String _name;
   String get name => _$this._name;
@@ -129,17 +134,13 @@ class LifeAreaSettingBuilder
   int get color => _$this._color;
   set color(int color) => _$this._color = color;
 
-  String _icon;
-  String get icon => _$this._icon;
-  set icon(String icon) => _$this._icon = icon;
-
   LifeAreaSettingBuilder();
 
   LifeAreaSettingBuilder get _$this {
     if (_$v != null) {
+      _areaID = _$v.areaID;
       _name = _$v.name;
       _color = _$v.color;
-      _icon = _$v.icon;
       _$v = null;
     }
     return this;
@@ -160,8 +161,8 @@ class LifeAreaSettingBuilder
 
   @override
   _$LifeAreaSetting build() {
-    final _$result =
-        _$v ?? new _$LifeAreaSetting._(name: name, color: color, icon: icon);
+    final _$result = _$v ??
+        new _$LifeAreaSetting._(areaID: areaID, name: name, color: color);
     replace(_$result);
     return _$result;
   }

@@ -43,8 +43,6 @@ abstract class ProfileRemoteDataSource {
     String email,
     BuiltList<int> areas,
   );
-
-  Future<User> addExperience(int experience);
 }
 
 class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
@@ -72,7 +70,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       );
       return result.user.uid;
     } on PlatformException {
-      throw FirebaseAuthFailure(
+      throw const FirebaseAuthFailure(
         message: 'No user exist with this credentials, try again',
       );
     }
@@ -96,7 +94,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
         );
         return user;
       } else {
-        throw FirebaseAuthFailure(
+        throw const FirebaseAuthFailure(
           message: 'No user exist with this credentials',
         );
       }
@@ -185,12 +183,7 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
     }
   }
 
-  @override
-  Future<User> addExperience(int experience) {
-    // TODO: implement addExperience
-    return null;
-  }
-
+  /// Instantiate a [User] object given its attributes
   User _createUserFromId(
     String uid,
     String email,
@@ -199,12 +192,11 @@ class ProfileRemoteDataSourceImpl implements ProfileRemoteDataSource {
       User(
         (u) => u
           ..uid = uid
-          ..exp = 0
-          ..level = 1
           ..email = email
           ..areas = areas.toBuilder(),
       );
 
+  /// Decode user data and instantiate [User] from json
   User _createUserFromUserData(String uid, Map<String, dynamic> userData) {
     userData['uid'] = uid;
     return User.fromJson(

@@ -16,10 +16,10 @@ abstract class HabitListEvent extends Equatable {
   factory HabitListEvent.habitListUncheck({@required String habitID}) =
       HabitListUncheck;
 
-  factory HabitListEvent.habitListAddCreated({@required HabitApi habit}) =
+  factory HabitListEvent.habitListAddCreated({@required Habit habit}) =
       HabitListAddCreated;
 
-  factory HabitListEvent.habitListAddUpdated({@required HabitApi habit}) =
+  factory HabitListEvent.habitListAddUpdated({@required Habit habit}) =
       HabitListAddUpdated;
 
   factory HabitListEvent.habitListFetched(
@@ -83,7 +83,7 @@ class HabitListAddCreated extends HabitListEvent {
   const HabitListAddCreated({@required this.habit})
       : super(_HabitListEvent.HabitListAddCreated);
 
-  final HabitApi habit;
+  final Habit habit;
 
   @override
   String toString() => 'HabitListAddCreated(habit:${this.habit})';
@@ -96,7 +96,7 @@ class HabitListAddUpdated extends HabitListEvent {
   const HabitListAddUpdated({@required this.habit})
       : super(_HabitListEvent.HabitListAddUpdated);
 
-  final HabitApi habit;
+  final Habit habit;
 
   @override
   String toString() => 'HabitListAddUpdated(habit:${this.habit})';

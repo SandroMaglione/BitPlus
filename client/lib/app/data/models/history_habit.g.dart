@@ -20,11 +20,10 @@ class _$HistoryHabitSerializer implements StructuredSerializer<HistoryHabit> {
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'habit',
-      serializers.serialize(object.habit,
-          specifiedType: const FullType(HabitApi)),
-      'historyCheck',
-      serializers.serialize(object.historyCheck,
-          specifiedType: const FullType(HistoryCheck)),
+      serializers.serialize(object.habit, specifiedType: const FullType(Habit)),
+      'historyDayCheck',
+      serializers.serialize(object.historyDayCheck,
+          specifiedType: const FullType(HistoryDayCheck)),
     ];
 
     return result;
@@ -43,11 +42,12 @@ class _$HistoryHabitSerializer implements StructuredSerializer<HistoryHabit> {
       switch (key) {
         case 'habit':
           result.habit.replace(serializers.deserialize(value,
-              specifiedType: const FullType(HabitApi)) as HabitApi);
+              specifiedType: const FullType(Habit)) as Habit);
           break;
-        case 'historyCheck':
-          result.historyCheck.replace(serializers.deserialize(value,
-              specifiedType: const FullType(HistoryCheck)) as HistoryCheck);
+        case 'historyDayCheck':
+          result.historyDayCheck.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(HistoryDayCheck))
+              as HistoryDayCheck);
           break;
       }
     }
@@ -58,19 +58,19 @@ class _$HistoryHabitSerializer implements StructuredSerializer<HistoryHabit> {
 
 class _$HistoryHabit extends HistoryHabit {
   @override
-  final HabitApi habit;
+  final Habit habit;
   @override
-  final HistoryCheck historyCheck;
+  final HistoryDayCheck historyDayCheck;
 
   factory _$HistoryHabit([void Function(HistoryHabitBuilder) updates]) =>
       (new HistoryHabitBuilder()..update(updates)).build();
 
-  _$HistoryHabit._({this.habit, this.historyCheck}) : super._() {
+  _$HistoryHabit._({this.habit, this.historyDayCheck}) : super._() {
     if (habit == null) {
       throw new BuiltValueNullFieldError('HistoryHabit', 'habit');
     }
-    if (historyCheck == null) {
-      throw new BuiltValueNullFieldError('HistoryHabit', 'historyCheck');
+    if (historyDayCheck == null) {
+      throw new BuiltValueNullFieldError('HistoryHabit', 'historyDayCheck');
     }
   }
 
@@ -86,19 +86,19 @@ class _$HistoryHabit extends HistoryHabit {
     if (identical(other, this)) return true;
     return other is HistoryHabit &&
         habit == other.habit &&
-        historyCheck == other.historyCheck;
+        historyDayCheck == other.historyDayCheck;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, habit.hashCode), historyCheck.hashCode));
+    return $jf($jc($jc(0, habit.hashCode), historyDayCheck.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('HistoryHabit')
           ..add('habit', habit)
-          ..add('historyCheck', historyCheck))
+          ..add('historyDayCheck', historyDayCheck))
         .toString();
   }
 }
@@ -107,22 +107,22 @@ class HistoryHabitBuilder
     implements Builder<HistoryHabit, HistoryHabitBuilder> {
   _$HistoryHabit _$v;
 
-  HabitApiBuilder _habit;
-  HabitApiBuilder get habit => _$this._habit ??= new HabitApiBuilder();
-  set habit(HabitApiBuilder habit) => _$this._habit = habit;
+  HabitBuilder _habit;
+  HabitBuilder get habit => _$this._habit ??= new HabitBuilder();
+  set habit(HabitBuilder habit) => _$this._habit = habit;
 
-  HistoryCheckBuilder _historyCheck;
-  HistoryCheckBuilder get historyCheck =>
-      _$this._historyCheck ??= new HistoryCheckBuilder();
-  set historyCheck(HistoryCheckBuilder historyCheck) =>
-      _$this._historyCheck = historyCheck;
+  HistoryDayCheckBuilder _historyDayCheck;
+  HistoryDayCheckBuilder get historyDayCheck =>
+      _$this._historyDayCheck ??= new HistoryDayCheckBuilder();
+  set historyDayCheck(HistoryDayCheckBuilder historyDayCheck) =>
+      _$this._historyDayCheck = historyDayCheck;
 
   HistoryHabitBuilder();
 
   HistoryHabitBuilder get _$this {
     if (_$v != null) {
       _habit = _$v.habit?.toBuilder();
-      _historyCheck = _$v.historyCheck?.toBuilder();
+      _historyDayCheck = _$v.historyDayCheck?.toBuilder();
       _$v = null;
     }
     return this;
@@ -147,14 +147,14 @@ class HistoryHabitBuilder
     try {
       _$result = _$v ??
           new _$HistoryHabit._(
-              habit: habit.build(), historyCheck: historyCheck.build());
+              habit: habit.build(), historyDayCheck: historyDayCheck.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'habit';
         habit.build();
-        _$failedField = 'historyCheck';
-        historyCheck.build();
+        _$failedField = 'historyDayCheck';
+        historyDayCheck.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'HistoryHabit', _$failedField, e.toString());

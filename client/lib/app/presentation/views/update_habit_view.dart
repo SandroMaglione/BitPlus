@@ -1,4 +1,4 @@
-import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/app/presentation/views/manage_habit_view.dart';
 import 'package:bitplus/app/presentation/widgets/custom_app_bar.dart';
@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UpdateHabitView extends StatelessWidget {
-  final HabitApi habit;
+  final Habit habit;
 
   const UpdateHabitView(
     this.habit,

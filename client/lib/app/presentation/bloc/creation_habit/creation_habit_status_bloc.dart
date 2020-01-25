@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/domain/usecases/habit/create_habit.dart' as ch;
 import 'package:bitplus/app/domain/usecases/habit/update_habit.dart' as uh;
 import 'package:meta/meta.dart';
@@ -75,7 +75,7 @@ class CreationHabitStatusBloc
           message: 'Error while updating habit, try again later',
         );
       },
-      (HabitApi habit) async* {
+      (Habit habit) async* {
         habitListBloc.add(
           HabitListEvent.habitListAddUpdated(
             habit: habit,
@@ -107,7 +107,7 @@ class CreationHabitStatusBloc
           message: 'Error while creating the habit, try again later',
         );
       },
-      (HabitApi habit) async* {
+      (Habit habit) async* {
         habitListBloc.add(
           HabitListEvent.habitListAddCreated(
             habit: habit,

@@ -6,6 +6,7 @@ import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
 abstract class LifeAreaRemoteDataSource {
+  /// Update user area weights
   Future<void> updateAreas(
     String uid,
     BuiltList<int> areas,

@@ -1,4 +1,4 @@
-import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/app/presentation/views/create_habit_view.dart';
 import 'package:bitplus/app/presentation/views/update_habit_view.dart';
@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CreationHabitScreen extends StatelessWidget {
-  final HabitApi habit;
+  final Habit habit;
 
   const CreationHabitScreen({
     this.habit,

@@ -9,19 +9,17 @@ import 'package:built_value/serializer.dart';
 
 part 'create_habit_req.g.dart';
 
+/// Send user id and new habit parameters to create a new habit
 abstract class CreateHabitReq
     implements Built<CreateHabitReq, CreateHabitReqBuilder> {
+  factory CreateHabitReq([Function(CreateHabitReqBuilder b) updates]) =
+      _$CreateHabitReq;
+
   CreateHabitReq._();
 
-  factory CreateHabitReq([updates(CreateHabitReqBuilder b)]) = _$CreateHabitReq;
-
-  @BuiltValueField(wireName: 'uid')
   String get uid;
-  @BuiltValueField(wireName: 'color')
   int get color;
-  @BuiltValueField(wireName: 'name')
   String get name;
-  @BuiltValueField(wireName: 'areas')
   BuiltList<int> get areas;
 
   String toJson() {

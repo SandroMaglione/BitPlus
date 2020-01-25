@@ -1,4 +1,3 @@
-import 'package:bitplus/app/data/datasources/profile_local_data_source.dart';
 import 'package:bitplus/app/data/datasources/profile_remote_data_source.dart';
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:built_collection/built_collection.dart';
@@ -10,10 +9,8 @@ import 'package:bitplus/core/extensions/task_extension.dart';
 
 class ProfileRepositoryImpl implements ProfileRepository {
   final ProfileRemoteDataSource profileRemoteDataSource;
-  final ProfileLocalDataSource profileLocalDataSource;
 
   const ProfileRepositoryImpl({
-    @required this.profileLocalDataSource,
     @required this.profileRemoteDataSource,
   });
 

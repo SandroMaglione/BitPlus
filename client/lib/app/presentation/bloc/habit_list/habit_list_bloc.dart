@@ -1,10 +1,10 @@
 import 'dart:async';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/domain/usecases/habit/check_habit.dart' as ch;
 import 'package:bitplus/app/domain/usecases/habit/uncheck_habit.dart' as uch;
 import 'package:bitplus/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
-import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bloc/bloc.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:bitplus/core/extensions/bloc_extension.dart';
@@ -13,7 +13,7 @@ import '../bloc.dart';
 /// Store the list of habit of the current logged user fetched from the database
 ///
 /// Initially empty
-class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
+class HabitListBloc extends Bloc<HabitListEvent, BuiltList<Habit>> {
   final AuthBloc authBloc;
   final ch.CheckHabit checkHabit;
   final uch.UncheckHabit uncheckHabit;
@@ -25,10 +25,10 @@ class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
   });
 
   @override
-  BuiltList<HabitApi> get initialState => BuiltList<HabitApi>();
+  BuiltList<Habit> get initialState => BuiltList<Habit>();
 
   @override
-  Stream<BuiltList<HabitApi>> mapEventToState(
+  Stream<BuiltList<Habit>> mapEventToState(
     HabitListEvent event,
   ) async* {
     yield* event.when(
@@ -50,13 +50,13 @@ class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
     );
   }
 
-  Stream<BuiltList<HabitApi>> _mapHabitListFetched(
-    BuiltList<HabitApi> habitList,
+  Stream<BuiltList<Habit>> _mapHabitListFetched(
+    BuiltList<Habit> habitList,
   ) async* {
     yield habitList;
   }
 
-  Stream<BuiltList<HabitApi>> _mapHabitListUncheck(
+  Stream<BuiltList<Habit>> _mapHabitListUncheck(
     HabitListUncheck event,
     String uid,
   ) async* {
@@ -72,19 +72,19 @@ class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
     );
   }
 
-  Stream<BuiltList<HabitApi>> _mapHabitListAddCreated(HabitApi habit) async* {
+  Stream<BuiltList<Habit>> _mapHabitListAddCreated(Habit habit) async* {
     yield BuiltList([habit, ...state]);
   }
 
-  Stream<BuiltList<HabitApi>> _mapHabitListAddUpdated(HabitApi habit) async* {
-    yield BuiltList<HabitApi>(
+  Stream<BuiltList<Habit>> _mapHabitListAddUpdated(Habit habit) async* {
+    yield BuiltList<Habit>(
       state.map(
         (h) => h.habitID == habit.habitID ? habit : h,
       ),
     );
   }
 
-  Stream<BuiltList<HabitApi>> _mapHabitListCheck(
+  Stream<BuiltList<Habit>> _mapHabitListCheck(
     HabitListCheck event,
     String uid,
   ) async* {
@@ -101,14 +101,14 @@ class HabitListBloc extends Bloc<HabitListEvent, BuiltList<HabitApi>> {
   }
 
   /// Check/Uncheck habit event
-  Stream<BuiltList<HabitApi>> _mapCheckToggle(
+  Stream<BuiltList<Habit>> _mapCheckToggle(
     bool checked,
     String habitID,
     Future<Either<Failure, void>> Function() fun,
   ) async* {
     final stateBackup = state;
 
-    yield BuiltList<HabitApi>(
+    yield BuiltList<Habit>(
       state.map(
         (h) => h.habitID == habitID
             ? h.rebuild(

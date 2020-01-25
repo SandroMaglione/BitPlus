@@ -2,6 +2,7 @@ library life_area;
 
 import 'dart:convert';
 
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/data/models/history_habit.dart';
 import 'package:bitplus/app/data/models/life_area_setting.dart';
 import 'package:bitplus/core/serializers/serializers.dart';
@@ -11,33 +12,43 @@ import 'package:built_value/serializer.dart';
 
 part 'life_area.g.dart';
 
+/// All the data about each area
 abstract class LifeArea implements Built<LifeArea, LifeAreaBuilder> {
   factory LifeArea([Function(LifeAreaBuilder b) updates]) = _$LifeArea;
 
   LifeArea._();
 
-  @BuiltValueField(wireName: 'name')
-  String get name;
-  @BuiltValueField(wireName: 'value')
+  /// AreaID, name, and color of the area
+  LifeAreaSetting get areaSettings;
+
+  /// User weight
   double get value;
-  @BuiltValueField(wireName: 'userWeight')
+
+  /// User weight/importance
   int get userWeight;
-  @BuiltValueField(wireName: 'color')
-  int get color;
-  @BuiltValueField(wireName: 'countChecksPositive')
+
+  /// Number of positive check in the last X days
   int get countChecksPositive;
-  @BuiltValueField(wireName: 'countChecksNegative')
+
+  /// Number of negative check in the last X days
   int get countChecksNegative;
-  @BuiltValueField(wireName: 'history')
-  BuiltList<int> get history;
-  @BuiltValueField(wireName: 'habitChecks')
-  BuiltList<HistoryHabit> get habitChecks;
-  @BuiltValueField(wireName: 'percentageArea')
+
+  /// Relative percentage user weight of the area
   double get percentageArea;
-  @BuiltValueField(wireName: 'percentageActivity')
+
+  /// Relative percentage of activity/checks in last X days
   double get percentageActivity;
-  @BuiltValueField(wireName: 'icon')
-  String get icon;
+
+  /// Count checks for each of the last X days
+  BuiltList<int> get history;
+
+  /// Reference to the [Habit] and its check history
+  BuiltList<HistoryHabit> get historyHabit;
+
+  int get areaID => areaSettings.areaID;
+  String get name => areaSettings.name;
+  int get color => areaSettings.color;
+
   String toJson() {
     return json.encode(
       serializers.serializeWith(
@@ -58,17 +69,15 @@ abstract class LifeArea implements Built<LifeArea, LifeAreaBuilder> {
 
   static LifeArea fromSetting(LifeAreaSetting lifeAreaSetting) => LifeArea(
         (l) => l
-          ..name = lifeAreaSetting.name
-          ..color = lifeAreaSetting.color
-          ..icon = lifeAreaSetting.icon
-          ..countChecksPositive = 0
-          ..countChecksNegative = 0
-          ..history = ListBuilder<int>()
-          ..percentageActivity = 0.0
-          ..percentageArea = 0.0
+          ..areaSettings = lifeAreaSetting.toBuilder()
           ..value = 0
           ..userWeight = 0
-          ..habitChecks = ListBuilder<HistoryHabit>(),
+          ..countChecksPositive = 0
+          ..countChecksNegative = 0
+          ..percentageActivity = 0.0
+          ..percentageArea = 0.0
+          ..history = ListBuilder<int>()
+          ..historyHabit = ListBuilder<HistoryHabit>(),
       );
 
   static Serializer<LifeArea> get serializer => _$lifeAreaSerializer;

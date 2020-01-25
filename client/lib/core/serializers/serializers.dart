@@ -1,19 +1,13 @@
 import 'package:bitplus/app/data/models/api/create_habit_req.dart';
-import 'package:bitplus/app/data/models/api/habit_api.dart';
 import 'package:bitplus/app/data/models/api/post_user_account.dart';
 import 'package:bitplus/app/data/models/api/update_habit_req.dart';
 import 'package:bitplus/app/data/models/creation_habit.dart';
 import 'package:bitplus/app/data/models/habit.dart';
-import 'package:bitplus/app/data/models/habit_entity.dart';
-import 'package:bitplus/app/data/models/habit_stat.dart';
-import 'package:bitplus/app/data/models/history_check.dart';
+import 'package:bitplus/app/data/models/history_day_check.dart';
 import 'package:bitplus/app/data/models/history_habit.dart';
 import 'package:bitplus/app/data/models/init_login_form.dart';
 import 'package:bitplus/app/data/models/life_area.dart';
 import 'package:bitplus/app/data/models/life_area_setting.dart';
-import 'package:bitplus/app/data/models/login_status_info.dart';
-import 'package:bitplus/app/data/models/summary.dart';
-import 'package:bitplus/app/data/models/summary_stat.dart';
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:bitplus/core/enums/login_status_page.dart';
 import 'package:built_value/iso_8601_date_time_serializer.dart';
@@ -27,20 +21,14 @@ part 'serializers.g.dart';
 @SerializersFor([
   User,
   Habit,
-  HabitEntity,
-  HabitStat,
-  Summary,
-  SummaryStat,
   LifeArea,
   LifeAreaSetting,
-  HistoryCheck,
+  HistoryDayCheck,
   CreationHabit,
   HistoryHabit,
-  HabitApi,
   PostUserAccount,
   CreateHabitReq,
   UpdateHabitReq,
-  LoginStatusInfo,
   LoginStatusPage,
   InitLoginForm,
 ])

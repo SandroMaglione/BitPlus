@@ -1,5 +1,5 @@
-import 'package:bitplus/app/data/models/api/habit_api.dart';
-import 'package:bitplus/app/data/models/history_check.dart';
+import 'package:bitplus/app/data/models/habit.dart';
+import 'package:bitplus/app/data/models/history_day_check.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -8,7 +8,7 @@ import 'package:bitplus/core/error/failures.dart';
 import 'package:bitplus/core/usecase/usecase.dart';
 import 'package:dartz/dartz.dart';
 
-class UpdateHabit implements UseCase<HabitApi, Params> {
+class UpdateHabit implements UseCase<Habit, Params> {
   final HabitRepository habitRepository;
 
   const UpdateHabit({
@@ -16,7 +16,7 @@ class UpdateHabit implements UseCase<HabitApi, Params> {
   });
 
   @override
-  Future<Either<Failure, HabitApi>> call(Params params) {
+  Future<Either<Failure, Habit>> call(Params params) {
     return habitRepository.updateHabit(
       params.uid,
       params.habitID,
@@ -37,7 +37,7 @@ class Params extends Equatable {
   final String name;
   final bool checked;
   final int color;
-  final BuiltList<HistoryCheck> history;
+  final BuiltList<HistoryDayCheck> history;
   final int streak;
   final int countChecks;
   final BuiltList<int> areas;

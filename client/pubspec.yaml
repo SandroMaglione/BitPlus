@@ -38,6 +38,9 @@ dependencies:
   # date formatting
   intl: ^0.16.0
 
+  # share prompt
+  share: ^0.6.3+5
+
   # google sign-in
   google_sign_in: ^4.1.0
 

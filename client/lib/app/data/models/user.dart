@@ -9,21 +9,16 @@ import 'package:built_value/serializer.dart';
 
 part 'user.g.dart';
 
-/// Model containing the data of a registered user
+/// User account info
+/// 
+/// User id, email, and areas weight
 abstract class User implements Built<User, UserBuilder> {
+  factory User([Function(UserBuilder b) updates]) = _$User;
+
   User._();
 
-  factory User([updates(UserBuilder b)]) = _$User;
-
-  @BuiltValueField(wireName: 'uid')
   String get uid;
-  @BuiltValueField(wireName: 'level')
-  int get level;
-  @BuiltValueField(wireName: 'experience')
-  int get exp;
-  @BuiltValueField(wireName: 'email')
   String get email;
-  @BuiltValueField(wireName: 'areas')
   BuiltList<int> get areas;
 
   String toJson() {

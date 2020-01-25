@@ -1,4 +1,4 @@
-import 'package:bitplus/app/data/models/history_habit.dart';
+import 'package:bitplus/app/data/models/life_area.dart';
 import 'package:bitplus/app/presentation/views/history_calendar_grid_view.dart';
 import 'package:bitplus/app/presentation/views/history_habit_list_view.dart';
 import 'package:bitplus/app/presentation/widgets/custom_app_bar.dart';
@@ -6,24 +6,16 @@ import 'package:bitplus/app/presentation/widgets/custom_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 class HistoryMapScreen extends StatefulWidget {
-  final List<int> history;
-  final List<HistoryHabit> habitHistory;
-  final String name;
-  final int color;
-  final int areaIndex;
+  final LifeArea area;
 
   HistoryMapScreen({
-    @required this.history,
-    @required this.name,
-    @required this.areaIndex,
-    @required this.color,
-    @required this.habitHistory,
+    @required this.area,
   }) {
-    habitHistory.sort(
-      (h1, h2) => h2.historyCheck.day.compareTo(
-        h1.historyCheck.day,
-      ),
-    );
+    area.historyHabit.toList().sort(
+          (h1, h2) => h2.historyDayCheck.day.compareTo(
+            h1.historyDayCheck.day,
+          ),
+        );
   }
 
   @override
@@ -38,18 +30,18 @@ class _HistoryMapScreenState extends State<HistoryMapScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-          title: widget.name,
-          subtitle: 'Last ${widget.history.length} days',
+          title: widget.area.name,
+          subtitle: 'Last ${widget.area.history.length} days',
         ),
         body: _bottomNavigationIndex == 0
             ? HistoryCalendarGridView(
-                color: widget.color,
-                history: widget.history,
-                areaIndex: widget.areaIndex,
+                color: widget.area.color,
+                areaIndex: widget.area.areaID,
+                history: widget.area.history.toList(),
               )
             : HistoryHabitListView(
-                areaIndex: widget.areaIndex,
-                habitHistory: widget.habitHistory,
+                areaIndex: widget.area.areaID,
+                habitHistory: widget.area.historyHabit.toList(),
               ),
         bottomNavigationBar: CustomBottomBar(
           currentIndex: _bottomNavigationIndex,
@@ -59,13 +51,13 @@ class _HistoryMapScreenState extends State<HistoryMapScreen> {
               icon: Icon(
                 Icons.calendar_today,
               ),
-              title: Text('Calendar'),
+              title: const Text('Calendar'),
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.view_list,
               ),
-              title: Text('History'),
+              title: const Text('History'),
             ),
           ],
         ),

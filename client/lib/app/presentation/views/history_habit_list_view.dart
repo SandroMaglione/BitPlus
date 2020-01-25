@@ -35,8 +35,8 @@ class _HistoryHabitListViewState extends State<HistoryHabitListView> {
 
       buildSubList[currentIndex].add(widget.habitHistory[i]);
 
-      if (!widget.habitHistory[i].historyCheck.day.isSameDay(
-        widget.habitHistory[i + 1].historyCheck.day,
+      if (!widget.habitHistory[i].historyDayCheck.day.isSameDay(
+        widget.habitHistory[i + 1].historyDayCheck.day,
       )) {
         currentIndex += 1;
       }
@@ -70,7 +70,7 @@ class _HistoryHabitListViewState extends State<HistoryHabitListView> {
                   vertical: 8.0,
                 ),
                 child: Text(
-                  '${DateFormat('EEEE - d MMM y').format(sublist[index].first.historyCheck.day)}',
+                  '${DateFormat('EEEE - d MMM y').format(sublist[index].first.historyDayCheck.day)}',
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
                     color: ACCENT_COLOR_DARK.withOpacity(0.84),

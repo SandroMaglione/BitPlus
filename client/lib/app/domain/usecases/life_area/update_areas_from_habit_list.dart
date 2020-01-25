@@ -1,4 +1,4 @@
-import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/data/models/life_area.dart';
 import 'package:bitplus/app/data/models/user.dart';
 import 'package:bitplus/app/domain/repositories/life_area_repository.dart';
@@ -27,7 +27,7 @@ class UpdateAreasFromHabitList implements UseCaseSync<void, Params> {
 class Params extends Equatable {
   final BuiltList<LifeArea> previousState;
   final User user;
-  final BuiltList<HabitApi> habitList;
+  final BuiltList<Habit> habitList;
 
   const Params({
     @required this.previousState,

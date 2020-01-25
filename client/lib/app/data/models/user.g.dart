@@ -20,10 +20,6 @@ class _$UserSerializer implements StructuredSerializer<User> {
     final result = <Object>[
       'uid',
       serializers.serialize(object.uid, specifiedType: const FullType(String)),
-      'level',
-      serializers.serialize(object.level, specifiedType: const FullType(int)),
-      'experience',
-      serializers.serialize(object.exp, specifiedType: const FullType(int)),
       'email',
       serializers.serialize(object.email,
           specifiedType: const FullType(String)),
@@ -51,14 +47,6 @@ class _$UserSerializer implements StructuredSerializer<User> {
           result.uid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
-        case 'level':
-          result.level = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
-          break;
-        case 'experience':
-          result.exp = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
-          break;
         case 'email':
           result.email = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
@@ -80,10 +68,6 @@ class _$User extends User {
   @override
   final String uid;
   @override
-  final int level;
-  @override
-  final int exp;
-  @override
   final String email;
   @override
   final BuiltList<int> areas;
@@ -91,16 +75,9 @@ class _$User extends User {
   factory _$User([void Function(UserBuilder) updates]) =>
       (new UserBuilder()..update(updates)).build();
 
-  _$User._({this.uid, this.level, this.exp, this.email, this.areas})
-      : super._() {
+  _$User._({this.uid, this.email, this.areas}) : super._() {
     if (uid == null) {
       throw new BuiltValueNullFieldError('User', 'uid');
-    }
-    if (level == null) {
-      throw new BuiltValueNullFieldError('User', 'level');
-    }
-    if (exp == null) {
-      throw new BuiltValueNullFieldError('User', 'exp');
     }
     if (email == null) {
       throw new BuiltValueNullFieldError('User', 'email');
@@ -122,26 +99,19 @@ class _$User extends User {
     if (identical(other, this)) return true;
     return other is User &&
         uid == other.uid &&
-        level == other.level &&
-        exp == other.exp &&
         email == other.email &&
         areas == other.areas;
   }
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc($jc(0, uid.hashCode), level.hashCode), exp.hashCode),
-            email.hashCode),
-        areas.hashCode));
+    return $jf($jc($jc($jc(0, uid.hashCode), email.hashCode), areas.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('User')
           ..add('uid', uid)
-          ..add('level', level)
-          ..add('exp', exp)
           ..add('email', email)
           ..add('areas', areas))
         .toString();
@@ -154,14 +124,6 @@ class UserBuilder implements Builder<User, UserBuilder> {
   String _uid;
   String get uid => _$this._uid;
   set uid(String uid) => _$this._uid = uid;
-
-  int _level;
-  int get level => _$this._level;
-  set level(int level) => _$this._level = level;
-
-  int _exp;
-  int get exp => _$this._exp;
-  set exp(int exp) => _$this._exp = exp;
 
   String _email;
   String get email => _$this._email;
@@ -176,8 +138,6 @@ class UserBuilder implements Builder<User, UserBuilder> {
   UserBuilder get _$this {
     if (_$v != null) {
       _uid = _$v.uid;
-      _level = _$v.level;
-      _exp = _$v.exp;
       _email = _$v.email;
       _areas = _$v.areas?.toBuilder();
       _$v = null;
@@ -202,13 +162,8 @@ class UserBuilder implements Builder<User, UserBuilder> {
   _$User build() {
     _$User _$result;
     try {
-      _$result = _$v ??
-          new _$User._(
-              uid: uid,
-              level: level,
-              exp: exp,
-              email: email,
-              areas: areas.build());
+      _$result =
+          _$v ?? new _$User._(uid: uid, email: email, areas: areas.build());
     } catch (_) {
       String _$failedField;
       try {

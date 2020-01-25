@@ -12,9 +12,9 @@ import 'package:bitplus/app/presentation/screen/init_life_area_screen.dart';
 import 'package:bitplus/app/presentation/screen/login_form_screen.dart';
 import 'package:bitplus/app/presentation/screen/home_screen.dart';
 import 'package:bitplus/app/presentation/screen/creation_habit_screen.dart';
-import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:bitplus/app/presentation/screen/history_map_screen.dart';
-import 'package:bitplus/app/data/models/history_habit.dart';
+import 'package:bitplus/app/data/models/life_area.dart';
 import 'package:bitplus/app/presentation/screen/profile_screen.dart';
 import 'package:bitplus/app/presentation/screen/update_life_area_screen.dart';
 
@@ -59,26 +59,21 @@ class Router {
           settings: settings,
         );
       case creationHabitScreen:
-        if (hasInvalidArgs<HabitApi>(args)) {
-          return misTypedArgsRoute<HabitApi>(args);
+        if (hasInvalidArgs<Habit>(args)) {
+          return misTypedArgsRoute<Habit>(args);
         }
-        final typedArgs = args as HabitApi;
+        final typedArgs = args as Habit;
         return MaterialPageRoute(
           builder: (_) => CreationHabitScreen(habit: typedArgs),
           settings: settings,
         );
       case historyMapScreen:
-        if (hasInvalidArgs<HistoryMapScreenArguments>(args, isRequired: true)) {
-          return misTypedArgsRoute<HistoryMapScreenArguments>(args);
+        if (hasInvalidArgs<LifeArea>(args, isRequired: true)) {
+          return misTypedArgsRoute<LifeArea>(args);
         }
-        final typedArgs = args as HistoryMapScreenArguments;
+        final typedArgs = args as LifeArea;
         return MaterialPageRoute(
-          builder: (_) => HistoryMapScreen(
-              history: typedArgs.history,
-              name: typedArgs.name,
-              areaIndex: typedArgs.areaIndex,
-              color: typedArgs.color,
-              habitHistory: typedArgs.habitHistory),
+          builder: (_) => HistoryMapScreen(area: typedArgs),
           settings: settings,
         );
       case profileScreen:
@@ -99,23 +94,4 @@ class Router {
         return unknownRoutePage(settings.name);
     }
   }
-}
-
-//--------------------------------------------------------------------------
-// Arguments holder classes
-//---------------------------------------------------------------------------
-
-//HistoryMapScreen arguments holder class
-class HistoryMapScreenArguments {
-  final List<int> history;
-  final String name;
-  final int areaIndex;
-  final int color;
-  final List<HistoryHabit> habitHistory;
-  HistoryMapScreenArguments(
-      {@required this.history,
-      @required this.name,
-      @required this.areaIndex,
-      @required this.color,
-      @required this.habitHistory});
 }

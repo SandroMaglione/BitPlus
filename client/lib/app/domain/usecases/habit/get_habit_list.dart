@@ -1,4 +1,4 @@
-import 'package:bitplus/app/data/models/api/habit_api.dart';
+import 'package:bitplus/app/data/models/habit.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
@@ -7,7 +7,7 @@ import 'package:bitplus/core/error/failures.dart';
 import 'package:bitplus/core/usecase/usecase.dart';
 import 'package:dartz/dartz.dart';
 
-class GetHabitList implements UseCase<BuiltList<HabitApi>, Params> {
+class GetHabitList implements UseCase<BuiltList<Habit>, Params> {
   final HabitRepository habitRepository;
 
   const GetHabitList({
@@ -15,7 +15,7 @@ class GetHabitList implements UseCase<BuiltList<HabitApi>, Params> {
   });
 
   @override
-  Future<Either<Failure, BuiltList<HabitApi>>> call(Params params) {
+  Future<Either<Failure, BuiltList<Habit>>> call(Params params) {
     return habitRepository.getHabitList(
       params.uid,
       params.dateRange,

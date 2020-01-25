@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'init_life_area.dart';
+part of init_life_area;
 
 // **************************************************************************
 // BuiltValueGenerator
@@ -19,13 +19,13 @@ class _$InitLifeAreaSerializer implements StructuredSerializer<InitLifeArea> {
   Iterable<Object> serialize(Serializers serializers, InitLifeArea object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
+      'pointsLeft',
+      serializers.serialize(object.pointsLeft,
+          specifiedType: const FullType(int)),
       'values',
       serializers.serialize(object.values,
           specifiedType:
               const FullType(BuiltList, const [const FullType(int)])),
-      'pointsLeft',
-      serializers.serialize(object.pointsLeft,
-          specifiedType: const FullType(int)),
     ];
 
     return result;
@@ -42,15 +42,15 @@ class _$InitLifeAreaSerializer implements StructuredSerializer<InitLifeArea> {
       iterator.moveNext();
       final dynamic value = iterator.current;
       switch (key) {
+        case 'pointsLeft':
+          result.pointsLeft = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
         case 'values':
           result.values.replace(serializers.deserialize(value,
                   specifiedType:
                       const FullType(BuiltList, const [const FullType(int)]))
               as BuiltList<dynamic>);
-          break;
-        case 'pointsLeft':
-          result.pointsLeft = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
           break;
       }
     }
@@ -61,19 +61,19 @@ class _$InitLifeAreaSerializer implements StructuredSerializer<InitLifeArea> {
 
 class _$InitLifeArea extends InitLifeArea {
   @override
-  final BuiltList<int> values;
-  @override
   final int pointsLeft;
+  @override
+  final BuiltList<int> values;
 
   factory _$InitLifeArea([void Function(InitLifeAreaBuilder) updates]) =>
       (new InitLifeAreaBuilder()..update(updates)).build();
 
-  _$InitLifeArea._({this.values, this.pointsLeft}) : super._() {
-    if (values == null) {
-      throw new BuiltValueNullFieldError('InitLifeArea', 'values');
-    }
+  _$InitLifeArea._({this.pointsLeft, this.values}) : super._() {
     if (pointsLeft == null) {
       throw new BuiltValueNullFieldError('InitLifeArea', 'pointsLeft');
+    }
+    if (values == null) {
+      throw new BuiltValueNullFieldError('InitLifeArea', 'values');
     }
   }
 
@@ -88,20 +88,20 @@ class _$InitLifeArea extends InitLifeArea {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is InitLifeArea &&
-        values == other.values &&
-        pointsLeft == other.pointsLeft;
+        pointsLeft == other.pointsLeft &&
+        values == other.values;
   }
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, values.hashCode), pointsLeft.hashCode));
+    return $jf($jc($jc(0, pointsLeft.hashCode), values.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('InitLifeArea')
-          ..add('values', values)
-          ..add('pointsLeft', pointsLeft))
+          ..add('pointsLeft', pointsLeft)
+          ..add('values', values))
         .toString();
   }
 }
@@ -110,20 +110,20 @@ class InitLifeAreaBuilder
     implements Builder<InitLifeArea, InitLifeAreaBuilder> {
   _$InitLifeArea _$v;
 
-  ListBuilder<int> _values;
-  ListBuilder<int> get values => _$this._values ??= new ListBuilder<int>();
-  set values(ListBuilder<int> values) => _$this._values = values;
-
   int _pointsLeft;
   int get pointsLeft => _$this._pointsLeft;
   set pointsLeft(int pointsLeft) => _$this._pointsLeft = pointsLeft;
+
+  ListBuilder<int> _values;
+  ListBuilder<int> get values => _$this._values ??= new ListBuilder<int>();
+  set values(ListBuilder<int> values) => _$this._values = values;
 
   InitLifeAreaBuilder();
 
   InitLifeAreaBuilder get _$this {
     if (_$v != null) {
-      _values = _$v.values?.toBuilder();
       _pointsLeft = _$v.pointsLeft;
+      _values = _$v.values?.toBuilder();
       _$v = null;
     }
     return this;
@@ -147,7 +147,7 @@ class InitLifeAreaBuilder
     _$InitLifeArea _$result;
     try {
       _$result = _$v ??
-          new _$InitLifeArea._(values: values.build(), pointsLeft: pointsLeft);
+          new _$InitLifeArea._(pointsLeft: pointsLeft, values: values.build());
     } catch (_) {
       String _$failedField;
       try {
