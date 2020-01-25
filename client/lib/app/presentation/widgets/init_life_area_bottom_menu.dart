@@ -1,3 +1,4 @@
+import 'package:bitplus/app/data/models/init_life_area.dart';
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/core/router/router.gr.dart';
 import 'package:bitplus/core/theme/colors.dart';
@@ -8,41 +9,43 @@ class InitLifeAreaBottomMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          FlatButton(
-            onPressed:
-                BlocProvider.of<InitLifeAreaBloc>(context).state.isAreasValid
-                    ? () {
-                        Navigator.of(context).pushNamed(
-                          Router.loginFormScreen,
-                          arguments: BlocProvider.of<InitLifeAreaBloc>(context)
-                              .state
-                              .values
-                              .toList(),
-                        );
-                      }
-                    : null,
-            child: const Text('Sign up'),
-          ),
-          Text(
-            '${BlocProvider.of<InitLifeAreaBloc>(context).state.pointsLeft}',
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 24.0,
-              color: ACCENT_COLOR_DARK,
+      child: BlocBuilder<InitLifeAreaBloc, InitLifeArea>(
+        builder: (context, state) => Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            FlatButton(
+              onPressed: state.isAreasValid
+                  ? () {
+                      Navigator.of(context).pushNamed(
+                        Router.loginFormScreen,
+                        arguments: BlocProvider.of<InitLifeAreaBloc>(context)
+                            .state
+                            .values
+                            .toList(),
+                      );
+                    }
+                  : null,
+              child: const Text('Sign up'),
             ),
-          ),
-          FlatButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(
-                Router.loginFormScreen,
-              );
-            },
-            child: const Text('Sign in'),
-          ),
-        ],
+            Text(
+              '${state.pointsLeft}',
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 24.0,
+                color:
+                    state.pointsLeft > 0 ? ACCENT_COLOR_DARK : NEGATIVE_COLOR,
+              ),
+            ),
+            FlatButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  Router.loginFormScreen,
+                );
+              },
+              child: const Text('Sign in'),
+            ),
+          ],
+        ),
       ),
     );
   }

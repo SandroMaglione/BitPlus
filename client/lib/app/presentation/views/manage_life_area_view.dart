@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:bitplus/app/presentation/bloc/bloc.dart';
 import 'package:bitplus/app/presentation/widgets/select_area_weight.dart';
 import 'package:bitplus/app/presentation/widgets/staggered_list_animation.dart';
@@ -7,8 +5,12 @@ import 'package:bitplus/core/constants/life_areas.dart';
 import 'package:bitplus/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:dartx/dartx.dart';
 import 'package:bitplus/app/data/models/init_life_area.dart';
 
+/// List of areas for user to assign weights
+///
+/// Used in [InitLifeAreaScreen]
 class ManageLifeAreaView extends StatelessWidget {
   final Widget bottomMenu;
 
@@ -34,18 +36,16 @@ class ManageLifeAreaView extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     child: StaggeredListAnimation(
-                      duration: const Duration(milliseconds: 1600),
+                      duration: const Duration(milliseconds: 1000),
                       offset: 300.0,
                       buildChild: (index) => SelectAreaWeight(
                         areaName: LIFE_AREAS[index].name,
-                        color: ACCENT_COLOR.withOpacity(0.56),
-                        areaPercentage: state.values[index] /
-                            (state.values.reduce(max) != 0
-                                ? state.values.reduce(max)
-                                : 1),
+                        color: Color(LIFE_AREAS[index].color),
                         areaValue: state.values[index],
                         addValue: () => _addPoint(context, index),
                         subtractValue: () => _removePoint(context, index),
+                        areaPercentage: state.values[index] /
+                            (state.values.max() != 0 ? state.values.max() : 1),
                       ),
                       itemCount: LIFE_AREAS.length,
                     ),

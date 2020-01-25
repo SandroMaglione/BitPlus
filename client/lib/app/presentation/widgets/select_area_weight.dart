@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:bitplus/core/extensions/string_extension.dart';
 
+/// Area weight selector
+///
+/// Used in [InitLifeAreaScreen] to assign weights to each area
 class SelectAreaWeight extends StatelessWidget {
   final String areaName;
+
+  /// Weight points assigned to the area
   final int areaValue;
   final Color color;
   final double areaPercentage;
@@ -57,9 +63,12 @@ class SelectAreaWeight extends StatelessWidget {
                               vertical: 4.0,
                             ),
                             child: Text(
-                              areaName,
-                              style: const TextStyle(
-                                fontSize: 16.0,
+                              areaName.capitalize,
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                letterSpacing: 1.0,
+                                color: color,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
                           ),
@@ -87,19 +96,17 @@ class SelectAreaWeight extends StatelessWidget {
             ),
           ),
           LayoutBuilder(
-            builder: (ctx, cns) => AnimatedContainer(
+            builder: (ctx, constraints) => AnimatedContainer(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
-                color: color,
+                color: color.withOpacity(0.54),
               ),
               duration: const Duration(
                 milliseconds: 350,
               ),
               curve: Curves.easeOut,
               height: 4.0,
-              width: cns.maxWidth * areaPercentage >= 0
-                  ? cns.maxWidth * areaPercentage
-                  : 0,
+              width: constraints.maxWidth * areaPercentage,
             ),
           ),
         ],
